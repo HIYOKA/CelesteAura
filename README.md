@@ -1,2 +1,2 @@
 # CelesteAura
-PIB Personal Image Branding
+Personal Image Branding
