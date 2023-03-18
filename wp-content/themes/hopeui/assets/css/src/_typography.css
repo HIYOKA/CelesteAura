@@ -1,0 +1,317 @@
+/**
+ * Custom Properties
+ * aka CSS variables.
+ *
+ * @link: https://developer.mozilla.org/en-US/docs/Web/CSS/--*
+ **/
+
+/* cyrillic-ext */
+@font-face {
+	font-family: "Inter";
+	src: url("./fonts/Inter-Medium.woff2") format('woff2'),
+		url("./fonts/Inter-Regular.woff2") format('woff2');
+}
+
+
+:root {
+
+	/* Container */
+	--content-width: 87.5em;
+	--content-width-sm: 75em;
+	--sidebar-width: 18.75em;
+
+
+	/* Typography */
+	--global-font-family: "Inter";
+	--highlight-font-family: "Inter";
+	--global-font-size: 1em;
+	--global-font-line-height: 1.5;
+	--global-box-shadow: 0 0.625rem 1.875rem rgb(0 0 0 / 3%);
+	--global-submenu-shadow: 0rem 0.25rem 2rem 0rem rgb(0 0 0 / 10%);
+
+	/* Page Spacing */
+	--global-page-top-spacing: 2em;
+	--global-page-bottom-spacing: 2em;
+	--global-page-top-spacing-tablet: 2em;
+	--global-page-bottom-spacing-tablet: 2em;
+	--global-page-top-spacing-mobile: 2em;
+	--global-page-bottom-spacing-mobile: 2em;
+
+	/* Custom editor font sizes */
+	--font-size-small: calc(16 / var(--global-font-size) * 1em);
+	--font-size-regular: calc(var(--global-font-size) / 16 * 1em);
+	--font-size-large: calc(36 / var(--global-font-size) * 1em);
+	--font-size-larger: calc(48 / var(--global-font-size) * 1em);
+
+	/* Fontsize */
+	--font-size-small: 0.75em;
+	--font-size-normal: .875em;
+	--font-size-body: 1em;
+	--font-size-h1: 2.488em;
+	--font-size-h2: 2.074em;
+	--font-size-h3: 1.728em;
+	--font-size-h4: 1.44em;
+	--font-size-h5: 1.2em;
+	--font-size-h6: 1em;
+	--font-size-xs: 0.75em;
+
+	/* Line-Height */
+	--font-line-height-body: 1.5;
+	--font-line-height-p: 1.75;
+	--font-line-height-h1: 1.2;
+	--font-line-height-h2: 1.2;
+	--font-line-height-h3: 1.2;
+	--font-line-height-h4: 1.2;
+	--font-line-height-h5: 1.2;
+	--font-line-height-h6: 1.2;
+
+	/* Font-Weight */
+	--font-weight-body: 400;
+	--font-weight-h1: 500;
+	--font-weight-h2: 500;
+	--font-weight-h3: 500;
+	--font-weight-h4: 500;
+	--font-weight-h5: 500;
+	--font-weight-h6: 500;
+
+	/* font-weight*/
+
+	--font-weight-regular: 400;
+	--font-weight-medium: 500;
+
+	/* Letter spacing */
+	--font-letter-spacing-body: normal;
+	--font-letter-spacing-link: normal;
+	--font-letter-spacing-h1: normal;
+	--font-letter-spacing-h2: normal;
+	--font-letter-spacing-h3: normal;
+	--font-letter-spacing-h4: normal;
+	--font-letter-spacing-h5: normal;
+	--font-letter-spacing-h6: normal;
+	--letter-spacing: normal;
+	--letter-spacing-one: 0.063em;
+	--letter-spacing-two: 0.125em;
+	--letter-spacing-three: 0.188em;
+	--letter-spacing-four: 0.25em;
+
+	/* border-radius */
+	--border-radius: .5em;
+	--border-radius-box: .5em;
+	--border-radius-ten: .625em;
+	--box-border-radius: .25em;
+
+	/* z index */
+	--z-index-minus: -1;
+
+
+
+	/* Colors */
+	--global-body-bgcolor: #f9f9f9;
+	--global-body-lightcolor: #f1f3f5;
+	--global-font-color: #8a92a6;
+	--global-font-title: #0b112e;
+	--global-dark-submenu: #7C859B;
+	--global-body-lightbg: #f7f7f7;
+	--global-section-bg: #f1f3f5;
+	--global-section-bg-transparent: rgba(255, 255, 255, 0.3);
+	--border-color-light: #eee;
+	--border-color-dark: #262f48;
+	--color-link: #3A57E8;
+	--color-link-visited: #3A57E8;
+	--color-link-active: #3A57E8;
+	--color-post-sticky-bg: #ebeefd;
+	--color-input-placeholder: #8a92a6;
+	--logo-text-color: #212529;
+
+
+	/* Custom editor colors */
+	--color-theme-primary: #3A57E8;
+	--color-theme-primary-dark: #2e45b9;
+	--color-theme-primary-light: #ebeefd;
+	--color-theme-secondary: #6c757d;
+	--color-theme-secondary-dark: #5c636a;
+	--color-theme-secondary-light: #e2e3e5;
+	--color-theme-danger: #c03221;
+	--color-theme-danger-dark: #a32b1c;
+	--color-theme-danger-light: #f2d6d3;
+	--color-theme-success: #1aa053;
+	--color-theme-black: #000;
+	--color-theme-grey: #95a5a6;
+	--color-theme-white: #fff;
+	--color-theme-yellow: #FFD329;
+
+	/* Header editor colors */
+	--global-font-active: #2870DE;
+	--global-font-hover: #2870DE;
+
+	--product-col-gap: 1em;
+
+	/* bootstrap variable */
+	--bs-primary: #3a57e8;
+}
+
+@media (min-width: 1920px) {
+	:root {
+		--font-size-body: 0.83vw;
+	}
+}
+
+@media (max-width: 991px) {
+	:root {
+		--font-size-h1: 3.653em;
+		--font-size-h2: 2em;
+		--font-size-h3: 1.827em;
+		--font-size-h4: 1.700em;
+	}
+}
+
+
+/*--------------------------------------------------------------
+# Typography
+--------------------------------------------------------------*/
+
+body {
+	background: var(--global-body-bgcolor);
+	color: var(--global-font-color);
+	font-family: var(--global-font-family);
+	font-size: var(--font-size-body);
+	line-height: var(--font-line-height-body);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--highlight-font-family);
+	font-stretch: condensed;
+	clear: both;
+	margin: 0.625em 0;
+	word-break: break-word;
+	text-transform: capitalize;
+}
+
+h1 {
+	color: var(--global-font-title);
+	font-size: var(--font-size-h1);
+	line-height: var(--font-line-height-h1);
+	letter-spacing: var(--font-letter-spacing-h1);
+	font-weight: var(--font-weight-h1);
+}
+
+h2 {
+	color: var(--global-font-title);
+	font-size: var(--font-size-h2);
+	line-height: var(--font-line-height-h2);
+	letter-spacing: var(--font-letter-spacing-h2);
+	font-weight: var(--font-weight-h2);
+}
+
+h3 {
+	color: var(--global-font-title);
+	font-size: var(--font-size-h3);
+	line-height: var(--font-line-height-h3);
+	letter-spacing: var(--font-letter-spacing-h3);
+	font-weight: var(--font-weight-h3);
+}
+
+h4 {
+	color: var(--global-font-title);
+	font-size: var(--font-size-h4);
+	line-height: var(--font-line-height-h4);
+	letter-spacing: var(--font-letter-spacing-h4);
+	font-weight: var(--font-weight-h4);
+}
+
+h5 {
+	color: var(--global-font-title);
+	font-size: var(--font-size-h5);
+	line-height: var(--font-line-height-h5);
+	letter-spacing: var(--font-letter-spacing-h5);
+	font-weight: var(--font-weight-h5);
+}
+
+h6 {
+	color: var(--global-font-title);
+	font-size: var(--font-size-h6);
+	line-height: var(--font-line-height-h6);
+	letter-spacing: var(--font-letter-spacing-h6);
+	font-weight: var(--font-weight-h6);
+}
+
+button,
+input,
+select,
+optgroup,
+textarea {
+	color: var(--global-font-color);
+}
+
+small,
+.text_small {
+	font-size: var(--font-size-normal);
+}
+
+.overflow-hidden {
+	overflow: hidden;
+}
+
+.z-index-minus {
+	z-index: var(--z-index-minus);
+
+}
+
+.letter-spacing {
+	letter-spacing: var(--letter-spacing);
+}
+
+a {
+	font-size: var(--font-size-body);
+	color: var(--color-theme-primary);
+}
+
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a,
+h1 a:visited,
+h2 a:visited,
+h3 a:visited,
+h4 a:visited,
+h5 a:visited,
+h6 a:visited {
+	font-size: inherit;
+	color: inherit;
+}
+
+p {
+	margin: 1em 0;
+	line-height: var(--font-line-height-p);
+}
+
+pre {
+	background: var(--color-theme-white);
+	color: var(--global-font-color);
+	padding: 1em;
+	border: 0.063em solid var(--color-theme-primary);
+}
+
+a, a h1, a h2, a h3, a h4, a h5, a h6 {
+	transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-ms-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	-webkit-transition: all 0.5s ease-in-out;
+}
+
+.hopeui_style h1,
+.hopeui_style h2,
+.hopeui_style h3,
+.hopeui_style h4,
+.hopeui_style h5,
+.hopeui_style h6 {
+	margin: 0;
+}
