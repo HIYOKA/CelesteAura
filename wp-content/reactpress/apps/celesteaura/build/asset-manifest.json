@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "wp-content/reactpress/apps/celesteaura/build/static/css/main.e6c13ad2.css",
-    "main.js": "wp-content/reactpress/apps/celesteaura/build/static/js/main.62ba52ef.js",
+    "main.js": "wp-content/reactpress/apps/celesteaura/build/static/js/main.614097d0.js",
     "static/js/787.41922e9b.chunk.js": "wp-content/reactpress/apps/celesteaura/build/static/js/787.41922e9b.chunk.js",
     "index.html": "wp-content/reactpress/apps/celesteaura/build/index.html",
     "main.e6c13ad2.css.map": "wp-content/reactpress/apps/celesteaura/build/static/css/main.e6c13ad2.css.map",
-    "main.62ba52ef.js.map": "wp-content/reactpress/apps/celesteaura/build/static/js/main.62ba52ef.js.map",
+    "main.614097d0.js.map": "wp-content/reactpress/apps/celesteaura/build/static/js/main.614097d0.js.map",
     "787.41922e9b.chunk.js.map": "wp-content/reactpress/apps/celesteaura/build/static/js/787.41922e9b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.62ba52ef.js"
+    "static/js/main.614097d0.js"
   ]
 }
