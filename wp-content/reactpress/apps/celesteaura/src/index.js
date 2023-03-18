@@ -5,20 +5,29 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import App2 from "./App2";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-const root2 = ReactDOM.createRoot(document.getElementById("root2"));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const root = document.getElementById("root")
+  ? ReactDOM.createRoot(document.getElementById("root"))
+  : null;
 
-root2.render(
-  <React.StrictMode>
-    <App2 />
-    <App2 />
-  </React.StrictMode>
-);
+const root2 = document.getElementById("root2")
+  ? ReactDOM.createRoot(document.getElementById("root2"))
+  : null;
+
+if (root) {
+  root.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );
+}
+
+if (root2) {
+  root2.render(
+    <React.StrictMode>
+      <App2 />
+    </React.StrictMode>
+  );
+}
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
