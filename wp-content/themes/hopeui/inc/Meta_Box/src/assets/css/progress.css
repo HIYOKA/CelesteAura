@@ -1,0 +1,84 @@
+.progress-circle {
+  -webkit-mask-image: -webkit-radial-gradient(circle, white, black);
+  -webkit-box-shadow: 0 -1px 0 0 #D6D7D8;
+  box-shadow: 0 -1px 0 0 #D6D7D8;
+  background: #F3F3F3;
+  border-radius: 100%;
+  position: absolute;
+  overflow: hidden;
+  height: 164px;
+  width: 164px;
+  left: 50%;
+  top: 50%;
+}
+
+.p-f,
+.p-h {
+  clip: rect(0, 164px, 164px, 82px);
+  position: absolute;
+  overflow: hidden;
+  height: 164px;
+  width: 100%;
+  left: 0%;
+}
+
+.p-f {
+  -moz-transition: all 1s ease-in-out;
+  -ms-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+  left: 0;
+  transform: rotate(var(--roate-deg, 0deg));
+}
+
+.p-f:before,
+.p-h:before {
+  content: '';
+  background: #828282;
+  position: absolute;
+  height: 164px;
+  width: 50%;
+  left: 0%;
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -ms-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+  -moz-transform-origin: 100% 50%;
+  -webkit-transform-origin: 100% 50%;
+  -o-transform-origin: 100% 50%;
+  -ms-transform-origin: 100% 50%;
+  transform-origin: 100% 50%;
+  transform: rotate(var(--roate-deg, 0deg));
+}
+
+.progress-circle #progress {
+  -webkit-box-shadow: 0 1px 0 0.5px #D6D7D8;
+  box-shadow: 0 1px 0 0.5px #D6D7D8;
+  font-family: 'Montserrat', sans-serif;
+  margin: -70px 0 0 -70px;
+  border-radius: 100%;
+  position: absolute;
+  text-align: center;
+  line-height: 140px;
+  background: #fff;
+  font-size: 34px;
+  color: #46494D;
+  height: 140px;
+  width: 140px;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+}
+
+/* Screen Readers only (from Bootstrap) */
+.sr-only {
+  clip: rect(0, 0, 0, 0);
+  position: absolute;
+  overflow: hidden;
+  margin: -1px;
+  height: 1px;
+  width: 1px;
+  padding: 0;
+  border: 0;
+}

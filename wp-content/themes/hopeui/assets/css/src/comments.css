@@ -1,0 +1,344 @@
+
+
+.comments-area,
+.comment-respond {
+	clear: both;
+	margin-top: 1.812em;
+}
+
+.comments-area {
+    margin-top: 2em;
+	padding: 1.5em;
+	background-color: var(--color-theme-white);
+	border-radius: var(--border-radius);
+	box-shadow: var(--global-box-shadow);
+}
+
+.comments-area > .comments-title{
+	margin-top: 0;
+}
+
+article.entry .hopeui_style-blog-box:last-child {
+    margin-bottom: 0;
+}
+
+.comments-area .comments-title,
+.comment-respond .comment-reply-title {
+	position: relative;
+	padding-bottom: 0;
+	margin-top: 0;
+}
+
+.comment-respond a#cancel-comment-reply-link {
+	border: none;
+	color: var(--color-theme-primary);
+	position: relative;
+	z-index: 9;
+	display: inline-block;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	padding: 0;
+	font-size: 0.4em;
+	line-height: 1.5;
+	text-transform: uppercase;
+	letter-spacing: 0.031em;
+	margin-left: 1.25em;
+	font-weight: 600;
+	text-decoration: underline;
+}
+
+.commentlist {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.commentlist .comment {
+	margin-top: 1.812em;
+	margin-bottom: 0;
+	vertical-align: top;
+	padding: 0;
+	list-style: none;
+}
+
+.hopeui_style-comments-info .title a {
+    color: var(--global-font-title);
+}
+.hopeui_style-comments-info .title:hover a {
+    color: var(--color-theme-primary);
+}
+
+ol.commentlist .pingback,
+ol.commentlist .trackback {
+	margin-bottom: 1.5em;
+	border-bottom: 0.063em solid rgb(0 0 0/8%);
+    padding-bottom: 1.5em;
+}
+
+ol.commentlist .pingback a,
+ol.commentlist .trackback a {
+	color: var(--global-font-color);
+}
+
+ol.commentlist .pingback a:hover,
+ol.commentlist .trackback a:hover {
+	color: var(--color-theme-primary);
+}
+
+.commentlist .hopeui_style-comments-media {
+	padding: 1.5em;
+	border: 0.063em solid var(--border-color-light);
+	position: relative;
+	background: var(--global-body-bgcolor);
+	border-radius: var(--border-radius);
+	-webkit-border-radius: var(--border-radius);
+	-moz-border-radius: var(--border-radius);
+	-ms-border-radius: var(--border-radius);
+	-o-border-radius: var(--border-radius);
+}
+
+.commentlist ol.children {
+	padding-left: 3.75em;
+}
+
+.commentlist .hopeui_style-comment-wrap {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-align: start;
+	align-items: flex-start;
+}
+
+.commentlist .hopeui_style-comments-photo {
+	padding-right: 1em;
+}
+
+.commentlist .hopeui_style-comments-photo img {
+	width: 5em;
+	height: auto;
+	-webkit-border-radius: 5.625em;
+	-moz-border-radius: 5.625em;
+	border-radius: 5.625em;
+}
+
+.commentlist .hopeui_style-comments-info {
+	position: relative;
+	display: inline-block;
+	width: 100%;
+}
+
+.commentlist #div-comment-7 .hopeui_style-comments-info {
+    width: 87%;
+}
+
+.commentlist .hopeui_style-comments-info .title {
+	margin: 0;
+}
+
+.commentlist .hopeui_style-comments-info .title a:hover {
+	text-decoration: none;
+}
+
+.commentlist .hopeui_style-comment-metadata {
+	color: var(--global-font-color);
+}
+
+.commentlist .hopeui_style-comment-metadata i {
+	padding-right: 0.313em;
+	color: var(--color-theme-white);
+}
+
+.commentlist .hopeui_style-comments-media .reply a > i {
+    position: absolute;
+    margin-left: -1.563em;
+    font-size: var(--font-size-h5);
+    -webkit-transform: rotateX(148deg);
+    transform: rotateX(148deg);
+    color: var(--color-theme-primary);
+    line-height: normal;
+}
+
+.commentlist .hopeui_style-comments-media .hopeui_style-comment-metadata svg{
+	color: var(--color-theme-primary);
+}
+.no-comments,
+.comment-awaiting-moderation {
+	font-style: italic;
+	margin: 1em 0;
+}
+
+.comment-form-author,
+.comment-form-email,
+.comment-form-url {
+	margin-bottom: 1.5em;
+	display: block;
+	float: left;
+	width: 100%;
+}
+
+.hopeui_style-reply.hopeui_style-button-style-2 {
+	display: inline-block;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.commentlist .hopeui_style-comment-metadata .edit-link a {
+	margin-left: 0.313em;
+	color: var(--color-theme-primary-hover);
+	text-decoration: underline;
+}
+
+.comment-respond .form-submit {
+	margin-top: 0;
+}
+
+.comment-respond .comment-reply-title {
+	margin-top: 0;
+	margin-bottom: 0.625em;
+}
+
+.hopeui_style-comments-info .hopeui_style-comment-metadata i {
+	color: var(--color-theme-primary);
+}
+
+.comments-area .comments-title,
+.comment-respond .comment-reply-title {
+	position: relative;
+	padding-bottom: 0;
+}
+
+.comment-respond textarea,
+.comment-respond input {
+	float: inherit;
+}
+
+.commentlist .hopeui_style-comment-metadata a {
+	font-size: var(--font-size-normal);
+	transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-ms-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	-webkit-transition: all 0.5s ease-in-out;
+	color: var(--global-font-color);
+	text-transform: capitalize;
+	text-decoration: none;
+	margin: 0.313em 0;
+}
+
+p.comment-form-cookies-consent {
+	display: flex;
+	width: 100%;
+	align-items: start;
+	margin: 0 0 1.5em 0;
+}
+
+.wp-block-latest-comments__comment-date,
+.wp-block-latest-posts__post-date {
+	font-size: var(--font-size-normal);
+	text-transform: uppercase;
+	color: var(--global-font-color);
+}
+
+.commentlist .hopeui_style-comment-metadata {
+	color: var(--color-theme-white);
+	text-transform: uppercase;
+	margin: 0;
+	font-size: var(--font-size-normal);
+	padding: 0;
+	position: relative;
+	display: inline-block;
+}
+
+.commentlist li.hopeui_style-comments-item {
+	margin-bottom: 1.5em;
+	font-size: var(--font-size-h5);
+    color: var(--global-font-title);
+}
+
+.commentlist li.hopeui_style-comments-item .hopeui_style-comment-type-date {
+	margin-top: 1em;
+}
+
+.post-password-form input[type="submit"] {
+	width: auto;
+	background: var(--color-theme-primary);
+	border: none;
+}
+
+.has-dates .wp-block-latest-comments__comment,
+.has-excerpts .wp-block-latest-comments__comment,
+.wp-block-latest-comments__comment {
+	display: inline-block;
+	width: 100%;
+}
+
+.comment-respond .comment-notes,
+.comment-respond .logged-in-as {
+	padding: 0;
+	margin: 0;
+}
+
+.comment-respond .comment-form-comment {
+	margin: 1.5em 0;
+	margin-bottom: 1.5em;
+	display: inline-block;
+	width: 100%;
+	height: 9.375em;
+}
+
+.comment-respond .comment-form-url {
+	margin-right: 0;
+}
+
+.comment-respond .form-submit {
+	display: inline-block;
+	margin-bottom: 0;
+}
+
+
+/* recentcomments */
+
+.widget ul .recentcomments .comment-author-link a::before,
+.widget ul .recentcomments a::before {
+	display: none;
+}
+
+.widget ul .recentcomments a {
+	font-weight: normal;
+}
+
+.scrollbar-thumb,
+.scrollbar-track-y {
+	width: 0.25em !important;
+}
+
+.scrollbar-thumb {
+	background: var(--color-theme-primary) !important;
+}
+
+@media(max-width: 767px){
+	.hopeui_style-reply.hopeui_style-button-style-2{
+		position: static;
+		display: block;
+    	padding-left: 1.5em;
+	}
+	.commentlist ol.children {
+		padding-left: 0;
+	}
+}
+
+@media (max-width: 29.938em){
+	.comment-respond a#cancel-comment-reply-link{
+		display: block;
+		text-align: left;
+		margin: 1em 0 0;
+	}
+	.commentlist .hopeui_style-comments-photo {
+		padding-right: 0;
+		margin-bottom: 1em;
+	}
+	.commentlist .hopeui_style-comment-wrap {
+		display: block;
+	}
+}

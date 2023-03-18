@@ -1,0 +1,1596 @@
+# Copyright (C) 2022 HopeUI
+# This file is distributed under the same license as the HopeUI package.
+msgid ""
+msgstr ""
+"Project-Id-Version: HopeUI\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Last-Translator: Hope UI\n"
+"POT-Creation-Date: 2022-12-31 10:31+0000\n"
+"Report-Msgid-Bugs-To: HopeUI\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../hopeui/comments.php:41
+msgid " Comments"
+msgstr ""
+
+#: ../hopeui/comments.php:39
+msgid " Comment"
+msgstr ""
+
+#: ../hopeui/comments.php:52
+msgid "Comments are closed."
+msgstr ""
+
+#: ../hopeui/comments.php:58, ../hopeui/inc/Actions/Component.php:73, ../hopeui/inc/Actions/Component.php:74
+msgid "Post Comment"
+msgstr ""
+
+#: ../hopeui/comments.php:59
+msgid "Your email address will not be published. Required fields are marked *"
+msgstr ""
+
+#: ../hopeui/comments.php:61
+msgid "Comment"
+msgstr ""
+
+#: ../hopeui/comments.php:68
+msgid "Name*"
+msgstr ""
+
+#: ../hopeui/comments.php:73
+msgid "Email*"
+msgstr ""
+
+#: ../hopeui/comments.php:78
+msgid "Website"
+msgstr ""
+
+#: ../hopeui/comments.php:84, ../hopeui/woocommerce/single-product-reviews.php:135
+msgid "Save my name, email, and website in this browser for the next time I comment."
+msgstr ""
+
+#: ../hopeui/searchform.php:16
+msgid "Search Website"
+msgstr ""
+
+#: ../hopeui/searchform.php:20, ../hopeui/template-parts/content/error.php:42
+msgctxt "submit button"
+msgid "Search"
+msgstr ""
+
+#: ../hopeui/sidebar.php:19
+msgid "Asides"
+msgstr ""
+
+#. translators: 1: required WP version number, 2: required PHP version number, 3: available WP version number, 4: available PHP version number
+#: ../hopeui/inc/back-compat.php:25
+msgid "HopeUI requires at least WordPress version %1$s and PHP version %2$s. You are running versions %3$s and %3$s respectively. Please update and try again."
+msgstr ""
+
+#. translators: 1: required WP version number, 2: available WP version number
+#: ../hopeui/inc/back-compat.php:30
+msgid "HopeUI requires at least WordPress version %1$s. You are running version %2$s. Please update and try again."
+msgstr ""
+
+#. translators: 1: required PHP version number, 2: available PHP version number
+#: ../hopeui/inc/back-compat.php:35
+msgid "HopeUI requires at least PHP version %1$s. You are running version %2$s. Please update and try again."
+msgstr ""
+
+#. translators: 1: classname/type of the variable, 2: interface name
+#: ../hopeui/inc/Template_Tags.php:54
+msgid "The theme templating component %1$s does not implement the %2$s interface."
+msgstr ""
+
+#. translators: %s: template tag name
+#: ../hopeui/inc/Template_Tags.php:81
+msgid "The template tag %s does not exist."
+msgstr ""
+
+#. translators: 1: template tag method name, 2: component class name
+#: ../hopeui/inc/Template_Tags.php:110
+msgid "The template tag method %1$s registered by theme component %2$s must either be a callable or an array."
+msgstr ""
+
+#. translators: 1: template tag method name, 2: component class name
+#: ../hopeui/inc/Template_Tags.php:121
+msgid "The template tag method %1$s registered by theme component %2$s conflicts with an already registered template tag of the same name."
+msgstr ""
+
+#. translators: 1: classname/type of the variable, 2: interface name
+#: ../hopeui/inc/Theme.php:61
+msgid "The theme component %1$s does not implement the %2$s interface."
+msgstr ""
+
+#. translators: %s: slug
+#: ../hopeui/inc/Theme.php:127
+msgid "No theme component with the slug %s exists."
+msgstr ""
+
+#: ../hopeui/woocommerce/share.php:51
+msgid "Facebook"
+msgstr ""
+
+#: ../hopeui/woocommerce/share.php:59
+msgid "Twitter"
+msgstr ""
+
+#: ../hopeui/woocommerce/share.php:67
+msgid "Pinterest"
+msgstr ""
+
+#: ../hopeui/woocommerce/share.php:75, ../hopeui/woocommerce/single-product-reviews.php:112
+msgid "Email"
+msgstr ""
+
+#: ../hopeui/woocommerce/share.php:83
+msgid "WhatsApp"
+msgstr ""
+
+#: ../hopeui/woocommerce/share.php:93
+msgid "(Now"
+msgstr ""
+
+#: ../hopeui/woocommerce/share.php:93
+msgid "copy"
+msgstr ""
+
+#: ../hopeui/woocommerce/share.php:93
+msgid "this wishlist link and share it anywhere)"
+msgstr ""
+
+#: ../hopeui/woocommerce/single-product-reviews.php:40
+msgid "Reviews"
+msgstr ""
+
+#: ../hopeui/woocommerce/single-product-reviews.php:37
+msgid "%1$s review for %2$s"
+msgid_plural "%1$s reviews for %2$s"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../hopeui/woocommerce/single-product-reviews.php:67
+msgid "There are no reviews yet."
+msgstr ""
+
+#: ../hopeui/woocommerce/single-product-reviews.php:161
+msgid "Only logged in customers who have purchased this product may leave a review."
+msgstr ""
+
+#: ../hopeui/woocommerce/single-product-reviews.php:78
+msgid "Add a review"
+msgstr ""
+
+#: ../hopeui/woocommerce/single-product-reviews.php:78
+msgid "Be the first to review &ldquo;%s&rdquo;"
+msgstr ""
+
+#: ../hopeui/woocommerce/single-product-reviews.php:80
+msgid "Leave a Reply to %s"
+msgstr ""
+
+#: ../hopeui/woocommerce/single-product-reviews.php:84
+msgid "Submit"
+msgstr ""
+
+#: ../hopeui/woocommerce/single-product-reviews.php:106, ../hopeui/woocommerce/myaccount/my-address.php:95, ../hopeui/woocommerce/order/order-details-customer.php:51
+msgid "Name"
+msgstr ""
+
+#: ../hopeui/woocommerce/single-product-reviews.php:140
+msgid "You must be %1$slogged in%2$s to post a review."
+msgstr ""
+
+#: ../hopeui/woocommerce/single-product-reviews.php:144
+msgid "Your rating"
+msgstr ""
+
+#: ../hopeui/woocommerce/single-product-reviews.php:145
+msgid "Rate&hellip;"
+msgstr ""
+
+#: ../hopeui/woocommerce/single-product-reviews.php:146
+msgid "Perfect"
+msgstr ""
+
+#: ../hopeui/woocommerce/single-product-reviews.php:147
+msgid "Good"
+msgstr ""
+
+#: ../hopeui/woocommerce/single-product-reviews.php:148
+msgid "Average"
+msgstr ""
+
+#: ../hopeui/woocommerce/single-product-reviews.php:149
+msgid "Not that bad"
+msgstr ""
+
+#: ../hopeui/woocommerce/single-product-reviews.php:150
+msgid "Very poor"
+msgstr ""
+
+#: ../hopeui/woocommerce/single-product-reviews.php:154
+msgid "Your review"
+msgstr ""
+
+#: ../hopeui/inc/Accessibility/Component.php:66
+msgid "Expand child menu"
+msgstr ""
+
+#: ../hopeui/inc/Accessibility/Component.php:67
+msgid "Collapse child menu"
+msgstr ""
+
+#: ../hopeui/inc/Breadcrumb/Component.php:157
+msgid "Blog Detail"
+msgstr ""
+
+#: ../hopeui/inc/Breadcrumb/Component.php:153, ../hopeui/inc/Breadcrumb/Component.php:218, ../hopeui/inc/Breadcrumb/Component.php:215
+msgid "Home"
+msgstr ""
+
+#: ../hopeui/inc/Breadcrumb/Component.php:148
+msgid "Oops! That page can not be found."
+msgstr ""
+
+#: ../hopeui/inc/Breadcrumb/Component.php:146, ../hopeui/template-parts/header/search.php:14, ../hopeui/inc/Customizer/Sections/Header.php:124
+msgid "Search"
+msgstr ""
+
+#: ../hopeui/inc/Breadcrumb/Component.php:199
+msgid "banner"
+msgstr ""
+
+#: ../hopeui/inc/Breadcrumb/Component.php:293
+msgid "Error 404"
+msgstr ""
+
+#: ../hopeui/inc/Breadcrumb/Component.php:291
+msgid "Articles posted by : "
+msgstr ""
+
+#: ../hopeui/inc/Breadcrumb/Component.php:287
+msgid "Posts tagged"
+msgstr ""
+
+#: ../hopeui/inc/Breadcrumb/Component.php:227
+msgid "Search results for : "
+msgstr ""
+
+#: ../hopeui/inc/Breadcrumb/Component.php:225
+msgid "Archive by category : "
+msgstr ""
+
+#: ../hopeui/inc/Breadcrumb/Component.php:221
+msgid "Blogs"
+msgstr ""
+
+#: ../hopeui/inc/Breadcrumb/Component.php:297
+msgid "Page"
+msgstr ""
+
+#: ../hopeui/inc/Comments/Component.php:151
+msgid "New comment(s)"
+msgstr ""
+
+#: ../hopeui/inc/Comments/Component.php:206
+msgid "(Edit)"
+msgstr ""
+
+#: ../hopeui/inc/Comments/Component.php:229, ../hopeui/woocommerce/myaccount/my-address.php:57
+msgid "Edit"
+msgstr ""
+
+#: ../hopeui/inc/Comments/Component.php:237
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: ../hopeui/inc/Comments/Component.php:244
+msgid "Reply"
+msgstr ""
+
+#: ../hopeui/inc/Dashboard_Page/Component.php:61
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: ../hopeui/inc/Dashboard_Page/Component.php:80
+msgid "HopeUI"
+msgstr ""
+
+#: ../hopeui/inc/Dashboard_Page/Component.php:92
+msgid "Dashboard"
+msgstr ""
+
+#: ../hopeui/inc/Dashboard_Page/Component.php:97
+msgid "ChangeLog"
+msgstr ""
+
+#: ../hopeui/inc/Dashboard_Page/Component.php:107
+msgid "Need Assistance or Advice?"
+msgstr ""
+
+#: ../hopeui/inc/Dashboard_Page/Component.php:108
+msgid "Any queries or need any helping hand regarding the theme? You can apply for a support ticket or can ask for assistance in our friendly Facebook community."
+msgstr ""
+
+#: ../hopeui/inc/Dashboard_Page/Component.php:111
+msgid "Submit a Support Ticket"
+msgstr ""
+
+#: ../hopeui/inc/Dashboard_Page/Component.php:114
+msgid "Join Our HopeUI Community"
+msgstr ""
+
+#: ../hopeui/inc/Dashboard_Page/Component.php:128
+msgid "Customizer Shortcuts"
+msgstr ""
+
+#: ../hopeui/inc/Dashboard_Page/Component.php:155
+msgid "Go To Options"
+msgstr ""
+
+#: ../hopeui/inc/Dashboard_Page/Component.php:211
+msgid "General Option"
+msgstr ""
+
+#: ../hopeui/inc/Dashboard_Page/Component.php:212
+msgid "Set the theme global colors, Back To Top, Body Layouts"
+msgstr ""
+
+#: ../hopeui/inc/Dashboard_Page/Component.php:217
+msgid "Color Option"
+msgstr ""
+
+#: ../hopeui/inc/Dashboard_Page/Component.php:218
+msgid "Set the theme Global Colors like Primary ,Secondary Color."
+msgstr ""
+
+#: ../hopeui/inc/Dashboard_Page/Component.php:223
+msgid "Typography Option"
+msgstr ""
+
+#: ../hopeui/inc/Dashboard_Page/Component.php:224
+msgid "Set the theme Global Typography with Google fonts."
+msgstr ""
+
+#: ../hopeui/inc/Dashboard_Page/Component.php:229
+msgid "Breadcrumb Option"
+msgstr ""
+
+#: ../hopeui/inc/Dashboard_Page/Component.php:230
+msgid "Set the theme Breadcrumb Structure and its Style"
+msgstr ""
+
+#: ../hopeui/inc/Dashboard_Page/Component.php:235
+msgid "Header Option"
+msgstr ""
+
+#: ../hopeui/inc/Dashboard_Page/Component.php:236
+msgid "Set the theme header container, Position, and Style"
+msgstr ""
+
+#: ../hopeui/inc/Dashboard_Page/Component.php:241
+msgid "Footer Option"
+msgstr ""
+
+#: ../hopeui/inc/Dashboard_Page/Component.php:242
+msgid "Set the theme footer structure, alignments, and also copyright."
+msgstr ""
+
+#: ../hopeui/inc/Editor/Component.php:65, ../hopeui/inc/Nav_Menus/Component.php:73
+msgid "Primary"
+msgstr ""
+
+#: ../hopeui/inc/Editor/Component.php:70
+msgid "Secondary"
+msgstr ""
+
+#: ../hopeui/inc/Editor/Component.php:75
+msgid "Red"
+msgstr ""
+
+#: ../hopeui/inc/Editor/Component.php:80
+msgid "Green"
+msgstr ""
+
+#: ../hopeui/inc/Editor/Component.php:85
+msgid "Blue"
+msgstr ""
+
+#: ../hopeui/inc/Editor/Component.php:90
+msgid "Yellow"
+msgstr ""
+
+#: ../hopeui/inc/Editor/Component.php:95
+msgid "Black"
+msgstr ""
+
+#: ../hopeui/inc/Editor/Component.php:100
+msgid "Grey"
+msgstr ""
+
+#: ../hopeui/inc/Editor/Component.php:105
+msgid "White"
+msgstr ""
+
+#: ../hopeui/inc/Editor/Component.php:110
+msgid "Dusty daylight"
+msgstr ""
+
+#: ../hopeui/inc/Editor/Component.php:115
+msgid "Dusty sun"
+msgstr ""
+
+#: ../hopeui/inc/Editor/Component.php:132
+msgid "Small"
+msgstr ""
+
+#: ../hopeui/inc/Editor/Component.php:133
+msgid "S"
+msgstr ""
+
+#: ../hopeui/inc/Editor/Component.php:138
+msgid "Medium"
+msgstr ""
+
+#: ../hopeui/inc/Editor/Component.php:139
+msgid "M"
+msgstr ""
+
+#: ../hopeui/inc/Editor/Component.php:144
+msgid "Large"
+msgstr ""
+
+#: ../hopeui/inc/Editor/Component.php:145
+msgid "L"
+msgstr ""
+
+#: ../hopeui/inc/Editor/Component.php:150
+msgid "Larger"
+msgstr ""
+
+#: ../hopeui/inc/Editor/Component.php:151
+msgid "XL"
+msgstr ""
+
+#: ../hopeui/inc/Footer/Component.php:79
+msgid "text-start"
+msgstr ""
+
+#: ../hopeui/inc/Footer/Component.php:80
+msgid "text-end"
+msgstr ""
+
+#: ../hopeui/inc/Footer/Component.php:81
+msgid "text-center"
+msgstr ""
+
+#: ../hopeui/inc/Footer/Component.php:89
+msgid "Footer Area "
+msgstr ""
+
+#: ../hopeui/inc/Layouts/Component.php:65
+msgid "Setup header layout"
+msgstr ""
+
+#: ../hopeui/inc/Layouts/Component.php:68
+msgid "Setup footer layout"
+msgstr ""
+
+#: ../hopeui/inc/Layouts/Component.php:71
+msgid "Setup menu layout"
+msgstr ""
+
+#: ../hopeui/inc/Layouts/Component.php:74
+msgid "Setup 404 page layout"
+msgstr ""
+
+#. translators: %d: ID of a post.
+#: ../hopeui/inc/Nav_Menus/HopeUI_Walker_Page.php:145
+msgid "#%d (no title)"
+msgstr ""
+
+#: ../hopeui/inc/Notice/Component.php:36
+msgid "Thanks for joining our HopeUI Community, you rock!"
+msgstr ""
+
+#: ../hopeui/inc/Notice/Component.php:36
+msgid "We also Introduce our HopeUI Child Theme To Enable Full Site Editing.<br> With This you can also access Our Demo Templates"
+msgstr ""
+
+#: ../hopeui/inc/Sidebars/Component.php:76
+msgid "Blog Sidebar"
+msgstr ""
+
+#: ../hopeui/inc/Sidebars/Component.php:78
+msgid "Add widgets here."
+msgstr ""
+
+#: ../hopeui/inc/Sidebars/Component.php:87
+msgid "Product Sidebar"
+msgstr ""
+
+#. translators: %s: stylesheet handle
+#: ../hopeui/inc/Styles/Component.php:234
+msgid "Invalid theme stylesheet handle: %s"
+msgstr ""
+
+#: ../hopeui/inc/WooCommerce/Component.php:155
+msgid "Shop"
+msgstr ""
+
+#: ../hopeui/inc/WooCommerce/Component.php:294, ../hopeui/template-parts/header/cart.php:26
+msgid "Shopping Cart"
+msgstr ""
+
+#: ../hopeui/inc/WooCommerce/Component.php:298
+msgid "Checkout"
+msgstr ""
+
+#: ../hopeui/inc/WooCommerce/Component.php:302
+msgid "Order Summary"
+msgstr ""
+
+#: ../hopeui/template-parts/content/entry-attachment.php:33
+msgid "Previous:"
+msgstr ""
+
+#: ../hopeui/template-parts/content/entry-attachment.php:43
+msgid "Next:"
+msgstr ""
+
+#: ../hopeui/template-parts/content/entry-attachment.php:49
+msgid "Post navigation"
+msgstr ""
+
+#: ../hopeui/template-parts/content/entry.php:26, ../hopeui/template-parts/content/entry_page.php:17
+msgid "Pages:"
+msgstr ""
+
+#. translators: %s: post parent title
+#: ../hopeui/template-parts/content/entry_meta.php:66
+msgctxt "post parent"
+msgid "In %s"
+msgstr ""
+
+#. translators: %s: post parent title
+#: ../hopeui/template-parts/content/entry_meta.php:69
+msgctxt "post parent"
+msgid "in %s"
+msgstr ""
+
+#. translators: %s: post author
+#: ../hopeui/template-parts/content/entry_meta.php:92
+msgctxt "post author"
+msgid "By %s"
+msgstr ""
+
+#. translators: %s: post author
+#: ../hopeui/template-parts/content/entry_meta.php:95
+msgctxt "post author"
+msgid "%s"
+msgstr ""
+
+#: ../hopeui/template-parts/content/entry_taxonomies.php:31
+msgid "Tags:"
+msgstr ""
+
+#: ../hopeui/template-parts/content/entry_taxonomies.php:27
+msgid "Tag:"
+msgstr ""
+
+#: ../hopeui/template-parts/content/error-404.php:19, ../hopeui/inc/Customizer/Sections/FourZeroFour.php:23
+msgid "404"
+msgstr ""
+
+#: ../hopeui/template-parts/content/error-404.php:22, ../hopeui/inc/Customizer/Sections/FourZeroFour.php:71
+msgid "Oops! This Page is Not Found."
+msgstr ""
+
+#: ../hopeui/template-parts/content/error-404.php:25, ../hopeui/inc/Customizer/Sections/FourZeroFour.php:91
+msgid "The requested page does not exist."
+msgstr ""
+
+#: ../hopeui/template-parts/content/error-404.php:28, ../hopeui/inc/Customizer/Sections/FourZeroFour.php:81
+msgid "Back to Home"
+msgstr ""
+
+#: ../hopeui/template-parts/content/error-offline.php:14
+msgid "Oops! It looks like you&#8217;re offline."
+msgstr ""
+
+#: ../hopeui/template-parts/content/error.php:55
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr ""
+
+#: ../hopeui/template-parts/content/error.php:37
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr ""
+
+#: ../hopeui/template-parts/content/error.php:41
+msgid "Search website"
+msgstr ""
+
+#: ../hopeui/template-parts/content/error.php:22
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr ""
+
+#: ../hopeui/template-parts/content/page_header.php:41
+msgid "Search Results for: %s"
+msgstr ""
+
+#: ../hopeui/template-parts/content/page_header.php:23
+msgid "Nothing Found"
+msgstr ""
+
+#: ../hopeui/template-parts/content/page_header.php:15
+msgid "Oops! That page can&rsquo;t be found."
+msgstr ""
+
+#: ../hopeui/template-parts/footer/copyright.php:18, ../hopeui/inc/Customizer/Sections/Footer.php:125
+msgid "Copyright © 2022 - WordPress Theme by HopeUI"
+msgstr ""
+
+#: ../hopeui/template-parts/header/header.php:33
+msgid "loader"
+msgstr ""
+
+#: ../hopeui/template-parts/header/header.php:39
+msgid "Skip to content"
+msgstr ""
+
+#: ../hopeui/template-parts/header/navigation.php:13
+msgid "Main menu"
+msgstr ""
+
+#: ../hopeui/template-parts/wocommerce/entry.php:23, ../hopeui/woocommerce/single-product/sale-flash.php:33
+msgid "New!"
+msgstr ""
+
+#: ../hopeui/template-parts/wocommerce/entry.php:21, ../hopeui/woocommerce/single-product/sale-flash.php:30
+msgid "Sale!"
+msgstr ""
+
+#: ../hopeui/template-parts/wocommerce/entry.php:19, ../hopeui/woocommerce/single-product/sale-flash.php:27
+msgid "Sold!"
+msgstr ""
+
+#: ../hopeui/template-parts/wocommerce/entry.php:39, ../hopeui/woocommerce/single-product/product-image.php:46
+msgid "Awaiting product image"
+msgstr ""
+
+#: ../hopeui/template-parts/wocommerce/entry.php:88
+msgid "Ratings"
+msgstr ""
+
+#: ../hopeui/template-parts/wocommerce/entry.php:88
+msgid "Rating"
+msgstr ""
+
+#: ../hopeui/woocommerce/cart/cart-empty.php:34
+msgid "Return to shop"
+msgstr ""
+
+#: ../hopeui/woocommerce/cart/cart-totals.php:26
+msgid "Cart totals"
+msgstr ""
+
+#: ../hopeui/woocommerce/cart/cart-totals.php:32, ../hopeui/woocommerce/cart/cart-totals.php:33, ../hopeui/woocommerce/cart/cart.php:37, ../hopeui/woocommerce/cart/cart.php:118, ../hopeui/woocommerce/checkout/review-order.php:51
+msgid "Subtotal"
+msgstr ""
+
+#: ../hopeui/woocommerce/cart/cart-totals.php:54, ../hopeui/woocommerce/cart/cart-totals.php:55
+msgid "Shipping"
+msgstr ""
+
+#. translators: %s location.
+#: ../hopeui/woocommerce/cart/cart-totals.php:74
+msgid "(estimated for %s)"
+msgstr ""
+
+#: ../hopeui/woocommerce/cart/cart-totals.php:101, ../hopeui/woocommerce/cart/cart-totals.php:102, ../hopeui/woocommerce/checkout/review-order.php:98, ../hopeui/woocommerce/order/order-details.php:60
+msgid "Total"
+msgstr ""
+
+#: ../hopeui/woocommerce/cart/cart.php:34, ../hopeui/woocommerce/cart/cart.php:58, ../hopeui/woocommerce/checkout/form-checkout.php:61, ../hopeui/woocommerce/checkout/form-pay.php:27, ../hopeui/woocommerce/order/order-details.php:59
+msgid "Product"
+msgstr ""
+
+#: ../hopeui/woocommerce/cart/cart.php:35, ../hopeui/woocommerce/cart/cart.php:90
+msgid "Price"
+msgstr ""
+
+#: ../hopeui/woocommerce/cart/cart.php:36, ../hopeui/woocommerce/cart/cart.php:96, ../hopeui/woocommerce/global/quantity-input.php:28
+msgid "Quantity"
+msgstr ""
+
+#: ../hopeui/woocommerce/cart/cart.php:85
+msgid "Available on backorder"
+msgstr ""
+
+#: ../hopeui/woocommerce/cart/cart.php:130, ../hopeui/woocommerce/cart/mini-cart.php:47
+msgid "Remove this item"
+msgstr ""
+
+#: ../hopeui/woocommerce/cart/cart.php:151
+msgid "Coupon:"
+msgstr ""
+
+#: ../hopeui/woocommerce/cart/cart.php:151, ../hopeui/woocommerce/checkout/form-coupon.php:38
+msgid "Coupon Code"
+msgstr ""
+
+#: ../hopeui/woocommerce/cart/mini-cart.php:107
+msgid "No products in the cart."
+msgstr ""
+
+#: ../hopeui/woocommerce/cart/shipping-calculator.php:24
+msgid "Calculate shipping"
+msgstr ""
+
+#: ../hopeui/woocommerce/cart/shipping-calculator.php:32
+msgid "Select a country / region&hellip;"
+msgstr ""
+
+#: ../hopeui/woocommerce/cart/shipping-calculator.php:72, ../hopeui/woocommerce/cart/shipping-calculator.php:59, ../hopeui/woocommerce/cart/shipping-calculator.php:53
+msgid "State / County"
+msgstr ""
+
+#: ../hopeui/woocommerce/cart/shipping-calculator.php:60
+msgid "Select an option&hellip;"
+msgstr ""
+
+#: ../hopeui/woocommerce/cart/shipping-calculator.php:83
+msgid "City"
+msgstr ""
+
+#: ../hopeui/woocommerce/cart/shipping-calculator.php:92
+msgid "Postcode / ZIP"
+msgstr ""
+
+#: ../hopeui/woocommerce/cart/shipping-calculator.php:99
+msgid "Update"
+msgstr ""
+
+#: ../hopeui/woocommerce/checkout/form-billing.php:28
+msgid "Billing details"
+msgstr ""
+
+#: ../hopeui/woocommerce/checkout/form-billing.php:24
+msgid "Billing &amp; Shipping"
+msgstr ""
+
+#: ../hopeui/woocommerce/checkout/form-billing.php:54
+msgid "Create an account?"
+msgstr ""
+
+#: ../hopeui/woocommerce/checkout/form-checkout.php:27
+msgid "You must be logged in to checkout."
+msgstr ""
+
+#: ../hopeui/woocommerce/checkout/form-coupon.php:29
+msgid "Have a coupon?"
+msgstr ""
+
+#: ../hopeui/woocommerce/checkout/form-coupon.php:29
+msgid "Click here to enter your code"
+msgstr ""
+
+#: ../hopeui/woocommerce/checkout/form-coupon.php:34
+msgid "If you have a coupon code, please apply it below."
+msgstr ""
+
+#: ../hopeui/woocommerce/checkout/form-pay.php:28
+msgid "Qty"
+msgstr ""
+
+#: ../hopeui/woocommerce/checkout/form-pay.php:29
+msgid "Totals"
+msgstr ""
+
+#: ../hopeui/woocommerce/checkout/form-pay.php:79
+msgid "Sorry, it seems that there are no available payment methods for your location. Please contact us if you require assistance or wish to make alternate arrangements."
+msgstr ""
+
+#: ../hopeui/woocommerce/checkout/form-shipping.php:26
+msgid "Ship to a different address?"
+msgstr ""
+
+#: ../hopeui/woocommerce/checkout/form-shipping.php:57, ../hopeui/woocommerce/single-product/tabs/additional-information.php:22
+msgid "Additional information"
+msgstr ""
+
+#: ../hopeui/woocommerce/checkout/payment.php:35
+msgid "Sorry, it seems that there are no available payment methods for your state. Please contact us if you require assistance or wish to make alternate arrangements."
+msgstr ""
+
+#: ../hopeui/woocommerce/checkout/payment.php:35
+msgid "Please fill in your details above to see available payment methods."
+msgstr ""
+
+#. translators: $1 and $2 opening and closing emphasis tags respectively
+#: ../hopeui/woocommerce/checkout/payment.php:44
+msgid "Since your browser does not support JavaScript, or it is disabled, please ensure you click the %1$sUpdate Totals%2$s button before placing your order. You may be charged more than the amount stated above if you fail to do so."
+msgstr ""
+
+#: ../hopeui/woocommerce/checkout/payment.php:47, ../hopeui/woocommerce/checkout/payment.php:48
+msgid "Update totals"
+msgstr ""
+
+#: ../hopeui/woocommerce/checkout/payment.php:60
+msgid "Place Order"
+msgstr ""
+
+#: ../hopeui/woocommerce/checkout/thankyou.php:96, ../hopeui/woocommerce/checkout/thankyou.php:48
+msgid "Thank you. Your order has been received."
+msgstr ""
+
+#: ../hopeui/woocommerce/checkout/thankyou.php:54
+msgid "Order number:"
+msgstr ""
+
+#: ../hopeui/woocommerce/checkout/thankyou.php:60
+msgid "Date:"
+msgstr ""
+
+#: ../hopeui/woocommerce/checkout/thankyou.php:67
+msgid "Email:"
+msgstr ""
+
+#: ../hopeui/woocommerce/checkout/thankyou.php:74
+msgid "Total:"
+msgstr ""
+
+#: ../hopeui/woocommerce/checkout/thankyou.php:81
+msgid "Payment method:"
+msgstr ""
+
+#: ../hopeui/woocommerce/checkout/thankyou.php:32
+msgid "Unfortunately your order cannot be processed as the originating bank/merchant has declined your transaction. Please attempt your purchase again."
+msgstr ""
+
+#: ../hopeui/woocommerce/checkout/thankyou.php:35
+msgid "Pay"
+msgstr ""
+
+#: ../hopeui/woocommerce/checkout/thankyou.php:37
+msgid "My account"
+msgstr ""
+
+#: ../hopeui/woocommerce/global/form-login.php:38
+msgid "Username or email"
+msgstr ""
+
+#: ../hopeui/woocommerce/global/form-login.php:45
+msgid "Password"
+msgstr ""
+
+#: ../hopeui/woocommerce/global/form-login.php:57, ../hopeui/woocommerce/myaccount/form-login.php:58
+msgid "Remember me"
+msgstr ""
+
+#: ../hopeui/woocommerce/global/form-login.php:61, ../hopeui/woocommerce/myaccount/form-login.php:72
+msgid "Lost your password?"
+msgstr ""
+
+#: ../hopeui/woocommerce/global/form-login.php:71, ../hopeui/woocommerce/global/form-login.php:72, ../hopeui/woocommerce/myaccount/form-login.php:33
+msgid "Login"
+msgstr ""
+
+#. translators: %s: Quantity.
+#: ../hopeui/woocommerce/global/quantity-input.php:28
+msgid "%s quantity"
+msgstr ""
+
+#: ../hopeui/woocommerce/global/quantity-input.php:42
+msgctxt "Product quantity input tooltip"
+msgid "Qty"
+msgstr ""
+
+#: ../hopeui/woocommerce/loop/add-to-cart.php:30
+msgid "View Product"
+msgstr ""
+
+#: ../hopeui/woocommerce/loop/orderby.php:30
+msgid "Shop order"
+msgstr ""
+
+#. translators: 1: first result 2: last result 3: total results
+#: ../hopeui/woocommerce/loop/result-count.php:38
+msgctxt "with first and last result"
+msgid "Showing %1$d&ndash;%2$d of %3$d result"
+msgid_plural "Showing %1$d&ndash;%2$d of %3$d results"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../hopeui/woocommerce/loop/result-count.php:33
+msgid "Showing all %d result"
+msgid_plural "Showing all %d results"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../hopeui/woocommerce/loop/result-count.php:30
+msgid "Showing the single result"
+msgstr ""
+
+#. translators: 1: user display name 2: logout url
+#: ../hopeui/woocommerce/myaccount/dashboard.php:35
+msgid "Hello %1$s (not %1$s? <a href=\"%2$s\">Log out</a>)"
+msgstr ""
+
+#. translators: 1: Orders URL 2: Address URL 3: Account URL.
+#: ../hopeui/woocommerce/myaccount/dashboard.php:45
+msgid "From your account dashboard you can view your <a href=\"%1$s\">recent orders</a>, manage your <a href=\"%2$s\">billing address</a>, and <a href=\"%3$s\">edit your password and account details</a>."
+msgstr ""
+
+#. translators: 1: Orders URL 2: Addresses URL 3: Account URL.
+#: ../hopeui/woocommerce/myaccount/dashboard.php:48
+msgid "From your account dashboard you can view your <a href=\"%1$s\">recent orders</a>, manage your <a href=\"%2$s\">shipping and billing addresses</a>, and <a href=\"%3$s\">edit your password and account details</a>."
+msgstr ""
+
+#: ../hopeui/woocommerce/myaccount/downloads.php:43, ../hopeui/woocommerce/myaccount/orders.php:114
+msgid "Browse products"
+msgstr ""
+
+#: ../hopeui/woocommerce/myaccount/downloads.php:46
+msgid "No downloads available yet."
+msgstr ""
+
+#: ../hopeui/woocommerce/myaccount/form-add-payment-method.php:64
+msgid "New payment methods can only be added during checkout. Please contact us if you require assistance."
+msgstr ""
+
+#: ../hopeui/woocommerce/myaccount/form-add-payment-method.php:56, ../hopeui/woocommerce/myaccount/form-add-payment-method.php:57, ../hopeui/woocommerce/myaccount/payment-methods.php:78
+msgid "Add payment method"
+msgstr ""
+
+#: ../hopeui/woocommerce/myaccount/form-edit-account.php:28
+msgid "First name"
+msgstr ""
+
+#: ../hopeui/woocommerce/myaccount/form-edit-account.php:34
+msgid "Last name"
+msgstr ""
+
+#: ../hopeui/woocommerce/myaccount/form-edit-account.php:42
+msgid "Display name"
+msgstr ""
+
+#: ../hopeui/woocommerce/myaccount/form-edit-account.php:46
+msgid "This will be how your name will be displayed in the account section and in reviews"
+msgstr ""
+
+#: ../hopeui/woocommerce/myaccount/form-edit-account.php:51
+msgid "Email address"
+msgstr ""
+
+#: ../hopeui/woocommerce/myaccount/form-edit-account.php:58
+msgid "Password change"
+msgstr ""
+
+#: ../hopeui/woocommerce/myaccount/form-edit-account.php:62
+msgid "Current password (leave blank to leave unchanged)"
+msgstr ""
+
+#: ../hopeui/woocommerce/myaccount/form-edit-account.php:68
+msgid "New password (leave blank to leave unchanged)"
+msgstr ""
+
+#: ../hopeui/woocommerce/myaccount/form-edit-account.php:73
+msgid "Confirm new password"
+msgstr ""
+
+#: ../hopeui/woocommerce/myaccount/form-edit-account.php:86, ../hopeui/woocommerce/myaccount/form-edit-account.php:87
+msgid "Save changes"
+msgstr ""
+
+#: ../hopeui/woocommerce/myaccount/form-edit-address.php:20, ../hopeui/woocommerce/myaccount/my-address.php:32, ../hopeui/woocommerce/myaccount/my-address.php:27, ../hopeui/woocommerce/order/order-details-customer.php:31, ../hopeui/woocommerce/order/order-details-customer.php:26
+msgid "Billing address"
+msgstr ""
+
+#: ../hopeui/woocommerce/myaccount/form-edit-address.php:20, ../hopeui/woocommerce/myaccount/my-address.php:28, ../hopeui/woocommerce/order/order-details-customer.php:27
+msgid "Shipping address"
+msgstr ""
+
+#: ../hopeui/woocommerce/myaccount/form-edit-address.php:48, ../hopeui/woocommerce/myaccount/form-edit-address.php:49
+msgid "Save Address"
+msgstr ""
+
+#: ../hopeui/woocommerce/myaccount/form-login.php:66, ../hopeui/woocommerce/myaccount/form-login.php:67
+msgid "Log in"
+msgstr ""
+
+#: ../hopeui/woocommerce/myaccount/form-login.php:86, ../hopeui/woocommerce/myaccount/form-login.php:127, ../hopeui/woocommerce/myaccount/form-login.php:128
+msgid "Register"
+msgstr ""
+
+#: ../hopeui/woocommerce/myaccount/form-lost-password.php:25
+msgid "Lost your password? Please enter your username or email address. You will receive a link to create a new password via email."
+msgstr ""
+
+#: ../hopeui/woocommerce/myaccount/form-lost-password.php:40, ../hopeui/woocommerce/myaccount/form-lost-password.php:41
+msgid "Reset password"
+msgstr ""
+
+#: ../hopeui/woocommerce/myaccount/my-address.php:41
+msgid "The following addresses will be used on the checkout page by default."
+msgstr ""
+
+#: ../hopeui/woocommerce/myaccount/my-address.php:100, ../hopeui/woocommerce/order/order-details-customer.php:56
+msgid "Company"
+msgstr ""
+
+#: ../hopeui/woocommerce/myaccount/my-address.php:105, ../hopeui/woocommerce/order/order-details-customer.php:61
+msgid "Country"
+msgstr ""
+
+#: ../hopeui/woocommerce/myaccount/my-address.php:110, ../hopeui/woocommerce/order/order-details-customer.php:66
+msgid "Address"
+msgstr ""
+
+#: ../hopeui/woocommerce/myaccount/my-address.php:115, ../hopeui/woocommerce/order/order-details-customer.php:71
+msgid "E-mail"
+msgstr ""
+
+#: ../hopeui/woocommerce/myaccount/my-address.php:120, ../hopeui/woocommerce/order/order-details-customer.php:76
+msgid "Phone"
+msgstr ""
+
+#: ../hopeui/woocommerce/myaccount/orders.php:117
+msgid "No order has been made yet."
+msgstr ""
+
+#: ../hopeui/woocommerce/myaccount/orders.php:64
+msgid "%1$s for %2$s item"
+msgid_plural "%1$s for %2$s items"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../hopeui/woocommerce/myaccount/orders.php:52
+msgctxt "hash before order number"
+msgid "#"
+msgstr ""
+
+#: ../hopeui/woocommerce/myaccount/orders.php:95
+msgid "Previous"
+msgstr ""
+
+#: ../hopeui/woocommerce/myaccount/orders.php:103
+msgid "Next"
+msgstr ""
+
+#: ../hopeui/woocommerce/myaccount/payment-methods.php:70
+msgid "No saved methods found."
+msgstr ""
+
+#: ../hopeui/woocommerce/myaccount/payment-methods.php:49
+msgid "%1$s ending in %2$s"
+msgstr ""
+
+#: ../hopeui/woocommerce/order/form-tracking.php:32
+msgid "Enter your order id."
+msgstr ""
+
+#: ../hopeui/woocommerce/order/form-tracking.php:36
+msgid "Enter your email id."
+msgstr ""
+
+#: ../hopeui/woocommerce/order/form-tracking.php:42
+msgid "Track"
+msgstr ""
+
+#: ../hopeui/woocommerce/order/form-tracking.php:43
+msgid "Track Order"
+msgstr ""
+
+#: ../hopeui/woocommerce/order/order-again.php:22
+msgid "Order again"
+msgstr ""
+
+#: ../hopeui/woocommerce/order/order-details-customer.php:45
+msgid "Billing address "
+msgstr ""
+
+#: ../hopeui/woocommerce/order/order-details.php:45
+msgid "Order Details"
+msgstr ""
+
+#: ../hopeui/woocommerce/order/order-details.php:102
+msgid "Note:"
+msgstr ""
+
+#: ../hopeui/woocommerce/order/order-downloads.php:24
+msgid "Downloads"
+msgstr ""
+
+#: ../hopeui/woocommerce/order/order-downloads.php:58
+msgid "&infin;"
+msgstr ""
+
+#: ../hopeui/woocommerce/order/order-downloads.php:64
+msgid "Never"
+msgstr ""
+
+#. translators: 1: order number 2: order date 3: order status
+#: ../hopeui/woocommerce/order/tracking.php:31
+msgid "Order #%1$s was placed on %2$s and is currently %3$s."
+msgstr ""
+
+#: ../hopeui/woocommerce/order/tracking.php:42
+msgid "Order updates"
+msgstr ""
+
+#: ../hopeui/woocommerce/order/tracking.php:48
+msgid "l jS \o\f F Y, h:ia"
+msgstr ""
+
+#: ../hopeui/woocommerce/single-product/meta.php:31
+msgid "SKU :"
+msgstr ""
+
+#: ../hopeui/woocommerce/single-product/meta.php:31
+msgid "N/A"
+msgstr ""
+
+#: ../hopeui/woocommerce/single-product/meta.php:41
+msgid "Category :"
+msgid_plural "Categories :"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../hopeui/woocommerce/single-product/meta.php:57
+msgid "Tag :"
+msgid_plural "Tags :"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../hopeui/woocommerce/single-product/related.php:33
+msgid "Related Products"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Blog.php:25
+msgid "Blog"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Blog.php:144
+msgid "Blog General"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Blog.php:154
+msgid "Blog Column Setting"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Blog.php:177
+msgid "Blog SideBar Alignment"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Blog.php:200
+msgid "Display Previous/Next Pagination?"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Blog.php:202
+msgid "Turn on to display the previous/next post pagination for blog page."
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Blog.php:209
+msgid "Display Featured Image on Blog Archive Page?"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Blog.php:211
+msgid "Turn on to display featured images on the blog or archive pages."
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Blog.php:218
+msgid "Blog Single Post"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Blog.php:227
+msgid "Blog Single page Setting"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Blog.php:251
+msgid "Display Comments?"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Blog.php:260
+msgid "Select Posts for hide Featues Images"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Breadcrumb.php:25
+msgid "Breadcrumb"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Breadcrumb.php:178, ../hopeui/inc/Customizer/Sections/General.php:27, ../hopeui/inc/Customizer/Sections/Header.php:188
+msgid "Generals"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Breadcrumb.php:179, ../hopeui/inc/Customizer/Sections/Header.php:189
+msgid "Style"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Breadcrumb.php:191
+msgid "Breadcrumb Style"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Breadcrumb.php:208
+msgid "Display breadcrumb?"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Breadcrumb.php:217
+msgid "Display title on breadcrumb?"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Breadcrumb.php:227
+msgid "Display navigation on breadcrumb?"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Breadcrumb.php:239
+msgid "Select Title tag"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Breadcrumb.php:241
+msgid "H1"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Breadcrumb.php:242
+msgid "H2"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Breadcrumb.php:243
+msgid "H3"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Breadcrumb.php:244
+msgid "H4"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Breadcrumb.php:245
+msgid "H5"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Breadcrumb.php:246
+msgid "H6"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Breadcrumb.php:257
+msgid "Breadcrumb Set Title Color"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Breadcrumb.php:266
+msgid "Breadcrumb Background Type"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Breadcrumb.php:269, ../hopeui/inc/Customizer/Sections/General.php:252, ../hopeui/inc/Customizer/Sections/Header.php:260
+msgid "Color"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Breadcrumb.php:270, ../hopeui/inc/Customizer/Sections/General.php:254, ../hopeui/inc/Customizer/Sections/Header.php:261
+msgid "Image"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Breadcrumb.php:280
+msgid "Set Breadcrumb Background Image"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Breadcrumb.php:294
+msgid "Breadcrumb Set Background Color"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Footer.php:23
+msgid "Footer"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Footer.php:147
+msgid "Footer Options"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Footer.php:157
+msgid "Footer Layout Structures"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Footer.php:184
+msgid "Select alignment for footer 1"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Footer.php:186, ../hopeui/inc/Customizer/Sections/Footer.php:199, ../hopeui/inc/Customizer/Sections/Footer.php:212, ../hopeui/inc/Customizer/Sections/Footer.php:225, ../hopeui/inc/Customizer/Sections/Footer.php:255
+msgid "Left"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Footer.php:187, ../hopeui/inc/Customizer/Sections/Footer.php:200, ../hopeui/inc/Customizer/Sections/Footer.php:213, ../hopeui/inc/Customizer/Sections/Footer.php:226, ../hopeui/inc/Customizer/Sections/Footer.php:257
+msgid "Right"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Footer.php:188, ../hopeui/inc/Customizer/Sections/Footer.php:201, ../hopeui/inc/Customizer/Sections/Footer.php:214, ../hopeui/inc/Customizer/Sections/Footer.php:227, ../hopeui/inc/Customizer/Sections/Footer.php:256
+msgid "Center"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Footer.php:197
+msgid "Select alignment for footer 2"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Footer.php:210
+msgid "Select alignment for footer 3"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Footer.php:223
+msgid "Select alignment for footer 4"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Footer.php:234
+msgid "Footer CopyRight"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Footer.php:243
+msgid "Display Copyrights"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Footer.php:253
+msgid "Copyrights Text Alignment"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Footer.php:264
+msgid "Copyrights Text"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/FourZeroFour.php:136
+msgid "404 Background Image"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/FourZeroFour.php:143
+msgid "404 Page Title"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/FourZeroFour.php:151, ../hopeui/woocommerce/single-product/tabs/description.php:23
+msgid "Description"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/FourZeroFour.php:157
+msgid "Button Label"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/FourZeroFour.php:165
+msgid "Display Header on 404 page?"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/FourZeroFour.php:173
+msgid "Display Footer on 404 page?"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/General.php:117
+msgid "Scroll Up"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/General.php:198
+msgid "View Support Documentation"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/General.php:212
+msgid "Body Layout"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/General.php:221
+msgid "Container Type"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/General.php:224, ../hopeui/inc/Customizer/Sections/Header.php:204
+msgid "Container"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/General.php:225
+msgid "Full Width"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/General.php:233
+msgid "Container Width"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/General.php:240, ../hopeui/inc/Customizer/Sections/Loader.php:153
+msgid "PX"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/General.php:249
+msgid "Body Set Option"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/General.php:253, ../hopeui/inc/Customizer/Sections/Header.php:216, ../hopeui/inc/Customizer/Sections/Header.php:259
+msgid "Default"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/General.php:262
+msgid "Set Background Color"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/General.php:271
+msgid "Back to Top"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/General.php:282
+msgid "Show Back To Top?"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/General.php:293
+msgid "Back to top Button Text"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/General.php:294
+msgid "Text to show on \"Back to top\" button."
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/General.php:303
+msgid "Colors"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/General.php:312
+msgid "Primary Color"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/General.php:317
+msgid "Secondary Color"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/General.php:322
+msgid "Title Color"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/General.php:327
+msgid "Text Color"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/General.php:335
+msgid "Typography"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/General.php:345
+msgid "Custom Typography?"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/General.php:354
+msgid "Body Font"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/General.php:355
+msgid "Select Global Body Typography"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Header.php:28
+msgid "Header"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Header.php:175
+msgid "Header Layout"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Header.php:200
+msgid "Header Container"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Header.php:203
+msgid "Full width"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Header.php:213
+msgid "Header Position"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Header.php:217
+msgid "Over"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Header.php:226
+msgid "Display Search Icon?"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Header.php:236
+msgid "Display Mini Cart Icon?"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Header.php:246
+msgid "Enter Search label"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Header.php:256
+msgid "Background"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Header.php:262
+msgid "Transparent"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Header.php:274
+msgid "Header BackGround Color"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Header.php:285
+msgid "Set Header Background Image"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Loader.php:24
+msgid "Loader"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Loader.php:122
+msgid "Show Loader?"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Loader.php:124
+msgid "Turn on to show the icon/images loading animation while your site loads"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Loader.php:133
+msgid "Loader Background Color"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Loader.php:142
+msgid "Select Loader Image"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Loader.php:151
+msgid "Select Loader Size"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Loader.php:154
+msgid "%"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Loader.php:155
+msgid "EM"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Loader.php:156
+msgid "REM"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Page.php:22
+msgid "Page Settings"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Page.php:79
+msgid "Search Page Setting"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Page.php:104
+msgid "Logo"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/Sections/Page.php:113
+msgid "Mobile Logo"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/WP_Custom_Control/WP_Toggle_Button.php:35
+msgid "On"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/WP_Custom_Control/WP_Toggle_Button.php:36
+msgid "Off"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/WP_Custom_Control/WP_Toggle_Button.php:45
+msgid "active"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/WP_Custom_Control/WP_Typography.php:113
+msgid "Select Font Family"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/WP_Custom_Control/WP_Typography.php:136
+msgid "Select Font Weight"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/WP_Custom_Control/WP_Typography.php:157
+msgid "Select Font Style"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/WP_Custom_Control/WP_Typography.php:166, ../hopeui/inc/Customizer/WP_Custom_Control/WP_Typography.php:163
+msgid "Normal"
+msgstr ""
+
+#: ../hopeui/inc/Customizer/WP_Custom_Control/WP_Typography.php:162
+msgid "Italic"
+msgstr ""
