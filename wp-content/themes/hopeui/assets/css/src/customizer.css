@@ -1,0 +1,589 @@
+.wp-customizer .customize-control:not(.customize-control-hopeui_php_section_tabs) {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 12px;
+}
+
+.customize-control-title, .accordion-section-title {
+    font-size: 12px;
+}
+
+
+/* ==========================================================================
+   Text Radio Buttons
+   ========================================================================== */
+.hopeui_style-text-radio-button-control:after {
+    content: " ";
+    display: block;
+    clear: both;
+}
+
+.hopeui_style-text-radio-button-control .radio-buttons {
+    display: flex;
+    border: 1px solid #f9f9fe;
+}
+
+.hopeui_style-text-radio-button-control .radio-button-label {
+    cursor: pointer;
+    float: left;
+    width: 100%;
+}
+
+.hopeui_style-text-radio-button-control .radio-button-label>input, .hopeui_style-section-tabs .hopeui_style-section-tab-item>input {
+    display: none;
+}
+
+.hopeui_style-text-radio-button-control .radio-button-label span {
+    cursor: pointer;
+    font-weight: 500;
+    margin: 0;
+    background-color: #eee;
+    padding: 5px 15px;
+    display: block;
+    text-align: center;
+}
+
+.hopeui_style-text-radio-button-control .radio-button-label span:hover {
+    background-color: rgba(255, 255, 255, .2);
+    color: #2885bb;
+}
+
+.hopeui_style-text-radio-button-control .radio-button-label>input:checked+span {
+    background-color: #2084bd;
+    color: #fff;
+}
+
+.hopeui_style-text-radio-button-control .radio-button-label>input:checked+span:hover {
+    color: #fff;
+}
+
+/* ==========================================================================
+   Image Radio Buttons
+   ========================================================================== */
+.image_button_control .radio-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 15px;
+    flex-direction: column;
+}
+
+.image_button_control:after {
+    content: " ";
+    display: block;
+    clear: both;
+}
+
+.image_button_control .radio-button-label {
+    cursor: pointer;
+    float: left;
+}
+
+.image_button_control .radio-button-label>input {
+    display: none;
+}
+
+.image_button_control .radio-button-label img {
+    cursor: pointer;
+    border: 2px solid #f9f9fe;
+    margin: 5px 0px;
+    display: block;
+}
+
+.image_button_control .radio-button-label img:hover {
+    border: solid 2px #d9d9d9;
+}
+
+.image_button_control .radio-button-label>input:checked+img {
+    border: solid 2px #2885bb;
+}
+
+.image_button_control.show_img_inline .radio-buttons {
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+
+
+/* ==========================================================================
+   Slider
+   ========================================================================== */
+.slider-custom-control {
+    margin-bottom: 30px;
+}
+
+.slider-custom-control input[type=number]::-webkit-inner-spin-button,
+.slider-custom-control input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.hopeui_style-slider-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.slider-custom-control input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.slider-custom-control .customize-control-title {
+    display: inline-block;
+}
+
+.slider-custom-control .hopeui_style-slider-inputs {
+    display: inline-block;
+}
+
+.slider-custom-control input[type=number], .slider-custom-control select {
+    text-align: right;
+    width: 50px;
+}
+
+.slider-custom-control .slider {
+    width: 85%;
+    float: left;
+    margin: 20px 0 10px;
+}
+
+.slider-custom-control .slider-reset {
+    float: right;
+    cursor: pointer;
+}
+
+.slider-custom-control .slider-value {
+    border: none;
+    text-align: right;
+    width: 50px;
+    margin-right: 5px;
+}
+
+.slider-custom-control .slider-value,
+.slider-custom-control .slider-unit {
+    float: right;
+}
+
+.slider-custom-control .ui-widget.ui-widget-content {
+    border: 1px solid #ffffff;
+}
+
+.slider-custom-control .ui-corner-all,
+.slider-custom-control .ui-corner-bottom,
+.slider-custom-control .ui-corner-right,
+.slider-custom-control .ui-corner-br {
+    border-bottom-right-radius: 3px;
+}
+
+.slider-custom-control .ui-corner-all,
+.slider-custom-control .ui-corner-bottom,
+.slider-custom-control .ui-corner-left,
+.slider-custom-control .ui-corner-bl {
+    border-bottom-left-radius: 3px;
+}
+
+.slider-custom-control .ui-corner-all,
+.slider-custom-control .ui-corner-top,
+.slider-custom-control .ui-corner-right,
+.slider-custom-control .ui-corner-tr {
+    border-top-right-radius: 3px;
+}
+
+.slider-custom-control .ui-corner-all,
+.slider-custom-control .ui-corner-top,
+.slider-custom-control .ui-corner-left,
+.slider-custom-control .ui-corner-tl {
+    border-top-left-radius: 3px;
+}
+
+.slider-custom-control .ui-widget-content {
+    background: #ffffff none repeat scroll 0 0;
+    color: #333;
+}
+
+.slider-custom-control .ui-slider-horizontal {
+    height: 3px;
+}
+
+.slider-custom-control .ui-slider {
+    position: relative;
+    text-align: left;
+}
+
+.slider-custom-control .ui-state-default,
+.slider-custom-control .ui-widget-content .ui-state-default,
+.slider-custom-control .ui-widget-header .ui-state-default,
+.slider-custom-control .ui-button,
+.slider-custom-control .ui-button.ui-state-disabled:hover,
+.slider-custom-control .ui-button.ui-state-disabled:active {
+    background: #2885bb none repeat scroll 0 0;
+    border: 1px solid #2885bb;
+    color: #454545;
+    font-weight: normal;
+}
+
+.slider-custom-control .ui-slider-horizontal .ui-slider-handle {
+    margin-left: -7px;
+    top: -7px;
+    border-radius: 50%;
+}
+
+.slider-custom-control .ui-slider .ui-slider-handle {
+    cursor: pointer;
+    height: 14px;
+    position: absolute;
+    width: 14px;
+    z-index: 2;
+}
+
+.slider-custom-control .dashicons-image-rotate {
+    margin-top: 10px;
+    color: #d4d4d4;
+    size: 16px;
+}
+
+.slider-custom-control .dashicons-image-rotate:hover {
+    color: #a7a7a7;
+}
+
+.slider-custom-control .hopeui_style-slider-desc {
+    float: left;
+}
+
+/* ==========================================================================
+   Section Tabs
+   ========================================================================== */
+
+.hopeui_style-section-tabs {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #fff;
+    margin-top: -15px;
+    margin-left: -24px;
+    margin-right: -24px;
+}
+
+.hopeui_style-section-tabs .hopeui_style-section-tab-item {
+    flex-grow: 1;
+    text-align: center;
+    height: 40px;
+    text-decoration: none;
+    text-transform: uppercase;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 400;
+    border-top: 2px solid transparent;
+}
+
+.hopeui_style-section-tabs .hopeui_style-section-tab-item.checked {
+    border-color: #2885bb;
+    background: linear-gradient(180deg, #f3f5f6, #ffffff);
+}
+
+.toggle_button_button_control {
+    padding: 6px 0;
+}
+
+.toggle_button_button_control .radio-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-toggle input {
+    display: none;
+}
+
+.btn-toggle {
+    margin: 0 4rem;
+    padding: 0;
+    position: relative;
+    border: none;
+    height: 1.5rem;
+    width: 3rem;
+    border-radius: 1.5rem;
+    color: #6b7381;
+    background: #bdc1c8;
+    display: inline-block;
+}
+
+.btn-toggle:before,
+.btn-toggle:after {
+    line-height: 1.5rem;
+    width: 4rem;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: absolute;
+    bottom: 0;
+    transition: opacity 0.25s;
+}
+
+
+.btn-toggle>.handle {
+    position: absolute;
+    top: 0.1875rem;
+    left: 0.1875rem;
+    width: 1.125rem;
+    height: 1.125rem;
+    border-radius: 1.125rem;
+    background: #fff;
+    transition: left 0.25s;
+}
+
+.btn-toggle.active {
+    transition: background-color 0.25s;
+    background-color: #2084bd;
+}
+
+.btn-toggle.active>.handle {
+    left: 1.6875rem;
+    transition: left 0.25s;
+}
+
+.btn-toggle.active:before {
+    opacity: 0.5;
+}
+
+.btn-toggle.active:after {
+    opacity: 1;
+}
+
+.btn-toggle.btn-sm {
+    margin: 0 0.5rem;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    border: none;
+    height: 1.5rem;
+    width: 3rem;
+    border-radius: 1.5rem;
+}
+
+.btn-toggle.btn-sm:before,
+.btn-toggle.btn-sm:after {
+    line-height: 1.5rem;
+    width: 0.5rem;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: absolute;
+    bottom: 0;
+    transition: opacity 0.25s;
+}
+
+.btn-toggle.btn-sm:before {
+    content: attr(data-false-label);
+    left: -0.5rem;
+}
+
+.btn-toggle.btn-sm:after {
+    content: attr(data-true-label);
+    right: -0.5rem;
+    opacity: 0.5;
+}
+
+.btn-toggle.btn-sm>.handle {
+    position: absolute;
+    top: 0.1875rem;
+    left: 0.1875rem;
+    width: 1.125rem;
+    height: 1.125rem;
+    border-radius: 1.125rem;
+    background: #fff;
+    transition: left 0.25s;
+}
+
+.btn-toggle.btn-sm.active {
+    transition: background-color 0.25s;
+}
+
+.btn-toggle.btn-sm.active>.handle {
+    left: 1.6875rem;
+    transition: left 0.25s;
+}
+
+.btn-toggle.btn-sm.active:before {
+    opacity: 0.5;
+}
+
+.btn-toggle.btn-sm.active:after {
+    opacity: 1;
+}
+
+.btn-toggle.btn-sm.btn-sm:before,
+.btn-toggle.btn-sm.btn-sm:after {
+    line-height: -0.5rem;
+    color: #fff;
+    letter-spacing: 0.75px;
+    left: 0.4125rem;
+    width: 2.325rem;
+}
+
+.btn-toggle.btn-sm.btn-sm:before {
+    text-align: right;
+}
+
+.btn-toggle.btn-sm.btn-sm:after {
+    text-align: left;
+    opacity: 0;
+}
+
+.btn-toggle.btn-sm.btn-sm.active:before {
+    opacity: 0;
+}
+
+.btn-toggle.btn-sm.btn-sm.active:after {
+    opacity: 1;
+}
+
+.btn-toggle.btn-sm.btn-xs:before,
+.btn-toggle.btn-sm.btn-xs:after {
+    display: none;
+}
+
+/* ==========================================================================
+   DropDown Select 2
+   ========================================================================== */
+
+.dropdown_select2_control .dropdowm_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdown_select2_control.display-block .dropdowm_header {
+    display: block;
+}
+
+.dropdown_select2_control .dropdowm_header>label {
+    width: 100%;
+}
+
+/* ==========================================================================
+    Twodimension Input
+    ========================================================================== */
+.hopeui_style-twodimension_input {
+    padding: 6px 0;
+}
+
+.hopeui_style-twodimension_input .hopeui_style-twodimension_input-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.hopeui_style-twodimension_input .hopeui_style-twodimension_input-wrapper>span {
+    width: 50px;
+}
+
+.hopeui_style-twodimension_input .hopeui_style-twodimension_input-wrapper input[type=number] {
+    width: 50px;
+    -moz-appearance: textfield;
+
+}
+
+.hopeui_style-twodimension_input .hopeui_style-number-input-container {
+    display: flex;
+    border: solid 1px gray;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.hopeui_style-twodimension_input .hopeui_style-number-input-container button {
+    transform: scale(0.8);
+    color: grey;
+}
+
+.hopeui_style-twodimension_input .hopeui_style-number-input-container :is(button, input) {
+    border: 0;
+    border-radius: 0;
+    background-color: transparent;
+}
+
+.hopeui_style-twodimension_input .hopeui_style-twodimension_input-wrapper>span>input, .hopeui_style-twodimension_input .hopeui_style-twodimension_input-wrapper .select2-selection.select2-selection--single {
+    height: 32px;
+    border-radius: 5px;
+}
+
+.hopeui_style-typography {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.google-fonts-size-wrapper .customize-control-title {
+    width: 85%;
+}
+
+.google-fonts-size-wrapper {
+    display: flex;
+    margin-top: 8px;
+    align-items: baseline;
+
+}
+
+.google_fonts_select_control {
+    display: none;
+    background-color: #fff;
+    padding: 32px 16px;
+    box-shadow: 5px 4px 16px #80808038;
+    border-radius: 12px;
+}
+
+.google_fonts_select_control.active {}
+
+.google_fonts_select_control .hopeui_style-input-text-control-wrapper {
+    display: flex;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.google_fonts_select_control .hopeui_style-input-text-control-wrapper .google-fonts-size {
+    border-radius: 0;
+    border: 0;
+}
+
+.google_fonts_select_control .hopeui_style-input-text-control-wrapper span {
+    background: white;
+    border: 0;
+    padding: 5px;
+}
+
+.hopeui_style-font-family-wrapper, .hopeui_style-regularweight-wrapper, .hopeui_style-italic-wrapper, .hopeui_style-weight-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+}
+
+.google_fonts_select_control :is(input, select) {
+    width: 100% !important;
+}
+
+.google_fonts_select_control :is(.google-fonts, .weight-style, .hopeui_style-input-text-control-wrapper) {
+    flex: 50%;
+    padding-left: 25px;
+    text-align: end;
+}
+
+.hopeui_style-typography .hopeui_style-typography-dropdown-button {
+    box-shadow: 1px 1px 14px #8080801c;
+    border: 6px SOLID #FFF;
+    background: white;
+    border-radius: 15px;
+    cursor: pointer;
+}
+.hopeui_style_highlight_section , .hopeui_style_highlight_section :is(a,h3) {
+    background: #3a57e8 !important;
+    border-color: #3a57e8 !important;
+    padding: 0.1em .625em !important;
+    color: #FFF!important;
+    text-decoration: none;
+    box-shadow: none;
+}

@@ -1,0 +1,72 @@
+
+.hopeui_style-btn-container {
+    vertical-align: middle;
+}
+
+.hopeui_style-button,
+.added_to_cart,
+.rs-button,
+.contact-form-button {  
+	color: var(--color-theme-white);
+	font-size: var(--font-size-normal);
+    font-family: var(--highlight-font-family);
+    letter-spacing: var(--letter-spacing);
+	font-weight:var(--font-weight-medium) ;
+    line-height: var(--font-line-height-body);
+	background-color: var(--color-theme-primary);
+    border-radius: var(--box-border-radius);
+    padding: .5em 1.5em; 
+    position: relative;
+	display: inline-block;
+	vertical-align: top;
+    cursor:pointer; 
+	border: none; 
+	overflow: hidden;
+    text-decoration: none;
+    transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out; 
+}
+
+.hopeui_style-button:hover,
+.rs-button:hover {	
+	background: var(--color-theme-primary-dark);
+    color: var(--color-theme-white);
+}
+
+.hopeui_style-button .text-btn{
+    margin-right: 0.625em;
+    position: relative; 
+}
+
+
+.hopeui_style-button.hopeui_style-button-link {
+    background: transparent;
+    font-size: var(--font-size-normal);
+    color: var(--color-theme-primary);
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    padding: 0; 
+    box-shadow: none; 
+    letter-spacing: var(--letter-spacing-two);
+}
+
+.hopeui_style-button .hopeui_style-icon-right {
+    padding-left: 0.313em;
+}
+
+.hopeui_style-button.hopeui_style-button-link:hover {
+	background: transparent;
+	color: var(--global-font-title);
+}
+
+.hopeui_style-button.hopeui_style-button-link:hover span.text-btn {
+    color: var(--global-font-title);
+}
+
+.button-link i {
+	font-size: var(--font-size-body);
+	margin-left: 0.313em;
+}

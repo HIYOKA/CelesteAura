@@ -1,0 +1,250 @@
+/*--------------------------   Search Box     ------------------------ */
+
+.hopeui_style-shop-btn-holder ul{
+	margin: 0;
+}
+
+.search-box input[type="search"] {
+	height: 2.5em;
+	font-size: 1.125em;
+	display: inline-block;
+	border: none;
+	border-radius: 0.3125em;
+	padding: 1em 2.5em 1em 1em;
+	width: 0;
+	position: absolute;
+	top: -0.5625em;
+	right: 0;
+	background: none;
+	transition: width 0.4s cubic-bezier(0, 0.795, 0, 1);
+	cursor: pointer;
+	z-index: 11;
+	margin: -0.625em 0 0 0;
+}
+
+header .search-form .search-submit {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 2.625em;
+    width: 2.625em;
+    color: var(--global-font-color);
+    cursor: pointer;
+    font-size: var(--font-size-body);
+    border: none;
+    transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    border-radius: 0 0.188em 0.188em 0;
+}
+
+.search-box input[type="search"]:focus {
+	width: 15.625em;
+	cursor: text;
+	background: var(--color-theme-white);
+	z-index: 9;
+	color: rgba(102, 102, 102, 0.6);
+  }
+  
+.search-box {
+	position: relative;
+}
+  
+.search-box .search-submit:hover {
+	background: none;
+}
+  .search-form .search-submit svg {
+    font-size: 1.125em;
+    color: var(--color-theme-white);
+}
+
+  button#btn-search-close svg{
+	  color: var(--color-theme-white);
+  }
+
+  .search-form .search-submit {
+	top: 10.125em;
+  }
+  
+  .search-form .search-submit svg {
+	font-size: 1.125em;
+	color: var(--color-theme-white);
+  }
+  
+  .navbar ul.hopeui_style-shop-btn-holder ul li a:hover {
+	background: transparent;
+  }
+  
+  .search-form .search-submit {
+	background: transparent;
+	line-height: normal;
+  }
+  
+  .search__input::-webkit-search-cancel-button,
+  .search__input::-webkit-search-decoration {
+	-webkit-appearance: none;
+  }
+  
+  .search__input::-ms-clear {
+	display: none;
+  }
+  
+  form.search-form .form-row .has-content~label,
+  form.search-form .form-row input:focus~label,
+  form.search-form .form-row label {
+	top: -5.625em;
+  }
+  
+  .hopeui_style-shop-btn-holder ul li svg {
+	font-size: 1.25em;
+	height: 1em;
+	width: 1.25em;
+  }
+  
+  .search-form input {
+	border-radius: var(--border-radius);
+	border: none;
+	background: transparent;
+	padding: 0;
+  }
+  
+  form.search-form .form-row label {
+	color: var(--color-theme-white);
+	text-align: left;
+	font-size: 2.813em;
+	top: -0.813em;
+	margin-bottom: 0;
+	left: 0;
+	display: block;
+	float: left;
+	width: 100%;
+	position: absolute;
+	pointer-events: none;
+	transition: all 0.3s ease-in-out;
+	-webkit-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+  }
+  
+  .search-form input {
+	padding-right: 3.125em;
+	box-shadow: none;
+	border: none;
+	background: transparent;
+	transition: all 0.3s ease-in-out;
+	-webkit-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+  }
+.search-form{position: relative;}
+  .search_count #btn-search, .search_count #btn-search svg {
+	font-family: var(--highlight-font-family);
+	color: var(--global-font-title);
+	text-transform: uppercase;
+	letter-spacing: 0.188em;
+}
+
+.search_count #btn-search:hover, 
+.search_count #btn-search:hover svg{
+	color: var(--color-theme-primary);
+}
+.hopeui_style-header-right {
+    display: flex;
+    align-items: center;
+}
+
+/* search default */
+.search_wrap.search-form-default .search-form input {
+    border-bottom: 0.063em solid var(--global-font-title) !important;
+    border-radius: 0;
+	height: 2.813em;
+	line-height: 2.813em;
+	font-size: 1.125em;
+	padding-right: 1.875em;
+}
+
+.search_wrap .search-form input::placeholder{
+	color: var(--global-font-color);
+}
+
+.search_wrap.search-form-default .search-form .search-submit svg{
+	font-size: 1.125em;
+	color: var(--global-font-color);
+}
+
+.search_wrap.search-form-default .search-form .form-search .search-submit{
+	padding: 0;
+	height: 1.875em;
+	width: 1.875em;
+	line-height: 3.125em;
+}
+
+.search-form-default .search-form input:focus, 
+.search-form-default .search-form input[type=email]:focus, 
+.search-form-default .search-form input[type=password]:focus, 
+.search-form-default .search-form input[type=search]:focus, 
+.search-form-default .search-form input[type=text]:focus {
+    border-color: var(--color-theme-primary) !important;
+}
+
+body.search header.page-header {
+	position: static;
+	background: transparent;
+  }
+  
+  .hopeui_style-error .search-form {
+	display: inline-block;
+	width: 40%;
+	margin: 1em 0 1.563em;
+  }
+
+  .hopeui_style-error .page-content > p {
+	width: 50%;
+	margin: 1em auto;
+  }
+  
+  .hopeui_style-error .search-form input {
+	padding: 0 4.375em 0 1em;
+	font-size: var(--font-size-body);
+	position: relative;
+	background: var(--global-body-lightcolor);
+	border: 0.063em solid transparent;
+  
+  }
+  
+  .hopeui_style-error .search-form .search-submit {
+	top: 50%;
+	transform: translateY(-50%);
+	height: 3.75em;
+    width: 3.75em;
+  }
+  .hopeui_style-search .search-form input{
+	height: 2.625em;
+	background:transparent;
+	padding-right: 2em;
+  }
+
+  .hopeui_style-search .search__form:after{
+	bottom:0;
+  }
+  .hopeui_style-shop-btn-holder .search_count{margin-left: 1em;}
+
+  @media (max-width: 767px) {
+	
+	.hopeui_style-error .page-content>p {
+	  width: 70%;
+	}
+  }
+  
+  @media (max-width: 479px) {
+	.hopeui_style-error .search-form {
+	  width: 90%;
+	}
+	.hopeui_style-error .page-content>p {
+	  width: 90%;
+	}
+  }

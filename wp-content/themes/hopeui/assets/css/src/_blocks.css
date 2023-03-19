@@ -1,0 +1,509 @@
+/**
+ * Custom Properties
+ * aka CSS variables.
+ *
+ * @link: https://developer.mozilla.org/en-US/docs/Web/CSS/--*
+ **/
+
+/* cyrillic-ext */
+@font-face {
+	font-family: "Inter";
+	src: url("./fonts/Inter-Medium.woff2") format('woff2'),
+		url("./fonts/Inter-Regular.woff2") format('woff2');
+}
+
+
+:root {
+
+	/* Container */
+	--content-width: 87.5em;
+	--content-width-sm: 75em;
+	--sidebar-width: 18.75em;
+
+
+	/* Typography */
+	--global-font-family: "Inter";
+	--highlight-font-family: "Inter";
+	--global-font-size: 1em;
+	--global-font-line-height: 1.5;
+	--global-box-shadow: 0 0.625rem 1.875rem rgb(0 0 0 / 3%);
+	--global-submenu-shadow: 0rem 0.25rem 2rem 0rem rgb(0 0 0 / 10%);
+
+	/* Page Spacing */
+	--global-page-top-spacing: 2em;
+	--global-page-bottom-spacing: 2em;
+	--global-page-top-spacing-tablet: 2em;
+	--global-page-bottom-spacing-tablet: 2em;
+	--global-page-top-spacing-mobile: 2em;
+	--global-page-bottom-spacing-mobile: 2em;
+
+	/* Custom editor font sizes */
+	--font-size-small: calc(16 / var(--global-font-size) * 1em);
+	--font-size-regular: calc(var(--global-font-size) / 16 * 1em);
+	--font-size-large: calc(36 / var(--global-font-size) * 1em);
+	--font-size-larger: calc(48 / var(--global-font-size) * 1em);
+
+	/* Fontsize */
+	--font-size-small: 0.75em;
+	--font-size-normal: .875em;
+	--font-size-body: 1em;
+	--font-size-h1: 2.488em;
+	--font-size-h2: 2.074em;
+	--font-size-h3: 1.728em;
+	--font-size-h4: 1.44em;
+	--font-size-h5: 1.2em;
+	--font-size-h6: 1em;
+	--font-size-xs: 0.75em;
+
+	/* Line-Height */
+	--font-line-height-body: 1.5;
+	--font-line-height-p: 1.75;
+	--font-line-height-h1: 1.2;
+	--font-line-height-h2: 1.2;
+	--font-line-height-h3: 1.2;
+	--font-line-height-h4: 1.2;
+	--font-line-height-h5: 1.2;
+	--font-line-height-h6: 1.2;
+
+	/* Font-Weight */
+	--font-weight-body: 400;
+	--font-weight-h1: 500;
+	--font-weight-h2: 500;
+	--font-weight-h3: 500;
+	--font-weight-h4: 500;
+	--font-weight-h5: 500;
+	--font-weight-h6: 500;
+
+	/* font-weight*/
+
+	--font-weight-regular: 400;
+	--font-weight-medium: 500;
+
+	/* Letter spacing */
+	--font-letter-spacing-body: normal;
+	--font-letter-spacing-link: normal;
+	--font-letter-spacing-h1: normal;
+	--font-letter-spacing-h2: normal;
+	--font-letter-spacing-h3: normal;
+	--font-letter-spacing-h4: normal;
+	--font-letter-spacing-h5: normal;
+	--font-letter-spacing-h6: normal;
+	--letter-spacing: normal;
+	--letter-spacing-one: 0.063em;
+	--letter-spacing-two: 0.125em;
+	--letter-spacing-three: 0.188em;
+	--letter-spacing-four: 0.25em;
+
+	/* border-radius */
+	--border-radius: .5em;
+	--border-radius-box: .5em;
+	--border-radius-ten: .625em;
+	--box-border-radius: .25em;
+
+	/* z index */
+	--z-index-minus: -1;
+
+
+
+	/* Colors */
+	--global-body-bgcolor: #f9f9f9;
+	--global-body-lightcolor: #f1f3f5;
+	--global-font-color: #8a92a6;
+	--global-font-title: #0b112e;
+	--global-dark-submenu: #7C859B;
+	--global-body-lightbg: #f7f7f7;
+	--global-section-bg: #f1f3f5;
+	--global-section-bg-transparent: rgba(255, 255, 255, 0.3);
+	--border-color-light: #eee;
+	--border-color-dark: #262f48;
+	--color-link: #3A57E8;
+	--color-link-visited: #3A57E8;
+	--color-link-active: #3A57E8;
+	--color-post-sticky-bg: #ebeefd;
+	--color-input-placeholder: #8a92a6;
+	--logo-text-color: #212529;
+
+
+	/* Custom editor colors */
+	--color-theme-primary: #3A57E8;
+	--color-theme-primary-dark: #2e45b9;
+	--color-theme-primary-light: #ebeefd;
+	--color-theme-secondary: #6c757d;
+	--color-theme-secondary-dark: #5c636a;
+	--color-theme-secondary-light: #e2e3e5;
+	--color-theme-danger: #c03221;
+	--color-theme-danger-dark: #a32b1c;
+	--color-theme-danger-light: #f2d6d3;
+	--color-theme-success: #1aa053;
+	--color-theme-black: #000;
+	--color-theme-grey: #95a5a6;
+	--color-theme-white: #fff;
+	--color-theme-yellow: #FFD329;
+
+	/* Header editor colors */
+	--global-font-active: #2870DE;
+	--global-font-hover: #2870DE;
+
+	--product-col-gap: 1em;
+
+	/* bootstrap variable */
+	--bs-primary: #3a57e8;
+}
+
+@media (min-width: 1920px) {
+	:root {
+		--font-size-body: 0.83vw;
+	}
+}
+
+@media (max-width: 991px) {
+	:root {
+		--font-size-h1: 3.653em;
+		--font-size-h2: 2em;
+		--font-size-h3: 1.827em;
+		--font-size-h4: 1.700em;
+	}
+}
+
+
+@media (min-width: 1499px) {
+	.container {
+		max-width: var(--content-width-sm);
+	}
+
+	.hopeui_style .container {
+		max-width: var(--content-width);
+	}
+}
+
+@media (min-width: 1300px) {
+	.container {
+		max-width: var(--content-width-sm);
+	}
+
+	.hopeui_style .container {
+		max-width: var(--content-width);
+	}
+}
+
+.container-fluid {
+	padding: 0 2em;
+}
+
+body .container {
+	max-width: var(--content-width-sm);
+}
+
+body .hopeui_style .container, 
+body .elementor-section.elementor-section-boxed>.elementor-container {
+	max-width: var(--content-width);
+}
+
+.content-area .site-main {
+	padding: var(--global-page-top-spacing) 0 var(--global-page-bottom-spacing);
+}
+
+.home .hopeui_style .content-area .site-main {
+	padding: 0;
+}
+
+.home.blog .hopeui_style .content-area .site-main {
+	padding: var(--global-page-top-spacing) 1em var(--global-page-bottom-spacing);
+}
+
+.single.single-product .content-area .site-main {
+	padding-top: 11em;
+}
+
+.hopeui_style-default-header.single.single-product .content-area .site-main {
+    padding-top: 5em;
+}
+
+@media (max-width: 1024px) {
+	.content-area .site-main {
+		padding: var(--global-page-top-spacing-tablet) 1em var(--global-page-bottom-spacing-tablet);
+	}
+	.home.blog .hopeui_style .content-area .site-main {
+		padding: var(--global-page-top-spacing-tablet) 1em var(--global-page-bottom-spacing-tablet);
+	}
+	.single.single-product .content-area .site-main {
+		padding-top: 9em;
+	}
+	.hopeui_style-default-header.single.single-product .content-area .site-main {
+		padding-top: 4em;
+	}
+}
+
+@media (max-width: 767px) {
+	.content-area .site-main {
+		padding: var(--global-page-top-spacing-mobile) 1em var(--global-page-bottom-spacing-mobile);
+	}
+	.home.blog .hopeui_style .content-area .site-main {
+		padding: var(--global-page-top-spacing-mobile) 1em var(--global-page-bottom-spacing-mobile);
+	}
+	.single.single-product .content-area .site-main {
+		padding-top: 7em;
+	}
+	.hopeui_style-default-header.single.single-product .content-area .site-main {
+		padding-top: 2em;
+	}
+}
+
+
+
+/*---------------------------------------------------------------------
+			  Scrollbar
+-----------------------------------------------------------------------*/
+/* width */
+::-webkit-scrollbar {
+	width: 0.25em;
+	height: 0.25em;
+}
+  /* Track */
+::-webkit-scrollbar-track { 
+	border-radius: 0.313em;
+}
+   
+  /* Handle */
+::-webkit-scrollbar-thumb {
+	background: var(--color-theme-primary); 
+	border-radius: 0.313em;
+}
+
+.yScroller::-webkit-scrollbar {
+	display: none;
+}
+
+.yScroller {
+	scrollbar-width: none;
+}
+
+
+/*-------------------------  Back to Top  -------------------------*/
+.hopeui_style-top {
+    transition: all .2s ease 0s;
+    -webkit-transition: all .2s ease 0s;
+    -moz-transition: all .2s ease 0s;
+    -o-transition: all .2s ease 0s;
+    -ms-transition: all .2s ease 0s;
+}
+
+#back-to-top .top {
+	position: fixed;
+	margin: 0;
+	color: var(--color-theme-white);
+	background: var(--color-theme-primary);
+	bottom: 2.063em;
+	right: 1.875em;
+	z-index: 99;
+	font-size: 1.625em;
+	width: 1.875em;
+	height: 1.875em;
+	text-align: center;
+	line-height: 1.875em;
+	border-radius: var(--border-radius-box);
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+}
+
+#back-to-top .top i {
+	color: var(--color-theme-white);
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+}
+
+#back-to-top .top:hover {
+	background: var(--color-theme-secondary);
+}
+
+/*-------------------  Loader  ---------------------------------------*/
+#loading {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: var(--global-body-bgcolor);
+	z-index: 9999;
+}
+
+/*---------------------------------------------------------------------
+   Breadcrumb style 1 2 and 3 4 5
+  -----------------------------------------------------------------------*/
+
+.hopeui_style-header-over .hopeui_style-breadcrumb {
+    padding: 12.125em 0 8.125em 0;
+}
+
+.hopeui_style-breadcrumb {
+	display: block;
+	position: relative;
+	padding: 8.125em 0;
+	background: var(--global-body-lightcolor);
+	z-index: 9;
+}
+
+.breadcrumb li {
+	display: inline-block;
+	word-break: break-word;
+}
+
+.hopeui_style-breadcrumb-nav {
+	position: relative;
+	z-index: 2;
+}
+
+.hopeui_style-breadcrumb ol li a,
+.hopeui_style-breadcrumb ol li {
+	color: var(--color-theme-white);
+	text-decoration: none;
+	font-weight: var(--font-weight-h2);
+	font-family: var(--highlight-font-family);
+}
+
+.hopeui_style-breadcrumb ol li a:hover {
+	color: var(--color-theme-white);
+}
+
+.hopeui_style-breadcrumb ol li {
+	list-style: none;
+	display: inline-block;
+	position: relative;
+}
+
+.hopeui_style-breadcrumb .breadcrumb-item+.breadcrumb-item .breadcrumbs-separator::before {
+	content: "\f054";
+	font-family: "Font Awesome 6 Free";
+	font-weight: 900;
+	color: var(--color-theme-white);
+	font-size: .8em;
+	width: 0.313em;
+	height: 0.313em;
+	position: absolute;
+	padding: 0;
+	left: -0.25em;
+	top: 3px;
+	border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	-o-border-radius: 50%;
+}
+.hopeui_style-breadcrumb .breadcrumb-item+.breadcrumb-item:before{
+	content:none;
+}
+
+.breadcrumb-item+.breadcrumb-item {
+	padding-left: 1em;
+    margin-left: 1em;
+}
+
+.hopeui_style-breadcrumb .breadcrumb {
+	position: relative;
+	display: inline-block;
+}
+
+.hopeui_style-breadcrumb .breadcrumb-item.active {
+	color: var(--color-theme-white);
+	position: relative;
+}
+
+.hopeui_style-breadcrumb ol {
+	background: transparent;
+	padding: 0;
+	margin-bottom: 0;
+}
+
+.hopeui_style-breadcrumb .title {
+	margin-bottom: 0.313em;
+	margin-top: 0;
+	color: var(--color-theme-white);
+}
+
+.hopeui_style-breadcrumb-nav .breadcrumb {
+	display: flex;
+	align-items: center;
+	line-height: normal;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.hopeui_style-breadcrumb-nav ol li {
+	display: inline-block;
+}
+
+.breadcrumb-bg,
+.breadcrumb-video,
+.video-hopeui_style-bg-over {
+	position: relative;
+	overflow: hidden;
+}
+
+.breadcrumb-bg video,
+.breadcrumb-bg #video-background,
+.breadcrumb-video video,
+.video-hopeui_style-bg-over video,
+.video-breadcrumb-bg #video-background,
+.video-hopeui_style-bg-over #video-background {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	display: inline-block;
+	width: 100%;
+}
+
+.hopeui_style-breadcrumb {
+	background-repeat: no-repeat !important;
+	background-position: center !important;
+	background-size: cover !important;
+	background: var(--color-theme-primary);
+}
+.hopeui_style-breadcrumb.hopeui_style-breadcrumb-style-3  .align-breadcrumb-image{
+	text-align: left;
+}
+.hopeui_style-breadcrumb.hopeui_style-breadcrumb-style-2  .align-breadcrumb-image{
+	text-align: right;
+}
+
+/* responsive breadcrumb */
+
+@media(max-width : 1024px) {
+	.hopeui_style-breadcrumb {
+		padding: 4.375em 0;
+	}
+}
+
+@media(max-width : 767px) {
+	.container-fluid {
+		padding: 0 1em;
+	}
+	.hopeui_style-breadcrumb {
+		padding: 3.125em 0;
+	}
+	/* Default Header over position*/
+	.hopeui_style-default-header.hopeui_style-header-over .hopeui_style-breadcrumb {
+		padding: 9.125em 1em 5.125em;
+	}
+	.hopeui_style-header-over .hopeui_style-breadcrumb {
+		padding: 9.125em 1em 5.125em;
+	}
+	.content-area .site-main, .home.blog .hopeui_style .content-area .site-main {
+		padding: var(--global-page-top-spacing-tablet) 0 var(--global-page-bottom-spacing-tablet);
+	}
+	.hopeui_style-breadcrumb.hopeui_style-breadcrumb-style-3  .align-breadcrumb-image{
+		margin-bottom:2em;
+		text-align: right;
+	}
+	.hopeui_style-breadcrumb.hopeui_style-breadcrumb-style-2  .align-breadcrumb-image{
+		text-align: left;
+		margin-top:2em;
+	}
+}

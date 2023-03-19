@@ -1,0 +1,332 @@
+.modal-backdrop.show {
+    opacity: .8;
+    background: #E3E3E3;
+}
+
+.modal-content{
+    border-radius: 16px;
+    border: none;
+}
+
+.modal-body {
+    padding: 0;
+}
+
+.modal-header {
+    padding: 0;
+}
+
+.modal-header .btn-close {
+    position: absolute;
+    left: auto;
+    right: 10px;
+    margin: 0;
+    top: 10px;
+    z-index: 1;
+    padding: 0;
+    font-size: 14px;
+    opacity: .5;
+}
+
+.wizard-left-image {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: linear-gradient(86.08deg, #CEDBFF 19.41%, #FFFFFF 97.04%);
+    border-radius: 16px 0 0 16px;
+}
+
+.wizard-left-image img {
+    display: block;
+    padding-left: 30px;
+    /* position: absolute;
+    right: -50px; */
+}
+
+.wizard-right-contect {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 50px 90px 50px;
+}
+
+.form-check .form-check-input {
+    margin: 0.25em .5em 0 0;
+}
+
+.wizard-navigation-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: auto;
+    bottom: 50px;
+    left: auto;
+    right: 0;
+    padding: 0 60px;
+}
+
+.wizard-title {
+    color: #0C112E;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 32px;
+    margin-bottom: 14px;
+}
+
+.wizard-desc {
+    color: #8A92A6;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 26px;
+    text-transform: capitalize;
+    margin: 0 0 40px;
+}
+
+.wizard-right-contect .form-check {
+    padding-left: 0;
+}
+
+.hopeui_style-input-wrapper .form-check {
+    line-height: normal;
+    margin: 0;
+}
+
+.btn.wizard-btn {
+    background: #F4F5F9;
+    border-color: #F4F5F9;
+    color: #8A92A6;
+    padding: 8px 18px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.01em;
+    text-transform: capitalize;
+}
+
+.btn.wizard-btn:focus {
+    box-shadow: none;
+}
+
+.required-plugin {
+    text-align: left;
+    margin: 0 auto;
+}
+
+.form-check-input[type=checkbox]:checked::before {
+    display: none;
+}
+
+.hopeui_style-input-wrapper {
+    background: #F4F5F9;
+    border: 1px solid #B3CDFA;
+    border-radius: 4px;
+    padding: 14px 28px; 
+    text-align: left;
+    margin-bottom: 6px;
+}
+
+.hopeui_style-input-wrapper .form-check-label {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0.01em;
+    text-transform: capitalize;
+    color: #0C112E;
+}
+
+.hopeui_style-input-wrapper.import-widget-box {
+    color: #8A92A6;
+    background: transparent;
+    border: none;
+    padding: 0 16px;
+    margin-bottom: 24px;
+}
+
+.hopeui_style-input-wrapper.import-widget-box .form-check-label {
+    color: #8A92A6;
+}
+
+.hopeui_style-input-wrapper .form-check .form-check-input {
+    float: right;
+    margin: 2px 0 0 10px;
+    border-radius: 100%;
+    height: 20px;
+    width: 20px;
+    min-width: 20px;
+}
+.hopeui_style-input-wrapper small {
+    color: #8A92A6;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    text-transform: capitalize;
+    display: block;
+}
+
+.hopeui_style-input-radio-wrapper {
+    margin: 0 auto;
+}
+
+.hopeui_style-input-radio-wrapper label.btn.btn-primary {
+    background: transparent;
+    width: auto;
+    flex: inherit;
+    padding: 0;
+    margin: 0 20px;
+    border: none; 
+    position: relative;
+}
+
+.hopeui_style-input-radio-wrapper label .checked {
+    position: absolute;
+    border-radius: 100%;
+    padding: 0;
+    height: 20px;
+    width: 20px;
+    top: 5px;
+    left: auto;
+    right: 5px;
+}
+.hopeui_style-input-radio-wrapper input[type=radio] + label .checked img {
+    border: none;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    border-radius: 100%;
+}
+
+.hopeui_style-input-radio-wrapper .btn-check:focus+.btn-primary, 
+.hopeui_style-input-radio-wrapper .btn-primary:focus {
+    box-shadow: none;
+}
+
+.hopeui_style-input-radio-wrapper input[type=radio] + label img {
+    border: 2px solid transparent;
+    border-radius: 8px;
+    padding: 0;
+    margin-bottom: 8px;
+}
+
+.hopeui_style-input-radio-wrapper input[type=radio]:checked + label img {
+    border-color: #4BAE4F;
+}
+
+.hopeui_style-input-radio-wrapper figcaption.figure-caption {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    text-transform: capitalize;
+    color: #8A92A6;
+}
+
+.hopeui_style-input-radio-wrapper input.btn-check:checked {
+    z-index: 9;
+    clip: auto;
+    left: 100px;
+    top: 10px;
+    background: #4BAE4F;
+    border-color: #4BAE4F;
+    opacity: 0;
+}
+
+@media (min-width: 992px) {
+    .modal-dialog {
+        max-width: 650px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .modal-dialog {
+        max-width: 840px;
+    }
+}
+
+@media (max-width: 991px) {
+    .wizard-left-image img {
+        position: static;
+        width: 60% !important;
+        margin: 30px auto;
+    }
+    .wizard-steps > .h-100 {
+        height: auto !important;
+    }
+    .wizard-navigation-block {
+        position: static;
+    }
+    .wizard-left-image {
+        border-radius: 16px 16px 0 0;
+    }
+    .wizard-right-contect {
+        padding: 30px;
+    }
+    .wizard-navigation-block {
+        padding: 30px;
+        margin-top: 30px;
+    }
+}
+
+/* navigation */
+.hopeui_style-wizard-progress-step-wrapper {
+    position: absolute;
+}
+
+.hopeui_style-wizard-progress-step {
+    background: #F4F5F9;
+    height: 6px;
+    display: block;
+    width: 250px;
+    border-radius: 2px;
+    margin: 0 auto;
+}
+
+.hopeui_style-wizard-progress-step > span {
+    background: #3A57E8;
+    height: 6px;
+    display: block;
+    border-radius: 2px;
+    transition: all .3s ease 0s;
+}
+
+.hopeui_style-progress-step-count {
+    text-align: center;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 18px;
+    text-transform: capitalize;
+    color: #8A92A6;
+    margin-bottom: 10px;
+}
+
+
+/* .wizard-navigation {
+    gap: 1em;
+}
+
+.wizard-navigation li {
+    font-size: 0;
+}
+
+.wizard-navigation li::before {
+    content: '';
+    height: 12px;
+    width: 12px;
+    background: black;
+    display: inline-block;
+    border-radius: 12px;
+    scale: 0.7;
+    transition: all 0.2s ease-in-out;
+}
+
+.wizard-navigation li.active::before{
+    scale: 1.1;
+    border: 2px solid black;
+    background: transparent;
+}
+.btn-close{
+    font-size: 0.5em;
+} */
