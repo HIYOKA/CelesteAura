@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import App2 from "./App2";
+import App3 from "./App3";
 import reportWebVitals from "./reportWebVitals";
 
 const root = document.getElementById("root")
@@ -11,6 +12,10 @@ const root = document.getElementById("root")
 
 const root2 = document.getElementById("root2")
   ? ReactDOM.createRoot(document.getElementById("root2"))
+  : null;
+
+const root3 = document.getElementById("root3")
+  ? ReactDOM.createRoot(document.getElementById("root3"))
   : null;
 
 if (root) {
@@ -25,6 +30,14 @@ if (root2) {
   root2.render(
     <React.StrictMode>
       <App2 />
+    </React.StrictMode>
+  );
+}
+
+if (root3) {
+  root3.render(
+    <React.StrictMode>
+      <App3 />
     </React.StrictMode>
   );
 }

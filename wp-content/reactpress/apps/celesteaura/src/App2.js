@@ -1,4 +1,4 @@
-import Contact from "./pages/Contact";
+import Contact from "./hiyoka/Contact";
 
 function App2() {
   return (
