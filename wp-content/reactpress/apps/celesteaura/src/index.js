@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import App from "./App";
 import App2 from "./App2";
 import App3 from "./App3";
+import "bootstrap/dist/css/bootstrap.min.css";
 import reportWebVitals from "./reportWebVitals";
 
 const root = document.getElementById("root")
@@ -22,6 +22,7 @@ const root3 = document.getElementById("root3")
 if (root) {
   root.render(
     <React.StrictMode>
+      `
       <App />
     </React.StrictMode>
   );

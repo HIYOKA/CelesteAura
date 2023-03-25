@@ -1,8 +1,15 @@
 import React from "react";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 
 function MyButton() {
-  return <Button variant="dark">검정</Button>;
+  const buttontest = (
+    <div>
+      <Button variant="dark">검정</Button>
+      <Button variant="light">Light</Button>
+    </div>
+  );
+
+  return buttontest;
 }
 
 export default MyButton;
