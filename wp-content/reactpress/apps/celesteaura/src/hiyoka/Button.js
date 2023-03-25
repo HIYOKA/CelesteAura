@@ -1,7 +1,8 @@
 import React from "react";
+import Button from 'react-bootstrap/Button';
 
-function Button() {
-  return <button>버튼</button>;
+function MyButton() {
+  return <Button variant="dark">검정</Button>;
 }
 
-export default Button;
+export default MyButton;
