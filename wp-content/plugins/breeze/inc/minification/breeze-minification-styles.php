@@ -191,6 +191,7 @@ class Breeze_MinificationStyles extends Breeze_MinificationBase {
 						if ( $this->include_inline ) {
 							$code = preg_replace( '#^.*<!\[CDATA\[(?:\s*\*/)?(.*)(?://|/\*)\s*?\]\]>.*$#sm', '$1', $code[1] );
 							if ( true == $this->group_css ) {
+								// Not the problem
 								if ( isset( $media[0] ) && 'print' === trim( $media[0] ) ) {
 									if ( false === strpos( $code, '@media' ) ) {
 										$code = '@media print{' . $code . '}';
@@ -290,13 +291,12 @@ class Breeze_MinificationStyles extends Breeze_MinificationBase {
 					if ( ! isset( $this->csscode[ $elem ] ) ) {
 						$this->csscode[ $elem ] = '';
 					}
-
 					if ( $is_elementor_exception && false !== strpos( $css, 'li.product,.woocommerce-page ul.products[class*=columns-] li.product' ) ) {
 						$this->csscode['all'] .= "\n/*FILESTART*/" . "@media {$elem}{" . $css . '}'; // TODO aici se strica
-
 					} else {
-					$this->csscode[ $elem ] .= "\n/*FILESTART*/" . $css;
-				}
+						$this->csscode[$elem] .= "\n/*FILESTART*/" . "@media {$elem}{" . $css . '}';
+					}
+
 
 				}
 			} else {

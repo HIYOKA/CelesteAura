@@ -1296,15 +1296,18 @@ jQuery( document ).ready(
 		}
 	);
 
-	String.prototype.ucwords = function () {
-		str = this.toLowerCase();
-		return str.replace(
-			/(^([a-zA-Z\p{M}]))|([ -][a-zA-Z\p{M}])/g,
-			function ( s ) {
-				return s.toUpperCase();
-			}
-		);
-	};
+	/**
+	 * Format string to capital case
+	 * created for breeze_do_db_actions:1307
+	 *
+	 * @param str
+	 * @returns {*}
+	 */
+	function breeze_uc_words(str) {
+		return str.replace(/(^|\s)\S/g, function (match) {
+			return match.toUpperCase();
+		});
+	}
 
 	function breeze_do_db_actions( selected_services, call_index, optimize_db_no ) {
 		if ( typeof optimize_db_no === 'undefined' ) {
@@ -1316,7 +1319,7 @@ jQuery( document ).ready(
 
 		var title = selected_services[ call_index ];
 		title = title.replace( /_/gi, " " );
-		title = title.ucwords();
+		title = breeze_uc_words( title );
 		title = '<span class="breeze-ajax-loader"></span> ' + ' ' + title;
 
 		if ( 'optimize_database' === selected_services[ call_index ] ) {

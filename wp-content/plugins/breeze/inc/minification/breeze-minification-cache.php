@@ -235,6 +235,9 @@ class Breeze_MinificationCache {
 	}
 
 	public static function clear_minification( $blog_id = null ) {
+		if ( true === Breeze_CloudFlare_Helper::is_log_enabled() ) {
+			error_log( '######### PURGE LOCAL CACHE MINIFICATION; ###: ' . var_export( 'true', true ) );
+		}
 		if ( is_multisite() && is_network_admin() ) {
 			$sites = get_sites(
 				array(

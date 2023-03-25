@@ -547,7 +547,12 @@ class Breeze_Configuration {
 		if ( $clean ) {
 			$args['clean'] = true;
 		} else {
-			$args['content'] = '<IfModule mod_env.c>' . PHP_EOL .
+			$text_html_expiry = '   ExpiresByType text/html "access plus 0 seconds"' . PHP_EOL;
+
+			$args['content'] = '<IfModule mod_headers.c>' . PHP_EOL .
+			                   '   Header append Cache-Control "s-maxage=2592000"' . PHP_EOL .
+			                   '</IfModule>' . PHP_EOL .
+			                   '<IfModule mod_env.c>' . PHP_EOL .
 			                   '   SetEnv BREEZE_BROWSER_CACHE_ON 1' . PHP_EOL .
 			                   '</IfModule>' . PHP_EOL .
 			                   '<IfModule mod_expires.c>' . PHP_EOL .
@@ -601,7 +606,7 @@ class Breeze_Configuration {
 			                   '   ExpiresByType image/vnd.microsoft.icon "access plus 1 week"' . PHP_EOL .
 			                   '   ExpiresByType image/x-icon "access plus 1 week"' . PHP_EOL .
 			                   '   # HTML no caching' . PHP_EOL .
-			                   '   ExpiresByType text/html "access plus 0 seconds"' . PHP_EOL .
+			                   $text_html_expiry .
 
 			                   '   # Other' . PHP_EOL .
 			                   '   ExpiresByType application/xhtml-xml "access plus 1 month"' . PHP_EOL .

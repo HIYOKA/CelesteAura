@@ -4,7 +4,7 @@ Tags: cache,caching, performance, wp-cache, cdn, combine, compress, speed plugin
 Requires at least: 6.0
 Tested up to: 6.1
 Requires PHP: 7.4
-Stable tag: 2.0.17
+Stable tag: 2.0.18
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -145,6 +145,16 @@ Using Gzip, Breeze compresses the request files, further reducing the size of th
 
 == Changelog ==
 
+= 2.0.18=
+
+* Add: Integrated Cloudflare Cache in Breeze for Cloudways users only.
+* Add: s-maxage in cache-control of Response Headers.
+* Fix: Stopped purging the OCP cache while cache purging from Breeze.
+* Fix: Improved compatibility of Breeze with Woodmart theme.
+* Fix: Improved compatibility of Breeze with Buddyboss theme.
+* Fix: Preserving declared media for styles on combine CSS.
+
+
 = 2.0.17=
 
 * Fix: P-Tag will not be added when Lazy Load Images and Cross-Origin Safe Links are enabled.
@@ -152,6 +162,7 @@ Using Gzip, Breeze compresses the request files, further reducing the size of th
 
 
 = 2.0.16=
+
 
 * Fix: Ninja Forms now works when Lazy Load Images and Cross-Origin Safe Links are enabled.
 * Fix: All types of Google Tag Manager scripts will work with the "Delay JS Inline Scripts" option.

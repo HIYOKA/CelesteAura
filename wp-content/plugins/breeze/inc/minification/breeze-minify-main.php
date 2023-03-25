@@ -75,7 +75,7 @@ class Breeze_Minify {
 	 * Will not execute for purge cache or heartbeat actions.
 	 */
 	public static function should_cache() {
-		if ( isset( $_GET['breeze_purge'] ) || ( isset( $_POST['action'] ) && 'heartbeat' === $_POST['action'] ) ) {
+		if ( isset( $_GET['breeze_purge_cloudflare'] ) || isset( $_GET['breeze_purge'] ) || ( isset( $_POST['action'] ) && 'heartbeat' === $_POST['action'] ) ) {
 			return false;
 		}
 

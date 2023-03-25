@@ -108,14 +108,14 @@ class Breeze_Lazy_Load {
 
 		libxml_use_internal_errors( true );
 
-		preg_match_all( '#<script.*</script>#Usmi', $content, $script_matches );
+        preg_match_all( '/<script\b(?![^>]*\bsrc\s*=)[^>]*>(.*?)<\/script>/is', $content, $script_matches );
 
 		if ( ! empty( $script_matches ) && ! empty( $script_matches[0][0] ) ) {
 			foreach ( $script_matches[0] as $index => $script_js ) {
 				$content = str_replace( $script_js, '<!--{BREEZE_SCRIPT_PH' . $index . '}-->', $content );
 			}
 		}
-		$html_dom->loadHTML( $content, LIBXML_NOERROR );  // | LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD
+		$html_dom->loadHTML( $content, LIBXML_NOERROR | LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );  //  | LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD | HTML_PARSE_NOIMPLIED
 
 		$dom_last_error = libxml_get_last_error();
 		$dom_all_error  = libxml_get_errors();
