@@ -1,0 +1,536 @@
+.hopeui_style-mobile-menu.hopeui_style-navigation-burger {
+	display: block;
+}
+
+/*---------------------------------------------------------------------
+                          Header-styles
+-----------------------------------------------------------------------*/
+
+.hopeui_style-mobile-menu {
+	display: none;
+	position: fixed;
+	top: 0;
+	padding: 0;
+	line-height: var(--font-line-height-body);
+	left: auto;
+	right: 0;
+	height: 100vh;
+	width: 25em;
+	background: var(--color-theme-white);
+	box-shadow: var(--global-box-shadow);
+	transform: translateX(100%);
+	-webkit-transform: translateX(100%);
+	-moz-transform: translateX(100%);
+	transition: all .45s ease;
+	-webkit-transition: all .45s ease;
+	-moz-transition: all .45s ease;
+	z-index: 99999;
+	visibility: hidden;
+}
+
+.hopeui_style-mobile-menu.menu-open {
+	visibility: visible;
+	transform: translateX(0);
+	-webkit-transform: translateX(0);
+	-moz-transform: translateX(0);
+	-o-transform: translateX(0);
+}
+
+.hopeui_style-mobile-menu .navbar {
+	padding: 0.938em 0.938em;
+	z-index: 999;
+	border-bottom: 0.063em solid var(--border-color-light);
+	margin-bottom: 1.5em;
+}
+
+.hopeui_style-mobile-menu ul.navbar-nav li.menu-item-has-children>a:after {
+	display: none;
+}
+
+.hopeui_style-mobile-menu .navbar-nav a {
+	display: inline-block;
+}
+.hopeui_style-mobile-menu .hopeui_style-full-menu .navbar-nav > li{
+	margin: 0 16px 24px;
+}
+.hopeui_style-mobile-menu .hopeui_style-full-menu .navbar-nav > li a {
+	padding: 0;
+}
+.hopeui_style-mobile-menu .navbar-nav .hopeui_style-menu-item-wrapper {
+	padding: 0;
+}
+.hopeui_style-mobile-menu ul.navbar-nav>li.menu-item-has-children>a {
+	padding-right: 0;
+}
+body:before {
+    position: fixed;
+    content: "";
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,.8);
+    opacity: 0;
+    -webkit-transition: all .45s ease;
+    transition: all .45s ease;
+    z-index: -1;
+}
+
+/*************style 1***********/
+.navbar-toggler.custom-toggler {
+	display: block;
+}
+
+.navbar-toggler.custom-toggler {
+	display: block;
+	height: 50px;
+    width: 50px;
+    padding: 0;
+    position: static;
+    margin-left: 1em;
+    font-size: 1.188rem;
+    color: rgba(0,0,0,.55);
+    border: 1px solid rgba(0,0,0,.1);
+    border-radius: 0.25rem;
+    transition: box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+}
+
+.menu-btn {
+	background-image: none;
+	position: relative;
+	z-index: 9;
+	width: 1.5em;
+    height: 1.5em;
+	margin: 0 auto;
+    vertical-align: middle;
+	cursor: pointer;
+	display: flex !important;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.menu-btn .line {
+	display: block;
+    position: relative;
+    width: 22px;
+    height: 1px;
+    -webkit-border-radius: 1px;
+    border-radius: 1px;
+    background: #8a92a6;
+    -webkit-transition: all 400ms ease;
+    -o-transition: all 400ms ease;
+    transition: all 400ms ease;
+    margin: 0 auto;
+}
+
+.menu-btn.is-active .line {
+	margin-left: 6px;
+}
+
+.menu-btn.is-active .line.one {
+	-webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    -webkit-transform-origin: 10% 10%;
+    -ms-transform-origin: 10% 10%;
+    transform-origin: 10% 10%;
+    margin-top: 4px;
+}
+.menu-btn.is-active .line.two {
+	opacity: 0;
+}
+.menu-btn.is-active .line.three {
+	-webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-transform-origin: 10% 90%;
+    -ms-transform-origin: 10% 90%;
+    transform-origin: 10% 90%;
+    margin-top: 3px;
+}
+
+.menu-btn .line.two {
+	margin-top: 7px;
+}
+
+.menu-btn .line.three {
+	margin-top: 7px;
+}
+
+.ham-s-toggle {
+	cursor: pointer;
+}
+
+.hopeui_style-mobile-menu .navbar-nav>li a {
+	font-family: var(--highlight-font-family);
+}
+
+.hopeui_style-mobile-menu .navbar-nav li:hover>a,
+.hopeui_style-mobile-menu .navbar-nav li .sub-menu li:hover>a,
+.hopeui_style-mobile-menu .navbar-nav li.current-menu-item>a,
+.hopeui_style-mobile-menu ul>li.current-menu-ancestor>a,
+.hopeui_style-mobile-menu ul li .sub-menu li.menu-item.current-menu-ancestor>a,
+.hopeui_style-mobile-menu ul li .sub-menu li.current-menu-item>a,
+.hopeui_style-mobile-menu ul>li.current-menu-ancestor>.toggledrop i,
+.hopeui_style-mobile-menu ul>li.current-menu-ancestor>.toggledrop i,
+.hopeui_style-mobile-menu .navbar-nav li:hover>.toggledrop i,
+.hopeui_style-mobile-menu .navbar-nav li.current-menu-item>.toggledrop i {
+	color: var(--color-theme-primary);
+}
+
+.hopeui_style-mobile-menu .navbar-nav li>.toggledrop i {
+	font-size: 2.188em;
+	margin-left: 0.938em;
+	cursor: pointer;
+	transition: all .5s ease-in-out;
+	-moz-transition: all .5s ease-in-out;
+	-ms-transition: all .5s ease-in-out;
+	-o-transition: all .5s ease-in-out;
+	-webkit-transition: all .5s ease-in-out;
+	color: var(--color-theme-white);
+}
+
+.hopeui_style-mobile-menu .navbar-nav li .sub-menu li .toggledrop i {
+	color: var(--global-dark-submenu);
+}
+
+.hopeui_style-mobile-menu .navbar-nav li .sub-menu li:hover .toggledrop i, 
+.hopeui_style-mobile-menu .navbar-nav li .sub-menu li.current-menu-item .toggledrop i, 
+.hopeui_style-mobile-menu .navbar-nav li .sub-menu li.current-menu-ancestor .toggledrop i {
+	color: var(--color-theme-primary);
+}
+
+.hopeui_style-mobile-menu .navbar-nav .toggledrop.active i {
+	transform: rotate(90deg);
+	-webkit-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+}
+
+.hopeui_style-mobile-menu .navbar-nav li li>.toggledrop i {
+	font-size: 1.25em;
+}
+
+.hopeui_style-mobile-menu .navbar-nav li .hopeui_style-has-sub-menu li a {
+	font-size: 1.25em;
+	color: var(--global-font-color);
+}
+
+.hopeui_style-mobile-menu .navbar-nav li .hopeui_style-has-sub-menu li {
+	margin-bottom: 0.313em;
+}
+
+.menu-btn:hover {
+	cursor: pointer;
+}
+
+.side-bar-open #menu-btn-side-close .menu-btn.is-s-active .line {
+	transition-delay: .2s;
+}
+
+.side-bar-open .menu-btn .line-n {
+	width: 100%;
+	height: 0.125em;
+	background-color: var(--color-theme-white);
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 99;
+	cursor: pointer;
+	transition: left 0.3s cubic-bezier(.29, .61, .9, .45);
+}
+
+#menu-btn-side-close .menu-btn.is-s-active .line {
+	transition-delay: 1s;
+}
+
+.side-bar-open #menu-btn-side-close {
+	position: absolute;
+	right: 4.375em;
+	top: 3.125em;
+}
+
+.side-bar-open #menu-btn-side-close .menu-btn .line-n.c-one {
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.c-collapse {
+	position: relative;
+	width: 100%;
+	-ms-flex-preferred-size: auto;
+	flex-basis: auto;
+	align-items: flex-start !important;
+	z-index: 1;
+}
+
+.menu-new-wrapper {
+	position: relative;
+	display: block;
+	align-items: center;
+	width: 100%;
+	height: calc(100vh - 5.6875em);
+}
+
+.verticle-mn {
+	height: calc(100vh - 6.25em);
+	overflow-y: auto;
+	padding-top: .2em;
+}
+
+.hopeui_style-mobile-menu.menu-open:before {
+	-webkit-transform: skew(0deg) translateY(0);
+	-moz-transform: skew(0deg) translateY(0);
+	-ms-transform: skew(0deg) translateY(0);
+	-o-transform: skew(0deg) translateY(0);
+	transform: skew(0deg) translateY(0);
+	-webkit-transition-delay: 0s;
+	-moz-transition-delay: 0s;
+	-o-transition-delay: 0s;
+	transition-delay: 0s;
+}
+
+.hopeui_style-full-menu {
+	margin: auto 0;
+}
+
+.hopeui_style-full-menu .navbar-nav {
+	position: relative;
+	z-index: 99;
+	padding-left: 3.125em;
+	margin-bottom: 1.875em;
+}
+
+.hopeui_style-full-menu .navbar-nav>li {
+	position: relative;
+	margin-bottom: 1.563em;
+	padding: 0;
+}
+
+.hopeui_style-mobile-menu .navbar-nav li .sub-menu li a {
+	font-size: 1.25em;
+	padding: 0.3em 1em;
+}
+
+.hopeui_style-mobile-menu .sub-menu {
+	list-style-type: none;
+	padding-top: 0.938em;
+	padding-left: 20px;
+	display: none;
+}
+
+.hopeui_style-mobile-menu .sub-menu .sub-menu {
+	padding: 0.625em 0 0.625em 0.938em;
+}
+
+.hopeui_style-mobile-menu .navbar-nav li .hopeui_style-has-sub-menu {
+	padding-top: 0.625em;
+}
+
+.hopeui_style-mobile-menu .hopeui_style-has-sub-menu {
+	padding-left: 1.875em;
+}
+
+.hopeui_style-has-sub-menu {
+	list-style-type: none;
+}
+
+.hopeui_style-mobile-menu .navbar-expand-xl .navbar-nav {
+	-ms-flex-direction: column;
+	flex-direction: column;
+}
+
+/* light Mode */
+
+.hopeui_style-mobile-menu.light-mode {
+	background: var(--color-theme-white);
+}
+
+.hopeui_style-mobile-menu.light-mode .navbar-nav>li>a {
+	color: var(--global-font-title);
+}
+
+.hopeui_style-mobile-menu.light-mode .navbar-nav>li>.toggledrop {
+	color: var(--global-font-title);
+}
+
+.hopeui_style-mobile-menu.light-mode .navbar-nav>li:hover>a {
+	color: var(--color-theme-primary);
+}
+
+.hopeui_style-mobile-menu .navbar {
+	flex-wrap: nowrap;
+}
+@-webkit-keyframes fadeInAnimation {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeInAnimation {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@-webkit-keyframes fadeOutAnimation {
+	0% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes fadeOutAnimation {
+	0% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+
+@-webkit-keyframes fade-in-bottom {
+	0% {
+		-webkit-transform: translateY(3.125em);
+		transform: translateY(3.125em);
+		opacity: 0;
+	}
+
+	100% {
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+@keyframes fade-in-bottom {
+	0% {
+		-webkit-transform: translateY(3.125em);
+		transform: translateY(3.125em);
+		opacity: 0;
+	}
+
+	100% {
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+@media (max-width: 1199px) {
+	.hopeui_style-mobile-menu {
+		display: inline-block;
+	}
+
+	header.header-default .navbar-collapse {
+		display: none;
+	}
+
+	.hopeui_style-mobile-menu .navbar-nav>li>a, 
+	.hopeui_style-mobile-menu .navbar-nav li>.toggledrop i {
+		padding: 0;
+	}
+
+	.hopeui_style-mobile-menu .navbar-nav li .sub-menu li a, 
+	.hopeui_style-mobile-menu .navbar-nav li li>.toggledrop i {
+		font-size: 1em;
+		padding: 0.5em 0;
+	}
+	body.overflow-hidden:before {
+		opacity: 1;
+		z-index: 9999;
+	}
+	.hopeui_style-full-menu .navbar-nav{padding-left:0;}
+}
+
+
+@media (max-width: 479px) {
+	.hopeui_style-mobile-menu .navbar-nav>li>a, 
+	.hopeui_style-mobile-menu .navbar-nav li>.toggledrop i {
+		font-size: 1.2em;
+	}
+
+	.hopeui_style-mobile-menu .navbar-nav li .sub-menu li a, 
+	.hopeui_style-mobile-menu .navbar-nav li li>.toggledrop i {
+		font-size: 0.875em;
+	}
+	.hopeui_style-mobile-menu .hopeui_style-site-title-container>:is(.hopeui_style-logo-title,.hopeui_style-logo-desc) {
+		font-size: 1.2em;
+	}
+	.hopeui_style-site-title-container{flex-wrap: nowrap;}
+	.hopeui_style-site-title-container .hopeui_style-logo-desc{display: none;}
+	.navbar-toggler.custom-toggler {
+		margin-left: .5em;
+	}
+}
+
+@media (max-width: 480px) {
+
+	.hopeui_style-mobile-menu {
+		width: 17em;
+	}
+	.hopeui_style-mobile-menu .navbar-brand .logo {
+		width: 115px;
+		height: 41px;
+	}
+}
+
+.vertical-menu-layout .menu-new-wrapper.row {
+	position: relative;
+	width: 100%;
+	height: auto;
+}
+
+.vertical-menu-layout .hopeui_style-full-menu .navbar-nav {
+	padding: 0;
+}
+
+.vertical-menu-layout.hopeui_style-mobile-menu .navbar {
+	padding: 0;
+}
+
+.hopeui_style-mobile-menu.vertical-menu-layout {
+	background: transparent;
+	position: relative;
+}
+
+.hopeui_style-mobile-menu.vertical-menu-layout .navbar-nav>li>a, 
+.hopeui_style-mobile-menu.vertical-menu-layout .navbar-nav li>.toggledrop i {
+	color: var(--global-font-title);
+	font-size: 1.875em;
+}
+
+.hopeui_style-mobile-menu.vertical-menu-layout .navbar-nav li.current-menu-item>.toggledrop i, 
+.hopeui_style-mobile-menu.vertical-menu-layout .navbar-nav li.current-menu-item>a, 
+.hopeui_style-mobile-menu.vertical-menu-layout .navbar-nav li .sub-menu li:hover>a, 
+.hopeui_style-mobile-menu.vertical-menu-layout .navbar-nav li:hover>.toggledrop i, 
+.hopeui_style-mobile-menu.vertical-menu-layout .navbar-nav li:hover>a, 
+.hopeui_style-mobile-menu.vertical-menu-layout ul>li.current-menu-ancestor>.toggledrop i, 
+.hopeui_style-mobile-menu.vertical-menu-layout ul>li.current-menu-ancestor>a, 
+.hopeui_style-mobile-menu.vertical-menu-layout ul li .sub-menu li.current-menu-item>a, 
+.hopeui_style-mobile-menu.vertical-menu-layout ul li .sub-menu li.menu-item.current-menu-ancestor>a {
+	color: var(--color-theme-primary);
+}
+
+.hopeui_style-mobile-menu.vertical-menu-layout .navbar-nav li .sub-menu li a, 
+.hopeui_style-mobile-menu.vertical-menu-layout .navbar-nav li li>.toggledrop i {
+	color: var(--global-dark-submenu);
+	font-size: 1em;
+}

@@ -1,0 +1,200 @@
+footer {
+	background: var(--color-theme-white);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+footer .footer-top {
+	padding: 2em 0;
+}
+
+footer .footer-main .footer-logo img {
+	width: 6.875em;
+}
+
+footer .widget::before {
+	display: none;
+}
+
+footer .widget {
+	border: none;
+	padding: 0;
+	background: transparent;
+}
+
+footer .copyright-footer {
+	padding: 0;
+	position: relative;
+	color: var(--color-theme-primary);
+	border-top: 0.063em solid var(--border-color-light);
+}
+
+footer .copyright a {
+    color: var(--color-theme-white);
+}
+
+.footer-main .widget {
+	background: transparent;
+	border: none;
+	padding: 0;
+}
+
+footer .widget ul li {
+	border: none;
+	padding: 0.5em 0;
+	margin-bottom: 0;
+}
+
+footer .widget ul li a {
+	padding-left: 0;
+}
+
+footer .widget .rss-date {
+	color: var(--color-theme-primary);
+}
+
+footer .widget ul.menu li a:hover::before {
+	color: var(--color-theme-primary);
+}
+
+footer .widget .hopeui_style-contact li a::before {
+	display: none;
+}
+
+footer .widget ul.menu li .sub-menu {
+	padding-left: 0.625em;
+}
+
+footer .widget ul.menu>li>a {
+	color: var(--color-theme-primary);
+}
+
+.widget.hopeui_style-share {
+	color: var(--color-theme-white);
+}
+
+.widget.hopeui_style-share .share-button {
+	margin-left: 0.625em;
+}
+
+.widget.hopeui_style-share .share li a {
+	border-radius: var(--border-radius);
+	line-height: 1.875em;
+	width: 1.875em;
+	height: 1.875em;
+	margin-left: 0.625em;
+	color: var(--color-theme-primary);
+	border: 0.063em solid var(--color-theme-primary);
+	text-align: center;
+	transition: all .5s ease;
+	-moz-transition: all .5s ease;
+	-webkit-transition: all .5s ease;
+	-ms-transition: all .5s ease;
+	-o-transition: all .5s ease;
+}
+
+.widget.hopeui_style-share .share li a:hover {
+	background: var(--color-theme-primary);
+	color: var(--color-theme-white);
+}
+
+.widget-space {
+	padding-top: 5em;
+	padding-bottom: 5em;
+}
+
+.mc4wp-form-fields .newslatter {
+	border-radius: var(--border-radius);
+	width: 85%;
+	position: relative;
+}
+
+.mc4wp-form-fields .newslatter input[type=email] {
+	font-size: var(--font-size-normal);
+	color: var(--color-theme-white);
+	line-height: var(--button-line-height);
+	background: transparent;
+}
+
+.mc4wp-form-fields .newslatter button {
+	background: var(--color-theme-primary);
+	width: 3em;
+	height: 3em;
+	color: var(--color-theme-white);
+	cursor: pointer;
+	font-size: 1.563em;
+	position: absolute;
+	right: 0;
+	border-radius: 0 0.188em 0.188em 0;
+}
+
+.mc4wp-form-fields .newslatter button:hover {
+	background: var(--color-theme-secondary);
+	transition: all .5s ease;
+	-moz-transition: all .5s ease;
+	-webkit-transition: all .5s ease;
+	-ms-transition: all .5s ease;
+	-o-transition: all .5s ease;
+}
+
+.footer-main .menu {
+	margin-top: 0.938em;
+}
+
+.footer .footer-main .widget .map-wrap {
+	margin-top: 1.875em;
+}
+
+.mc4wp-form-fields .subscribe button[type=submit] {
+	width: 4.375em;
+	font-size: 1.25em;	
+	height: 3.75em;
+	padding: 0;
+	font-weight: 400;
+	border: none;
+	position: absolute;
+	right: 0;
+}
+
+footer .widget ul li a {
+	padding-left: 0;
+}
+
+footer ul li.cat-item span.post_count,
+footer ul li span.achiveCount {
+	float: right;
+	color: var(--color-theme-primary);
+	border-radius: 3.125em;
+	width: 3.125em;
+	height: auto;
+	text-align: center;
+	line-height: 1.25em;
+	padding: 0;
+	margin-top: 0.125em;
+	
+}
+
+
+footer .widget .rss-date {
+	color: var(--color-theme-primary);
+}
+
+footer .widget ul.menu li a,
+footer .widget ul li a {
+	border: none;
+	position: relative;
+}
+
+footer ul.wp-tag-cloud li {
+	display: inline-block;
+}
+
+footer #menu-footer-menu li a::before,
+footer .menu-footer-menu-container li a::before {
+	display: none;
+}
+
+footer #menu-footer-menu li a,
+footer .menu-footer-menu-container ul.menu li a {
+	padding: 0.438em 0 0.438em 0;
+}

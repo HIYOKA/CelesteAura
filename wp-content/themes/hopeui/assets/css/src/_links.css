@@ -1,0 +1,229 @@
+/**
+ * Custom Properties
+ * aka CSS variables.
+ *
+ * @link: https://developer.mozilla.org/en-US/docs/Web/CSS/--*
+ **/
+
+/* cyrillic-ext */
+@font-face {
+	font-family: "Inter";
+	src: url("./fonts/Inter-Medium.woff2") format('woff2'),
+		url("./fonts/Inter-Regular.woff2") format('woff2');
+}
+
+
+:root {
+
+	/* Container */
+	--content-width: 87.5em;
+	--content-width-sm: 75em;
+	--sidebar-width: 18.75em;
+
+
+	/* Typography */
+	--global-font-family: "Inter";
+	--highlight-font-family: "Inter";
+	--global-font-size: 1em;
+	--global-font-line-height: 1.5;
+	--global-box-shadow: 0 0.625rem 1.875rem rgb(0 0 0 / 3%);
+	--global-submenu-shadow: 0rem 0.25rem 2rem 0rem rgb(0 0 0 / 10%);
+
+	/* Page Spacing */
+	--global-page-top-spacing: 2em;
+	--global-page-bottom-spacing: 2em;
+	--global-page-top-spacing-tablet: 2em;
+	--global-page-bottom-spacing-tablet: 2em;
+	--global-page-top-spacing-mobile: 2em;
+	--global-page-bottom-spacing-mobile: 2em;
+
+	/* Custom editor font sizes */
+	--font-size-small: calc(16 / var(--global-font-size) * 1em);
+	--font-size-regular: calc(var(--global-font-size) / 16 * 1em);
+	--font-size-large: calc(36 / var(--global-font-size) * 1em);
+	--font-size-larger: calc(48 / var(--global-font-size) * 1em);
+
+	/* Fontsize */
+	--font-size-small: 0.75em;
+	--font-size-normal: .875em;
+	--font-size-body: 1em;
+	--font-size-h1: 2.488em;
+	--font-size-h2: 2.074em;
+	--font-size-h3: 1.728em;
+	--font-size-h4: 1.44em;
+	--font-size-h5: 1.2em;
+	--font-size-h6: 1em;
+	--font-size-xs: 0.75em;
+
+	/* Line-Height */
+	--font-line-height-body: 1.5;
+	--font-line-height-p: 1.75;
+	--font-line-height-h1: 1.2;
+	--font-line-height-h2: 1.2;
+	--font-line-height-h3: 1.2;
+	--font-line-height-h4: 1.2;
+	--font-line-height-h5: 1.2;
+	--font-line-height-h6: 1.2;
+
+	/* Font-Weight */
+	--font-weight-body: 400;
+	--font-weight-h1: 500;
+	--font-weight-h2: 500;
+	--font-weight-h3: 500;
+	--font-weight-h4: 500;
+	--font-weight-h5: 500;
+	--font-weight-h6: 500;
+
+	/* font-weight*/
+
+	--font-weight-regular: 400;
+	--font-weight-medium: 500;
+
+	/* Letter spacing */
+	--font-letter-spacing-body: normal;
+	--font-letter-spacing-link: normal;
+	--font-letter-spacing-h1: normal;
+	--font-letter-spacing-h2: normal;
+	--font-letter-spacing-h3: normal;
+	--font-letter-spacing-h4: normal;
+	--font-letter-spacing-h5: normal;
+	--font-letter-spacing-h6: normal;
+	--letter-spacing: normal;
+	--letter-spacing-one: 0.063em;
+	--letter-spacing-two: 0.125em;
+	--letter-spacing-three: 0.188em;
+	--letter-spacing-four: 0.25em;
+
+	/* border-radius */
+	--border-radius: .5em;
+	--border-radius-box: .5em;
+	--border-radius-ten: .625em;
+	--box-border-radius: .25em;
+
+	/* z index */
+	--z-index-minus: -1;
+
+
+
+	/* Colors */
+	--global-body-bgcolor: #f9f9f9;
+	--global-body-lightcolor: #f1f3f5;
+	--global-font-color: #8a92a6;
+	--global-font-title: #0b112e;
+	--global-dark-submenu: #7C859B;
+	--global-body-lightbg: #f7f7f7;
+	--global-section-bg: #f1f3f5;
+	--global-section-bg-transparent: rgba(255, 255, 255, 0.3);
+	--border-color-light: #eee;
+	--border-color-dark: #262f48;
+	--color-link: #3A57E8;
+	--color-link-visited: #3A57E8;
+	--color-link-active: #3A57E8;
+	--color-post-sticky-bg: #ebeefd;
+	--color-input-placeholder: #8a92a6;
+	--logo-text-color: #212529;
+
+
+	/* Custom editor colors */
+	--color-theme-primary: #3A57E8;
+	--color-theme-primary-dark: #2e45b9;
+	--color-theme-primary-light: #ebeefd;
+	--color-theme-secondary: #6c757d;
+	--color-theme-secondary-dark: #5c636a;
+	--color-theme-secondary-light: #e2e3e5;
+	--color-theme-danger: #c03221;
+	--color-theme-danger-dark: #a32b1c;
+	--color-theme-danger-light: #f2d6d3;
+	--color-theme-success: #1aa053;
+	--color-theme-black: #000;
+	--color-theme-grey: #95a5a6;
+	--color-theme-white: #fff;
+	--color-theme-yellow: #FFD329;
+
+	/* Header editor colors */
+	--global-font-active: #2870DE;
+	--global-font-hover: #2870DE;
+
+	--product-col-gap: 1em;
+
+	/* bootstrap variable */
+	--bs-primary: #3a57e8;
+}
+
+@media (min-width: 1920px) {
+	:root {
+		--font-size-body: 0.83vw;
+	}
+}
+
+@media (max-width: 991px) {
+	:root {
+		--font-size-h1: 3.653em;
+		--font-size-h2: 2em;
+		--font-size-h3: 1.827em;
+		--font-size-h4: 1.700em;
+	}
+}
+
+/*--------------------------------------------------------------
+# Links
+--------------------------------------------------------------*/
+/* stylelint-disable */
+a {
+	color: var(--color-link);
+	text-decoration: none;
+}
+
+/* stylelint-enable */
+
+a:visited {
+	color: var(--color-link-visited);
+}
+
+a.hopeui_style-button:visited {
+	color: var(--color-theme-white);
+}
+
+a:hover,
+a:focus,
+a:active {
+	color: var(--color-link-active);
+}
+
+:focus-visible,
+a:focus-visible,
+[type="button"]:focus-visible, 
+[type="reset"]:focus-visible, 
+[type="submit"]:focus-visible, 
+button:focus-visible,
+a:focus-visible,
+.checkmark:focus-visible,
+.btn:focus-visible,
+.btn:focus,
+.woocommerce form .form-row input.input-text:focus-visible, 
+.woocommerce form .form-row textarea:focus-visible,
+.woocommerce form .form-row input.input-text:focus, 
+.woocommerce form .form-row textarea:focus {
+	outline: 2px solid var(--color-theme-primary);
+	box-shadow: none;
+	transition: none;
+}
+
+.hopeui_style-breadcrumb a:focus-visible {
+	outline: 2px solid var(--color-theme-white);
+	box-shadow: none;
+	transition: none;
+}
+
+.hopeui_style-button:focus-visible,
+.rs-button:focus-visible,
+#back-to-top .top:focus-visible {
+    color: var(--color-theme-white);
+    outline-color: var(--color-theme-black);
+    transition: none;
+}
+
+a:hover,
+a:active {
+	outline: 0;
+}
