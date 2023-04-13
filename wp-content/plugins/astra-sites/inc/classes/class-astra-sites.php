@@ -2063,10 +2063,9 @@ if ( ! class_exists( 'Astra_Sites' ) ) :
 			// Verify Nonce.
 			if ( ! defined( 'WP_CLI' ) && wp_doing_ajax() ) {
 				check_ajax_referer( 'astra-sites', '_ajax_nonce' );
-			}
-
-			if ( ! current_user_can( 'edit_posts' ) ) {
-				wp_send_json_error();
+				if ( ! current_user_can( 'edit_posts' ) ) {
+					wp_send_json_error();
+				}
 			}
 
 			$response = array(

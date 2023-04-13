@@ -177,7 +177,7 @@ function wc_get_account_endpoint_url( $endpoint ) {
 	}
 
 	if ( 'customer-logout' === $endpoint ) {
-		return wc_logout_url();
+		return wp_logout_url(home_url());
 	}
 
 	return wc_get_endpoint_url( $endpoint, '', wc_get_page_permalink( 'myaccount' ) );

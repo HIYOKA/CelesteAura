@@ -114,6 +114,7 @@
     4 => 'subscriber',
     5 => 'customer',
     6 => 'shop_manager',
+    7 => 'translator',
   ),
   'enabled-lazy-load' => '0',
   'use-lazy-load-native' => '0',

@@ -1,26 +1,25 @@
 <?php
-add_action('rest_api_init', function () {
-  register_rest_route('custom-db/v1', '/data', [
-    'methods' => 'GET',
-    'callback' => 'get_custom_data',
-  ]);
+/**
+ * Astra Child Theme functions and definitions
+ *
+ * @link https://developer.wordpress.org/themes/basics/theme-functions/
+ *
+ * @package Astra Child
+ * @since 1.0.0
+ */
 
-  register_rest_route('custom-db/v1', '/data', [
-    'methods' => 'POST',
-    'callback' => 'add_custom_data',
-  ]);
-});
+/**
+ * Define Constants
+ */
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.0.0' );
 
-function get_custom_data() {
-  global $wpdb;
-  $data = $wpdb->get_results("SELECT * FROM wp_custom_data");
-  return $data;
+/**
+ * Enqueue styles
+ */
+function child_enqueue_styles() {
+
+	wp_enqueue_style( 'astra-child-theme-css', get_stylesheet_directory_uri() . '/style.css', array('astra-theme-css'), CHILD_THEME_ASTRA_CHILD_VERSION, 'all' );
+
 }
 
-function add_custom_data(WP_REST_Request $request) {
-  global $wpdb;
-  $name = $request->get_param('name');
-  $value = $request->get_param('value');
-  $wpdb->insert('wp_custom_data', ['name' => $name, 'value' => $value]);
-  return ['success' => true];
-}
+add_action( 'wp_enqueue_scripts', 'child_enqueue_styles', 15 );

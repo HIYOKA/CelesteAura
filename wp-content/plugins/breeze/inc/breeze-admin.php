@@ -272,7 +272,7 @@ class Breeze_Admin {
 		if ( $current_screen_base == 'dashboard' ) {
 			$current_screen_url = admin_url() . $current_params;
 		} else {
-			$current_screen_url = admin_url( sprintf( basename( $_SERVER['REQUEST_URI'] ) ) );
+			$current_screen_url = admin_url( basename( $_SERVER['REQUEST_URI'] ) );
 		}
 		$current_screen_url = remove_query_arg( array(
 			'breeze_purge',
