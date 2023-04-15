@@ -675,7 +675,7 @@ class WC_Countries {
 		// If necessary, append '(optional)' to the placeholder: we don't need to worry about the
 		// label, though, as woocommerce_form_field() takes care of that.
 		if ( 'optional' === get_option( 'woocommerce_checkout_address_2_field', 'optional' ) ) {
-			$address_2_placeholder = __( 'Apartment, suite, unit, etc. (optional)', 'woocommerce' );
+			$address_2_placeholder = __( '기타주소 [Apartment, suite, unit, etc.] (optional)', 'woocommerce' );
 		} else {
 			$address_2_placeholder = $address_2_label;
 		}
@@ -713,7 +713,7 @@ class WC_Countries {
 			'address_1'  => array(
 				'label'        => __( 'Street address', 'woocommerce' ),
 				/* translators: use local order of street name and house number. */
-				'placeholder'  => esc_attr__( 'House number and street name', 'woocommerce' ),
+				'placeholder'  => esc_attr__( '상세주소 (House number and street name)', 'woocommerce' ),
 				'required'     => true,
 				'class'        => array( 'form-row-wide', 'address-field' ),
 				'autocomplete' => 'address-line1',

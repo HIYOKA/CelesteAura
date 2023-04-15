@@ -1,0 +1,9 @@
+2023-04-15T10:23:13+00:00 CRITICAL Uncaught Error: Call to a member function get_tax_class() on null in /home/961761.cloudwaysapps.com/akcbjbwtdb/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:225
+Stack trace:
+#0 /home/961761.cloudwaysapps.com/akcbjbwtdb/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(651): WC_Cart_Totals->get_items_from_cart()
+#1 /home/961761.cloudwaysapps.com/akcbjbwtdb/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(143): WC_Cart_Totals->calculate_item_totals()
+#2 /home/961761.cloudwaysapps.com/akcbjbwtdb/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(134): WC_Cart_Totals->calculate()
+#3 /home/961761.cloudwaysapps.com/akcbjbwtdb/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1401): WC_Cart_Totals->__construct()
+#4 /home/961761.cloudwaysapps.com/akcbjbwtdb/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1360): WC_Cart->calculate_totals()
+#5 /home/961761.cloudwaysap in /home/961761.cloudwaysapps.com/akcbjbwtdb/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 225
+

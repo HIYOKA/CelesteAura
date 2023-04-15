@@ -317,7 +317,7 @@ trait Woo_Cart_Helper {
 						do_action( 'woocommerce_cart_totals_before_order_total' );
 
 						if ( $settings['eael_woo_cart_components_cart_totals_total'] === 'yes' ) {
-							$total_label = apply_filters( 'eael_woo_cart_totals_total_label', esc_html__( 'Total', 'essential-addons-for-elementor-lite' ) );
+							$total_label = apply_filters( 'eael_woo_cart_totals_total_label', esc_html__( '총 가격', 'essential-addons-for-elementor-lite' ) );
 							?>
                             <tr class="order-total">
                                 <th><?php echo esc_html( $total_label ); ?></th>
@@ -686,7 +686,3 @@ trait Woo_Cart_Helper {
 		return empty( $empty_text ) ? $message : esc_html( $empty_text );
 	}
 }
-
-
-
-
