@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2023-03-17T18:28:01+00:00\n"
-"PO-Revision-Date: 2023-04-15 08:54+0000\n"
+"PO-Revision-Date: 2023-04-15 14:29+0000\n"
 "X-Generator: Loco https://localise.biz/\n"
 "X-Domain: woocommerce\n"
 "Language: ko_KR\n"
@@ -9426,7 +9426,7 @@ msgstr ""
 #: includes/wc-template-functions.php:2887
 #: templates/cart/shipping-calculator.php:58
 msgid "Select an option&hellip;"
-msgstr ""
+msgstr "옵션 선택&hellip;"
 
 #: includes/admin/class-wc-admin-assets.php:315
 #: includes/admin/meta-boxes/views/html-order-item-meta.php:62
@@ -10991,7 +10991,7 @@ msgstr ""
 #: includes/wc-template-functions.php:2859
 #: templates/cart/shipping-calculator.php:32
 msgid "Select a country / region&hellip;"
-msgstr ""
+msgstr "국가 또는 지역을 선택해주세요.&hellip;"
 
 #: includes/admin/class-wc-admin-profile.php:81
 #: includes/admin/class-wc-admin-profile.php:141
@@ -39530,7 +39530,7 @@ msgstr ""
 #: packages/woocommerce-blocks/build/checkout-blocks/billing-address-frontend.js:1
 #: packages/woocommerce-blocks/build/checkout.js:35
 msgid "Billing address"
-msgstr ""
+msgstr "청구서 주소"
 
 #: templates/emails/email-addresses.php:43
 #: templates/emails/plain/email-addresses.php:35
@@ -39540,7 +39540,7 @@ msgstr ""
 #: packages/woocommerce-blocks/build/checkout-blocks/shipping-address-frontend.js:1
 #: packages/woocommerce-blocks/build/checkout.js:31
 msgid "Shipping address"
-msgstr ""
+msgstr "배송주소"
 
 #: templates/emails/email-customer-details.php:24
 #: templates/emails/plain/email-customer-details.php:22
@@ -39673,7 +39673,7 @@ msgstr ""
 
 #: templates/myaccount/form-edit-address.php:46
 msgid "Save address"
-msgstr ""
+msgstr "주소 저장"
 
 #: templates/myaccount/form-login.php:54
 #: packages/woocommerce-blocks/build/customer-account.js:1

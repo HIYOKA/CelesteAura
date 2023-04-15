@@ -38,7 +38,7 @@ do_action( 'woocommerce_before_account_navigation' );
 							'astra_addon_woo_account_user_welcome_message',
 							printf(
 								/* translators: 1: Active user name. */
-								esc_attr__( 'Hello %1$s', 'astra-addon' ),
+								esc_attr__( '%1$s', 'astra-addon' ),
 								'<strong>' . esc_html( $current_user->display_name ) . '</strong>'
 							)
 						);

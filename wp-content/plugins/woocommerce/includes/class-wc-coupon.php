@@ -1087,7 +1087,7 @@ class WC_Coupon extends WC_Legacy_Coupon {
 				$err = __( 'Coupon does not exist!', 'woocommerce' );
 				break;
 			case self::E_WC_COUPON_PLEASE_ENTER:
-				$err = __( 'Please enter a coupon code.', 'woocommerce' );
+				$err = __( '쿠폰 번호를 입력해주세요.', 'woocommerce' );
 				break;
 			default:
 				$err = '';
