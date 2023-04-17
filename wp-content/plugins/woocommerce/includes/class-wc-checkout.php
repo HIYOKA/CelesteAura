@@ -263,7 +263,7 @@ class WC_Checkout {
 					'class'       => array( 'notes' ),
 					'label'       => __( 'Order notes', 'woocommerce' ),
 					'placeholder' => esc_attr__(
-						'배송을 위한 요청사항이 있으면 적어주세요.',
+						'Notes about your order, e.g. special notes for delivery.',
 						'woocommerce'
 					),
 				),
@@ -839,7 +839,7 @@ class WC_Checkout {
 						break;
 					case 'billing':
 						/* translators: %s: field name */
-						$field_label = sprintf( _x( '%s', 'checkout-validation', 'woocommerce' ), $field_label );
+						$field_label = sprintf( _x( 'Billing %s', 'checkout-validation', 'woocommerce' ), $field_label );
 						break;
 				}
 
@@ -901,7 +901,7 @@ class WC_Checkout {
 
 				if ( $validate_fieldset && $required && '' === $data[ $key ] ) {
 					/* translators: %s: field name */
-					$errors->add( $key . '_required', apply_filters( 'woocommerce_checkout_required_field_notice', sprintf( __( '%s을(를) 채워주세요.', 'woocommerce' ), '<strong>' . esc_html( $field_label ) . '</strong>' ), $field_label, $key ), array( 'id' => $key ) );
+					$errors->add( $key . '_required', apply_filters( 'woocommerce_checkout_required_field_notice', sprintf( __( '%s is a required field.', 'woocommerce' ), '<strong>' . esc_html( $field_label ) . '</strong>' ), $field_label, $key ), array( 'id' => $key ) );
 				}
 			}
 		}
@@ -948,7 +948,7 @@ class WC_Checkout {
 			$available_gateways = WC()->payment_gateways->get_available_payment_gateways();
 
 			if ( ! isset( $available_gateways[ $data['payment_method'] ] ) ) {
-				$errors->add( 'payment', __( '유효하지 않은 결제 방법입니다.', 'woocommerce' ) );
+				$errors->add( 'payment', __( 'Invalid payment method.', 'woocommerce' ) );
 			} else {
 				$available_gateways[ $data['payment_method'] ]->validate_fields();
 			}

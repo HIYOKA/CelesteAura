@@ -96,13 +96,13 @@ function wc_get_account_menu_items() {
 	);
 
 	$items = array(
-		'dashboard'       => __( '현황판', 'woocommerce' ),
-		'orders'          => __( '주문목록', 'woocommerce' ),
-		'downloads'       => __( '다운로드', 'woocommerce' ),
-		'edit-address'    => _n( 'Address', '주소관리', ( 1 + (int) wc_shipping_enabled() ), 'woocommerce' ),
+		'dashboard'       => __( 'Dashboard', 'woocommerce' ),
+		'orders'          => __( 'Orders', 'woocommerce' ),
+		'downloads'       => __( 'Downloads', 'woocommerce' ),
+		'edit-address'    => _n( 'Address', 'Addresses', ( 1 + (int) wc_shipping_enabled() ), 'woocommerce' ),
 		'payment-methods' => __( 'Payment methods', 'woocommerce' ),
-		'edit-account'    => __( '계정정보', 'woocommerce' ),
-		'customer-logout' => __( '로그아웃', 'woocommerce' ),
+		'edit-account'    => __( 'Account details', 'woocommerce' ),
+		'customer-logout' => __( 'Logout', 'woocommerce' ),
 	);
 
 	// Remove missing endpoints.
@@ -177,7 +177,7 @@ function wc_get_account_endpoint_url( $endpoint ) {
 	}
 
 	if ( 'customer-logout' === $endpoint ) {
-		return wp_logout_url(home_url());
+		return wc_logout_url();
 	}
 
 	return wc_get_endpoint_url( $endpoint, '', wc_get_page_permalink( 'myaccount' ) );

@@ -129,7 +129,7 @@ class WC_Form_Handler {
 			// Validation: Required fields.
 			if ( ! empty( $field['required'] ) && empty( $value ) ) {
 				/* translators: %s: Field name. */
-				wc_add_notice( sprintf( __( '%s을(를) 채워주세요.', 'woocommerce' ), $field['label'] ), 'error', array( 'id' => $key ) );
+				wc_add_notice( sprintf( __( '%s is a required field.', 'woocommerce' ), $field['label'] ), 'error', array( 'id' => $key ) );
 			}
 
 			if ( ! empty( $value ) ) {
@@ -265,24 +265,24 @@ class WC_Form_Handler {
 		$required_fields = apply_filters(
 			'woocommerce_save_account_details_required_fields',
 			array(
-				'account_first_name'   => __( '이름', 'woocommerce' ),
-				'account_last_name'    => __( '성', 'woocommerce' ),
-				'account_display_name' => __( '유저명', 'woocommerce' ),
-				'account_email'        => __( '메일주소', 'woocommerce' ),
+				'account_first_name'   => __( 'First name', 'woocommerce' ),
+				'account_last_name'    => __( 'Last name', 'woocommerce' ),
+				'account_display_name' => __( 'Display name', 'woocommerce' ),
+				'account_email'        => __( 'Email address', 'woocommerce' ),
 			)
 		);
 
 		foreach ( $required_fields as $field_key => $field_name ) {
 			if ( empty( $_POST[ $field_key ] ) ) {
 				/* translators: %s: Field name. */
-				wc_add_notice( sprintf( __( '%s을(를) 채워주세요.', 'woocommerce' ), '<strong>' . esc_html( $field_name ) . '</strong>' ), 'error', array( 'id' => $field_key ) );
+				wc_add_notice( sprintf( __( '%s is a required field.', 'woocommerce' ), '<strong>' . esc_html( $field_name ) . '</strong>' ), 'error', array( 'id' => $field_key ) );
 			}
 		}
 
 		if ( $account_email ) {
 			$account_email = sanitize_email( $account_email );
 			if ( ! is_email( $account_email ) ) {
-				wc_add_notice( __( '유효한 메일주소를 입력해주세요.', 'woocommerce' ), 'error' );
+				wc_add_notice( __( 'Please provide a valid email address.', 'woocommerce' ), 'error' );
 			} elseif ( email_exists( $account_email ) && $account_email !== $current_user->user_email ) {
 				wc_add_notice( __( 'This email address is already registered.', 'woocommerce' ), 'error' );
 			}
@@ -290,19 +290,19 @@ class WC_Form_Handler {
 		}
 
 		if ( ! empty( $pass_cur ) && empty( $pass1 ) && empty( $pass2 ) ) {
-			wc_add_notice( __( '모든 암호 필드를 입력하거나 모두 비워두세요..', 'woocommerce' ), 'error' );
+			wc_add_notice( __( 'Please fill out all password fields.', 'woocommerce' ), 'error' );
 			$save_pass = false;
 		} elseif ( ! empty( $pass1 ) && empty( $pass_cur ) ) {
-			wc_add_notice( __( '현재 비밀번호를 입력하세요.', 'woocommerce' ), 'error' );
+			wc_add_notice( __( 'Please enter your current password.', 'woocommerce' ), 'error' );
 			$save_pass = false;
 		} elseif ( ! empty( $pass1 ) && empty( $pass2 ) ) {
-			wc_add_notice( __( '비밀번호를 재확인해주세요..', 'woocommerce' ), 'error' );
+			wc_add_notice( __( 'Please re-enter your password.', 'woocommerce' ), 'error' );
 			$save_pass = false;
 		} elseif ( ( ! empty( $pass1 ) || ! empty( $pass2 ) ) && $pass1 !== $pass2 ) {
-			wc_add_notice( __( '새로운 비밀번호와 일치하지 않습니다.', 'woocommerce' ), 'error' );
+			wc_add_notice( __( 'New passwords do not match.', 'woocommerce' ), 'error' );
 			$save_pass = false;
 		} elseif ( ! empty( $pass1 ) && ! wp_check_password( $pass_cur, $current_user->user_pass, $current_user->ID ) ) {
-			wc_add_notice( __( '현재 비밀번호가 일치하지 않습니다.', 'woocommerce' ), 'error' );
+			wc_add_notice( __( 'Your current password is incorrect.', 'woocommerce' ), 'error' );
 			$save_pass = false;
 		}
 
@@ -625,8 +625,8 @@ class WC_Form_Handler {
 				// Don't show undo link if removed item is out of stock.
 				if ( $product && $product->is_in_stock() && $product->has_enough_stock( $cart_item['quantity'] ) ) {
 					/* Translators: %s Product title. */
-					$removed_notice  = sprintf( __( '%s 삭제되었습니다.', 'woocommerce' ), $item_removed_title );
-					$removed_notice .= ' <a href="' . esc_url( wc_get_cart_undo_url( $cart_item_key ) ) . '" class="restore-item">' . __( '되돌리실래요?', 'woocommerce' ) . '</a>';
+					$removed_notice  = sprintf( __( '%s removed.', 'woocommerce' ), $item_removed_title );
+					$removed_notice .= ' <a href="' . esc_url( wc_get_cart_undo_url( $cart_item_key ) ) . '" class="restore-item">' . __( 'Undo?', 'woocommerce' ) . '</a>';
 				} else {
 					/* Translators: %s Product title. */
 					$removed_notice = sprintf( __( '%s removed.', 'woocommerce' ), $item_removed_title );
@@ -703,7 +703,7 @@ class WC_Form_Handler {
 				wp_safe_redirect( wc_get_checkout_url() );
 				exit;
 			} elseif ( $cart_updated ) {
-				wc_add_notice( __( '장바구니가 갱신되었습니다..', 'woocommerce' ), apply_filters( 'woocommerce_cart_updated_notice_type', 'success' ) );
+				wc_add_notice( __( 'Cart updated.', 'woocommerce' ), apply_filters( 'woocommerce_cart_updated_notice_type', 'success' ) );
 				$referer = remove_query_arg( array( 'remove_coupon', 'add-to-cart' ), ( wp_get_referer() ? wp_get_referer() : wc_get_cart_url() ) );
 				wp_safe_redirect( $referer );
 				exit;

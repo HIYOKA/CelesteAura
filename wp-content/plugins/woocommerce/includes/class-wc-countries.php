@@ -675,28 +675,28 @@ class WC_Countries {
 		// If necessary, append '(optional)' to the placeholder: we don't need to worry about the
 		// label, though, as woocommerce_form_field() takes care of that.
 		if ( 'optional' === get_option( 'woocommerce_checkout_address_2_field', 'optional' ) ) {
-			$address_2_placeholder = __( '기타주소 [Apartment, suite, unit, etc.] (optional)', 'woocommerce' );
+			$address_2_placeholder = __( 'Apartment, suite, unit, etc. (optional)', 'woocommerce' );
 		} else {
 			$address_2_placeholder = $address_2_label;
 		}
 
 		$fields = array(
 			'first_name' => array(
-				'label'        => __( '이름', 'woocommerce' ),
+				'label'        => __( 'First name', 'woocommerce' ),
 				'required'     => true,
 				'class'        => array( 'form-row-first' ),
 				'autocomplete' => 'given-name',
 				'priority'     => 10,
 			),
 			'last_name'  => array(
-				'label'        => __( '성', 'woocommerce' ),
+				'label'        => __( 'Last name', 'woocommerce' ),
 				'required'     => true,
 				'class'        => array( 'form-row-last' ),
 				'autocomplete' => 'family-name',
 				'priority'     => 20,
 			),
 			'company'    => array(
-				'label'        => __( '회사명', 'woocommerce' ),
+				'label'        => __( 'Company name', 'woocommerce' ),
 				'class'        => array( 'form-row-wide' ),
 				'autocomplete' => 'organization',
 				'priority'     => 30,
@@ -704,16 +704,16 @@ class WC_Countries {
 			),
 			'country'    => array(
 				'type'         => 'country',
-				'label'        => __( '국가 / 지역', 'woocommerce' ),
+				'label'        => __( 'Country / Region', 'woocommerce' ),
 				'required'     => true,
 				'class'        => array( 'form-row-wide', 'address-field', 'update_totals_on_change' ),
 				'autocomplete' => 'country',
 				'priority'     => 40,
 			),
 			'address_1'  => array(
-				'label'        => __( '상세주소', 'woocommerce' ),
+				'label'        => __( 'Street address', 'woocommerce' ),
 				/* translators: use local order of street name and house number. */
-				'placeholder'  => esc_attr__( '상세주소 (House number and street name)', 'woocommerce' ),
+				'placeholder'  => esc_attr__( 'House number and street name', 'woocommerce' ),
 				'required'     => true,
 				'class'        => array( 'form-row-wide', 'address-field' ),
 				'autocomplete' => 'address-line1',
@@ -729,7 +729,7 @@ class WC_Countries {
 				'required'     => 'required' === get_option( 'woocommerce_checkout_address_2_field', 'optional' ),
 			),
 			'city'       => array(
-				'label'        => __( '도 / 시', 'woocommerce' ),
+				'label'        => __( 'Town / City', 'woocommerce' ),
 				'required'     => true,
 				'class'        => array( 'form-row-wide', 'address-field' ),
 				'autocomplete' => 'address-level2',
@@ -1498,7 +1498,7 @@ class WC_Countries {
 					),
 					'US' => array(
 						'postcode' => array(
-							'label' => __( '우편번호', 'woocommerce' ),
+							'label' => __( 'ZIP Code', 'woocommerce' ),
 						),
 						'state'    => array(
 							'label' => __( 'State', 'woocommerce' ),
@@ -1619,7 +1619,7 @@ class WC_Countries {
 		if ( 'billing_' === $type ) {
 			if ( 'hidden' !== get_option( 'woocommerce_checkout_phone_field', 'required' ) ) {
 				$address_fields['billing_phone'] = array(
-					'label'        => __( '휴대폰', 'woocommerce' ),
+					'label'        => __( 'Phone', 'woocommerce' ),
 					'required'     => 'required' === get_option( 'woocommerce_checkout_phone_field', 'required' ),
 					'type'         => 'tel',
 					'class'        => array( 'form-row-wide' ),
@@ -1629,7 +1629,7 @@ class WC_Countries {
 				);
 			}
 			$address_fields['billing_email'] = array(
-				'label'        => __( '메일주소', 'woocommerce' ),
+				'label'        => __( 'Email address', 'woocommerce' ),
 				'required'     => true,
 				'type'         => 'email',
 				'class'        => array( 'form-row-wide' ),
