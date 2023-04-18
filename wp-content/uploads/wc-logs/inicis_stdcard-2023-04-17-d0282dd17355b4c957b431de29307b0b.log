@@ -1,0 +1,56 @@
+04-18-2023 @ 02:16:33 - Process Payment Response : fail
+04-18-2023 @ 02:16:33 - [오류] [PAFW-ERR-V016] signkey가 정확하지 않습니다.(키 확인 필요)
+Array
+(
+    [type] => fail
+    [res_cd] => V016
+    [res_msg] => signkey가 정확하지 않습니다.(키 확인 필요)
+    [transaction_id] => TINICIS20230417171632c6d2f19d945d36e456e0
+    [order_id] => 4803
+    [woocommerce-login-nonce] => 
+    [_wpnonce] => 
+    [woocommerce-reset-password-nonce] => 
+)
+
+04-18-2023 @ 02:16:33 - Redirect : Checkout
+04-18-2023 @ 02:20:37 - Process Payment Response : fail
+04-18-2023 @ 02:20:37 - [오류] [PAFW-ERR-V016] signkey가 정확하지 않습니다.(키 확인 필요)
+Array
+(
+    [type] => fail
+    [res_cd] => V016
+    [res_msg] => signkey가 정확하지 않습니다.(키 확인 필요)
+    [transaction_id] => TINICIS202304171720377cb1474566b818f0c259
+    [order_id] => 4803
+    [woocommerce-login-nonce] => 
+    [_wpnonce] => 
+    [woocommerce-reset-password-nonce] => 
+)
+
+04-18-2023 @ 02:20:37 - Redirect : Checkout
+04-18-2023 @ 02:21:02 - Process Payment Response : cancel
+04-18-2023 @ 02:21:02 - [오류] 결제를 취소하셨습니다.
+Array
+(
+    [type] => cancel
+    [transaction_id] => TINICIS2023041717205555981cedd291ee1c3b01
+    [order_id] => 4803_230417_051631
+    [woocommerce-login-nonce] => 
+    [_wpnonce] => 
+    [woocommerce-reset-password-nonce] => 
+)
+
+04-18-2023 @ 02:21:02 - Redirect : Checkout
+04-18-2023 @ 02:21:27 - Process Payment Response : cancel
+04-18-2023 @ 02:21:27 - [오류] 결제를 취소하셨습니다.
+Array
+(
+    [type] => cancel
+    [transaction_id] => TINICIS20230417172115bda6b62708e34492b5dd
+    [order_id] => 4804_230417_052115
+    [woocommerce-login-nonce] => 
+    [_wpnonce] => 
+    [woocommerce-reset-password-nonce] => 
+)
+
+04-18-2023 @ 02:21:27 - Redirect : Checkout
