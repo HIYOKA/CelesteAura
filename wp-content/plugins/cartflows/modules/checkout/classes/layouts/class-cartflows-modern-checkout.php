@@ -40,6 +40,8 @@ class Cartflows_Modern_Checkout {
 		// Load Modern Layout Checkout Customization Actions.
 		add_action( 'cartflows_checkout_form_before', array( $this, 'modern_checkout_layout_actions' ), 10, 1 );
 
+		add_filter( 'woocommerce_checkout_fields', array( $this, 'unset_fields_for_modern_checkout' ), 10, 1 );
+
 	}
 
 	/**
@@ -72,8 +74,6 @@ class Cartflows_Modern_Checkout {
 				remove_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 20 );
 				add_action( 'cartflows_checkout_after_modern_checkout_layout', 'woocommerce_checkout_payment', 21 );
 			}
-
-			add_filter( 'woocommerce_checkout_fields', array( $this, 'unset_fields_for_modern_checkout' ), 10, 1 );
 		}
 	}
 
@@ -129,7 +129,7 @@ class Cartflows_Modern_Checkout {
 		$checkout_id = _get_wcf_checkout_id();
 
 		if ( ! $checkout_id ) {
-			$checkout_id = isset( $_GET['wcf_checkout_id'] ) && ! empty( $_GET['wcf_checkout_id'] ) ? intval( wp_unslash( $_GET['wcf_checkout_id'] ) ) : 0; //phpcs:ignore
+			$checkout_id = isset( $_GET['wcf_checkout_id'] ) && ! empty( $_GET['wcf_checkout_id'] ) ? intval( wp_unslash( $_GET['wcf_checkout_id'] ) ) : 0; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		}
 
 		$default = '';
@@ -149,9 +149,9 @@ class Cartflows_Modern_Checkout {
 			<div class="wcf-customer-info" id="customer_info">
 				<div class="wcf-customer-info__notice"></div>
 				<div class="woocommerce-billing-fields-custom">
-					<h3><?php echo wp_kses_post( apply_filters( 'cartflows_woo_customer_info_text', esc_html__( 'Customer information', 'cartflows' ) ) ); ?>
+					<h3><?php echo esc_html( apply_filters( 'cartflows_woo_customer_info_text', __( 'Customer information', 'cartflows' ) ) ); ?>
 						<?php if ( ! is_user_logged_in() && $is_allow_login ) { ?>
-							<div class="woocommerce-billing-fields__customer-login-label"><?php /* translators: %1$s: Link HTML start, %2$s Link HTML End */ echo sprintf( __( 'Already have an account? %1$1s Log in%2$2s', 'cartflows' ), '<a href="javascript:" class="wcf-customer-login-url">', '</a>' ); ?></div>
+							<div class="woocommerce-billing-fields__customer-login-label"><?php /* translators: %1$s: Link HTML start, %2$s Link HTML End */ echo wp_kses_post( sprintf( __( 'Already have an account? %1$1s Log in%2$2s', 'cartflows' ), '<a href="javascript:" class="wcf-customer-login-url">', '</a>' ) ); ?></div>
 						<?php } ?>
 					</h3>
 					<div class="woocommerce-billing-fields__customer-info-wrapper">
@@ -191,7 +191,7 @@ class Cartflows_Modern_Checkout {
 								<div class="wcf-customer-login-actions">
 							<?php
 									echo "<input type='button' name='wcf-customer-login-btn' class='button wcf-customer-login-section__login-button' id='wcf-customer-login-section__login-button' value='" . esc_attr( __( 'Login', 'cartflows' ) ) . "'>";
-									echo "<a href='$lost_password_url' class='wcf-customer-login-lost-password-url'>" . esc_html( __( 'Lost your password?', 'cartflows' ) ) . '</a>';
+									echo '<a href=' . esc_url( $lost_password_url ) . " class='wcf-customer-login-lost-password-url'>" . esc_html( __( 'Lost your password?', 'cartflows' ) ) . '</a>';
 							?>
 								</div>
 							<?php
@@ -248,7 +248,7 @@ class Cartflows_Modern_Checkout {
 								</div>
 						<?php } ?>
 					<?php } else { ?>
-								<div class="wcf-logged-in-customer-info"> <?php /* translators: %1$s: username, %2$s emailid */ echo apply_filters( 'cartflows_logged_in_customer_info_text', sprintf( __( ' Welcome Back %1$s ( %2$s )', 'cartflows' ), esc_attr( $current_user_name ), esc_attr( $current_user_email ) ) ); ?>
+								<div class="wcf-logged-in-customer-info"> <?php /* translators: %1$s: username, %2$s emailid */ echo esc_html( apply_filters( 'cartflows_logged_in_customer_info_text', sprintf( __( ' Welcome Back %1$s ( %2$s )', 'cartflows' ), $current_user_name, $current_user_email ) ) ); ?>
 									<div><input type="hidden" class="wcf-email-address" id="billing_email" name="billing_email" value="<?php echo esc_attr( $current_user_email ); ?>"/></div>
 								</div>
 					<?php } ?>
@@ -266,10 +266,11 @@ class Cartflows_Modern_Checkout {
 		ob_start();
 		?>
 		<div class="wcf-payment-option-heading">
-			<h3 id="payment_options_heading"><?php echo wp_kses_post( apply_filters( 'cartflows_woo_payment_text', esc_html__( 'Payment', 'cartflows' ) ) ); ?></h3>
+			<h3 id="payment_options_heading"><?php echo esc_html( apply_filters( 'cartflows_woo_payment_text', __( 'Payment', 'cartflows' ) ) ); ?></h3>
 		</div>
 		<?php
-		echo ob_get_clean();
+		// wp_kses_post will not work as it removing some tags hence ignoring below rule.
+		echo ob_get_clean(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 		/**
@@ -302,6 +303,21 @@ class Cartflows_Modern_Checkout {
 	 * @param array $checkout_fields checkout fields array.
 	 */
 	public function unset_fields_for_modern_checkout( $checkout_fields ) {
+
+
+		$checkout_id = _get_wcf_checkout_id();
+
+		if ( ! $checkout_id ) {
+			$checkout_id = wcf()->utils->get_checkout_id_from_post_data();
+		}
+
+		if ( ! _is_wcf_checkout_type() || ! $this->is_modern_checkout_layout( $checkout_id ) ) {
+			return $checkout_fields;
+		}
+		// No nonce verification required as it is called on woocommerce action.
+		if ( isset( $_GET['wc-ajax'] ) && 'checkout' === $_GET['wc-ajax'] ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			return $checkout_fields;
+		}
 
 		// Unset defalut billing email from Billing Details.
 		unset( $checkout_fields['billing']['billing_email'] );

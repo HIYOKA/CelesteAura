@@ -125,7 +125,7 @@ function flushInjections() {
   injections.clear();
 }
 function wrapFiller(FillerComponent) {
-  return () => /*#__PURE__*/React.createElement(FillerWrapper, null, /*#__PURE__*/React.createElement(FillerComponent, null));
+  return props => /*#__PURE__*/React.createElement(FillerWrapper, null, /*#__PURE__*/React.createElement(FillerComponent, props));
 }
 function generateId(location, name) {
   return `${location}::${name}`;

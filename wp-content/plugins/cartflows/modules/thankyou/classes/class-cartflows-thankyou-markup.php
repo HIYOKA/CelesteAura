@@ -70,12 +70,12 @@ class Cartflows_Thankyou_Markup {
 		}
 
 		if ( ! apply_filters( 'cartflows_thankyou_direct_access', false, $thank_you_id ) && _is_wcf_thankyou_type() && ( ! is_user_logged_in() || ! current_user_can( 'cartflows_manage_flows_steps' ) ) ) {
+			//phpcs:disable WordPress.Security.NonceVerification.Recommended
+			if ( isset( $_GET['wcf-key'] ) && isset( $_GET['wcf-order'] ) ) {
 
-			if ( isset( $_GET['wcf-key'] ) && isset( $_GET['wcf-order'] ) ) { //phpcs:ignore
-
-				$order_id  =  intval( $_GET['wcf-order'] ); //phpcs:ignore
-				$order_key = wc_clean( wp_unslash( $_GET['wcf-key'] ) ); //phpcs:ignore
-
+				$order_id  = intval( $_GET['wcf-order'] );
+				$order_key = wc_clean( wp_unslash( $_GET['wcf-key'] ) );
+			//phpcs:enable WordPress.Security.NonceVerification.Recommended
 				$order = wc_get_order( $order_id );
 
 				if ( ! $order || $order->get_order_key() !== $order_key ) {
@@ -100,7 +100,8 @@ class Cartflows_Thankyou_Markup {
 			$redirect_link      = wp_http_validate_url( wcf()->options->get_thankyou_meta_value( $thank_you_id, 'wcf-tq-redirect-link' ) );
 
 			if ( 'yes' === $enable_redirection && ! empty( $redirect_link ) ) {
-				exit(wp_redirect($redirect_link)); //phpcs:ignore
+				wp_safe_redirect( $redirect_link );
+				exit;
 			}
 		}
 	}
@@ -139,13 +140,13 @@ class Cartflows_Thankyou_Markup {
 
 			$id_param  = 'wcf-order';
 			$key_param = 'wcf-key';
-
-			if ( isset( $_GET['wcf-opt-order'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			//phpcs:disable WordPress.Security.NonceVerification.Recommended
+			if ( isset( $_GET['wcf-opt-order'] ) ) {
 				$id_param  = 'wcf-opt-order';
 				$key_param = 'wcf-opt-key';
 			}
 
-			if ( ! isset( $_GET[ $id_param ] ) && ( wcf()->flow->is_flow_testmode() || $show_demo_order ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			if ( ! isset( $_GET[ $id_param ] ) && ( wcf()->flow->is_flow_testmode() || $show_demo_order ) ) {
 				$args = array(
 					'limit'     => 1,
 					'order'     => 'DESC',
@@ -167,14 +168,14 @@ class Cartflows_Thankyou_Markup {
 					return '<p class="woocommerce-notice">' . __( 'No completed or processing order found to show the order details form demo.', 'cartflows' ) . '</p>';
 				}
 			} else {
-				if (!isset($_GET[$id_param])) { //phpcs:ignore
+				if ( ! isset( $_GET[ $id_param ] ) ) {
 					return '<p class="woocommerce-notice">' . __( 'Order not found. You cannot access this page directly.', 'cartflows' ) . '</p>';
 				}
 
 				// Get the order.
-				$order_id  = apply_filters('woocommerce_thankyou_order_id', empty($_GET[$id_param]) ? 0 : intval($_GET[$id_param])); //phpcs:ignore
-				$order_key = apply_filters('woocommerce_thankyou_order_key', empty($_GET[$key_param]) ? '' : wc_clean(wp_unslash($_GET[$key_param]))); //phpcs:ignore
-
+				$order_id  = apply_filters( 'woocommerce_thankyou_order_id', empty( $_GET[ $id_param ] ) ? 0 : intval( $_GET[ $id_param ] ) );
+				$order_key = apply_filters( 'woocommerce_thankyou_order_key', empty( $_GET[ $key_param ] ) ? '' : wc_clean( wp_unslash( $_GET[ $key_param ] ) ) );
+				//phpcs:enable WordPress.Security.NonceVerification.Recommended
 				if ( $order_id > 0 ) {
 					$order = wc_get_order( $order_id );
 
@@ -421,8 +422,8 @@ class Cartflows_Thankyou_Markup {
 		if ( $post ) {
 			$thank_you_id = $post->ID;
 		} else {
-			if (is_admin() && isset($_POST['id'])) { //phpcs:ignore
-				$thank_you_id = intval($_POST['id']); //phpcs:ignore
+			if ( is_admin() && isset( $_POST['id'] ) ) { //phpcs:ignore WordPress.Security.NonceVerification.Missing
+				$thank_you_id = intval( $_POST['id'] ); //phpcs:ignore WordPress.Security.NonceVerification.Missing
 			}
 		}
 

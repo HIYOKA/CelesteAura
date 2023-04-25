@@ -43,7 +43,7 @@ class Cartflows_Landing_Markup {
 		add_action( 'template_redirect', array( $this, 'template_redirect' ) );
 
 		if ( is_admin() ) {
-			add_filter( 'wp_dropdown_pages', array( $this, 'wp_dropdown_pages' ) );
+			add_filter( 'wp_dropdown_pages', array( $this, 'add_steps_to_dropdown_pages' ) );
 		}
 	}
 
@@ -51,8 +51,10 @@ class Cartflows_Landing_Markup {
 	 *  Add landing pages in WordPress reading section.
 	 *
 	 * @param array $output output.
+	 *
+	 * @return array.
 	 */
-	public function wp_dropdown_pages( $output ) {
+	public function add_steps_to_dropdown_pages( $output ) {
 
 		global $pagenow;
 
@@ -61,19 +63,11 @@ class Cartflows_Landing_Markup {
 			$args = array(
 				'post_type'   => CARTFLOWS_STEP_POST_TYPE,
 				'numberposts' => 100,
-				'meta_query'  => array( //phpcs:ignore
-					'relation' => 'OR',
+				'meta_query'  => array( //phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 					array(
-						'key'   => 'wcf-step-type',
-						'value' => 'landing',
-					),
-					array(
-						'key'   => 'wcf-step-type',
-						'value' => 'checkout',
-					),
-					array(
-						'key'   => 'wcf-step-type',
-						'value' => 'optin',
+						'key'     => 'wcf-step-type',
+						'value'   => array( 'landing', 'checkout', 'optin' ),
+						'compare' => 'IN',
 					),
 				),
 			);

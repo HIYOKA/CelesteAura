@@ -50,7 +50,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 								<table border="0" cellpadding="5" cellspacing="0" class="image_block" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
 									<tr>
 										<td>
-											<div align="center" style="line-height:10px"><img src="<?php echo $cf_logo; ?>" style="display: block; height: auto; border: 0; width: 190px; max-width: 100%;" width="190" /></div>
+											<div align="center" style="line-height:10px"><img src="<?php echo esc_url( $cf_logo ); ?>" style="display: block; height: auto; border: 0; width: 190px; max-width: 100%;" width="190" /></div>
 										</td>
 									</tr>
 								</table>

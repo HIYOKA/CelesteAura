@@ -49,6 +49,19 @@ class Cartflows_Admin_Notices {
 
 		add_action( 'wp_ajax_cartflows_disable_weekly_report_email_notice', array( $this, 'disable_weekly_report_email_notice' ) );
 
+		add_filter( 'woo_ca_plugin_review_url', array( $this, 'update_review_link' ), 10, 1 );
+	}
+
+	/**
+	 * Update review link for cart abandonment.
+	 *
+	 * @param string $review_link review link.
+	 *
+	 * @return string URL.
+	 */
+	public function update_review_link( $review_link ) {
+
+		return 'https://wordpress.org/support/plugin/cartflows/reviews/?filter=5#new-post';
 	}
 
 
@@ -80,11 +93,11 @@ class Cartflows_Admin_Notices {
 
 	}
 
-		/**
-		 * Disable the weekly email Notice
-		 *
-		 * @return void
-		 */
+	/**
+	 * Disable the weekly email Notice
+	 *
+	 * @return void
+	 */
 	public function disable_weekly_report_email_notice() {
 
 		if ( ! current_user_can( 'manage_options' ) ) {
@@ -181,7 +194,7 @@ class Cartflows_Admin_Notices {
 	}
 
 	/**
-	 * Deactivate gutenberg plugin.
+	 * Show Deactivate gutenberg plugin notice.
 	 *
 	 * @since 1.1.19
 	 *
@@ -194,11 +207,13 @@ class Cartflows_Admin_Notices {
 		if ( 'yes' !== $ignore_notice ) {
 			printf(
 				'<div class="notice notice-error wcf_notice_gutenberg_plugin is-dismissible"><p>%s</p>%s</div>',
-				sprintf(
+				wp_kses_post(
+					sprintf(
 					/* translators: %1$s: HTML, %2$s: HTML */
-					__( 'Heads up! The Gutenberg plugin is not recommended on production sites as it may contain non-final features that cause compatibility issues with CartFlows and other plugins. %1$s Please deactivate the Gutenberg plugin %2$s to ensure the proper functioning of your website.', 'cartflows' ),
-					'<strong>',
-					'</strong>'
+						__( 'Heads up! The Gutenberg plugin is not recommended on production sites as it may contain non-final features that cause compatibility issues with CartFlows and other plugins. %1$s Please deactivate the Gutenberg plugin %2$s to ensure the proper functioning of your website.', 'cartflows' ),
+						'<strong>',
+						'</strong>'
+					)
 				),
 				''
 			);

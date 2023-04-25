@@ -211,7 +211,7 @@ if ( ! class_exists( 'CartFlows_Font_Families' ) ) :
 					}
 					$font_family = explode( ',', $font_name );
 					$font_family = str_replace( "'", '', wcf_get_prop( $font_family, 0 ) );
-					$family[]    = trim( $font_family . ':' . urlencode( trim( $font_weight ) ) );//phpcs:ignore
+					$family[]    = trim( $font_family . ':' . urlencode( trim( $font_weight ) ) );
 				} else {
 					$family[] = trim( $font_name );
 				}

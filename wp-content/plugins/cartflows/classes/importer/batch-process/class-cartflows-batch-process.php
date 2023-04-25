@@ -188,7 +188,7 @@ if ( ! class_exists( 'CartFlows_Batch_Process' ) ) :
 					$list_files = array_map( 'basename', $list_files );
 
 					foreach ( $list_files as $key => $file_name ) {
-						$data = file_get_contents( $dir . '/' . $file_name );//phpcs:ignore
+						$data = file_get_contents( $dir . '/' . $file_name );
 						if ( ! empty( $data ) ) {
 							$option_name = str_replace( '.json', '', $file_name );
 							update_site_option( $option_name, json_decode( $data, true ) );

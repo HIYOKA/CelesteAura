@@ -267,18 +267,21 @@ class Cartflows_Frontend {
 		wcf()->utils->do_not_cache();
 
 		if ( _is_wcf_thankyou_type() ) {
-			/* Set key to support pixel */
-			if ( isset( $_GET['wcf-key'] ) ) { //phpcs:ignore
+			/*
+			Set key to support pixel
+			*/
+			//phpcs:disable WordPress.Security.NonceVerification
+			if ( isset( $_GET['wcf-key'] ) ) {
 
-				$wcf_key = sanitize_text_field( wp_unslash( $_GET['wcf-key'] ) ); //phpcs:ignore
+				$wcf_key = sanitize_text_field( wp_unslash( $_GET['wcf-key'] ) );
 
 				$_GET['key']     = $wcf_key;
 				$_REQUEST['key'] = $wcf_key;
 			}
 
-			if ( isset( $_GET['wcf-order'] ) ) { //phpcs:ignore
-
-				$wcf_order = intval( wp_unslash( $_GET['wcf-order'] ) ); //phpcs:ignore
+			if ( isset( $_GET['wcf-order'] ) ) {
+				$wcf_order = intval( wp_unslash( $_GET['wcf-order'] ) );
+				//phpcs:enable WordPress.Security.NonceVerification
 
 				$_GET['order']              = $wcf_order;
 				$_REQUEST['order']          = $wcf_order;
@@ -454,7 +457,7 @@ class Cartflows_Frontend {
 		$localize_script .= 'var cartflows = ' . wp_json_encode( $localize ) . ';';
 		$localize_script .= '</script>';
 
-		echo $localize_script;
+		echo $localize_script; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		if ( _wcf_supported_template( $page_template ) ) {
 
@@ -499,7 +502,7 @@ class Cartflows_Frontend {
 				$flow_script = '<script>' . $flow_script . '</script>';
 			}
 			echo '<!-- Flow Custom CartFlows Script -->';
-			echo html_entity_decode( $flow_script );
+			echo html_entity_decode( $flow_script ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo '<!-- End Flow Custom CartFlows Script -->';
 		}
 
@@ -508,7 +511,7 @@ class Cartflows_Frontend {
 				$script = '<script>' . $script . '</script>';
 			}
 			echo '<!-- Custom CartFlows Script -->';
-			echo html_entity_decode( $script );
+			echo html_entity_decode( $script ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo '<!-- End Custom CartFlows Script -->';
 		}
 	}
@@ -593,12 +596,12 @@ class Cartflows_Frontend {
 	 * @since 1.10.0
 	 */
 	public function maybe_replace_vars( $script ) {
+		//phpcs:disable WordPress.Security.NonceVerification
+		if ( isset( $_GET['wcf-order'] ) && isset( $_GET['wcf-key'] ) ) {
 
-		if ( isset( $_GET['wcf-order'] ) && isset( $_GET['wcf-key'] ) ) { //phpcs:ignore
-
-			$order_id = intval( wp_unslash( $_GET['wcf-order'] ) ); //phpcs:ignore
-			$order_key = wc_clean( wp_unslash( $_GET['wcf-key'] ) ); //phpcs:ignore
-
+			$order_id  = intval( wp_unslash( $_GET['wcf-order'] ) );
+			$order_key = wc_clean( wp_unslash( $_GET['wcf-key'] ) );
+			//phpcs:enable WordPress.Security.NonceVerification
 			$order = wc_get_order( $order_id );
 
 			if ( $order || $order_key === $order->get_order_key() ) {

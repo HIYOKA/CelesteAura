@@ -51,6 +51,7 @@ class WizardCore {
 			add_action( 'admin_init', array( $this, 'hide_notices' ) );
 			add_action( 'admin_notices', array( $this, 'show_setup_wizard' ) );
 			add_action( 'woocommerce_installed', array( $this, 'disable_woo_setup_redirect' ) );
+			// We are hiding admin bar intentionally for setup wizard.
 			add_filter( 'show_admin_bar', '__return_false', 1 ); //phpcs:ignore WordPressVIPMinimum.UserExperience.AdminBarRemoval.RemovalDetected
 
 			add_action( 'init', array( $this, 'load_scripts' ) );
@@ -78,7 +79,7 @@ class WizardCore {
 			),
 			admin_url() . 'load-styles.php'
 		);
-		echo "<link rel='stylesheet' id='admin_styles_for_media-css' href='" . $admin_media_styles_url . "' type='text/css' media='all' />"; //phpcs:ignore
+		echo "<link rel='stylesheet' id='admin_styles_for_media-css' href='" . esc_url( $admin_media_styles_url ) . "' type='text/css' media='all' />";
 	}
 
 	/**
@@ -163,7 +164,8 @@ class WizardCore {
 	 */
 	public function admin_menus() {
 
-		if ( empty( $_GET['page'] ) || 'cartflow-setup' !== $_GET['page'] ) { //phpcs:ignore
+		// Ignoring phpcs nonce rule as we are calling this function on admin action.
+		if ( empty( $_GET['page'] ) || 'cartflow-setup' !== $_GET['page'] ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			return;
 		}
 
@@ -175,7 +177,8 @@ class WizardCore {
 	 */
 	public function setup_wizard() {
 
-		if ( empty( $_GET['page'] ) || 'cartflow-setup' !== $_GET['page'] ) { //phpcs:ignore
+		// Ignoring phpcs nonce rule as we are calling this function on admin action.
+		if ( empty( $_GET['page'] ) || 'cartflow-setup' !== $_GET['page'] ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			return;
 		}
 		$this->load_required_scripts();
@@ -288,6 +291,7 @@ class WizardCore {
 			'woocommerce'                   => $this->get_plugin_status( 'woocommerce/woocommerce.php' ),
 			'woo-cart-abandonment-recovery' => $this->get_plugin_status( 'woo-cart-abandonment-recovery/woo-cart-abandonment-recovery.php' ),
 			'checkout-plugins-stripe-woo'   => $this->get_plugin_status( 'checkout-plugins-stripe-woo/checkout-plugins-stripe-woo.php' ),
+			'checkout-paypal-woo'           => $this->get_plugin_status( 'checkout-paypal-woo/checkout-paypal-woo.php' ),
 		);
 
 		$installed_plugins = get_plugins();

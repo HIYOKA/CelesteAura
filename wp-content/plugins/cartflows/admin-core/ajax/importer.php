@@ -100,7 +100,6 @@ class Importer extends AjaxBase {
 
 		$export = \CartFlows_Importer::get_instance();
 		$flows  = $export->get_all_flow_export_data();
-		$flows  = apply_filters( 'cartflows_admin_export_data', $flows );
 
 		if ( ! empty( $flows ) && is_array( $flows ) && count( $flows ) > 0 ) {
 
@@ -144,7 +143,8 @@ class Importer extends AjaxBase {
 			wp_send_json_error( $response_data );
 		}
 
-		$flow_data = ( isset( $_POST['flow_data'] ) ) ? json_decode( stripslashes( $_POST['flow_data'] ), true ) : array(); // phpcs:ignore
+		// $_POST['flow_data'] is the JSON, There is nothing to sanitize JSON as it is data format not data type.
+		$flow_data = ( isset( $_POST['flow_data'] ) ) ? json_decode( stripslashes( $_POST['flow_data'] ), true ) : array(); //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
 		$response_data = array(
 			'message'      => 'Error occured. Flow not imported.',
@@ -191,7 +191,7 @@ class Importer extends AjaxBase {
 			$response_data = array( 'message' => $this->get_error_msg( 'nonce' ) );
 			wp_send_json_error( $response_data );
 		}
-		$flow_id    = ( isset( $_POST['flow_id'] ) ) ? absint( $_POST['flow_id'] ) : ''; // phpcs:ignore
+		$flow_id = ( isset( $_POST['flow_id'] ) ) ? absint( $_POST['flow_id'] ) : '';
 
 		if ( ! $flow_id ) {
 			$response_data = array( 'message' => __( 'Invalid flow ID.', 'cartflows' ) );
@@ -199,7 +199,6 @@ class Importer extends AjaxBase {
 		}
 
 		$flows[] = \CartFlows_Importer::get_instance()->get_flow_export_data( $flow_id );
-		$flows   = apply_filters( 'cartflows_admin_export_data', $flows );
 
 		$response_data = array(
 			'message'   => __( 'Flow exported successfully', 'cartflows' ),
@@ -231,8 +230,8 @@ class Importer extends AjaxBase {
 
 		\CartFlows_Batch_Process::get_instance()->update_latest_checksums( $templates );
 
-		update_site_option( 'cartflows-batch-is-complete', 'no', 'no' );
-		update_site_option( 'cartflows-manual-sync-complete', 'yes', 'no' );
+		update_site_option( 'cartflows-batch-is-complete', 'no' );
+		update_site_option( 'cartflows-manual-sync-complete', 'yes' );
 
 		$response_data = array( 'message' => 'SUCCESS: cartflows_import_sites' );
 		wp_send_json_success( $response_data );
@@ -255,8 +254,8 @@ class Importer extends AjaxBase {
 			wp_send_json_error( $response_data );
 		}
 
-		$page_no  = isset( $_POST['page_no'] ) ? absint( $_POST['page_no'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
-		$template = isset( $_POST['template'] ) ? sanitize_text_field( wp_unslash( $_POST['template'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$page_no  = isset( $_POST['page_no'] ) ? absint( $_POST['page_no'] ) : '';
+		$template = isset( $_POST['template'] ) ? sanitize_text_field( wp_unslash( $_POST['template'] ) ) : '';
 		if ( $page_no ) {
 			$sites_and_pages = \Cartflows_Batch_Processing_Sync_Library::get_instance()->import_sites( $page_no, $template );
 			wp_send_json_success(
@@ -375,9 +374,9 @@ class Importer extends AjaxBase {
 
 		wcf()->logger->import_log( 'STARTED! Importing Step' );
 
-		$flow_id    = ( isset( $_POST['flow_id'] ) ) ? absint(  $_POST['flow_id'] ) : ''; // phpcs:ignore
-		$step_type  = ( isset( $_POST['step_type'] ) ) ? sanitize_text_field( $_POST['step_type'] ) : ''; // phpcs:ignore
-		$step_title = ( isset( $_POST['step_title'] ) ) ? sanitize_text_field( $_POST['step_title'] ) : ''; // phpcs:ignore
+		$flow_id    = ( isset( $_POST['flow_id'] ) ) ? absint( $_POST['flow_id'] ) : '';
+		$step_type  = ( isset( $_POST['step_type'] ) ) ? sanitize_text_field( $_POST['step_type'] ) : '';
+		$step_title = ( isset( $_POST['step_title'] ) ) ? sanitize_text_field( $_POST['step_title'] ) : '';
 		$step_title = isset( $_POST['step_name'] ) && ! empty( $_POST['step_name'] ) ? sanitize_text_field( wp_unslash( $_POST['step_name'] ) ) : $step_title;
 
 		// Create new step.
@@ -419,7 +418,7 @@ class Importer extends AjaxBase {
 
 		\wp_clean_plugins_cache();
 
-		$plugin_init = ( isset( $_POST['init'] ) ) ? esc_attr( $_POST['init'] ) : ''; // phpcs:ignore+
+		$plugin_init = ( isset( $_POST['init'] ) ) ? sanitize_text_field( $_POST['init'] ) : '';
 
 		$do_sliently = true;
 
@@ -614,8 +613,8 @@ class Importer extends AjaxBase {
 			$response_data = array( 'message' => $this->get_error_msg( 'nonce' ) );
 			wp_send_json_error( $response_data );
 		}
-
-		$flow = isset( $_POST['flow'] ) ? json_decode( stripslashes( $_POST['flow'] ), true ) : array(); // phpcs:ignore
+		// $_POST['flow'] is the JSON, There is nothing to sanitize JSON as it is data format not data type.
+		$flow = isset( $_POST['flow'] ) ? json_decode( stripslashes( $_POST['flow'] ), true ) : array(); //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
 		// Get single step Rest API response.
 		$response = \CartFlows_API::get_instance()->get_flow( $flow['ID'] );
@@ -729,7 +728,8 @@ class Importer extends AjaxBase {
 						'id' => $new_flow_id,
 					),
 					'is_store_checkout' => isset( $_POST['store_checkout'] ) ? sanitize_text_field( wp_unslash( $_POST['store_checkout'] ) ) : '',
-				)
+				),
+				'cartflows_import_flow'
 			);
 		}
 
@@ -771,7 +771,11 @@ class Importer extends AjaxBase {
 			wp_send_json_error( $response_data );
 		}
 
-		$step    = isset( $_POST['step'] ) ? json_decode( stripslashes( $_POST['step'] ), true ) : array(); // phpcs:ignore
+		// $_POST['step'] is the JSON, There is nothing to sanitize JSON as it is data format not data type. Hence sanitizing decoded array below.
+		$step = isset( $_POST['step'] ) ? json_decode( stripslashes( $_POST['step'] ), true ) : array(); //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		// Sanitizing decoded array.
+		$step = array_map( 'sanitize_text_field', $step );
+
 		$flow_id = isset( $_POST['flow_id'] ) ? absint( $_POST['flow_id'] ) : 0;
 
 		$remote_flow_id = isset( $_POST['remote_flow_id'] ) ? absint( $_POST['remote_flow_id'] ) : 0;
@@ -781,7 +785,7 @@ class Importer extends AjaxBase {
 
 		if ( is_wp_error( $response['data'] ) ) {
 			/* translators: %1$s: html tag, %2$s: link html start %3$s: link html end */
-			$btn = sprintf( __( 'Request timeout error. Please check if the firewall or any security plugin is blocking the outgoing HTTP/HTTPS requests to templates.cartflows.com or not. %1$1sTo resolve this issue, please check this %2$2sarticle%3$3s.', 'cartflows' ), '<br><br>', '<a target="_blank" href="https://cartflows.com/docs/request-timeout-error-while-importing-the-flow-step-templates/">', '</a>' );
+			$btn = sprintf( __( 'Request timeout error. Please check if the firewall or any security plugin is blocking the outgoing HTTP/HTTPS requests to templates.cartflows.com or not. %1$1sTo resolve this issue, please check this %2$2sarticle%3$3s.', 'cartflows' ), '<br><br>', '<a target="_blank" href="https://cartflows.com/docs/request-timeout-error-while-importing-the-flow-step-templates/?utm_source=dashboard&utm_medium=free-cartflows&utm_campaign=docs">', '</a>' );
 
 			wp_send_json_error(
 				array(
@@ -835,7 +839,8 @@ class Importer extends AjaxBase {
 				'flow' => array(
 					'id' => $flow_id,
 				),
-			)
+			),
+			'cartflows_import_step'
 		);
 
 		wcf()->logger->import_log( 'COMPLETE! Importing Step' );
@@ -883,7 +888,10 @@ class Importer extends AjaxBase {
 			wp_send_json_error( $response_data );
 		}
 
-		$step    = isset( $_POST['step'] ) ? json_decode( stripslashes( $_POST['step'] ), true ) : array(); // phpcs:ignore
+		// $_POST['step'] is the JSON, There is nothing to sanitize JSON as it is data format not data type. Hence sanitizing decoded array below.
+		$step = isset( $_POST['step'] ) ? json_decode( stripslashes( $_POST['step'] ), true ) : array(); //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		// Sanitizing decoded array.
+		$step    = array_map( 'sanitize_text_field', $step );
 		$flow_id = isset( $_POST['flow_id'] ) ? absint( $_POST['flow_id'] ) : 0;
 		$step_id = isset( $_POST['step_id'] ) ? absint( $_POST['step_id'] ) : 0;
 
@@ -893,7 +901,7 @@ class Importer extends AjaxBase {
 		$response = \CartFlows_API::get_instance()->get_flow( $remote_flow_id );
 		if ( is_wp_error( $response['data'] ) ) {
 			/* translators: %1$s: html tag, %2$s: link html start %3$s: link html end */
-			$btn = sprintf( __( 'Request timeout error. Please check if the firewall or any security plugin is blocking the outgoing HTTP/HTTPS requests to templates.cartflows.com or not. %1$1sTo resolve this issue, please check this %2$2sarticle%3$3s.', 'cartflows' ), '<br><br>', '<a target="_blank" href="https://cartflows.com/docs/request-timeout-error-while-importing-the-flow-step-templates/">', '</a>' );
+			$btn = sprintf( __( 'Request timeout error. Please check if the firewall or any security plugin is blocking the outgoing HTTP/HTTPS requests to templates.cartflows.com or not. %1$1sTo resolve this issue, please check this %2$2sarticle%3$3s.', 'cartflows' ), '<br><br>', '<a target="_blank" href="https://cartflows.com/docs/request-timeout-error-while-importing-the-flow-step-templates/?utm_source=dashboard&utm_medium=free-cartflows&utm_campaign=docs">', '</a>' );
 
 			wp_send_json_error(
 				array(
@@ -1040,10 +1048,20 @@ class Importer extends AjaxBase {
 	/**
 	 * Create Simple Step
 	 *
-	 * @param array $args Rest API Arguments.
+	 * @param array  $args Rest API Arguments.
+	 * @param string $action action name to check nonce.
+	 *
 	 * @return void
 	 */
-	public function import_single_step( $args = array() ) {
+	public function import_single_step( $args, $action ) {
+
+		/**
+		 * Nonce verification
+		 */
+		if ( ! check_ajax_referer( $action, 'security', false ) ) {
+			$response_data = array( 'message' => __( 'Nonce verification failed.', 'cartflows' ) );
+			wp_send_json_error( $response_data );
+		}
 
 		wcf()->logger->import_log( 'STARTED! Importing Step' );
 
@@ -1103,7 +1121,13 @@ class Importer extends AjaxBase {
 		$this->import_post_meta( $new_step_id, $response );
 
 		if ( 'checkout' === $step_type ) {
-			$this->update_store_checkout_template_data( $new_step_id, $response );
+
+			$posted_data = array(
+				'primary_color' => isset( $_POST['primary_color'] ) ? sanitize_text_field( wp_unslash( $_POST['primary_color'] ) ) : '',
+				'site_logo'     => isset( $_POST['site_logo'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['site_logo'] ) ) : '',
+			);
+
+			$this->update_store_checkout_template_data( $new_step_id, $response, $posted_data );
 		}
 
 		/* Imported Step */
@@ -1182,23 +1206,19 @@ class Importer extends AjaxBase {
 	 *
 	 * @param int   $post_id newly created steps ID.
 	 * @param array $response data received from from the imported step.
+	 * @param array $posted_data post data.
 	 *
 	 * @return void
 	 */
-	public function update_store_checkout_template_data( $post_id, $response ) {
+	public function update_store_checkout_template_data( $post_id, $response, $posted_data ) {
 
 		$store_checkout_id   = get_option( '_cartflows_store_checkout', false );
 		$current_flow_id     = (int) wcf()->utils->get_flow_id_from_step_id( $post_id );
 		$default_page_bulder = \Cartflows_Helper::get_common_setting( 'default_page_builder' );
 
-		if( empty( $_POST['primary_color'] ) && empty( $_POST['site_logo'] ) ){ // phpcs:ignore
+		if ( empty( $posted_data['primary_color'] ) && empty( $posted_data['site_logo'] ) ) {
 			return;
 		}
-
-		$posted_data = array(
-			'primary_color' => isset( $_POST['primary_color'] ) ? sanitize_text_field( wp_unslash( $_POST['primary_color'] ) ) : '', // phpcs:ignore
-			'site_logo'     => isset( $_POST['site_logo'] ) ? array_map( 'esc_attr', wp_unslash( $_POST['site_logo'] ) ) : '', // phpcs:ignore
-		);
 
 		if ( $store_checkout_id !== $current_flow_id ) {
 			return;

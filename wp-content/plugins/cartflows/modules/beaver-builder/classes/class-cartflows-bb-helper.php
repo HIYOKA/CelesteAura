@@ -9,9 +9,10 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
 if ( ! class_exists( 'Cartflows_BB_Helper' ) ) {
 	/**
-	 * This class initializes BB Ultiamte Addon Helper
+	 * This class initializes BB Ultimate Addon Helper
 	 *
 	 * @class Cartflows_BB_Helper
 	 */
@@ -43,10 +44,10 @@ if ( ! class_exists( 'Cartflows_BB_Helper' ) ) {
 		/**
 		 * Initializes an array to replace recursive function
 		 *
-		 * @param var   $color returns the bas values.
+		 * @param string $color returns the bas values.
 		 *
-		 * @param array $opacity returns the replacements values.
-		 * @param array $is_array returns the replacements values.
+		 * @param array  $opacity returns the replacements values.
+		 * @param array  $is_array returns the replacements values.
 		 */
 		public static function cartflows_bb_hex2rgba( $color, $opacity = false, $is_array = false ) {
 
@@ -160,7 +161,7 @@ if ( ! class_exists( 'Cartflows_BB_Helper' ) ) {
 		 */
 		public static function wcf_is_bb_setting_page() {
 
-			if ( is_admin() && isset( $_GET['page'] ) && 'fl-builder-settings' === sanitize_text_field( $_GET['page'] ) ) { //phpcs:ignore
+			if ( is_admin() && isset( $_GET['page'] ) && 'fl-builder-settings' === sanitize_text_field( $_GET['page'] ) ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				return true;
 			}
 

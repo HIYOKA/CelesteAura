@@ -51,10 +51,11 @@ class Cartflows_Woo_Hooks {
 	 */
 	public function register_wc_hooks() {
 
-        if ( isset( $_GET['wc-ajax'] ) && 'update_order_review' === $_GET['wc-ajax'] ) { //phpcs:ignore
+		// Using global variable on WordPress hooks.Hence ignoring nonce verification.
+		if ( isset( $_GET['wc-ajax'] ) && 'update_order_review' === $_GET['wc-ajax'] ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$post_data = array();
 
-			$post_raw_data = isset( $_POST['post_data'] ) ? sanitize_text_field( wp_unslash( $_POST['post_data'] ) ) : ''; //phpcs:ignore
+			$post_raw_data = isset( $_POST['post_data'] ) ? sanitize_text_field( wp_unslash( $_POST['post_data'] ) ) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Missing
 
 			parse_str( $post_raw_data, $post_data );
 

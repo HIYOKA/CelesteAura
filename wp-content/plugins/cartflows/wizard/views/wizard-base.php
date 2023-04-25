@@ -22,7 +22,7 @@ set_current_screen();
 			addLoadEvent = function(func){
 				if(typeof jQuery!="undefined")jQuery(document).ready(func);else if(typeof wpOnload!='function'){wpOnload=func;}else{var oldonload=wpOnload;wpOnload=function(){oldonload();func();}}
 			};
-			var ajaxurl = '<?php echo admin_url( 'admin-ajax.php', 'relative' ); ?>';
+			var ajaxurl = '<?php echo esc_url( admin_url( 'admin-ajax.php', 'relative' ) ); ?>';
 			var pagenow = '';
 		</script>
 		<?php wp_print_scripts( array( 'cartflows-wizard', 'cartflows-setup-helper' ) ); ?>

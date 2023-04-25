@@ -78,7 +78,7 @@ class Cartflows_BB_Editor {
 					$localize_script   = '<script type="text/javascript">';
 					$localize_script  .= 'var CartFlowsBBVars = ' . wp_json_encode( $cartflows_bb_vars ) . ';';
 					$localize_script  .= '</script>';
-					echo $localize_script;
+					echo $localize_script; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				}
 			);
 

@@ -184,7 +184,7 @@ if ( ! class_exists( 'Cartflows_Compatibility' ) ) {
 		 */
 		public function is_divi_builder_preview() {
 
-			if ( isset( $_GET['et_fb'] ) && '1' === $_GET['et_fb'] ) { //phpcs:ignore
+			if ( isset( $_GET['et_fb'] ) && '1' === $_GET['et_fb'] ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				return true;
 			}
 
@@ -392,8 +392,8 @@ if ( ! class_exists( 'Cartflows_Compatibility' ) ) {
 		 * @return boolean True if current if is being rendered is not being edited.
 		 */
 		private function is_thrive_builder_page( $post_id ) {
-			$tve  = ( isset( $_GET['tve'] ) && 'true' == $_GET['tve'] ) ? true : false; //phpcs:ignore
-			$post = isset( $_GET['post'] ) ? intval( wp_unslash( $_GET['post'] ) ) : false; //phpcs:ignore
+			$tve  = ( isset( $_GET['tve'] ) && 'true' == $_GET['tve'] ) ? true : false; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$post = isset( $_GET['post'] ) ? intval( wp_unslash( $_GET['post'] ) ) : false; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 			return ( true == $tve && $post_id !== $post );
 		}
@@ -454,8 +454,8 @@ if ( ! class_exists( 'Cartflows_Compatibility' ) ) {
 						$wpdb->prefix . 'postmeta',
 						array(
 							'post_id'    => $post_id,
-							'meta_key'   => $key,//phpcs:ignore
-							'meta_value' => $template, //phpcs:ignore
+							'meta_key'   => $key,
+							'meta_value' => $template, //phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 						)
 					);// db call ok;.
 
@@ -487,7 +487,7 @@ if ( ! class_exists( 'Cartflows_Compatibility' ) ) {
 
 				if ( $load_fa ) {
 
-					wp_enqueue_style( 'font-awesome', OCEANWP_CSS_DIR_URI . 'third/font-awesome.min.css', false );//phpcs:ignore
+					wp_enqueue_style( 'font-awesome', OCEANWP_CSS_DIR_URI . 'third/font-awesome.min.css', array(), CARTFLOWS_VER );
 				}
 
 				$custom_css = '

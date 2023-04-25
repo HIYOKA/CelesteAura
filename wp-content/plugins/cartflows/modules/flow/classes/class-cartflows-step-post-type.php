@@ -135,7 +135,7 @@ class Cartflows_Step_Post_Type {
 
 				return $file;
 			} else {
-				echo $file;
+				echo wp_kses_post( $file );
 			}
 		}
 
@@ -410,7 +410,7 @@ class Cartflows_Step_Post_Type {
 				/* translators: %s: singular custom post type name */
 				4  => sprintf( __( '%s updated.', 'cartflows' ), $singular_name ),
 				/* translators: %1$s: singular custom post type name ,%2$s: date and time of the revision */
-				5  => isset( $_GET['revision'] ) ? sprintf( __( '%1$s restored to revision from %2$s', 'cartflows' ), $singular_name, wp_post_revision_title( (int) $_GET['revision'], false ) ) : false, //phpcs:ignore
+				5  => isset( $_GET['revision'] ) ? sprintf( __( '%1$s restored to revision from %2$s', 'cartflows' ), $singular_name, wp_post_revision_title( (int) $_GET['revision'], false ) ) : false, //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				/* translators: %s: singular custom post type name */
 				6  => sprintf( __( '%s published.', 'cartflows' ), $singular_name ),
 				/* translators: %s: singular custom post type name */
@@ -486,9 +486,9 @@ class Cartflows_Step_Post_Type {
 		global $pagenow;
 
 		// Check current admin page. If step post type view redirect it to flow.
-		if ( 'edit.php' === $pagenow && isset( $_GET['post_type'] ) && CARTFLOWS_STEP_POST_TYPE === $_GET['post_type'] ) { //phpcs:ignore
+		if ( 'edit.php' === $pagenow && isset( $_GET['post_type'] ) && CARTFLOWS_STEP_POST_TYPE === $_GET['post_type'] ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
-			if ( isset( $_GET['debug'] ) && $_GET['debug'] ) { //phpcs:ignore
+			if ( isset( $_GET['debug'] ) && 'true' === sanitize_text_field( $_GET['debug'] ) ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				return;
 			}
 

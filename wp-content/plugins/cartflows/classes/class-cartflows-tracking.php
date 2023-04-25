@@ -131,10 +131,10 @@ class Cartflows_Tracking {
 			<!-- End Facebook Pixel Script By CartFlows -->";
 
 			if ( 'enable' === self::$fb_pixel_settings['facebook_pixel_tracking_for_site'] ) {
-				echo $fb_script;
+				echo $fb_script; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				$this->trigger_viewcontent_events();
 			} elseif ( wcf()->utils->is_step_post_type() ) {
-				echo $fb_script;
+				echo $fb_script; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				$this->trigger_viewcontent_events();
 			}
 
@@ -161,7 +161,7 @@ class Cartflows_Tracking {
 			</script>";
 		}
 
-		echo $event_script;
+		echo $event_script; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	/**
@@ -183,9 +183,9 @@ class Cartflows_Tracking {
 			</script>";
 		}
 
-		if ( isset( $_GET['wcf-order'] ) && 'enable' === self::$fb_pixel_settings['facebook_pixel_purchase_complete'] ) { //phpcs:ignore
+		if ( isset( $_GET['wcf-order'] ) && 'enable' === self::$fb_pixel_settings['facebook_pixel_purchase_complete'] ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
-			$order_id = intval( $_GET['wcf-order'] ); //phpcs:ignore
+			$order_id         = intval( $_GET['wcf-order'] ); //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$purchase_details = $this->prepare_purchase_data_fb_response( $order_id );
 			if ( ! empty( $purchase_details ) ) {
 				$purchase_details = wp_json_encode( $purchase_details );
@@ -198,7 +198,7 @@ class Cartflows_Tracking {
 
 		do_action( 'cartflows_facebook_pixel_events' );
 
-		echo $event_script;
+		echo $event_script; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	/**
@@ -282,7 +282,7 @@ class Cartflows_Tracking {
 			$params['num_items'] = $cart_items_count;
 			$params['domain']    = get_site_url();
 			$params['language']  = get_bloginfo( 'language' );
-			$params['userAgent']          = wp_unslash( $_SERVER['HTTP_USER_AGENT'] ); //phpcs:ignore
+			$params['userAgent'] = isset( $_SERVER['HTTP_USER_AGENT'] ) ? wc_clean( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ) ) : ''; //phpcs:ignore WordPressVIPMinimum.Variables.RestrictedVariables.cache_constraints___SERVER__HTTP_USER_AGENT__
 		}
 
 		return $params;
@@ -398,9 +398,9 @@ class Cartflows_Tracking {
 			//phpcs:enable WordPress.WP.EnqueuedResources.NonEnqueuedScript
 
 			if ( 'enable' === self::$ga_settings['enable_google_analytics_for_site'] ) {
-				echo $ga_script;
+				echo $ga_script; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			} elseif ( wcf()->utils->is_step_post_type() ) {
-				echo $ga_script;
+				echo $ga_script; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 
 			// Trigger other events on CartFlows pages only.
@@ -437,9 +437,9 @@ class Cartflows_Tracking {
 			}
 		}
 
-		if ( isset( $_GET['wcf-order'] ) && 'enable' === self::$ga_settings['enable_purchase_event'] ) { //phpcs:ignore
+		if ( isset( $_GET['wcf-order'] ) && 'enable' === self::$ga_settings['enable_purchase_event'] ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
-			$order_id = intval( $_GET['wcf-order'] ); //phpcs:ignore
+			$order_id = intval( $_GET['wcf-order'] ); //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 			$purchase_details = $this->get_ga_purchase_transactions_data( $order_id );
 
@@ -456,76 +456,8 @@ class Cartflows_Tracking {
 
 		do_action( 'cartflows_google_analytics_events' );
 
-		echo $event_script;
+		echo $event_script; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
-
-	/**
-	 * Set cookies to send ga data.
-	 *
-	 * @todo Need to remove this function in CartFlows 1.6.18 update.
-	 * @param int   $order_id order id.
-	 * @param array $offer_data offer product data.
-	 */
-	public static function send_ga_data_if_enabled( $order_id, $offer_data = array() ) {
-
-		_deprecated_function( __METHOD__, '1.6.15' );
-
-		// For backword compatibility we are sending the offer purchase detailsarray, so no error occur at frontend & purchase event called one time only.
-		// Need to delete this function in update 1.6.18.
-
-		if ( 'enable' === self::$ga_settings['enable_google_analytics'] && 'enable' === self::$ga_settings['enable_purchase_event'] ) {
-
-			setcookie( 'wcf_ga_trans_data', wp_json_encode( self::get_ga_offer_purchase_transactions_data( $order_id, $offer_data ) ), strtotime( '+1 year' ), '/' ); //phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.cookies_setcookie
-		}
-	}
-
-	/**
-	 * Prepare the offer purchase event data for the facebook pixel.
-	 *
-	 * @todo Remove this function after 3 update. Added for backword compatibility.
-	 * @since 1.6.15
-	 * @param integer $order_id order id.
-	 * @param array   $offer_data offer data.
-	 */
-	public static function get_ga_offer_purchase_transactions_data( $order_id, $offer_data ) {
-
-		$purchase_data = array();
-
-		if ( empty( $offer_data ) ) {
-			return $purchase_data;
-		}
-
-		$order = wc_get_order( $order_id );
-
-		if ( ! $order ) {
-			return $purchase_data;
-		}
-
-		$ga_tracking_id = esc_attr( self::$ga_settings['google_analytics_id'] );
-
-		$purchase_data = array(
-			'send_to'         => $ga_tracking_id,
-			'event_category'  => 'Enhanced-Ecommerce',
-			'transaction_id'  => $order_id,
-			'affiliation'     => get_bloginfo( 'name' ),
-			'value'           => self::format_number( $offer_data['total'] ),
-			'currency'        => wcf()->options->get_checkout_meta_value( $order_id, '_order_currency' ),
-			'shipping'        => $offer_data['shipping_fee_tax'],
-			'tax'             => self::format_number( ( $offer_data['shipping_fee_tax'] - $offer_data['shipping_fee'] ) + ( $offer_data['qty'] * ( $offer_data['unit_price_tax'] - intval( $offer_data['unit_price'] ) ) ) ),
-			'items'           => array(
-				array(
-					'id'       => $offer_data['id'],
-					'name'     => $offer_data['name'],
-					'quantity' => $offer_data['qty'],
-					'price'    => self::format_number( $offer_data['unit_price_tax'] ),
-				),
-			),
-			'non_interaction' => true,
-		);
-
-		return $purchase_data;
-	}
-
 
 	/**
 	 * Prepare cart data for GA response.

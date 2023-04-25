@@ -42,7 +42,7 @@ if ( ! class_exists( 'Cartflows_Change_Template_Batch' ) && class_exists( 'WP_Ba
 
 			wcf()->logger->log( '(✓) Step ID ' . $post_id );
 			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-				wcf()->logger->sync_log( 'Processed:' . $post_id ); //phpcs:ignore
+				wcf()->logger->sync_log( 'Processed:' . $post_id );
 			}
 			update_post_meta( $post_id, '_wp_page_template', 'cartflows-default' );
 			return false;
@@ -57,7 +57,7 @@ if ( ! class_exists( 'Cartflows_Change_Template_Batch' ) && class_exists( 'WP_Ba
 		protected function complete() {
 			parent::complete();
 			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-				wcf()->logger->sync_log( 'Process Complete' );//phpcs:ignore
+				wcf()->logger->sync_log( 'Process Complete' );
 			}
 		}
 	}

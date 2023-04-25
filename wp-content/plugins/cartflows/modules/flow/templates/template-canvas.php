@@ -33,7 +33,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	$atts_string = Cartflows_Helper::get_cartflows_container_atts();
 
 	?>
-	<div class="cartflows-container" <?php echo trim( $atts_string ); ?>>
+	<?php // HTML attributes are already sanitized individually. ?>
+	<div class="cartflows-container" <?php echo trim( $atts_string ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 
 	<?php
 	do_action( 'cartflows_container_top' );

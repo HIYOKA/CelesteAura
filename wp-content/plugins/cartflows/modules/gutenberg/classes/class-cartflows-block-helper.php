@@ -952,7 +952,7 @@ if ( ! class_exists( 'Cartflows_Block_Helper' ) ) {
 		 */
 		public static function get_css_value( $value = '', $unit = '' ) {
 
-			if ( '' == $value ) { // phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
+			if ( '' == $value ) {
 				return $value;
 			}
 

@@ -20,14 +20,14 @@ if ( ! apply_filters( 'cartflows_show_mobile_order_summary_collapsed', true ) ) 
 ?>
 
 <!-- Mobile responsive order review template -->
-<div class="wcf-collapsed-order-review-section <?php echo $visibility_class; ?>">
+<div class="wcf-collapsed-order-review-section <?php echo esc_attr( $visibility_class ); ?>">
 	<div class='wcf-order-review-toggle'>
 		<div class='wcf-order-review-toggle-button-wrap'>
-			<span class='wcf-order-review-toggle-text'><?php echo Cartflows_Checkout_Markup::get_instance()->get_order_review_toggle_texts(); ?></span>
+			<span class='wcf-order-review-toggle-text'><?php echo esc_html( Cartflows_Checkout_Markup::get_instance()->get_order_review_toggle_texts() ); ?></span>
 			<span class='wcf-order-review-toggle-button cartflows-icon cartflows-cheveron-down'></span>
 			<span class='wcf-order-review-toggle-button cartflows-icon cartflows-cheveron-up'></span>
 		</div>
-		<div class='wcf-order-review-total'><?php echo wp_strip_all_tags( WC()->cart->get_total() ); ?></div>
+		<div class='wcf-order-review-total'><?php echo esc_html( wp_strip_all_tags( WC()->cart->get_total() ) ); ?></div>
 	</div>
 
 	<div class="wcf-cartflows-review-order-wrapper">

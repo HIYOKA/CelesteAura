@@ -73,7 +73,7 @@ class Cartflows_Permalink {
 			} else {
 
 				// If elementor page preview, return post link as it is.
-				if ( isset( $_REQUEST['elementor-preview'] ) ) { //phpcs:ignore
+				if ( isset( $_REQUEST['elementor-preview'] ) ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 					return $post_link;
 				}
 

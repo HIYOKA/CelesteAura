@@ -1,4 +1,4 @@
-<?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName
+<?php
 /**
  * Elementor Classes.
  *
@@ -133,7 +133,7 @@ class CartFlows_Next_Step_Button extends Widget_Base {
 	 * @since 1.11.8
 	 * @access protected
 	 */
-	protected function register_controls() { // phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
+	protected function register_controls() {
 
 		// Content Tab.
 		$this->register_button_content_controls();
@@ -579,7 +579,7 @@ class CartFlows_Next_Step_Button extends Widget_Base {
 
 		if ( '' !== $icon && $position === $settings['icon_position'] ) {
 			?>
-			<span class="cartflows-elementor__next-step-button-icon-wrap <?php echo $icon_position_class; ?>">
+			<span class="cartflows-elementor__next-step-button-icon-wrap <?php echo esc_attr( $icon_position_class ); ?>">
 				<?php Icons_Manager::render_icon( $settings['icon'], array( 'aria-hidden' => 'true' ) ); ?>
 			</span>
 			<?php
@@ -605,7 +605,7 @@ class CartFlows_Next_Step_Button extends Widget_Base {
 
 		<div class="cartflows-elementor__next-step-button">
 			<div class="cartflows-elementor__next-step-button-wrap">
-				<a href="?class=wcf-next-step" class="cartflows-elementor__next-step-button-link elementor-button elementor-button-link elementor-size-<?php echo $button_size; ?> elementor-animation-<?php echo $settings['hover_animation']; ?>">
+				<a href="?class=wcf-next-step" class="cartflows-elementor__next-step-button-link elementor-button elementor-button-link elementor-size-<?php echo esc_attr( $button_size ); ?> elementor-animation-<?php echo esc_attr( $settings['hover_animation'] ); ?>">
 
 					<div class="cartflows-elementor__next-step-inner-wrap">
 
@@ -613,11 +613,11 @@ class CartFlows_Next_Step_Button extends Widget_Base {
 							<span class="cartflows-elementor__next-step-button-content-wrap">
 								<div class="cartflows-elementor__next-step-button-title-wrap">
 									<?php $this->render_button_icon( 'before_title', $settings ); ?>
-										<span class="cartflows-elementor__next-step-button-title"><?php echo $title; ?></span>
+										<span class="cartflows-elementor__next-step-button-title"><?php echo esc_html( $title ); ?></span>
 									<?php $this->render_button_icon( 'after_title', $settings ); ?>
 								</div>
 								<?php if ( '' !== $settings['sub_title'] ) { ?>
-									<div class="cartflows-elementor__next-step-button-sub-title"><?php echo $sub_title; ?></div>
+									<div class="cartflows-elementor__next-step-button-sub-title"><?php echo esc_html( $sub_title ); ?></div>
 								<?php } ?>
 							</span>
 						<?php $this->render_button_icon( 'after_title_sub_title', $settings ); ?>
@@ -690,7 +690,7 @@ class CartFlows_Next_Step_Button extends Widget_Base {
 	 * @since 1.11.8
 	 * @access protected
 	 */
-	protected function content_template() { // phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
+	protected function content_template() {
 		$this->render_next_step_button();
 	}
 

@@ -77,6 +77,7 @@ class Cartflows_Plugin_Update_Notifications {
 					<div class="wcf-plugin-update-notification__message">
 						<?php
 							printf(
+								// translators: %s upgrade notice message.
 								__( '%s', 'cartflows' ),
 								esc_html( $data['upgrade_notice'] )
 							);

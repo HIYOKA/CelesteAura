@@ -82,17 +82,21 @@ class Cartflows_Wd_Flow_Product_Meta {
 	 */
 	public function json_search_flows() {
 
+		if ( ! current_user_can( 'cartflows_manage_flows_steps' ) ) {
+			wp_send_json_error( array( 'message' => __( 'Permission denied.', 'cartflows' ) ) );
+		}
+
 		if ( isset( $_POST['security'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['security'] ) ), 'wcf_json_search_flows' ) ) {
 
 			global $wpdb;
 
-			$term = (string) urldecode( sanitize_text_field( wp_unslash( $_POST['term'] ) ) ); // phpcs:ignore
+			$term = isset( $_POST['term'] ) ? (string) urldecode( sanitize_text_field( wp_unslash( $_POST['term'] ) ) ) : '';
 
 			if ( empty( $term ) ) {
 				die();
 			}
 
-			$posts = $wpdb->get_results( // phpcs:ignore
+			$posts = $wpdb->get_results(
 				$wpdb->prepare(
 					"SELECT *
 								FROM {$wpdb->prefix}posts
@@ -103,7 +107,7 @@ class Cartflows_Wd_Flow_Product_Meta {
 					$wpdb->esc_like( $term ) . '%',
 					'publish'
 				)
-			);
+			); // db call ok; no-cache ok.
 
 			$flows_found = array();
 
@@ -147,17 +151,7 @@ class Cartflows_Wd_Flow_Product_Meta {
 		);
 
 		/* translators: %1$s,%2$s HTML content */
-		echo '<span class="wcf-shortcode-notice"><p>' . sprintf( __( 'If you want to start the flow from the product page, select the appropriate flow & button text field if required. Refer %1$sthis article%2$s for more information.', 'cartflows' ), '<a href="https://cartflows.com/docs/how-to-start-a-flow-from-product-page/" style="text-decoration:none;" target="_blank">', '</a>' );
-
-		/* //phpcs:ignore
-		Commented.
-		echo '<hr>';
-		echo '<span class="wcf-shortcode-notice" ><p>' . __( 'If you want to add this product\'s add-to-cart button in the flow\'s landing step, then use the below shortcode.', 'cartflows' );
-		echo '<p class="form-field cartflows_atc_shortocde_field ">';
-			echo '<label for="cartflows_atc_shortocde">' . __( 'Add to Cart Shortcode', 'cartflows' ) . '</label>';
-			echo '<input type="text" class="short" style="" name="cartflows_atc_shortocde" id="cartflows_atc_shortocde" value="' . sprintf( esc_html( '[cartflows_product_add_to_cart id="%s" text="Buy Now" ]' ), get_the_ID() ) . '" readonly="readonly">';
-		echo '</p>';
-		*/
+		echo '<span class="wcf-shortcode-notice"><p>' . wp_kses_post( sprintf( __( 'If you want to start the flow from the product page, select the appropriate flow & button text field if required. Refer %1$sthis article%2$s for more information.', 'cartflows' ), '<a href="https://cartflows.com/docs/how-to-start-a-flow-from-product-page/?utm_source=dashboard&utm_medium=free-cartflows&utm_campaign=docs" style="text-decoration:none;" target="_blank">', '</a>' ) );
 
 		echo '</div>';
 
@@ -173,27 +167,27 @@ class Cartflows_Wd_Flow_Product_Meta {
 		global $woocommerce;
 
 		echo '<p class="form-field ' . esc_attr( $field['id'] ) . '_field ">
-		
+
 		<label for="' . esc_attr( $field['id'] ) . '">' . wp_kses_post( $field['label'] ) . '</label>
-		
-		<select data-action="wcf_json_search_flows" 
-		id="' . esc_attr( $field['id'] ) . '" 
-		name="' . esc_attr( $field['name'] ) . '" 
-		class="wcf-flows-search ' . esc_attr( $field['class'] ) . '" 
-		data-allow_clear="allow_clear" 
-		data-placeholder="' . esc_attr( $field['placeholder'] ) . '" 
+
+		<select data-action="wcf_json_search_flows"
+		id="' . esc_attr( $field['id'] ) . '"
+		name="' . esc_attr( $field['name'] ) . '"
+		class="wcf-flows-search ' . esc_attr( $field['class'] ) . '"
+		data-allow_clear="allow_clear"
+		data-placeholder="' . esc_attr( $field['placeholder'] ) . '"
 		style="width:50%" >';
 
 		if ( ! empty( $field['value'] ) ) {
 			// posts.
 			$post_title = get_the_title( intval( $field['value'] ) );
-			echo '<option value="' . $field['value'] . '" selected="selected" >' . $post_title . '</option>';
+			echo '<option value="' . esc_attr( $field['value'] ) . '" selected="selected" >' . esc_html( $post_title ) . '</option>';
 		}
 		echo '</select> ';
 		if ( ! empty( $field['description'] ) ) {
 			echo '<span class="description">' . wp_kses_post( $field['description'] ) . '</span>';
 		}
-		echo '<input type="hidden" name="wcf_json_search_flows_nonce" value="' . wp_create_nonce( 'wcf_json_search_flows' ) . '" >';
+		echo '<input type="hidden" name="wcf_json_search_flows_nonce" value="' . esc_attr( wp_create_nonce( 'wcf_json_search_flows' ) ) . '" >';
 		echo '</p>';
 
 	}
@@ -206,10 +200,9 @@ class Cartflows_Wd_Flow_Product_Meta {
 	public function save_product_meta( $post_id ) {
 
 		$product = wc_get_product( $post_id );
-
-		$next_step = isset( $_POST['cartflows_redirect_flow_id'] ) ? intval( $_POST['cartflows_redirect_flow_id'] ) : ''; //phpcs:ignore
-
-		$add_to_cart_text = isset( $_POST['cartflows_add_to_cart_text'] ) ? sanitize_text_field( $_POST['cartflows_add_to_cart_text'] ) : '';  //phpcs:ignore
+		// Calling this function on WooCommerce action. So no need for nonce verification.
+		$next_step        = isset( $_POST['cartflows_redirect_flow_id'] ) ? intval( $_POST['cartflows_redirect_flow_id'] ) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$add_to_cart_text = isset( $_POST['cartflows_add_to_cart_text'] ) ? sanitize_text_field( $_POST['cartflows_add_to_cart_text'] ) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Missing
 
 		$product->update_meta_data( 'cartflows_redirect_flow_id', $next_step );
 		$product->update_meta_data( 'cartflows_add_to_cart_text', $add_to_cart_text );

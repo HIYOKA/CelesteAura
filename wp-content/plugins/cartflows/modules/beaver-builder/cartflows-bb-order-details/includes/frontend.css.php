@@ -5,6 +5,8 @@
  * @package cartflows
  */
 
+//phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
+
 global $post;
 ?>
 
@@ -74,8 +76,8 @@ if ( class_exists( 'FLBuilderCSS' ) ) {
 		array(
 			'settings'     => $settings,
 			'setting_name' => 'sections_content_typo',
-			'selector'     => ".fl-node-$id .wcf-thankyou-wrap .woocommerce-order .woocommerce-order-overview.woocommerce-thankyou-order-details.order_details li, 
-			.fl-node-$id .wcf-thankyou-wrap .woocommerce-order .woocommerce-order-details .woocommerce-table, 
+			'selector'     => ".fl-node-$id .wcf-thankyou-wrap .woocommerce-order .woocommerce-order-overview.woocommerce-thankyou-order-details.order_details li,
+			.fl-node-$id .wcf-thankyou-wrap .woocommerce-order .woocommerce-order-details .woocommerce-table,
 			.fl-node-$id .wcf-thankyou-wrap .woocommerce-order .woocommerce-customer-details address,
 			.fl-node-$id .woocommerce-order-downloads table.shop_table,
 			.fl-node-$id .cartflows-bb__order-details-form .wcf-thankyou-wrap p:not( .woocommerce-thankyou-order-received )",

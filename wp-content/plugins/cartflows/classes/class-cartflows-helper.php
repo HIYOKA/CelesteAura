@@ -247,7 +247,7 @@ class Cartflows_Helper {
 				),
 			),
 			'gutenberg'      => array(
-				'title'   => 'Ultimate Addons for Gutenberg',
+				'title'   => 'Spectra',
 				'plugins' => array(
 					array(
 						'slug'   => 'ultimate-addons-for-gutenberg', // For download from wp.org.
@@ -694,7 +694,10 @@ class Cartflows_Helper {
 	 */
 	public static function get_cartflows_container_atts() {
 
-		$attributes  = apply_filters( 'cartflows_container_atts', array() );
+		$attributes  = apply_filters(
+			'cartflows_container_atts',
+			array()
+		);
 		$atts_string = '';
 
 		foreach ( $attributes as $key => $value ) {
@@ -811,65 +814,6 @@ class Cartflows_Helper {
 		$purchase_data['transaction_id']     = $order_id;
 
 		return $purchase_data;
-	}
-
-	/**
-	 * Prepare cart data for fb response.
-	 *
-	 * @todo Remove this function in 1.6.15 as it is added in cartflows-tracking file.
-	 * @todo Update the reference of this function in CartFlows Pro after removing this function.
-	 *
-	 * @return array
-	 */
-	public static function prepare_cart_data_fb_response() {
-
-		_deprecated_function( __METHOD__, '1.6.15' );
-
-		$params = array();
-
-		if ( ! wcf()->is_woo_active ) {
-			return $params;
-		}
-
-		$cart_total       = WC()->cart->get_cart_contents_total();
-		$cart_items_count = WC()->cart->get_cart_contents_count();
-		$items            = WC()->cart->get_cart();
-		$product_names    = '';
-		$category_names   = '';
-		$cart_contents    = array();
-		foreach ( $items as $item => $value ) {
-
-			$_product                = wc_get_product( $value['product_id'] );
-			$params['content_ids'][] = (string) $_product->get_id();
-			$product_names           = $product_names . ', ' . $_product->get_title();
-			$category_names          = $category_names . ', ' . wp_strip_all_tags( wc_get_product_category_list( $_product->get_id() ) );
-			array_push(
-				$cart_contents,
-				array(
-					'id'         => $_product->get_id(),
-					'name'       => $_product->get_title(),
-					'quantity'   => $value['quantity'],
-					'item_price' => $_product->get_price(),
-				)
-			);
-		}
-
-		$user                         = wp_get_current_user();
-		$roles                        = implode( ', ', $user->roles );
-		$params['content_name']       = substr( $product_names, 2 );
-		$params['category_name']      = substr( $category_names, 2 );
-		$params['user_roles']         = $roles;
-		$params['plugin']             = 'CartFlows';
-		$params['contents']           = wp_json_encode( $cart_contents );
-		$params['content_type']       = 'product';
-		$params['value']              = $cart_total;
-		$params['num_items']          = $cart_items_count;
-		$params['currency']           = get_woocommerce_currency();
-		$params['language']           = get_bloginfo( 'language' );
-		$params['userAgent']          = wp_unslash( $_SERVER['HTTP_USER_AGENT'] ); //phpcs:ignore
-		$params['product_catalog_id'] = '';
-		$params['domain']             = get_site_url();
-		return $params;
 	}
 
 	/**
@@ -1060,7 +1004,7 @@ class Cartflows_Helper {
 
 		$pb_data = array(
 			'elementor'      => 'Elementor',
-			'gutenberg'      => 'Gutenberg',
+			'gutenberg'      => 'Spectra',
 			'beaver-builder' => 'Beaver Builder',
 			'divi'           => 'Divi',
 		);
@@ -1168,6 +1112,7 @@ class Cartflows_Helper {
 			$list_files = array_map( 'basename', $list_files );
 			foreach ( $list_files as $file_key => $file_name ) {
 				if ( false !== strpos( $file_name, 'cartflows-' . $page_builder_slug . '-flows-and-steps' ) ) {
+					// file_get_contents is fine for local files. https://github.com/WordPress/WordPress-Coding-Standards/pull/1374/files#diff-400e43bc09c24262b43f26fce487fdabR43-R52.
 					$data = json_decode( file_get_contents( $dir . '/' . $file_name ), true ); //phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 					if ( ! empty( $data ) ) {
 						/*
@@ -1219,7 +1164,28 @@ class Cartflows_Helper {
 
 	}
 
+	/**
+	 * Maybe update flow step order.
+	 *
+	 * @param int   $flow_id flow id.
+	 * @param array $flow_steps step list.
+	 *
+	 * @return array flow_steps step list.
+	 */
+	public function maybe_update_flow_steps( $flow_id, $flow_steps ) {
 
+		if ( absint( self::get_global_setting( '_cartflows_store_checkout' ) ) === $flow_id ) {
+			$key = array_search( 'thankyou', wp_list_pluck( $flow_steps, 'type' ), true );
+			if ( ! $key ) {
+				return $flow_steps;
+			} else {
+				$thankyou     = array_splice( $flow_steps, intval( $key ), 1 );
+				$flow_steps[] = $thankyou[0];
+			}
+		}
+
+		return $flow_steps;
+	}
 
 
 }

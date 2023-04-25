@@ -121,9 +121,9 @@ class Cartflows_Optin_Markup {
 
 		if ( _is_wcf_doing_optin_ajax() ) {
 
-			if ( isset( $_POST['billing_email'] ) && ! empty( $_POST['billing_email'] ) ) { //phpcs:ignore
+			if ( isset( $_POST['billing_email'] ) && ! empty( $_POST['billing_email'] ) ) { //phpcs:ignore WordPress.Security.NonceVerification.Missing
 
-				if ( email_exists( sanitize_email( wp_unslash( $_POST['billing_email'] ) ) ) ) { // phpcs:ignore
+				if ( email_exists( sanitize_email( wp_unslash( $_POST['billing_email'] ) ) ) ) { //phpcs:ignore WordPress.Security.NonceVerification.Missing
 					add_filter( 'woocommerce_checkout_registration_required', '__return_false' );
 					add_filter( 'woocommerce_checkout_registration_enabled', '__return_false' );
 				}
@@ -239,8 +239,8 @@ class Cartflows_Optin_Markup {
 
 			if ( $show_optin_preview && 0 === $optin_id ) {
 
-				if( isset( $_POST['id'] ) ){ //phpcs:ignore
-					$optin_id = intval( $_POST['id'] ); //phpcs:ignore
+				if ( isset( $_POST['id'] ) ) { //phpcs:ignore WordPress.Security.NonceVerification.Missing
+					$optin_id = intval( $_POST['id'] ); //phpcs:ignore WordPress.Security.NonceVerification.Missing
 				}
 			}
 		}
@@ -629,7 +629,7 @@ class Cartflows_Optin_Markup {
 						);
 					}
 
-					$uri = explode( '?', $_SERVER['REQUEST_URI'], 2 ); //phpcs:ignore
+					$uri = explode( '?', esc_url_raw( $_SERVER['REQUEST_URI'] ), 2 );
 					$uri = $uri[0];
 
 					$endpoint_url = esc_url( add_query_arg( $query_args, $uri ) );
@@ -649,20 +649,21 @@ class Cartflows_Optin_Markup {
 	 * @return void
 	 */
 	public function save_optin_fields( $order_id, $posted ) {
-
-		if ( isset( $_POST['_wcf_optin_id'] ) ) { //phpcs:ignore
-
-			$optin_id = wc_clean( wp_unslash( $_POST['_wcf_optin_id'] ) ); //phpcs:ignore
+		// We are calling this function on WooCommerce action where nonce is verified.
+		//phpcs:disable WordPress.Security.NonceVerification.Missing
+		if ( isset( $_POST['_wcf_optin_id'] ) ) {
+			$optin_id = intval( wp_unslash( $_POST['_wcf_optin_id'] ) );
 
 			update_post_meta( $order_id, '_wcf_optin_id', $optin_id );
 
-			if ( isset( $_POST['_wcf_flow_id'] ) ) { //phpcs:ignore
+			if ( isset( $_POST['_wcf_flow_id'] ) ) {
 
-				$flow_id = wc_clean( wp_unslash( $_POST['_wcf_flow_id'] ) ); //phpcs:ignore
+				$flow_id = intval( wp_unslash( $_POST['_wcf_flow_id'] ) );
 
 				update_post_meta( $order_id, '_wcf_flow_id', $flow_id );
 			}
 		}
+		//phpcs:enable WordPress.Security.NonceVerification.Missing
 
 	}
 
@@ -674,13 +675,15 @@ class Cartflows_Optin_Markup {
 	 * @return string
 	 */
 	public function after_login_redirect( $redirect, $user ) {
+		// We are calling this function on WooCommerce action where nonce is verified.
+		//phpcs:disable WordPress.Security.NonceVerification.Missing
+		if ( isset( $_POST['_wcf_optin_id'] ) ) {
 
-		if ( isset( $_POST['_wcf_optin_id'] ) ) { //phpcs:ignore
-
-			$optin_id = intval( $_POST['_wcf_optin_id'] ); //phpcs:ignore
+			$optin_id = intval( $_POST['_wcf_optin_id'] );
 
 			$redirect = get_permalink( $optin_id );
 		}
+		//phpcs:enable WordPress.Security.NonceVerification.Missing
 
 		return $redirect;
 	}
@@ -766,7 +769,7 @@ class Cartflows_Optin_Markup {
 	 * @return array
 	 */
 	public function billing_optin_fields( $fields, $country ) {
-
+		//phpcs:disable WordPress.Security.NonceVerification.Missing
 		$show_optin_preview = false;
 
 		if ( is_admin() ) {
@@ -781,8 +784,8 @@ class Cartflows_Optin_Markup {
 				$optin_id = $post->ID;
 			} else {
 
-				if( is_admin() && isset( $_POST['id'] ) ) { //phpcs:ignore
-					$optin_id = intval( $_POST['id'] ); //phpcs:ignore
+				if ( is_admin() && isset( $_POST['id'] ) ) {
+					$optin_id = intval( $_POST['id'] );
 				}
 			}
 		} else {
@@ -811,8 +814,8 @@ class Cartflows_Optin_Markup {
 			'billing_last_name'  => $billing_last_name,
 			'billing_email'      => $billing_email,
 		);
-
 		return apply_filters( 'cartflows_billing_optin_fields', $fields, $country, $optin_id );
+		//phpcs:enable WordPress.Security.NonceVerification.Missing
 	}
 
 

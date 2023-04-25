@@ -1,4 +1,4 @@
-/*! elementor - v3.11.5 - 14-03-2023 */
+/*! elementor - v3.13.0 - 24-04-2023 */
 :root {
   --e-is-device-mode: 0;
 }
@@ -41,15 +41,16 @@
   font-size: 16px;
   transition: var(--e-a-transition-hover);
 }
-.e-responsive-bar-switcher__option:hover, .e-responsive-bar-switcher__option[aria-selected=true] {
-  color: var(--e-a-color-txt-invert);
-  background-color: var(--e-a-color-primary);
+.e-responsive-bar-switcher__option:hover {
+  color: var(--e-a-color-primary-bold);
+  background-color: #310132;
+}
+.e-responsive-bar-switcher__option[aria-selected=true] {
+  background-color: #3A3F45;
+  color: #F9FAFA;
 }
 .e-responsive-bar-switcher__option input {
   display: none;
-}
-.e-responsive-bar-switcher__option input:checked + i {
-  color: #F1F2F3;
 }
 .e-responsive-bar-switcher__option:not(:last-child) {
   -webkit-margin-end: 6px;

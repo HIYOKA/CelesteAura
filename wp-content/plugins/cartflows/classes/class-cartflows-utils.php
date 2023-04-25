@@ -223,21 +223,24 @@ class Cartflows_Utils {
 	/**
 	 * We are using this function mostly in ajax on checkout page
 	 *
-	 * @return bool
+	 * @return mixed
 	 */
 	public function get_checkout_id_from_post_data() {
 
 		$checkout_id = false;
 
-		if ( isset( $_POST['_wcf_checkout_id'] ) ) { //phpcs:ignore
+		//phpcs:disable WordPress.Security.NonceVerification
 
-			$checkout_id = filter_var( wp_unslash( $_POST['_wcf_checkout_id'] ), FILTER_SANITIZE_NUMBER_INT ); //phpcs:ignore
+		if ( isset( $_POST['_wcf_checkout_id'] ) ) {
 
-		} elseif ( isset( $_GET['wcf_checkout_id'] ) ) { //phpcs:ignore
+			$checkout_id = intval( $_POST['_wcf_checkout_id'] );
 
-			$checkout_id = filter_var( wp_unslash( $_GET['wcf_checkout_id'] ), FILTER_SANITIZE_NUMBER_INT ); //phpcs:ignore
+		} elseif ( isset( $_GET['wcf_checkout_id'] ) ) {
+
+			$checkout_id = intval( $_GET['wcf_checkout_id'] );
 
 		}
+		//phpcs:enable WordPress.Security.NonceVerification
 
 		return $checkout_id;
 	}
@@ -251,15 +254,19 @@ class Cartflows_Utils {
 
 		$flow_id = false;
 
-		if ( isset( $_POST['_wcf_flow_id'] ) ) { //phpcs:ignore
+		//phpcs:disable WordPress.Security.NonceVerification
 
-			$flow_id = filter_var( wp_unslash( $_POST['_wcf_flow_id'] ), FILTER_SANITIZE_NUMBER_INT ); //phpcs:ignore
+		if ( isset( $_POST['_wcf_flow_id'] ) ) {
 
-		} elseif ( isset( $_GET['wcf_checkout_id'] ) ) { //phpcs:ignore
+			$flow_id = intval( $_POST['_wcf_flow_id'] );
 
-			$flow_id = wcf()->utils->get_flow_id_from_step_id( intval( $_GET['wcf_checkout_id'] ) ); //phpcs:ignore
+		} elseif ( isset( $_GET['wcf_checkout_id'] ) ) {
+
+			$flow_id = wcf()->utils->get_flow_id_from_step_id( intval( $_GET['wcf_checkout_id'] ) );
 
 		}
+
+		//phpcs:enable WordPress.Security.NonceVerification
 
 		return $flow_id;
 	}
@@ -288,11 +295,11 @@ class Cartflows_Utils {
 	 */
 	public function get_optin_id_from_post_data() {
 
-		if ( isset( $_POST['_wcf_optin_id'] ) ) { //phpcs:ignore
+		if ( isset( $_POST['_wcf_optin_id'] ) ) { //phpcs:ignore WordPress.Security.NonceVerification.Missing
 
-			$optin_id = filter_var( wp_unslash( $_POST['_wcf_optin_id'] ), FILTER_SANITIZE_NUMBER_INT ); //phpcs:ignore
+			$optin_id = intval( $_POST['_wcf_optin_id'] ); //phpcs:ignore WordPress.Security.NonceVerification.Missing
 
-			return intval( $optin_id );
+			return $optin_id;
 		}
 
 		return false;
@@ -528,7 +535,8 @@ class Cartflows_Utils {
 
 			$products = apply_filters( 'cartflows_selected_checkout_products', $products, $checkout_id );
 
-			if( isset( $_GET['wcf-default'] ) ){ //phpcs:ignore
+			// This is frontend. Ignoring nonce rule.
+			if ( isset( $_GET['wcf-default'] ) ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				$products = $this->update_the_add_to_cart_param( $products );
 			}
 
@@ -545,7 +553,7 @@ class Cartflows_Utils {
 	 */
 	public function update_the_add_to_cart_param( $products ) {
 
-		$default_sequence = sanitize_text_field( wp_unslash( $_GET['wcf-default'] ) ); //phpcs:ignore
+		$default_sequence = isset( $_GET['wcf-default'] ) ? sanitize_text_field( wp_unslash( $_GET['wcf-default'] ) ) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$default_ids      = array_map( 'intval', explode( ',', $default_sequence ) );
 
 		if ( is_array( $products ) ) {

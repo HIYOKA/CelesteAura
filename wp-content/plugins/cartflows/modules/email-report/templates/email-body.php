@@ -65,16 +65,16 @@ ob_start();
 					<tr>
 						<td>
 						<?php
-							include CARTFLOWS_DIR . 'modules/email-report/templates/email-header.php'; // phpcs:ignore
-							include CARTFLOWS_DIR . 'modules/email-report/templates/email-content-section.php'; // phpcs:ignore
-							include CARTFLOWS_DIR . 'modules/email-report/templates/email-stat-content.php'; // phpcs:ignore
+							require CARTFLOWS_DIR . 'modules/email-report/templates/email-header.php';
+							require CARTFLOWS_DIR . 'modules/email-report/templates/email-content-section.php';
+							require CARTFLOWS_DIR . 'modules/email-report/templates/email-stat-content.php';
 
 						if ( ! _is_cartflows_pro() ) {
 							include CARTFLOWS_DIR . 'modules/email-report/templates/email-cf-pro-block.php';
 						} else {
 							include CARTFLOWS_DIR . 'modules/email-report/templates/email-other-product-block.php';
 						}
-							include CARTFLOWS_DIR . 'modules/email-report/templates/email-footer.php'; // phpcs:ignore
+							require CARTFLOWS_DIR . 'modules/email-report/templates/email-footer.php';
 						?>
 						</td>
 					</tr>

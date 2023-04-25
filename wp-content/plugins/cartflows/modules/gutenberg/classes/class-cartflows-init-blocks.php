@@ -82,6 +82,10 @@ class Cartflows_Init_Blocks {
 
 		check_ajax_referer( 'wpcf_ajax_nonce', 'nonce' );
 
+		if ( ! current_user_can( 'cartflows_manage_flows_steps' ) ) {
+			wp_send_json_error( array( 'message' => __( 'Permission denied.', 'cartflows' ) ) );
+		}
+
 		add_filter(
 			'cartflows_show_demo_order_details',
 			function() {
@@ -120,6 +124,10 @@ class Cartflows_Init_Blocks {
 	public function order_checkout_form_shortcode() {
 		check_ajax_referer( 'wpcf_ajax_nonce', 'nonce' );
 
+		if ( ! current_user_can( 'cartflows_manage_flows_steps' ) ) {
+			wp_send_json_error( array( 'message' => __( 'Permission denied.', 'cartflows' ) ) );
+		}
+
 		add_filter(
 			'cartflows_show_demo_checkout',
 			function() {
@@ -127,8 +135,8 @@ class Cartflows_Init_Blocks {
 			}
 		);
 
-		if( isset( $_POST['id'] ) ){ //phpcs:ignore
-			$checkout_id = intval( $_POST['id'] ); //phpcs:ignore
+		if ( isset( $_POST['id'] ) ) {
+			$checkout_id = intval( $_POST['id'] );
 		}
 
 		$store_checkout = intval( \Cartflows_Helper::get_global_setting( '_cartflows_store_checkout' ) );
@@ -148,8 +156,7 @@ class Cartflows_Init_Blocks {
 
 		add_action( 'woocommerce_checkout_order_review', array( Cartflows_Checkout_Markup::get_instance(), 'display_custom_coupon_field' ) );
 
-		$attributes['layout'] = isset( $_POST['layout'] ) ? sanitize_title( wp_unslash( $_POST['layout'] ) ) : '';
-		//phpcs:ignore $attributes['obposition']                          = isset( $_POST['obposition'] ) ? sanitize_title( wp_unslash( $_POST['obposition'] ) ) : ''; //phpcs:ignore
+		$attributes['layout']                          = isset( $_POST['layout'] ) ? sanitize_title( wp_unslash( $_POST['layout'] ) ) : '';
 		$attributes['orderBumpSkin']                   = isset( $_POST['orderBumpSkin'] ) ? sanitize_title( wp_unslash( $_POST['orderBumpSkin'] ) ) : '';
 		$attributes['orderBumpCheckboxArrow']          = isset( $_POST['orderBumpCheckboxArrow'] ) ? sanitize_title( wp_unslash( $_POST['orderBumpCheckboxArrow'] ) ) : '';
 		$attributes['orderBumpCheckboxArrowAnimation'] = isset( $_POST['orderBumpCheckboxArrowAnimation'] ) ? sanitize_title( wp_unslash( $_POST['orderBumpCheckboxArrowAnimation'] ) ) : '';
@@ -163,18 +170,15 @@ class Cartflows_Init_Blocks {
 		$attributes['preSubTitleText']                 = isset( $_POST['preSubTitleText'] ) ? sanitize_title( wp_unslash( $_POST['preSubTitleText'] ) ) : '';
 		$attributes['preTitleText']                    = isset( $_POST['preTitleText'] ) ? sanitize_title( wp_unslash( $_POST['preTitleText'] ) ) : '';
 		$attributes['PreProductDescText']              = isset( $_POST['PreProductDescText'] ) ? sanitize_title( wp_unslash( $_POST['PreProductDescText'] ) ) : '';
-		//phpcs:ignore $attributes['orderBumpCheckboxLabel']              = isset( $_POST['orderBumpCheckboxLabel'] ) ? sanitize_text_field( wp_unslash( $_POST['orderBumpCheckboxLabel'] ) ) : ''; //phpcs:ignore
-		//phpcs:ignore $attributes['orderBumpHighlightText']              = isset( $_POST['orderBumpHighlightText'] ) ? sanitize_text_field( wp_unslash( $_POST['orderBumpHighlightText'] ) ) : ''; //phpcs:ignore
-		//phpcs:ignore $attributes['orderBumpCheckboxProductDescription'] = isset( $_POST['orderBumpCheckboxProductDescription'] ) ? sanitize_text_field( wp_unslash( $_POST['orderBumpCheckboxProductDescription'] ) ) : ''; //phpcs:ignore
-		$attributes['inputSkins']              = isset( $_POST['inputSkins'] ) ? sanitize_title( wp_unslash( $_POST['inputSkins'] ) ) : '';
-		$attributes['enableNote']              = isset( $_POST['enableNote'] ) ? sanitize_title( wp_unslash( $_POST['enableNote'] ) ) : '';
-		$attributes['noteText']                = isset( $_POST['noteText'] ) ? sanitize_text_field( wp_unslash( $_POST['noteText'] ) ) : '';
-		$attributes['stepOneTitleText']        = isset( $_POST['stepOneTitleText'] ) ? sanitize_text_field( wp_unslash( $_POST['stepOneTitleText'] ) ) : '';
-		$attributes['stepOneSubTitleText']     = isset( $_POST['stepOneSubTitleText'] ) ? sanitize_text_field( wp_unslash( $_POST['stepOneSubTitleText'] ) ) : '';
-		$attributes['stepTwoTitleText']        = isset( $_POST['stepTwoTitleText'] ) ? sanitize_text_field( wp_unslash( $_POST['stepTwoTitleText'] ) ) : '';
-		$attributes['stepTwoSubTitleText']     = isset( $_POST['stepTwoSubTitleText'] ) ? sanitize_text_field( wp_unslash( $_POST['stepTwoSubTitleText'] ) ) : '';
-		$attributes['offerButtonTitleText']    = isset( $_POST['offerButtonTitleText'] ) ? sanitize_text_field( wp_unslash( $_POST['offerButtonTitleText'] ) ) : '';
-		$attributes['offerButtonSubTitleText'] = isset( $_POST['offerButtonSubTitleText'] ) ? sanitize_text_field( wp_unslash( $_POST['offerButtonSubTitleText'] ) ) : '';
+		$attributes['inputSkins']                      = isset( $_POST['inputSkins'] ) ? sanitize_title( wp_unslash( $_POST['inputSkins'] ) ) : '';
+		$attributes['enableNote']                      = isset( $_POST['enableNote'] ) ? sanitize_title( wp_unslash( $_POST['enableNote'] ) ) : '';
+		$attributes['noteText']                        = isset( $_POST['noteText'] ) ? sanitize_text_field( wp_unslash( $_POST['noteText'] ) ) : '';
+		$attributes['stepOneTitleText']                = isset( $_POST['stepOneTitleText'] ) ? sanitize_text_field( wp_unslash( $_POST['stepOneTitleText'] ) ) : '';
+		$attributes['stepOneSubTitleText']             = isset( $_POST['stepOneSubTitleText'] ) ? sanitize_text_field( wp_unslash( $_POST['stepOneSubTitleText'] ) ) : '';
+		$attributes['stepTwoTitleText']                = isset( $_POST['stepTwoTitleText'] ) ? sanitize_text_field( wp_unslash( $_POST['stepTwoTitleText'] ) ) : '';
+		$attributes['stepTwoSubTitleText']             = isset( $_POST['stepTwoSubTitleText'] ) ? sanitize_text_field( wp_unslash( $_POST['stepTwoSubTitleText'] ) ) : '';
+		$attributes['offerButtonTitleText']            = isset( $_POST['offerButtonTitleText'] ) ? sanitize_text_field( wp_unslash( $_POST['offerButtonTitleText'] ) ) : '';
+		$attributes['offerButtonSubTitleText']         = isset( $_POST['offerButtonSubTitleText'] ) ? sanitize_text_field( wp_unslash( $_POST['offerButtonSubTitleText'] ) ) : '';
 
 		$checkout_fields = array(
 			// Input Fields.
@@ -230,6 +234,10 @@ class Cartflows_Init_Blocks {
 
 		check_ajax_referer( 'wpcf_ajax_nonce', 'nonce' );
 
+		if ( ! current_user_can( 'cartflows_manage_flows_steps' ) ) {
+			wp_send_json_error( array( 'message' => __( 'Permission denied.', 'cartflows' ) ) );
+		}
+
 		add_filter(
 			'cartflows_show_demo_optin_form',
 			function() {
@@ -237,8 +245,8 @@ class Cartflows_Init_Blocks {
 			}
 		);
 
-		if( isset( $_POST['id'] ) ){ //phpcs:ignore
-			$optin_id = intval( $_POST['id'] ); //phpcs:ignore
+		if ( isset( $_POST['id'] ) ) {
+			$optin_id = intval( $_POST['id'] );
 		}
 
 		$products = wcf()->options->get_optin_meta_value( $optin_id, 'wcf-optin-product' );
@@ -318,7 +326,7 @@ class Cartflows_Init_Blocks {
 	 */
 	public function editor_assets() {
 
-		$post_id   = isset( $_GET['post'] ) ? intval( $_GET['post'] ) : 0; //phpcs:ignore
+		$post_id   = isset( $_GET['post'] ) ? intval( $_GET['post'] ) : 0; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$post_type = get_post_type( $post_id );
 
 		if ( CARTFLOWS_STEP_POST_TYPE === $post_type ) {
@@ -327,10 +335,10 @@ class Cartflows_Init_Blocks {
 			$step_type             = wcf()->utils->get_step_type( $post_id );
 			$show_checkout_pro_opt = apply_filters( 'cartflows_show_checkout_pro_opt', false );
 
-			if ( 'optin' === $step_type ) {
+			if ( 'optin' === $step_type && wcf()->is_woo_active ) {
 				wp_enqueue_style( 'wcf-optin-template', wcf()->utils->get_css_url( 'optin-template' ), array( 'wp-edit-blocks' ), CARTFLOWS_VER );
 			}
-			if ( 'checkout' === $step_type ) {
+			if ( 'checkout' === $step_type && wcf()->is_woo_active ) {
 				wp_enqueue_style( 'wcf-checkout-template', wcf()->utils->get_css_url( 'checkout-template' ), array( 'wp-edit-blocks' ), CARTFLOWS_VER );
 				Cartflows_Checkout_Markup::get_instance()->shortcode_scripts();
 			}

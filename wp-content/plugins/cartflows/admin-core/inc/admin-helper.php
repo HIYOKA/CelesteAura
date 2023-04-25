@@ -348,59 +348,6 @@ class AdminHelper {
 	}
 
 	/**
-	 * Checkout Selection Field
-	 *
-	 * @return string
-	 */
-	public static function flow_checkout_selection_field() {
-
-		$checkout_steps = get_posts(
-			array(
-				'posts_per_page' => -1,
-				'post_type'      => CARTFLOWS_STEP_POST_TYPE,
-				'post_status'    => 'publish',
-				'orderby'        => 'ID',
-				'order'          => 'ASC',
-				'tax_query'      => array( //phpcs:ignore
-					array(
-						'taxonomy' => CARTFLOWS_TAXONOMY_STEP_TYPE,
-						'field'    => 'slug',
-						'terms'    => 'checkout',
-					),
-				),
-				'meta_query'     => array( //phpcs:ignore
-					array(
-						'key'     => 'wcf-control-step',
-						'compare' => 'NOT EXISTS',
-					),
-				),
-			)
-		);
-
-		$checkout_steps_list = array(
-			array(
-				'value' => '',
-				'label' => __( 'Select', 'cartflows' ),
-			),
-		);
-		foreach ( $checkout_steps as $index => $step_data ) {
-
-			array_push(
-				$checkout_steps_list,
-				array(
-					'value' => $step_data->ID,
-					'label' => $step_data->post_title . ' ( # ' . $step_data->ID . ' ) ',
-
-				)
-			);
-		}
-
-		return $checkout_steps_list;
-	}
-
-
-
-	/**
 	 * Clear Page Builder Cache
 	 */
 	public static function clear_cache() {
@@ -837,11 +784,12 @@ class AdminHelper {
 
 		$currency_symbol = function_exists( 'get_woocommerce_currency_symbol' ) ? get_woocommerce_currency_symbol() : '';
 
-		$start_date = $start_date ? $start_date : date( 'Y-m-d' ); //phpcs:ignore
-		$end_date   = $end_date ? $end_date : date( 'Y-m-d' ); //phpcs:ignore
+		$start_date = $start_date ? $start_date : gmdate( 'Y-m-d' );
+		$end_date   = $end_date ? $end_date : gmdate( 'Y-m-d' );
 
-		$start_date = date( 'Y-m-d H:i:s', strtotime( $start_date . '00:00:00' ) ); //phpcs:ignore
-		$end_date   = date( 'Y-m-d H:i:s', strtotime( $end_date . '23:59:59' ) ); //phpcs:ignore
+		$start_date = gmdate( 'Y-m-d H:i:s', strtotime( $start_date . '00:00:00' ) );
+		$end_date   = gmdate( 'Y-m-d H:i:s', strtotime( $end_date . '23:59:59' ) );
+
 
 		if ( _is_cartflows_pro() && is_wcf_pro_plan() ) {
 			// Return All Stats.
@@ -950,7 +898,7 @@ class AdminHelper {
 		ON tb1.ID = tb2.' . $order_id_key . ' '
 		. $where;
 
-		return $wpdb->get_results( $query ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		return $wpdb->get_results( $query ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery
 	}
 
 
@@ -1005,7 +953,7 @@ class AdminHelper {
 
 			if ( 'http_request_failed' === $error_code ) {
 				/* translators: %1$s: HTML, %2$s: HTML */
-				$msg = $msg . '<br>' . sprintf( __( 'Request timeout error. Please check if the firewall or any security plugin is blocking the outgoing HTTP/HTTPS requests to templates.cartflows.com or not. %1$1sTo resolve this issue, please check this %2$2sarticle%3$3s.', 'cartflows' ), '<br><br>', '<a target="_blank" href="https://cartflows.com/docs/request-timeout-error-while-importing-the-flow-step-templates/">', '</a>' );
+				$msg = $msg . '<br>' . sprintf( __( 'Request timeout error. Please check if the firewall or any security plugin is blocking the outgoing HTTP/HTTPS requests to templates.cartflows.com or not. %1$1sTo resolve this issue, please check this %2$2sarticle%3$3s.', 'cartflows' ), '<br><br>', '<a target="_blank" href="https://cartflows.com/docs/request-timeout-error-while-importing-the-flow-step-templates/?utm_source=dashboard&utm_medium=free-cartflows&utm_campaign=docs">', '</a>' );
 			}
 
 			$result['error']          = true;

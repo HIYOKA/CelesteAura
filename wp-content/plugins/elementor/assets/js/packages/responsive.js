@@ -211,7 +211,8 @@ function BreakpointsSwitcher() {
   const onChange = (_, value) => activate(value);
   return /*#__PURE__*/React.createElement(external_UNSTABLE_elementorPackages_ui_namespaceObject.Tabs, {
     value: active.id,
-    onChange: onChange
+    onChange: onChange,
+    "aria-label": (0,external_wp_i18n_namespaceObject.__)('Switch Device', 'elementor')
   }, all.map(({
     id,
     label,

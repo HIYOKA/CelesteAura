@@ -97,7 +97,7 @@ class Flows extends AjaxBase {
 			wp_send_json_error( $response_data );
 		}
 
-		$flow_ids = array_map( 'intval', explode( ',', wp_unslash($_POST['flow_ids']) ) ); //phpcs:ignore
+		$flow_ids = array_map( 'intval', explode( ',', sanitize_text_field( $_POST['flow_ids'] ) ) );
 
 		$flows  = array();
 		$export = \CartFlows_Importer::get_instance();
@@ -157,7 +157,7 @@ class Flows extends AjaxBase {
 			$new_flow_slug = isset( $_POST['post_name'] ) ? sanitize_text_field( wp_unslash( $_POST['post_name'] ) ) : '';
 
 			$post_meta = wcf()->options->get_flow_fields( $flow_id );
-			MetaOps::save_meta_fields( $flow_id, $post_meta );
+			MetaOps::save_meta_fields( $flow_id, $post_meta, 'cartflows_save_flow_meta_settings' );
 		}
 
 		$new_flow_data = array(
@@ -196,7 +196,7 @@ class Flows extends AjaxBase {
 			wp_send_json_error( $response_data );
 		}
 
-		$flow_ids = isset( $_POST['flow_ids'] ) ? array_map( 'intval', explode( ',', wp_unslash( $_POST['flow_ids'] ) ) ) : array(); //phpcs:ignore
+		$flow_ids = isset( $_POST['flow_ids'] ) ? array_map( 'intval', explode( ',', sanitize_text_field( $_POST['flow_ids'] ) ) ) : array();
 
 		foreach ( $flow_ids as $key => $flow_id ) {
 			/* Get Steps */
@@ -257,7 +257,7 @@ class Flows extends AjaxBase {
 			wp_send_json_error( $response_data );
 		}
 
-		$flow_ids = isset( $_POST['flow_ids'] ) ? array_map( 'intval', explode( ',', wp_unslash( $_POST['flow_ids'] ) ) ) : array(); //phpcs:ignore
+		$flow_ids = isset( $_POST['flow_ids'] ) ? array_map( 'intval', explode( ',', sanitize_text_field( $_POST['flow_ids'] ) ) ) : array();
 
 		$new_status = isset( $_POST['new_status'] ) ? sanitize_text_field( wp_unslash( $_POST['new_status'] ) ) : '';
 
@@ -329,7 +329,7 @@ class Flows extends AjaxBase {
 			wp_send_json_error( $response_data );
 		}
 
-		$flow_ids = isset( $_POST['flow_ids'] ) ? array_map( 'intval', explode( ',', wp_unslash( $_POST['flow_ids'] ) ) ) : array(); //phpcs:ignore
+		$flow_ids = isset( $_POST['flow_ids'] ) ? array_map( 'intval', explode( ',', sanitize_text_field( $_POST['flow_ids'] ) ) ) : array();
 
 		foreach ( $flow_ids as $key => $flow_id ) {
 			/* Get Steps */
@@ -386,8 +386,8 @@ class Flows extends AjaxBase {
 		}
 
 		if ( isset( $_POST['flow_id'] ) && isset( $_POST['new_flow_title'] ) ) {
-			$flow_id  = intval( $_POST['flow_id'] ); //phpcs:ignore
-			$new_flow_title = sanitize_text_field( $_POST['new_flow_title'] ); //phpcs:ignore
+			$flow_id        = intval( $_POST['flow_id'] );
+			$new_flow_title = sanitize_text_field( $_POST['new_flow_title'] );
 		}
 
 		$result = array(
@@ -512,7 +512,8 @@ class Flows extends AjaxBase {
 		/**
 		 * Duplicate all post meta just in two SQL queries
 		 */
-		$post_meta_infos = $wpdb->get_results(
+		// Using custom query to clone flow & step meta data as it is better than WP functions in case in large data.
+		$post_meta_infos = $wpdb->get_results( //phpcs:ignore WordPress.DB.DirectDatabaseQuery
 			$wpdb->prepare( "SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id=%d", $post_id )
 		);
 
@@ -536,7 +537,7 @@ class Flows extends AjaxBase {
 
 			$sql_query .= implode( ',', $sql_query_sel );
 
-			$wpdb->query( $sql_query ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+			$wpdb->query( $sql_query ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery
 		}
 
 		/* Steps Cloning */
@@ -582,7 +583,7 @@ class Flows extends AjaxBase {
 				/**
 				 * Duplicate all step meta
 				 */
-				$post_meta_infos = $wpdb->get_results(
+				$post_meta_infos = $wpdb->get_results( //phpcs:ignore WordPress.DB.DirectDatabaseQuery
 					$wpdb->prepare( "SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id=%d", $step_id )
 				);
 
@@ -603,7 +604,7 @@ class Flows extends AjaxBase {
 
 					$sql_query .= implode( ',', $sql_query_sel );
 
-					$wpdb->query( $sql_query ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+					$wpdb->query( $sql_query ); //phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery
 				}
 
 				// insert post meta.
@@ -641,6 +642,7 @@ class Flows extends AjaxBase {
 			'redirect_url' => admin_url( 'post.php?action=edit&post=' . $new_flow_id ),
 		);
 		wp_send_json_success( $response_data );
+
 	}
 
 	/**
@@ -680,7 +682,7 @@ class Flows extends AjaxBase {
 			foreach ( $steps as $step ) {
 
 				/* Need to delete ab test data as well */
-				wp_untrash_post( $step['id'], true );
+				wp_untrash_post( $step['id'] );
 			}
 		}
 
@@ -688,11 +690,11 @@ class Flows extends AjaxBase {
 		$term_data = term_exists( 'flow-' . $flow_id, CARTFLOWS_TAXONOMY_STEP_FLOW );
 
 		if ( is_array( $term_data ) ) {
-			wp_untrash_post( $term_data['term_id'], CARTFLOWS_TAXONOMY_STEP_FLOW );
+			wp_untrash_post( $term_data['term_id'] );
 		}
 
 		/* Finally untrash flow post and it's data */
-		wp_untrash_post( $flow_id, true );
+		wp_untrash_post( $flow_id );
 
 		/**
 		 * Redirect to the new flow edit screen
@@ -978,19 +980,32 @@ class Flows extends AjaxBase {
 			wp_send_json_error( $response_data );
 		}
 
+		$flow_id  = false;
+		$step_ids = array();
+
 		if ( isset( $_POST['post_id'] ) && isset( $_POST['step_ids'] ) ) {
-			$flow_id  = intval( $_POST['post_id'] ); //phpcs:ignore
-			$step_ids = explode( ',', $_POST['step_ids'] ); //phpcs:ignore
+			$flow_id  = intval( $_POST['post_id'] );
+			$step_ids = explode( ',', sanitize_text_field( $_POST['step_ids'] ) );
 			$step_ids = array_map( 'intval', $step_ids );
 		}
-		$result = array(
-			'status' => false,
-			/* translators: %s flow id */
-			'text'   => sprintf( __( 'Steps not sorted for flow - %s', 'cartflows' ), $flow_id ),
-		);
 
-		if ( ! $flow_id || ! is_array( $step_ids ) ) {
-			wp_send_json( $result );
+		if ( ! $flow_id ) {
+			wp_send_json(
+				array(
+					'status' => false,
+					'text'   => __( 'No flow ID found.', 'cartflows' ),
+				)
+			);
+		}
+
+		if ( empty( $step_ids ) ) {
+			wp_send_json(
+				array(
+					'status' => false,
+					/* translators: %s flow id */
+					'text'   => sprintf( __( 'Steps not sorted for flow - %s', 'cartflows' ), $flow_id ),
+				)
+			);
 		}
 
 		$flow_steps     = get_post_meta( $flow_id, 'wcf-steps', true );

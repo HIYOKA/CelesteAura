@@ -1,4 +1,4 @@
-/*! elementor - v3.11.5 - 14-03-2023 */
+/*! elementor - v3.13.0 - 24-04-2023 */
 @import "//fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap";
 @import "//fonts.googleapis.com/css2?family=DM%20Sans&display=swap";
 @import "//fonts.googleapis.com/css2?family=Source%20Serif%20Pro&display=swap";
@@ -117,10 +117,10 @@ Auto-import is designed for CSS that not dependent on the loading order.
   --button-line-height: 16px;
   --button-padding-y: 0.5em;
   --button-padding-x: 1.5em;
-  --button-primary-background-color: #524CFF;
-  --button-primary-hover-background-color: #2119ff;
-  --button-primary-active-background-color: #0800e5;
-  --button-primary-color: #ffffff;
+  --button-primary-background-color: #F3BAFD;
+  --button-primary-hover-background-color: #F5D0FE;
+  --button-primary-active-background-color: #F3BAFD;
+  --button-primary-color: #0C0D0E;
   --button-secondary-background-color: #69727D;
   --button-secondary-hover-background-color: #525961;
   --button-secondary-active-background-color: #3a3f46;
@@ -129,13 +129,13 @@ Auto-import is designed for CSS that not dependent on the loading order.
   --button-danger-hover-background-color: #b21d1d;
   --button-danger-active-background-color: #861616;
   --button-danger-color: #ffffff;
-  --button-cta-background-color: #C62E96;
-  --button-cta-hover-background-color: #9d2477;
-  --button-cta-active-background-color: #731b57;
+  --button-cta-background-color: #524CFF;
+  --button-cta-hover-background-color: #2119ff;
+  --button-cta-active-background-color: #0800e5;
   --button-cta-color: #ffffff;
-  --button-brand-background-color: #C62E96;
-  --button-brand-hover-background-color: #9d2477;
-  --button-brand-active-background-color: #731b57;
+  --button-brand-background-color: #524CFF;
+  --button-brand-hover-background-color: #2119ff;
+  --button-brand-active-background-color: #0800e5;
   --button-brand-color: #ffffff;
   --button-link-background-color: #515962;
   --button-link-hover-background-color: #3a4046;
@@ -149,6 +149,7 @@ Auto-import is designed for CSS that not dependent on the loading order.
   font-size: var(--button-font-size, inherit);
   font-weight: 500;
   line-height: var(--button-line-height);
+  transition: var(--e-a-transition-hover);
   cursor: pointer;
 }
 .eps-button:active {
@@ -158,22 +159,22 @@ Auto-import is designed for CSS that not dependent on the loading order.
   --button-background-color: var(--button-hover-background-color);
 }
 .eps-theme-dark .eps-button {
-  --button-primary-background-color: #524CFF;
-  --button-primary-color: #fff;
-  --button-primary-hover-background-color: #2119ff;
-  --button-primary-active-background-color: #0800e5;
+  --button-primary-background-color: #F3BAFD;
+  --button-primary-color: #0C0D0E;
+  --button-primary-hover-background-color: #EB8EFB;
+  --button-primary-active-background-color: #F3BAFD;
   --button-secondary-background-color: #BABFC5;
   --button-secondary-color: #fff;
   --button-secondary-hover-background-color: #9ea5ae;
   --button-secondary-active-background-color: #838c96;
-  --button-cta-background-color: #C62E96;
-  --button-cta-hover-background-color: #9d2477;
-  --button-cta-active-background-color: #731b57;
+  --button-cta-background-color: #524CFF;
+  --button-cta-hover-background-color: #2119ff;
+  --button-cta-active-background-color: #0800e5;
   --button-cta-color: #fff;
-  --button-brand-hover-background-color: #9d2477;
-  --button-brand-active-background-color: #731b57;
+  --button-brand-hover-background-color: #2119ff;
+  --button-brand-active-background-color: #0800e5;
   --button-brand-color: #fff;
-  --button-brand-background-color: #C62E96;
+  --button-brand-background-color: #524CFF;
   --button-link-background-color: #515962;
   --button-link-hover-background-color: #3a4046;
   --button-link-active-background-color: #23262a;
@@ -286,10 +287,11 @@ Auto-import is designed for CSS that not dependent on the loading order.
   --disabled: #D5D8DC;
   --light: #ffffff;
   --dark: #000000;
-  --cta: #C62E96;
-  --brand: #C62E96;
-  --accent: #524CFF;
-  --primary: #C62E96;
+  --cta: #524CFF;
+  --brand: #524CFF;
+  --accent: #F3BAFD;
+  --primary: #524CFF;
+  --primary-bg: #FAE8FF;
   --secondary: #515962;
   --info: #2563EB;
   --info-bg: #F0F7FF;
@@ -343,8 +345,8 @@ Auto-import is designed for CSS that not dependent on the loading order.
   --light: #fff;
   --dark: #000;
   --accent: #524CFF;
-  --cta: #C62E96;
-  --brand: #C62E96;
+  --cta: #524CFF;
+  --brand: #524CFF;
   --success: #39b54a;
   --success-bg: #032317;
   --info: #0077CC;
@@ -375,6 +377,7 @@ Auto-import is designed for CSS that not dependent on the loading order.
   --text-sm-color: #BABFC5;
   --text-xs-color: #BABFC5;
   --text-xxs-color: #BABFC5;
+  --gray-900: #0C0D0E;
   --gray-800: #1A1C1E;
   --gray-750: #222325;
   --gray-725: #2F3032;
@@ -415,16 +418,6 @@ body {
   line-height: 1.5;
   color: var(--body-color);
   background-color: var(--body-bg);
-}
-
-::-moz-selection {
-  background-color: #524CFF;
-  color: #fff;
-}
-
-::selection {
-  background-color: #524CFF;
-  color: #fff;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -1864,11 +1857,13 @@ h6,
 :root {
   --eps-modal-background-color: #ffffff;
   --eps-modal-header-background-color: #2563EB;
+  --eps-tip-background-color: #F0F7FF;
 }
 
 .eps-theme-dark {
-  --eps-modal-background-color: #3A3F45;
+  --eps-modal-background-color: #0C0D0E;
   --eps-modal-header-background-color: #0077CC;
+  --eps-tip-background-color: #0A1A3D;
 }
 
 /** ----------------------------------------------------------------
@@ -1915,7 +1910,7 @@ h6,
           padding-inline-start: 0.75rem;
   -webkit-border-start: 3px solid #2563EB;
           border-inline-start: 3px solid #2563EB;
-  background-color: #F0F7FF;
+  background-color: var(--eps-tip-background-color);
 }
 .eps-modal__tip:not(:last-child), .eps-modal .eps-tip:not(:last-child) {
   margin-bottom: 1.875rem;
@@ -1940,8 +1935,8 @@ h6,
   cursor: pointer;
 }
 .eps-add-new-button .eps-icon {
-  background-color: #524CFF;
-  color: #ffffff;
+  background-color: #F3BAFD;
+  color: #0C0D0E;
   width: var(--eps-add-new-button-size);
   height: var(--eps-add-new-button-size);
   border-radius: 100%;
@@ -2441,7 +2436,7 @@ h6,
   --eps-inline-link-color: #DC2626;
 }
 .eps-inline-link--color-cta {
-  --eps-inline-link-color: #C62E96;
+  --eps-inline-link-color: #524CFF;
 }
 .eps-inline-link--color-link {
   --eps-inline-link-color: #515962;
@@ -2856,7 +2851,7 @@ h6,
   justify-content: center;
   padding: 10px;
   font-size: 13px;
-  color: #C62E96;
+  color: #524CFF;
   background: var(--e-kit-library-kit-item-overlay-promotion-button-background-color);
 }
 .e-kit-library__kit-item-overlay-promotion-button > * {
@@ -2867,6 +2862,7 @@ h6,
   top: 0;
   right: 0;
   margin: 0.3125rem;
+  background-color: var(--e-a-color-brand);
   color: #ffffff;
   text-transform: uppercase;
 }
@@ -3434,6 +3430,7 @@ h6,
 
 .e-onboarding {
   font-family: "DM Sans", "Roboto", sans-serif;
+  color-scheme: light;
 }
 .e-onboarding .eps-app__main {
   justify-content: center;
@@ -3441,8 +3438,8 @@ h6,
 }
 .e-onboarding__content {
   max-width: 1135px;
-  padding: initial;
-  margin: 2.75rem;
+  padding: 2.75rem;
+  margin: initial;
   overflow-y: initial;
 }
 .e-onboarding__checkbox-label {
@@ -3573,6 +3570,7 @@ h6,
 .e-onboarding__go-pro {
   width: 288px;
   font-size: 12px;
+  background-color: #ffffff;
 }
 .e-onboarding__go-pro-title {
   font-size: 18px;
@@ -3632,12 +3630,12 @@ h6,
   content: "\e89e";
 }
 .e-onboarding__progress-bar-item--active {
-  color: #040080;
+  color: #D004D4;
 }
 .e-onboarding__progress-bar-item--active .e-onboarding__progress-bar-item-icon, .e-onboarding__progress-bar-item--completed .e-onboarding__progress-bar-item-icon {
   color: #ffffff;
-  border-color: #040080;
-  background-color: #040080;
+  border-color: #D004D4;
+  background-color: #D004D4;
 }
 .e-onboarding__progress-bar-item--skipped, .e-onboarding__progress-bar-item--completed {
   cursor: pointer;
@@ -3650,17 +3648,24 @@ h6,
 .e-onboarding__button {
   font-size: 18px;
   cursor: pointer;
+  transition: var(--e-a-transition-hover);
 }
 .e-onboarding__button-action {
-  color: #46F2B6;
-  background-color: #040080;
-  width: 325px;
-  padding: 15px 15px;
+  color: var(--e-a-btn-color);
+  background-color: var(--e-a-btn-bg-primary);
+  min-width: 325px;
+  padding: 15px 30px;
   text-align: center;
 }
+.e-onboarding__button-action:hover {
+  background-color: var(--e-a-btn-bg-primary-hover);
+}
 .e-onboarding__button-skip {
-  color: #6A727C;
-  padding: 15px 29px;
+  padding: 8px 16px;
+  color: #515962;
+}
+.e-onboarding__button-skip:hover {
+  background-color: #F9FAFA;
 }
 .e-onboarding__button--disabled {
   pointer-events: none;
@@ -3679,7 +3684,6 @@ h6,
   border: 1px solid #3A3F45;
   border-radius: 8px;
   padding: 40px 40px;
-  background-color: var(--e-a-bg-default);
   cursor: pointer;
   flex-grow: 1;
   display: flex;
@@ -3763,8 +3767,11 @@ h6,
 }
 
 .e-onboarding__page-siteLogo .e-app-upload-file__button {
-  color: #040080;
-  border-color: #040080;
+  color: var(--e-a-color-primary-bold);
+  border-color: var(--e-a-color-primary-bold);
+}
+.e-onboarding__page-siteLogo .e-app-upload-file__button:hover {
+  background-color: #FAE8FF;
 }
 .e-onboarding__drop-zone {
   margin-top: 3rem;
@@ -3783,12 +3790,14 @@ h6,
 .e-onboarding__logo-container {
   position: relative;
   margin-top: 3rem;
-  height: 220px;
+  min-height: 120px;
   width: -moz-fit-content;
   width: fit-content;
   display: flex;
   align-items: center;
+  justify-content: center;
   min-width: 220px;
+  border: 1px solid #BABFC5;
 }
 .e-onboarding__logo-container img {
   height: auto;

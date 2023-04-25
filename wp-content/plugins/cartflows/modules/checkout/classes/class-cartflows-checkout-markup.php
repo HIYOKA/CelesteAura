@@ -327,7 +327,7 @@ class Cartflows_Checkout_Markup {
 			$checkout_id = _get_wcf_checkout_id();
 
 			if ( ! $checkout_id ) {
-				$checkout_id = isset( $_GET['wcf_checkout_id'] ) && ! empty( $_GET['wcf_checkout_id'] ) ? intval( wp_unslash( $_GET['wcf_checkout_id'] ) ) : 0; //phpcs:ignore
+				$checkout_id = isset( $_GET['wcf_checkout_id'] ) && ! empty( $_GET['wcf_checkout_id'] ) ? intval( wp_unslash( $_GET['wcf_checkout_id'] ) ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			}
 
 			if ( ! empty( $checkout_id ) ) {
@@ -383,20 +383,20 @@ class Cartflows_Checkout_Markup {
 	 */
 	public function place_order_button_text( $button_text ) {
 		$checkout_id = get_the_ID();
-
+		//phpcs:disable WordPress.Security.NonceVerification.Recommended
 		if ( ! $checkout_id && isset( Cartflows_Woo_Hooks::$ajax_data['_wcf_checkout_id'] ) ) {
 
 			$checkout_id = intval( Cartflows_Woo_Hooks::$ajax_data['_wcf_checkout_id'] );
 		}
 
-		if ( ! $checkout_id && isset( $_GET['wcf_checkout_id'] ) ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( ! $checkout_id && isset( $_GET['wcf_checkout_id'] ) ) {
 
-			$checkout_id = intval( $_GET['wcf_checkout_id'] ); //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$checkout_id = intval( $_GET['wcf_checkout_id'] );
 		}
 
 		// Compatibility for Gutenebrg editor preview.
-		if ( isset( $_REQUEST['cartflows_gb'] ) && isset( $_REQUEST['id'] ) ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			$checkout_id = intval( $_REQUEST['id'] ); //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( isset( $_REQUEST['cartflows_gb'] ) && isset( $_REQUEST['id'] ) ) {
+			$checkout_id = intval( $_REQUEST['id'] );
 		}
 
 		if ( $checkout_id ) {
@@ -413,6 +413,8 @@ class Cartflows_Checkout_Markup {
 		}
 
 		return $button_text;
+		//phpcs:enable WordPress.Security.NonceVerification.Recommended
+
 	}
 
 	/**
@@ -474,8 +476,8 @@ class Cartflows_Checkout_Markup {
 
 			$show_checkout_demo = apply_filters( 'cartflows_show_demo_checkout', false );
 
-			if ($show_checkout_demo && 0 === $checkout_id && isset($_POST['id'])) { //phpcs:ignore
-				$checkout_id = intval($_POST['id']); //phpcs:ignore
+			if ( $show_checkout_demo && 0 === $checkout_id && isset( $_POST['id'] ) ) { //phpcs:ignore WordPress.Security.NonceVerification.Missing
+				$checkout_id = intval( $_POST['id'] ); //phpcs:ignore WordPress.Security.NonceVerification.Missing
 			}
 		}
 
@@ -487,7 +489,7 @@ class Cartflows_Checkout_Markup {
 				$error_html .= '<p>' . sprintf(
 					/* translators: %1$1s, %2$2s Link to article */
 					__( 'It seems that this is not the CartFlows Checkout page where you have added this shortcode. Please refer to this %1$1sarticle%2$2s to know more.', 'cartflows' ),
-					'<a href="https://cartflows.com/docs/resolve-checkout-id-not-found-error/" target="_blank">',
+					'<a href="https://cartflows.com/docs/resolve-checkout-id-not-found-error/?utm_source=dashboard&utm_medium=free-cartflows&utm_campaign=docs" target="_blank">',
 					'</a>'
 				) . '</p>';
 
@@ -555,7 +557,7 @@ class Cartflows_Checkout_Markup {
 
 				if ( ! empty( $store_checkout ) && ( intval( $store_checkout ) === intval( $flow_id ) ) ) {
 
-					if ( WC()->cart->is_empty() && ! isset( $_GET['wcf-add-to-cart'] ) ) { //phpcs:ignore
+					if ( WC()->cart->is_empty() && ! isset( $_GET['wcf-add-to-cart'] ) ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 						wc_add_notice( __( 'Your cart is currently empty.', 'cartflows' ), 'error' );
 					}
 
@@ -960,14 +962,14 @@ class Cartflows_Checkout_Markup {
 	 * @param array $checkout_fields checkout fields array.
 	 */
 	public function prefill_checkout_fields( $checkout_fields ) {
-
-		if ( is_auto_prefill_checkout_fields_enabled() && ! empty( $_GET ) ) { // phpcs:ignore
+		//phpcs:disable WordPress.Security.NonceVerification.Recommended
+		if ( is_auto_prefill_checkout_fields_enabled() && ! empty( $_GET ) ) {
 
 			$billing_fields  = isset( $checkout_fields['billing'] ) ? $checkout_fields['billing'] : array();
 			$shipping_fields = isset( $checkout_fields['shipping'] ) ? $checkout_fields['shipping'] : array();
 
 			foreach ( $billing_fields as $key => $field ) {
-				$field_value = isset( $_GET[ $key ] ) && ! empty( $_GET[ $key ] ) ? sanitize_text_field( wp_unslash( $_GET[ $key ] ) ) : ''; //phpcs:ignore
+				$field_value = isset( $_GET[ $key ] ) && ! empty( $_GET[ $key ] ) ? sanitize_text_field( wp_unslash( $_GET[ $key ] ) ) : '';
 
 				if ( ! empty( $field_value ) ) {
 					$checkout_fields['billing'][ $key ]['default'] = $field_value;
@@ -975,7 +977,7 @@ class Cartflows_Checkout_Markup {
 			}
 
 			foreach ( $shipping_fields as $key => $field ) {
-				$field_value = isset( $_GET[ $key ] ) && ! empty( $_GET[ $key ] ) ? sanitize_text_field( wp_unslash( $_GET[ $key ] ) ) : ''; //phpcs:ignore
+				$field_value = isset( $_GET[ $key ] ) && ! empty( $_GET[ $key ] ) ? sanitize_text_field( wp_unslash( $_GET[ $key ] ) ) : '';
 
 				if ( ! empty( $field_value ) ) {
 					$checkout_fields['shipping'][ $key ]['default'] = $field_value;
@@ -984,6 +986,7 @@ class Cartflows_Checkout_Markup {
 		}
 
 		return $checkout_fields;
+		//phpcs:enable WordPress.Security.NonceVerification.Recommended
 	}
 
 	/**
@@ -1271,13 +1274,13 @@ class Cartflows_Checkout_Markup {
 	 * @return void
 	 */
 	public function save_checkout_fields( $order_id, $posted ) {
+		//phpcs:disable WordPress.Security.NonceVerification
+		if ( isset( $_POST['_wcf_checkout_id'] ) ) {
+			$checkout_id = intval( $_POST['_wcf_checkout_id'] );
+			$flow_id     = isset( $_POST['_wcf_flow_id'] ) ? intval( $_POST['_wcf_flow_id'] ) : 0;
 
-		if ( isset( $_POST['_wcf_checkout_id'] ) ) { //phpcs:ignore
-			$checkout_id = wc_clean( intval( $_POST['_wcf_checkout_id'] ) ); //phpcs:ignore
-			$flow_id = isset( $_POST['_wcf_flow_id'] ) ? wc_clean( intval( $_POST['_wcf_flow_id'] ) ) : 0; //phpcs:ignore
-
-		} elseif ( isset( $_GET['wcf_checkout_id'] ) ) { //phpcs:ignore
-			$checkout_id = wc_clean( intval( $_GET['wcf_checkout_id'] ) ); //phpcs:ignore
+		} elseif ( isset( $_GET['wcf_checkout_id'] ) ) {
+			$checkout_id = intval( $_GET['wcf_checkout_id'] );
 			$flow_id     = wcf()->utils->get_flow_id_from_step_id( $checkout_id );
 		}
 
@@ -1291,6 +1294,7 @@ class Cartflows_Checkout_Markup {
 				$order->save();
 			}
 		}
+		//phpcs:enable WordPress.Security.NonceVerification
 	}
 
 	/**
@@ -1316,7 +1320,7 @@ class Cartflows_Checkout_Markup {
 			$add_image_markup .= '</div>';
 		}
 
-		echo $add_image_markup;
+		echo wp_kses_post( $add_image_markup );
 	}
 
 	/**
@@ -1335,7 +1339,7 @@ class Cartflows_Checkout_Markup {
 		$output_string .= '</div>';
 		$output_string .= '</div>';
 
-		echo $output_string;
+		echo wp_kses_post( $output_string );
 	}
 
 	/**
@@ -1346,12 +1350,15 @@ class Cartflows_Checkout_Markup {
 	 * @return string
 	 */
 	public function after_login_redirect( $redirect, $user ) {
-		if (isset($_POST['_wcf_checkout_id'])) { //phpcs:ignore
+		// We are calling this function on WooCommerce action where nonce is verified.
+		//phpcs:disable WordPress.Security.NonceVerification.Missing
+		if ( isset( $_POST['_wcf_checkout_id'] ) ) {
 
-			$checkout_id = intval($_POST['_wcf_checkout_id']); //phpcs:ignore
+			$checkout_id = intval( $_POST['_wcf_checkout_id'] );
 
 			$redirect = get_permalink( $checkout_id );
 		}
+		//phpcs:enable WordPress.Security.NonceVerification.Missing
 
 		return $redirect;
 	}
@@ -1375,20 +1382,21 @@ class Cartflows_Checkout_Markup {
 
 		ob_start();
 		?>
-		<div class="wcf-custom-coupon-field <?php echo $coupon_field['class']; ?>" id="wcf_custom_coupon_field">
+		<div class="wcf-custom-coupon-field <?php echo esc_attr( $coupon_field['class'] ); ?>" id="wcf_custom_coupon_field">
 			<div class="wcf-coupon-col-1">
 				<span>
-					<input type="text" name="coupon_code" class="input-text wcf-coupon-code-input" placeholder="<?php echo $coupon_field['field_text']; ?>" id="coupon_code" value="">
+					<input type="text" name="coupon_code" class="input-text wcf-coupon-code-input" placeholder="<?php echo esc_attr( $coupon_field['field_text'] ); ?>" id="coupon_code" value="">
 				</span>
 			</div>
 			<div class="wcf-coupon-col-2">
 				<span>
-					<button type="button" class="button wcf-submit-coupon wcf-btn-small" name="apply_coupon" value="Apply"><?php echo $coupon_field['button_text']; ?></button>
+					<button type="button" class="button wcf-submit-coupon wcf-btn-small" name="apply_coupon" value="Apply"><?php echo esc_html( $coupon_field['button_text'] ); ?></button>
 				</span>
 			</div>
 		</div>
 		<?php
-		echo ob_get_clean();
+		// wp_kses_post will not work as it removing input tags hence ignoring below rule.
+		echo ob_get_clean(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	/**
@@ -1527,7 +1535,7 @@ class Cartflows_Checkout_Markup {
 			'posts_per_page' => 1,
 			'orderby'        => 'rand',
 			'post_type'      => 'product',
-			'meta_query'     => array( //phpcs:ignore
+			'meta_query'     => array( //phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 				// Exclude out of stock products.
 				array(
 					'key'     => '_stock_status',
@@ -1535,7 +1543,7 @@ class Cartflows_Checkout_Markup {
 					'compare' => 'NOT IN',
 				),
 			),
-			'tax_query'      => array( //phpcs:ignore
+			'tax_query'      => array( //phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 				array(
 					'taxonomy' => 'product_type',
 					'field'    => 'slug',
@@ -1572,7 +1580,7 @@ class Cartflows_Checkout_Markup {
 
 		if ( ! $checkout_id ) {
 
-			$checkout_id = isset( $_GET['wcf_checkout_id'] ) && ! empty( $_GET['wcf_checkout_id'] ) ? intval( wp_unslash( $_GET['wcf_checkout_id'] ) ) : 0; //phpcs:ignore
+			$checkout_id = isset( $_GET['wcf_checkout_id'] ) && ! empty( $_GET['wcf_checkout_id'] ) ? intval( wp_unslash( $_GET['wcf_checkout_id'] ) ) : 0; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		}
 
 		if ( empty( $checkout_id ) ) {
@@ -1597,7 +1605,7 @@ class Cartflows_Checkout_Markup {
 
 		if ( ! $checkout_id ) {
 
-			$checkout_id = isset( $_GET['wcf_checkout_id'] ) && ! empty( $_GET['wcf_checkout_id'] ) ? intval( wp_unslash( $_GET['wcf_checkout_id'] ) ) : 0; //phpcs:ignore
+			$checkout_id = isset( $_GET['wcf_checkout_id'] ) && ! empty( $_GET['wcf_checkout_id'] ) ? intval( wp_unslash( $_GET['wcf_checkout_id'] ) ) : 0; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		}
 
 		if ( empty( $checkout_id ) ) {
@@ -1680,7 +1688,7 @@ class Cartflows_Checkout_Markup {
 		$checkout_id = _get_wcf_checkout_id();
 
 		if ( ! $checkout_id ) {
-			$checkout_id = isset( $_GET['wcf_checkout_id'] ) && ! empty( $_GET['wcf_checkout_id'] ) ? intval( wp_unslash( $_GET['wcf_checkout_id'] ) ) : 0; //phpcs:ignore
+			$checkout_id = isset( $_GET['wcf_checkout_id'] ) && ! empty( $_GET['wcf_checkout_id'] ) ? intval( wp_unslash( $_GET['wcf_checkout_id'] ) ) : 0; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		}
 
 		$checkout_layout = wcf()->options->get_checkout_meta_value( $checkout_id, 'wcf-checkout-layout' );

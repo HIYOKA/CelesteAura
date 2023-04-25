@@ -1,0 +1,22 @@
+2023-04-24T18:31:54+00:00 CRITICAL syntax error, unexpected ' if' (T_STRING)(/home/961761.cloudwaysapps.com/akcbjbwtdb/public_html/wp-content/themes/astra-child/functions.php, 줄 29)
+
+2023-04-24T18:31:54+00:00 CRITICAL syntax error, unexpected ' if' (T_STRING)(/home/961761.cloudwaysapps.com/akcbjbwtdb/public_html/wp-content/themes/astra-child/functions.php, 줄 29)
+
+2023-04-24T21:03:38+00:00 CRITICAL syntax error, unexpected '<', expecting end of file(/home/961761.cloudwaysapps.com/akcbjbwtdb/public_html/wp-content/plugins/woocommerce/templates/single-product.php, 줄 63)
+
+2023-04-24T21:17:55+00:00 CRITICAL syntax error, unexpected '<', expecting end of file(/home/961761.cloudwaysapps.com/akcbjbwtdb/public_html/wp-content/themes/astra-child/woocommerce/single-product.php, 줄 60)
+
+2023-04-24T21:18:11+00:00 CRITICAL syntax error, unexpected '<', expecting end of file(/home/961761.cloudwaysapps.com/akcbjbwtdb/public_html/wp-content/themes/astra-child/woocommerce/single-product.php, 줄 60)
+
+2023-04-24T21:18:37+00:00 CRITICAL syntax error, unexpected '<', expecting end of file(/home/961761.cloudwaysapps.com/akcbjbwtdb/public_html/wp-content/themes/astra-child/woocommerce/single-product.php, 줄 57)
+
+2023-04-24T21:32:50+00:00 CRITICAL Uncaught Error: Call to a member function get_review_count() on string in /home/961761.cloudwaysapps.com/akcbjbwtdb/public_html/wp-content/plugins/woocommerce/templates/single-product-reviews.php:31
+Stack trace:
+#0 /home/961761.cloudwaysapps.com/akcbjbwtdb/public_html/wp-includes/comment-template.php(1591): require()
+#1 /home/961761.cloudwaysapps.com/akcbjbwtdb/public_html/wp-content/themes/astra-child/woocommerce/single-product.php(35): comments_template()
+#2 /home/961761.cloudwaysapps.com/akcbjbwtdb/public_html/wp-includes/template-loader.php(106): include('/home/961761.cl...')
+#3 /home/961761.cloudwaysapps.com/akcbjbwtdb/public_html/wp-blog-header.php(19): require_once('/home/961761.cl...')
+#4 /home/961761.cloudwaysapps.com/akcbjbwtdb/public_html/index.php(17): require('/home/961761.cl...')
+#5 {main}
+  thrown(/home/961761.cloudwaysapps.com/akcbjbwtdb/public_html/wp-content/plugins/woocommerce/templates/single-product-reviews.php, 줄 31)
+

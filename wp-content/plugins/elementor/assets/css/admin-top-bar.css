@@ -1,4 +1,4 @@
-/*! elementor - v3.11.5 - 14-03-2023 */
+/*! elementor - v3.13.0 - 24-04-2023 */
 #e-dashboard-widget-admin-top-bar {
   position: absolute;
   opacity: 0;
@@ -36,12 +36,12 @@ body.folded #e-admin-top-bar-root {
   border: none;
   border-radius: var(--e-a-border-radius);
   background-color: var(--e-a-btn-bg);
-  color: var(--e-a-btn-color);
+  color: var(--e-a-btn-color-invert);
   transition: var(--e-a-transition-hover);
 }
 #e-admin-top-bar-root .page-title-action:hover {
   background-color: var(--e-a-btn-bg-hover);
-  color: var(--e-a-btn-color);
+  color: var(--e-a-btn-color-invert);
 }
 #e-admin-top-bar-root .e-admin-top-bar__heading {
   display: inline-flex;

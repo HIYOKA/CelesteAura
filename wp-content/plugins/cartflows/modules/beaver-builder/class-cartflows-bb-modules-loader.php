@@ -103,7 +103,7 @@ class Cartflows_BB_Modules_Loader {
 	 */
 	public function register_modules() {
 
-		if ( is_admin() && isset( $_GET['page'] ) && 'fl-builder-settings' === sanitize_text_field( $_GET['page'] ) && class_exists( 'FLBuilder' ) ) { // phpcs:ignore
+		if ( is_admin() && isset( $_GET['page'] ) && 'fl-builder-settings' === sanitize_text_field( $_GET['page'] ) && class_exists( 'FLBuilder' ) ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 			$this->get_module_files();
 		}

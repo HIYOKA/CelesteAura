@@ -1,0 +1,13 @@
+04-25-2023 @ 00:19:42 - Process Payment Response : cancel
+04-25-2023 @ 00:19:42 - [오류] 결제를 취소하셨습니다.
+Array
+(
+    [type] => cancel
+    [transaction_id] => TINICIS2023042415193526cb83758f42d605fcaf
+    [order_id] => 5038_230424_031935
+    [woocommerce-login-nonce] => 
+    [_wpnonce] => 
+    [woocommerce-reset-password-nonce] => 
+)
+
+04-25-2023 @ 00:19:42 - Redirect : Checkout

@@ -109,17 +109,18 @@ class Cartflows_Gutenberg_Editor {
 	 * Gutenburg editor compatibility.
 	 */
 	public function gutenberg_editor_compatibility() {
-
-		if ( is_admin() && isset( $_REQUEST['action'] ) ) { //phpcs:ignore
+		// Calling this function on 'admin_init'. No nonce required.
+		//phpcs:disable WordPress.Security.NonceVerification
+		if ( is_admin() && isset( $_REQUEST['action'] ) ) {
 
 			$current_post_id = false;
 
-			if ( 'edit' === $_REQUEST['action'] && isset( $_GET['post'] ) ) { //phpcs:ignore
-				$current_post_id = intval( $_GET['post'] ); //phpcs:ignore
-			} elseif ( isset( $_REQUEST['cartflows_gb'] ) && isset( $_POST['id'] ) ){ //phpcs:ignore
-				$current_post_id = intval( $_POST['id'] ); //phpcs:ignore
+			if ( 'edit' === $_REQUEST['action'] && isset( $_GET['post'] ) ) {
+				$current_post_id = intval( $_GET['post'] );
+			} elseif ( isset( $_REQUEST['cartflows_gb'] ) && isset( $_POST['id'] ) ) {
+				$current_post_id = intval( $_POST['id'] );
 			}
-
+		//phpcs:enable WordPress.Security.NonceVerification
 			if ( $current_post_id ) {
 
 				$current_post_type = get_post_type( $current_post_id );

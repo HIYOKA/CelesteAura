@@ -140,7 +140,7 @@ if ( ! class_exists( 'Cartflows_Loader' ) ) {
 			define( 'CARTFLOWS_DIR', plugin_dir_path( CARTFLOWS_FILE ) );
 			define( 'CARTFLOWS_URL', plugins_url( '/', CARTFLOWS_FILE ) );
 
-			define( 'CARTFLOWS_VER', '1.11.9' );
+			define( 'CARTFLOWS_VER', '1.11.10' );
 			define( 'CARTFLOWS_SLUG', 'cartflows' );
 			define( 'CARTFLOWS_SETTINGS', 'cartflows_settings' );
 			define( 'CARTFLOWS_NAME', 'CartFlows' );
@@ -286,7 +286,7 @@ if ( ! class_exists( 'Cartflows_Loader' ) ) {
 			/* translators: %s: html tags */
 			$message = sprintf( __( 'You are using an older version of %1$s%3$s%2$s. Please update %1$s%3$s%2$s plugin to version %1$s%4$s%2$s or higher.', 'cartflows' ), '<strong>', '</strong>', CARTFLOWS_PRO_DISPLAY_TITLE, $required_pro_version );
 
-			printf( '<div class="%1$s"><p>%2$s</p></div>', $class, $message );
+			printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), wp_kses_post( $message ) );
 		}
 
 		/**
@@ -476,7 +476,7 @@ if ( ! class_exists( 'Cartflows_Loader' ) ) {
 
 			foreach ( $files as $file ) {
 				if ( wp_mkdir_p( $file['base'] ) && ! file_exists( trailingslashit( $file['base'] ) . $file['file'] ) ) {
-					$file_handle = @fopen(trailingslashit($file['base']) . $file['file'], 'w'); // phpcs:ignore
+					$file_handle = @fopen( trailingslashit( $file['base'] ) . $file['file'], 'w' ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged, WordPress.WP.AlternativeFunctions.file_system_read_fopen
 					if ( $file_handle ) {
 						fwrite( $file_handle, $file['content'] ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fwrite, WordPressVIPMinimum.Functions.RestrictedFunctions.file_ops_fwrite
 						fclose( $file_handle ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fclose
@@ -586,7 +586,7 @@ if ( ! class_exists( 'Cartflows_Loader' ) ) {
 
 			$button = '<p><a href="' . $action_url . '" class="button-primary">' . $button_label . '</a></p><p></p>';
 
-			printf( '<div class="%1$s"><p>%2$s</p>%3$s</div>', esc_attr( $class ), $message, $button );
+			printf( '<div class="%1$s"><p>%2$s</p>%3$s</div>', esc_attr( $class ), wp_kses_post( $message ), wp_kses_post( $button ) );
 		}
 
 		/**

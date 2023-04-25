@@ -79,14 +79,14 @@ if ( ! class_exists( 'Cartflows_Update' ) ) :
 			}
 
 			/* Add legacy admin option */
-			if ( version_compare( $saved_version, '1.6.0', '<' ) ) { //phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedIf
+			if ( version_compare( $saved_version, '1.6.0', '<' ) ) {
 				update_option( 'cartflows-old-ui-user', true );
 				update_option( 'cartflows-legacy-admin', true );
 				update_option( 'cartflows-legacy-meta-show-design-options', true );
 			}
 
 			/* Updating meta for global checkout migration & Permalinks */
-			if ( version_compare( $saved_version, '1.10.0', '<' ) ) { //phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedIf
+			if ( version_compare( $saved_version, '1.10.0', '<' ) ) {
 
 				$global_checkout = \Cartflows_Helper::get_common_setting( 'global_checkout' );
 

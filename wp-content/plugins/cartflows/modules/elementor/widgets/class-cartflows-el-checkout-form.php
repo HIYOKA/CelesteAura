@@ -1,4 +1,4 @@
-<?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName
+<?php
 /**
  * Elementor Classes.
  *
@@ -123,7 +123,7 @@ class Cartflows_Checkout_Form extends Widget_Base {
 	 * @since 1.6.15
 	 * @access protected
 	 */
-	protected function register_controls() { // phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
+	protected function register_controls() {
 
 		// Content Tab.
 		$this->register_general_content_controls();
@@ -1081,8 +1081,6 @@ class Cartflows_Checkout_Form extends Widget_Base {
 	 */
 	protected function render() {
 
-		$data_settings = array();
-
 		self::$settings = $this->get_settings_for_display();
 
 		$checkout_id = get_the_id();
@@ -1092,10 +1090,8 @@ class Cartflows_Checkout_Form extends Widget_Base {
 
 		do_action( 'cartflows_elementor_before_checkout_shortcode', $checkout_id );
 
-		$data_settings = apply_filters( 'cartflows_elementor_checkout_settings', $data_settings );
-
 		?>
-		<div class = "wcf-el-checkout-form cartflows-elementor__checkout-form" data-settings-data="<?php echo htmlentities( wp_json_encode( $data_settings ) ); ?>">
+		<div class = "wcf-el-checkout-form cartflows-elementor__checkout-form">
 			<?php echo do_shortcode( '[cartflows_checkout]' ); ?>
 		</div>
 		<?php

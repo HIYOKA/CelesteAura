@@ -1,4 +1,4 @@
-<?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName
+<?php
 /**
  * Elementor Classes.
  *
@@ -122,7 +122,7 @@ class Cartflows_Order_Details_Form extends Widget_Base {
 	 * @since 1.6.15
 	 * @access protected
 	 */
-	protected function register_controls() { // phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
+	protected function register_controls() {
 
 		// Content Tab.
 		$this->register_thankyou_controls();
@@ -817,6 +817,6 @@ class Cartflows_Order_Details_Form extends Widget_Base {
 	 * @since 1.6.15
 	 * @access protected
 	 */
-	protected function content_template() { // phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
+	protected function content_template() {
 	}
 }

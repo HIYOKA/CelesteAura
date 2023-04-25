@@ -73,27 +73,6 @@ if ( ! class_exists( 'PAFW_Cancel_Unpaid_Order' ) ) :
 
 			return $unpaid_orders;
 		}
-		static function restore_stock( $order ) {
-			if ( 'yes' == get_option( 'pafw-restore-stock-when-cancel-unpaid-order', 'no' ) && 'yes' == get_option( 'woocommerce_manage_stock' ) ) {
-
-				foreach ( $order->get_items() as $item ) {
-
-					$_product = $order->get_product_from_item( $item );
-
-					if ( $_product && $_product->exists() && $_product->managing_stock() ) {
-
-						$qty       = apply_filters( 'woocommerce_order_item_quantity', $item['qty'], $order, $item );
-						$old_stock = $_product->get_stock_quantity();
-						$new_stock = $_product->increase_stock( $qty );
-
-						$order->add_order_note( sprintf( __( '[무통장입금 자동취소] 상품 <a target="_blank" href="%s">#%s</a>, %s의 재고가 %s 에서 %s 으로 복구되었습니다.', 'pgall-for-woocommerce' ), get_edit_post_link( $_product->get_id() ), $_product->get_id(), $_product->get_name(), $old_stock, $new_stock ) );
-
-						$order->send_stock_notifications( $_product, $new_stock, $item['qty'] );
-
-					}
-				}
-			}
-		}
 
 		public static function cancel_unpaid_order() {
 			if ( 'yes' == get_option( 'pafw-gw-support-cancel-unpaid-order', 'no' ) && get_option( 'pafw-gw-cancel-unpaid-order-days', '3' ) > 0 ) {
@@ -112,13 +91,10 @@ if ( ! class_exists( 'PAFW_Cancel_Unpaid_Order' ) ) :
 
 							if ( 'bacs' == $payment_method ) {
 								$order->update_status( 'cancelled', __( '[무통장입금 자동취소] 지불되지 않은 무통장입금(Bacs) 주문이 취소 처리 되었습니다.', 'pgall-for-woocommerce' ) );
-								self::restore_stock( $order );
 							} else {
 								$payment_gateway = pafw_get_payment_gateway( $payment_method );
 								if ( $payment_gateway instanceof PAFW_Payment_Gateway && is_callable( array( $payment_gateway, 'cancel_unpaid_order' ) ) ) {
-									if ( $payment_gateway->cancel_unpaid_order( $order ) ) {
-										self::restore_stock( $order );
-									}
+									$payment_gateway->cancel_unpaid_order( $order );
 								}
 							}
 						}

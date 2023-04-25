@@ -28,7 +28,8 @@ if (
 
 	echo esc_html__( 'Your cart is currently empty.', 'cartflows' );
 } else {
-	echo $checkout_html;
+	// Ignoring the escaping rule as we are echoing shortcode.
+	echo $checkout_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
 ?>
 

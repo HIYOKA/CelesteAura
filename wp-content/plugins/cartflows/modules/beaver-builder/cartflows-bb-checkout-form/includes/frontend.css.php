@@ -5,6 +5,8 @@
  * @package cartflows
  */
 
+//phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
+
 global $post;
 
 ?>

@@ -7,8 +7,6 @@
 
 namespace CartflowsAdmin\AdminCore\Inc;
 
-use CartflowsAdmin\AdminCore\Inc\AdminHelper;
-
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -73,16 +71,17 @@ class LogStatus {
 	 */
 	public function user_actions() {
 
-        if ( ! empty( $_REQUEST['handle'] ) ) { //phpcs:ignore
+		// Ignoring nonce verification as using SuperGlobal variables on WordPress hooks.
+		if ( ! empty( $_REQUEST['handle'] ) ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 			if ( ! current_user_can( 'cartflows_manage_settings' ) ) {
 
 				wp_die( esc_html__( 'You don\'t have permission to view this page.', 'cartflows' ) );
 			}
 
-			if ( isset( $_REQUEST['btn_action'] ) ){ //phpcs:ignore
+			if ( isset( $_REQUEST['btn_action'] ) ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
-				$button_action = sanitize_text_field( wp_unslash( $_REQUEST['btn_action'] ) ); //phpcs:ignore
+				$button_action = sanitize_text_field( wp_unslash( $_REQUEST['btn_action'] ) ); //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 				switch ( $button_action ) {
 					case 'remove-log':
@@ -124,9 +123,10 @@ class LogStatus {
 		$viewed_log      = '';
 		$viewed_log_file = '';
 
-		if ( ! empty( $_REQUEST['log_file'] ) ) { //phpcs:ignore
+		// Calling this function on CartFlows action hook. Hence ignoring nonce.
+		if ( ! empty( $_REQUEST['log_file'] ) ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
-			$filename = sanitize_text_field( wp_unslash( $_REQUEST['log_file'] ) ); //phpcs:ignore
+			$filename = sanitize_text_field( wp_unslash( $_REQUEST['log_file'] ) ); //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 			if ( isset( $logs[ $filename ] ) ) {
 				$viewed_log      = $filename;
@@ -216,7 +216,7 @@ class LogStatus {
 		header( 'Pragma: no-cache' );
 		header( 'Expires: 0' );
 
-		echo file_get_contents( $file_path ); //phpcs:ignore
+		echo file_get_contents( $file_path ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		exit;
 	}
 

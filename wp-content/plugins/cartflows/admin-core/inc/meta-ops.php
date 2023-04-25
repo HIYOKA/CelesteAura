@@ -20,13 +20,19 @@ class MetaOps {
 	/**
 	 *  Save Meta fields - Common Function.
 	 *
-	 * @param int   $post_id post id.
-	 * @param array $post_meta options to store.
+	 * @param int    $post_id post id.
+	 * @param array  $post_meta options to store.
+	 * @param string $action action to check nonce.
+	 *
 	 * @return void
 	 */
-	public static function save_meta_fields( $post_id, $post_meta ) {
-		// Ignoring below rule for this function as we have confirmed & verified nonce in parent function.
-		// phpcs:disable WordPress.Security.NonceVerification.Missing
+	public static function save_meta_fields( $post_id, $post_meta, $action = '' ) {
+
+		if ( ! check_ajax_referer( $action, 'security', false ) ) {
+			$response_data = array( 'message' => __( 'Nonce validation failed', 'cartflows' ) );
+			wp_send_json_error( $response_data );
+		}
+
 		if ( ! ( $post_id && is_array( $post_meta ) ) ) {
 			return;
 		}
@@ -54,7 +60,7 @@ class MetaOps {
 
 			switch ( $sanitize_filter ) {
 				case 'FILTER_SANITIZE_STRING':
-					$meta_value = isset( $_POST[ $key ] ) ? sanitize_text_field( wp_unslash( $_POST[ $key ] ) ) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Missing
+					$meta_value = isset( $_POST[ $key ] ) ? sanitize_text_field( wp_unslash( $_POST[ $key ] ) ) : '';
 					break;
 
 				case 'FILTER_SANITIZE_URL':
@@ -67,7 +73,7 @@ class MetaOps {
 
 				case 'FILTER_CARTFLOWS_ARRAY':
 					if ( isset( $_POST[ $key ] ) && is_array( $_POST[ $key ] ) ) {
-						$meta_value = array_map( 'sanitize_text_field', wp_unslash( $_POST[ $key ] ) ); //phpcs:ignore
+						$meta_value = array_map( 'sanitize_text_field', wp_unslash( $_POST[ $key ] ) );
 					}
 					break;
 
@@ -78,7 +84,7 @@ class MetaOps {
 
 				case 'FILTER_SANITIZE_FONT_FAMILY':
 					// FILTER_FLAG_NO_ENCODE_QUOTES - Do not encode the single and double quotes.
-					$meta_value = isset( $_POST[ $key ] ) ? sanitize_text_field( wp_unslash( $_POST[ $key ] ) ) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Missing
+					$meta_value = isset( $_POST[ $key ] ) ? sanitize_text_field( wp_unslash( $_POST[ $key ] ) ) : '';
 					break;
 
 				case 'FILTER_WP_KSES':
@@ -87,8 +93,8 @@ class MetaOps {
 					break;
 
 				case 'FILTER_SCRIPT':
-					// Reason for ignoring phpcs rule: Here we are saving the custom JS script, which input taken from the user and encoding it before saving to DB.
-					$meta_value = htmlentities( wp_unslash( $_POST[ $key ] ) ); //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+					// Reason for ignoring phpcs rule: Here we are saving the custom JS script. Encoding it before sacing to db. No escaping function working here.
+					$meta_value = htmlentities( wp_unslash( $_POST[ $key ] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 					break;
 
 				case 'FILTER_WP_KSES_POST':
@@ -101,7 +107,9 @@ class MetaOps {
 						$i = 0;
 						$q = 0;
 
-						foreach ( $_POST[ $key ] as $p_index => $p_data ) { //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+						$post_data = wc_clean( $_POST[ $key ] );
+
+						foreach ( $post_data as $p_index => $p_data ) {
 							if ( ! array_key_exists( 'product', $p_data ) ) {
 									continue;
 							}
@@ -123,38 +131,13 @@ class MetaOps {
 					}
 					break;
 
-				case 'FILTER_CARTFLOWS_IMAGES': // Not using this filter anywhere. This filter was for legacy UI.
-					$meta_value = filter_input( INPUT_POST, $key, FILTER_DEFAULT ); //phpcs:ignore WordPressVIPMinimum.Security.PHPFilterFunctions.RestrictedFilter
-
-					if ( isset( $_POST[ $key . '-obj' ] ) ) {
-
-						if ( ! is_serialized( $_POST[ $key . '-obj' ] ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-							// We are just getting object and prepearing new array to save img obj.
-							$image_obj = json_decode( stripcslashes( wp_unslash( $_POST[ $key . '-obj' ] ) ), true ); //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-							$image_url = isset( $image_obj['sizes'] ) ? $image_obj['sizes'] : array();
-
-							$image_data = array(
-								'id'  => isset( $image_obj['id'] ) ? intval( $image_obj['id'] ) : 0,
-								'url' => array(
-									'thumbnail' => isset( $image_url['thumbnail']['url'] ) ? esc_url_raw( $image_url['thumbnail']['url'] ) : '',
-									'medium'    => isset( $image_url['medium']['url'] ) ? esc_url_raw( $image_url['medium']['url'] ) : '',
-									'full'      => isset( $image_url['full']['url'] ) ? esc_url_raw( $image_url['full']['url'] ) : '',
-								),
-							);
-
-							$new_meta_value = 0 !== $image_data['id'] ? $image_data : '';
-							update_post_meta( $post_id, $key . '-obj', $new_meta_value );
-						}
-					}
-
-					break;
-
 				case 'FILTER_CARTFLOWS_CHECKOUT_FIELDS':
 					$count                   = 10;
 					$ordered_fields          = array();
 					$billing_shipping_fields = array();
 
 					if ( isset( $_POST[ $key ] ) && is_array( $_POST[ $key ] ) ) {
+						// Ignoring sanitization rule as we are here to sanitize user input.
 						$post_data = $_POST[ $key ]; //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
 						if ( 'wcf_field_order_billing' == $key || 'wcf_field_order_shipping' == $key ) {
@@ -174,7 +157,7 @@ class MetaOps {
 									$count                                        += 10;
 									$placeholder_text                              = ! empty( $value['placeholder'] ) ? wc_clean( stripslashes( $value['placeholder'] ) ) : '';
 
-									$ordered_fields[ $field_key_name ]['width']       = filter_var( $value['width'], FILTER_SANITIZE_NUMBER_INT );
+									$ordered_fields[ $field_key_name ]['width']       = intval( $value['width'] );
 									$ordered_fields[ $field_key_name ]['label']       = wp_kses_post( trim( stripslashes( $value['label'] ) ) );
 									$ordered_fields[ $field_key_name ]['placeholder'] = $placeholder_text;
 									$ordered_fields[ $field_key_name ]['default']     = wp_kses_post( trim( stripslashes( $value['default'] ) ) );
@@ -209,6 +192,7 @@ class MetaOps {
 					$billing_shipping_fields = array();
 
 					if ( isset( $_POST[ $key ] ) && is_array( $_POST[ $key ] ) ) {
+						// Ignoring sanitization rule as we are here to sanitize user input.
 						$post_data = $_POST[ $key ]; //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
 						if ( 'wcf-optin-fields-billing' === $key ) {
@@ -226,7 +210,7 @@ class MetaOps {
 									$ordered_fields[ $field_key_name ]['priority'] = $count;
 									$count                                        += 10;
 
-									$ordered_fields[ $field_key_name ]['width']       = filter_var( $value['width'], FILTER_SANITIZE_NUMBER_INT );
+									$ordered_fields[ $field_key_name ]['width']       = intval( $value['width'] );
 									$ordered_fields[ $field_key_name ]['label']       = wp_kses_post( trim( stripslashes( $value['label'] ) ) );
 									$ordered_fields[ $field_key_name ]['placeholder'] = $placeholder_text;
 									$ordered_fields[ $field_key_name ]['default']     = wp_kses_post( trim( stripslashes( $value['default'] ) ) );
@@ -255,10 +239,10 @@ class MetaOps {
 					break;
 
 				default:
-					if ( 'FILTER_DEFAULT' === $sanitize_filter ) { // Keeping this filter for backward compatibility of PRO.
-						$meta_value = filter_input( INPUT_POST, $key, FILTER_DEFAULT ); //phpcs:ignore WordPressVIPMinimum.Security.PHPFilterFunctions.RestrictedFilter
+					if ( 'FILTER_DEFAULT' === $sanitize_filter ) {
+						$meta_value = isset( $_POST[ $key ] ) ? sanitize_text_field( wp_unslash( $_POST[ $key ] ) ) : '';
 					} else {
-						$meta_value = apply_filters( 'cartflows_admin_save_meta_field_values', $meta_value, $post_id, $key, $sanitize_filter );
+						$meta_value = apply_filters( 'cartflows_admin_save_meta_field_values', $meta_value, $post_id, $key, $sanitize_filter, $action );
 					}
 
 					break;
@@ -275,6 +259,5 @@ class MetaOps {
 				delete_post_meta( $post_id, $key );
 			}
 		}
-		// phpcs:enable WordPress.Security.NonceVerification.Missing
 	}
 }

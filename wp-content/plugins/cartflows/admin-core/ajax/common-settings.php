@@ -116,7 +116,7 @@ class CommonSettings extends AjaxBase {
 			wp_send_json_error( $response_data );
 		}
 
-		if ( isset( $_POST['cartflows_ui'] ) && 'old' === $_POST['cartflows_ui'] ) { //phpcs:ignore
+		if ( isset( $_POST['cartflows_ui'] ) && 'old' === $_POST['cartflows_ui'] ) {
 			// Loop through the input and sanitize each of the values.
 			update_option( 'cartflows-legacy-admin', true );
 			delete_option( 'cartflows-switch-ui-notice' );
@@ -148,6 +148,11 @@ class CommonSettings extends AjaxBase {
 			wp_send_json_error( $response_data );
 		}
 
+		if ( empty( $_POST ) ) {
+			$response_data = array( 'messsage' => __( 'No post data found!', 'cartflows' ) );
+			wp_send_json_error( $response_data );
+		}
+
 		/**
 		 * Nonce verification
 		 */
@@ -156,50 +161,44 @@ class CommonSettings extends AjaxBase {
 			wp_send_json_error( $response_data );
 		}
 
-		if ( empty( $_POST ) ) {
-			$response_data = array( 'messsage' => __( 'No post data found!', 'cartflows' ) );
-			wp_send_json_error( $response_data );
+
+		$setting_tab = isset( $_POST['setting_tab'] ) ? sanitize_text_field( wp_unslash( $_POST['setting_tab'] ) ) : '';
+
+		switch ( $setting_tab ) {
+
+			case 'general_settings':
+				$this->save_general_settings();
+				break;
+
+			case 'permalink':
+				$this->save_permalink_settings();
+				break;
+
+			case 'facebook_pixel':
+				$this->save_fb_pixel_settings();
+				break;
+
+			case 'google_analytics':
+				$this->save_google_analytics_settings();
+				break;
+
+			case 'google_address_autocomplete':
+				$this->save_address_autocomplete_setting();
+				break;
+
+			case 'other_settings':
+				$this->save_other_settings();
+				break;
+
+			case 'user_role_manager':
+				$this->save_user_roles_management_settings();
+				break;
+
+			default:
+				$this->save_general_settings();
+
 		}
-
-		if ( isset( $_POST ) ) {
-
-			$setting_tab = isset( $_POST['setting_tab'] ) ? sanitize_text_field( wp_unslash( $_POST['setting_tab'] ) ) : '';
-
-			switch ( $setting_tab ) {
-
-				case 'general_settings':
-					$this->save_general_settings();
-					break;
-
-				case 'permalink':
-					$this->save_permalink_settings();
-					break;
-
-				case 'facebook_pixel':
-					$this->save_fb_pixel_settings();
-					break;
-
-				case 'google_analytics':
-					$this->save_google_analytics_settings();
-					break;
-
-				case 'google_address_autocomplete':
-					$this->save_address_autocomplete_setting();
-					break;
-
-				case 'other_settings':
-					$this->save_other_settings();
-					break;
-
-				case 'user_role_manager':
-					$this->save_user_roles_management_settings();
-					break;
-
-				default:
-					$this->save_general_settings();
-
-			}
-		}
+	
 
 		$response_data = array(
 			'messsage' => __( 'Successfully saved data!', 'cartflows' ),
@@ -214,10 +213,18 @@ class CommonSettings extends AjaxBase {
 	 */
 	public function save_other_settings() {
 
+		/**
+		 * Nonce verification
+		 */
+		if ( ! check_ajax_referer( 'cartflows_save_global_settings', 'security', false ) ) {
+			$response_data = array( 'messsage' => __( 'Nonce validation failed', 'cartflows' ) );
+			wp_send_json_error( $response_data );
+		}
+
 		$new_settings = '';
 
-		if ( isset( $_POST['cartflows_delete_plugin_data'] ) ) { //phpcs:ignore
-			$new_settings = sanitize_text_field( $_POST['cartflows_delete_plugin_data'] ); //phpcs:ignore
+		if ( isset( $_POST['cartflows_delete_plugin_data'] ) ) {
+			$new_settings = sanitize_text_field( $_POST['cartflows_delete_plugin_data'] );
 
 		}
 
@@ -227,15 +234,16 @@ class CommonSettings extends AjaxBase {
 			$this->update_admin_settings_option( 'cartflows_pro_delete_plugin_data', $new_settings, false );
 		}
 
-		if ( isset( $_POST['cartflows_stats_report_emails'] ) ) { //phpcs:ignore
-			$enable_report_emails = sanitize_text_field( $_POST['cartflows_stats_report_emails'] ); //phpcs:ignore
+		if ( isset( $_POST['cartflows_stats_report_emails'] ) ) {
+			$enable_report_emails = sanitize_text_field( $_POST['cartflows_stats_report_emails'] );
 			$this->update_admin_settings_option( 'cartflows_stats_report_emails', $enable_report_emails, false );
 		}
 
-		if ( isset( $_POST['cartflows_stats_report_email_ids'] ) ) { //phpcs:ignore
+		if ( isset( $_POST['cartflows_stats_report_email_ids'] ) ) {
 
-			if ( ! empty( $_POST['cartflows_stats_report_email_ids'] ) ) { //phpcs:ignore
-				$emails           = preg_split( "/[\f\r\n]+/", $_POST['cartflows_stats_report_email_ids'] ); //phpcs:ignore
+			if ( ! empty( $_POST['cartflows_stats_report_email_ids'] ) ) {
+				// Ignoring the sanitization rule as we are sanitizing each email before saving it.
+				$emails           = preg_split( "/[\f\r\n]+/", $_POST['cartflows_stats_report_email_ids'] ); //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 				$validated_emails = array();
 
 				foreach ( $emails as $email_id ) {
@@ -260,11 +268,19 @@ class CommonSettings extends AjaxBase {
 	 */
 	public function save_general_settings() {
 
+		/**
+		 * Nonce verification
+		 */
+		if ( ! check_ajax_referer( 'cartflows_save_global_settings', 'security', false ) ) {
+			$response_data = array( 'messsage' => __( 'Nonce validation failed', 'cartflows' ) );
+			wp_send_json_error( $response_data );
+		}
+
 		$new_settings = array();
 
-		if ( isset( $_POST['_cartflows_common'] ) ) { //phpcs:ignore
-			// Loop through the input and sanitize each of the values.
-			$new_settings = $this->sanitize_form_inputs( wp_unslash( $_POST['_cartflows_common'] ) ); //phpcs:ignore
+		if ( isset( $_POST['_cartflows_common'] ) ) {
+			// Ignoring the sanitization rule as we are sanitizing input using our function.
+			$new_settings = $this->sanitize_form_inputs( wp_unslash( $_POST['_cartflows_common'] ) ); //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		}
 
 		$common_settings = get_option( '_cartflows_common', false );
@@ -356,10 +372,18 @@ class CommonSettings extends AjaxBase {
 	 */
 	public function save_fb_pixel_settings() {
 
+		/**
+		 * Nonce verification
+		 */
+		if ( ! check_ajax_referer( 'cartflows_save_global_settings', 'security', false ) ) {
+			$response_data = array( 'messsage' => __( 'Nonce validation failed', 'cartflows' ) );
+			wp_send_json_error( $response_data );
+		}
+
 		$new_settings = array();
 
-		if ( isset( $_POST['_cartflows_facebook'] ) ) { //phpcs:ignore
-			$new_settings = $this->sanitize_form_inputs( wp_unslash( $_POST['_cartflows_facebook'] ) ); //phpcs:ignore
+		if ( isset( $_POST['_cartflows_facebook'] ) ) {
+			$new_settings = $this->sanitize_form_inputs( wp_unslash( $_POST['_cartflows_facebook'] ) ); //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		}
 
 		$this->update_admin_settings_option( '_cartflows_facebook', $new_settings, false );
@@ -373,10 +397,18 @@ class CommonSettings extends AjaxBase {
 	 */
 	public function save_user_roles_management_settings() {
 
+		/**
+		 * Nonce verification
+		 */
+		if ( ! check_ajax_referer( 'cartflows_save_global_settings', 'security', false ) ) {
+			$response_data = array( 'messsage' => __( 'Nonce validation failed', 'cartflows' ) );
+			wp_send_json_error( $response_data );
+		}
+
 		$new_settings = array();
 
-		if ( isset( $_POST['_cartflows_roles'] ) ) { //phpcs:ignore
-			$new_settings = $this->sanitize_form_inputs( wp_unslash( $_POST['_cartflows_roles'] ) ); //phpcs:ignore
+		if ( isset( $_POST['_cartflows_roles'] ) ) {
+			$new_settings = $this->sanitize_form_inputs( wp_unslash( $_POST['_cartflows_roles'] ) ); //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		}
 
 		$old_settings = AdminHelper::get_admin_settings_option( '_cartflows_roles' );
@@ -396,10 +428,18 @@ class CommonSettings extends AjaxBase {
 	 */
 	public function save_google_analytics_settings() {
 
+		/**
+		 * Nonce verification
+		 */
+		if ( ! check_ajax_referer( 'cartflows_save_global_settings', 'security', false ) ) {
+			$response_data = array( 'messsage' => __( 'Nonce validation failed', 'cartflows' ) );
+			wp_send_json_error( $response_data );
+		}
+
 		$new_settings = array();
 
-		if ( isset( $_POST['_cartflows_google_analytics'] ) ) { //phpcs:ignore
-			$new_settings = $this->sanitize_form_inputs( wp_unslash( $_POST['_cartflows_google_analytics'] ) ); //phpcs:ignore
+		if ( isset( $_POST['_cartflows_google_analytics'] ) ) {
+			$new_settings = $this->sanitize_form_inputs( wp_unslash( $_POST['_cartflows_google_analytics'] ) ); //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		}
 
 		$this->update_admin_settings_option( '_cartflows_google_analytics', $new_settings, true );
@@ -411,10 +451,19 @@ class CommonSettings extends AjaxBase {
 	 * @return void
 	 */
 	public function save_address_autocomplete_setting() {
+
+		/**
+		 * Nonce verification
+		 */
+		if ( ! check_ajax_referer( 'cartflows_save_global_settings', 'security', false ) ) {
+			$response_data = array( 'messsage' => __( 'Nonce validation failed', 'cartflows' ) );
+			wp_send_json_error( $response_data );
+		}
+
 		$new_settings = array();
 
-		if ( isset( $_POST['_cartflows_google_auto_address'] ) ) { //phpcs:ignore
-			$new_settings = $this->sanitize_form_inputs( wp_unslash( $_POST['_cartflows_google_auto_address'] ) ); //phpcs:ignore
+		if ( isset( $_POST['_cartflows_google_auto_address'] ) ) {
+			$new_settings = $this->sanitize_form_inputs( wp_unslash( $_POST['_cartflows_google_auto_address'] ) ); //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		}
 
 		$this->update_admin_settings_option( '_cartflows_google_auto_address', $new_settings, true );
@@ -427,7 +476,15 @@ class CommonSettings extends AjaxBase {
 	 */
 	public function save_permalink_settings() {
 
-		if ( isset( $_POST['reset'] ) ) { //phpcs:ignore
+		/**
+		 * Nonce verification
+		 */
+		if ( ! check_ajax_referer( 'cartflows_save_global_settings', 'security', false ) ) {
+			$response_data = array( 'messsage' => __( 'Nonce validation failed', 'cartflows' ) );
+			wp_send_json_error( $response_data );
+		}
+
+		if ( isset( $_POST['reset'] ) ) {
 			$_POST['_cartflows_permalink'] = array(
 				'permalink'           => CARTFLOWS_STEP_PERMALINK_SLUG,
 				'permalink_flow_base' => CARTFLOWS_FLOW_PERMALINK_SLUG,
@@ -436,8 +493,8 @@ class CommonSettings extends AjaxBase {
 
 		}
 		$new_settings = array();
-		if ( isset( $_POST['_cartflows_permalink'] ) ) { //phpcs:ignore
-			$cartflows_permalink_settings = $this->sanitize_form_inputs( wp_unslash( $_POST['_cartflows_permalink'] ) ); //phpcs:ignore
+		if ( isset( $_POST['_cartflows_permalink'] ) ) {
+			$cartflows_permalink_settings = $this->sanitize_form_inputs( wp_unslash( $_POST['_cartflows_permalink'] ) ); //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
 			if ( empty( $cartflows_permalink_settings['permalink'] ) ) {
 				$new_settings['permalink'] = CARTFLOWS_STEP_PERMALINK_SLUG;

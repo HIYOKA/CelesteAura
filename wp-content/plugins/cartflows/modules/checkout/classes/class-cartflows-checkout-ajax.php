@@ -85,7 +85,7 @@ class Cartflows_Checkout_Ajax {
 						);
 					}
 
-					$uri = explode('?', $_SERVER['REQUEST_URI'], 2); //phpcs:ignore
+					$uri = explode( '?', esc_url_raw( $_SERVER['REQUEST_URI'] ), 2 );
 					$url = esc_url( $uri[0] );
 				}
 
@@ -136,7 +136,7 @@ class Cartflows_Checkout_Ajax {
 	 */
 	public function remove_coupon() {
 		check_ajax_referer( 'wcf-remove-coupon', 'security' );
-		$coupon = isset( $_POST['coupon_code'] ) ? wc_clean( wp_unslash( $_POST['coupon_code'] ) ) : false; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$coupon = isset( $_POST['coupon_code'] ) ? sanitize_text_field( wp_unslash( $_POST['coupon_code'] ) ) : false;
 
 		if ( empty( $coupon ) ) {
 			echo "<div class='woocommerce-error'>" . esc_html__( 'Sorry there was a problem removing this coupon.', 'cartflows' );
@@ -153,8 +153,8 @@ class Cartflows_Checkout_Ajax {
 	 */
 	public function wcf_woo_remove_cart_product() {
 		check_ajax_referer( 'wcf-remove-cart-product', 'security' );
-		$product_key   = isset( $_POST['p_key'] ) ? wc_clean( wp_unslash( $_POST['p_key'] ) ) : false; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-		$product_id    = isset( $_POST['p_id'] ) ? wc_clean( wp_unslash( $_POST['p_id'] ) ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$product_key   = isset( $_POST['p_key'] ) ? sanitize_text_field( wp_unslash( $_POST['p_key'] ) ) : false;
+		$product_id    = isset( $_POST['p_id'] ) ? sanitize_text_field( wp_unslash( $_POST['p_id'] ) ) : '';
 		$product_title = get_the_title( $product_id );
 
 		$needs_shipping = false;

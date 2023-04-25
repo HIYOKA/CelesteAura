@@ -110,22 +110,23 @@ class Cartflows_Elementor_Editor {
 	 * Elementor editor compatibility.
 	 */
 	public function elementor_editor_compatibility() {
-
-		if ( ! empty( $_REQUEST['action'] ) && is_admin() ) { //phpcs:ignore
+		// This file included on elementor actions.
+		//phpcs:disable WordPress.Security.NonceVerification.Recommended
+		if ( ! empty( $_REQUEST['action'] ) && is_admin() ) {
 
 			$current_post_id = false;
 			$elementor_ajax  = false;
 
-			if ( 'elementor' === $_REQUEST['action'] && isset( $_GET['post'] ) && ! empty( $_GET['post'] ) ) { //phpcs:ignore
-				$current_post_id   = intval( $_GET['post'] ); //phpcs:ignore
+			if ( 'elementor' === $_REQUEST['action'] && isset( $_GET['post'] ) && ! empty( $_GET['post'] ) ) {
+				$current_post_id = intval( $_GET['post'] );
 			}
 
-			if ( wp_doing_ajax() && 'elementor_ajax' === $_REQUEST['action'] && isset( $_REQUEST['editor_post_id'] ) && ! empty( $_REQUEST['editor_post_id'] ) ) { //phpcs:ignore
-				$current_post_id = intval( $_REQUEST['editor_post_id'] ); //phpcs:ignore
+			if ( wp_doing_ajax() && 'elementor_ajax' === $_REQUEST['action'] && isset( $_REQUEST['editor_post_id'] ) && ! empty( $_REQUEST['editor_post_id'] ) ) {
+				$current_post_id = intval( $_REQUEST['editor_post_id'] );
 				$elementor_ajax  = true;
 			}
 
-			if ( $current_post_id ) { //phpcs:ignore
+			if ( $current_post_id ) {
 
 				$current_post_type = get_post_type( $current_post_id );
 
@@ -141,7 +142,7 @@ class Cartflows_Elementor_Editor {
 			}
 
 			/* Compatibility without condition, just to add actions */
-			if ( 'elementor' === $_REQUEST['action'] || 'elementor_ajax' === $_REQUEST['action'] ) { //phpcs:ignore
+			if ( 'elementor' === $_REQUEST['action'] || 'elementor_ajax' === $_REQUEST['action'] ) {
 
 				add_action( 'cartflows_elementor_before_checkout_shortcode', array( $this, 'before_checkout_shortcode_actions' ) );
 				add_action( 'cartflows_elementor_before_optin_shortcode', array( $this, 'before_optin_shortcode_actions' ) );
@@ -149,6 +150,7 @@ class Cartflows_Elementor_Editor {
 				/* Thank you filters */
 				add_filter( 'cartflows_show_demo_order_details', '__return_true' );
 			}
+		//phpcs:enable WordPress.Security.NonceVerification.Recommended
 		}
 	}
 

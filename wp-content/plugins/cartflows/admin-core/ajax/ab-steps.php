@@ -150,6 +150,10 @@ class AbSteps extends AjaxBase {
 
 		$flow_steps = get_post_meta( $flow_id, 'wcf-steps', true );
 
+		if ( ! is_array( $flow_steps ) ) {
+			wp_send_json( $result );
+		}
+
 		if ( is_array( $flow_steps ) ) {
 
 			foreach ( $flow_steps as $step => $control_step ) {
@@ -224,7 +228,8 @@ class AbSteps extends AjaxBase {
 		}
 
 		if ( isset( $_POST['wcf_ab_settings'] ) ) {
-			$form_data = wcf_clean( wp_unslash( $_POST['wcf_ab_settings'] ) ); //phpcs:ignore
+			// We are sanitizing form data using our function. Hence ignoring sanitization rule.
+			$form_data = wcf_clean( wp_unslash( $_POST['wcf_ab_settings'] ) ); //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
 			$traffic = isset( $form_data['traffic'] ) ? $form_data['traffic'] : array();
 
@@ -255,6 +260,14 @@ class AbSteps extends AjaxBase {
 				}
 			}
 			update_post_meta( $flow_id, 'wcf-steps', $flow_steps );
+
+			do_action(
+				'cartflows_save_ab_test_setting',
+				array(
+					'flow_id' => $flow_id,
+					'step_id' => $step_id,
+				) 
+			);
 
 			$result = array(
 				'status' => true,

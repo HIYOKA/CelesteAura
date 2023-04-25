@@ -2,8 +2,8 @@
 Contributors: sujaypawar, wpcrafter
 Tags: woocommerce, funnel builder, sales funnels, elementor, beaver builder
 Requires at least: 5.8
-Tested up to: 6.1
-Stable tag: 1.11.9
+Tested up to: 6.2
+Stable tag: 1.11.10
 Requires PHP: 7.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -321,6 +321,15 @@ This includes, but is not limited to:
 5. Easily edit anything with your page builder.
 
 == Changelog ==
+
+= Version 1.11.10 - Monday, 24th April 2023 =
+* Improvement: Restructured the code to enhance the security of the plugin.
+* Fix: Corrected an issue where Google AutoAddress was not functioning properly in some situations.
+* Fix: Fixed a problem where the modern checkout was displaying duplicate email fields in some situations.
+* Fix: Resolved an error that occurred when attempting to edit a step using Gutenberg without having WooCommerce installed or activated.
+* Fix: Google AutoAddress was not working correctly in some cases.
+* Fix: Showing duplicate email field for modern checkout in some cases.
+* New: Introduced a new action `cartflows_save_ab_test_setting` for A/B test save setting.
 
 = Version 1.11.9 - Tuesday, 7th February 2023 =
 * Improvement: Improved the preview of checkout offer feature.

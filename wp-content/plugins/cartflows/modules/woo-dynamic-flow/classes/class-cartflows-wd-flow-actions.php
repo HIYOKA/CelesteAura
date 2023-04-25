@@ -49,7 +49,7 @@ class Cartflows_Wd_Flow_Actions {
 	 */
 	public function skip_cf_cart_configuration( $skip_cart, $checkout_id ) {
 
-		if ( isset( $_GET['cf-redirect'] ) ) { // phpcs:ignore
+		if ( isset( $_GET['cf-redirect'] ) ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$skip_cart = true;
 		}
 
@@ -81,9 +81,9 @@ class Cartflows_Wd_Flow_Actions {
 	 */
 	public function redirect_to_next_flow_step( $redirect_url, $product ) {
 
-		if ( isset( $_REQUEST['wcf-step-id'] ) ) { //phpcs:ignore
+		if ( isset( $_REQUEST['wcf-step-id'] ) ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
-			$step_id = intval( $_REQUEST['wcf-step-id'] ); //phpcs:ignore
+			$step_id = intval( $_REQUEST['wcf-step-id'] ); //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 			$wcf_step_obj = wcf_get_step( $step_id );
 			$next_step_id = $wcf_step_obj->get_direct_next_step_id();

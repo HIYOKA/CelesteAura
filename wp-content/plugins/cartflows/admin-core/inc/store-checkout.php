@@ -44,7 +44,6 @@ class StoreCheckout {
 	public function __construct() {
 		add_filter( 'cartflows_woo_active_steps_data', array( $this, 'store_checkout_import_steps' ) );
 		add_filter( 'cartflows_admin_get_step_actions', array( $this, 'store_checkout_get_step_actions' ), 10, 3 );
-		add_filter( 'cartflows_admin_updated_flow_steps', array( $this, 'update_flow_order' ), 10, 2 );
 		add_filter( 'cartflows_admin_action_slug', array( $this, 'store_action_slug' ), 10, 2 );
 		add_filter( 'cartflows_admin_required_meta_keys', array( $this, 'required_meta_keys' ), 10, 2 );
 		add_filter( 'cartflows_admin_flow_data', array( $this, 'modify_store_checkout_flow_data' ), 10, 2 );
@@ -105,30 +104,6 @@ class StoreCheckout {
 	}
 
 	/**
-	 * Updates steps order in flow
-	 *
-	 * @param array $flows array of updated flow.
-	 * @param int   $flow_id flow id.
-	 * @return array
-	 * @since X.X.X
-	 */
-	public function update_flow_order( $flows, $flow_id ) {
-		if ( absint( \Cartflows_Helper::get_global_setting( '_cartflows_store_checkout' ) ) !== $flow_id ) {
-			return $flows;
-		}
-
-		$key = array_search( 'thankyou', wp_list_pluck( $flows, 'type' ), true );
-		if ( ! $key ) {
-			return $flows;
-		}
-
-		$thankyou = array_splice( $flows, $key, 1 );
-		$flows[]  = $thankyou[0];
-
-		return $flows;
-	}
-
-	/**
 	 * Deletes Store Checkout metadata when store checkout is deleted
 	 *
 	 * @param int $flow_id flow id.
@@ -136,6 +111,15 @@ class StoreCheckout {
 	 * @since X.X.X
 	 */
 	public function delete_store_checkout_meta( $flow_id ) {
+
+		/**
+		 * Nonce verification
+		 */
+		if ( ! check_ajax_referer( 'cartflows_delete_flow', 'security', false ) ) {
+			$response_data = array( 'message' => __( 'Nonce verification failed.', 'cartflows' ) );
+			wp_send_json_error( $response_data );
+		}
+
 		if ( absint( \Cartflows_Helper::get_global_setting( '_cartflows_store_checkout' ) ) !== $flow_id ) {
 			return;
 		}

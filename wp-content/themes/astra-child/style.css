@@ -10,6 +10,72 @@ Text Domain: astra-child
 Template: astra
 */
 
-h1 {
-  color: black !important;
+div.star-rating {display:none;}
+.woocommerce div.product .sku_wrapper {display: none!important;}
+.woocommerce div.product .posted_in {display: none!important;}
+/* 태그 컨테이너 */
+.tagged_as {
+    font-size: 14px;
+    font-weight: 400;
+    color: #666666;
+}
+
+/* 태그 링크 */
+.tagged_as a {
+    color: #ffffff; /* 글자색 변경 */
+    background-color: #2196f3; /* 배경색 변경 */
+    border-radius: 4px; /* 모서리 둥글기 변경 */
+    padding: 4px 8px; /* 패딩 변경 */
+    margin-right: 5px; /* 오른쪽 마진 변경 */
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+/* 태그 링크 호버 */
+.tagged_as a:hover {
+    background-color: #1976d2; /* hover 시 배경색 변경 */
+    color: #ffffff; /* hover 시 글자색 변경 */
+}
+
+/*계정관리css*/
+.ast-header-account-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 4px;
+    color: #000000;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.ast-header-account-link:hover {
+    color: #e68900;
+}
+
+.ast-header-account-text {
+    margin-left: 5px;
+    font-size: 20px;
+    font-weight: 600;
+}/*계정관리css끝*/
+
+.menu-item a {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: #000000;
+    transition: color 0.3s;
+}
+
+.menu-item a:hover {
+    color: #e68900; 
+}
+
+.menu-item .menu-text {
+    margin-left: 5px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+#menu-item-45 a:hover {
+    color: #1976d2;
 }

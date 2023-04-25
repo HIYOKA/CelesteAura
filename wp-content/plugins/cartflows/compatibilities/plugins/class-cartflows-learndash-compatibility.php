@@ -92,7 +92,7 @@ class Cartflows_Learndash_Compatibility {
 				'post_status'    => 'publish',
 				'orderby'        => 'ID',
 				'order'          => 'DESC',
-				'meta_query'     => array( //phpcs:ignore
+				'meta_query'     => array( //phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 					array(
 						'key'     => 'wcf-step-type',
 						'value'   => array( 'landing', 'checkout', 'optin' ),

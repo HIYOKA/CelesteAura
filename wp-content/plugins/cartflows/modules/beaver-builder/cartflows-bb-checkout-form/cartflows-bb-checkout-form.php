@@ -1,4 +1,4 @@
-<?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName
+<?php
 /**
  * Checkout Form Module for Beaver Builder
  *
@@ -52,7 +52,7 @@ class Cartflows_BB_Checkout_Form extends FLBuilderModule {
 	public function get_icon( $icon = '' ) {
 
 		if ( '' !== $icon && file_exists( CARTFLOWS_DIR . 'modules/beaver-builder/cartflows-bb-checkout-form/icon/' . $icon ) ) {
-
+			// file_get_contents is fine for local files. https://github.com/WordPress/WordPress-Coding-Standards/pull/1374/files#diff-400e43bc09c24262b43f26fce487fdabR43-R52.
 			return file_get_contents( CARTFLOWS_DIR . 'modules/beaver-builder/cartflows-bb-checkout-form/icon/' . $icon ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 		}
 

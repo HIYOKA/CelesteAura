@@ -13,7 +13,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 use CartflowsAdmin\Wizard\Ajax\AjaxBase;
-use CartflowsAdmin\Wizard\Inc\WizardHelper;
 use CartflowsAdmin\AdminCore\Ajax\Importer;
 use CartflowsAdmin\Wizard\Inc\WizardCore;
 
@@ -88,7 +87,7 @@ class Wizard extends AjaxBase {
 			wp_send_json_error( $response_data );
 		}
 
-		$step = isset( $_POST['current_step'] ) ? sanitize_text_field( wp_unslash( $_POST['current_step'] ) ) : ''; //phpcs:ignore
+		$step = isset( $_POST['current_step'] ) ? sanitize_text_field( wp_unslash( $_POST['current_step'] ) ) : '';
 
 		update_option( 'wcf_setup_skipped', true );
 		update_option( 'wcf_exit_setup_step', $step );
@@ -147,7 +146,7 @@ class Wizard extends AjaxBase {
 			wp_send_json_error( $response_data );
 		}
 
-		$page_builder = isset( $_POST['page_builder'] ) ? sanitize_text_field( wp_unslash( $_POST['page_builder'] ) ) : ''; //phpcs:ignore
+		$page_builder = isset( $_POST['page_builder'] ) ? sanitize_text_field( wp_unslash( $_POST['page_builder'] ) ) : '';
 
 		$wcf_settings = get_option( '_cartflows_common', array() );
 
@@ -454,7 +453,7 @@ class Wizard extends AjaxBase {
 			wp_send_json_error( $response_data );
 		}
 
-		$flow_id = isset( $_POST['flow_id'] ) ? absint( $_POST['flow_id'] ) : 0; // phpcs:ignore
+		$flow_id = isset( $_POST['flow_id'] ) ? absint( $_POST['flow_id'] ) : 0;
 
 		// Get single step Rest API response.
 		$response = \CartFlows_API::get_instance()->get_flow( $flow_id );
@@ -483,8 +482,8 @@ class Wizard extends AjaxBase {
 			$response_data = array( 'message' => $this->get_error_msg( 'nonce' ) );
 			wp_send_json_error( $response_data );
 		}
-
-		$flow = isset( $_POST['flow'] ) ? json_decode( stripslashes( $_POST['flow'] ), true ) : array(); // phpcs:ignore
+		// $_POST['flow'] is the JSON, There is nothing to sanitize JSON as it is data format not data type.
+		$flow = isset( $_POST['flow'] ) ? json_decode( stripslashes( $_POST['flow'] ), true ) : array(); //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
 		if ( empty( $flow ) ) {
 			$response_data = array( 'message' => __( 'No flow ID found. Please select atleast one flow to import.', 'cartflows' ) );
@@ -496,7 +495,8 @@ class Wizard extends AjaxBase {
 
 		if ( is_wp_error( $response['data'] ) ) {
 
-			$btn = __( 'Request timeout error. Please check if the firewall or any security plugin is blocking the outgoing HTTP/HTTPS requests to templates.cartflows.com or not. <br><br>To resolve this issue, please check this <a target="_blank" href="https://cartflows.com/docs/request-timeout-error-while-importing-the-flow-step-templates/">article</a>.', 'cartflows' );
+			/* translators: %1$s: html tag, %2$s: link html start %3$s: link html end */
+			$btn = sprintf( __( 'Request timeout error. Please check if the firewall or any security plugin is blocking the outgoing HTTP/HTTPS requests to templates.cartflows.com or not. %1$sTo resolve this issue, please check this %2$sarticle%3$s.', 'cartflows' ), '<br><br>', '<a target="_blank" href="https://cartflows.com/docs/request-timeout-error-while-importing-the-flow-step-templates/?utm_source=dashboard&utm_medium=free-cartflows&utm_campaign=docs">', '</a>' );
 
 			wp_send_json_error(
 				array(
@@ -607,7 +607,8 @@ class Wizard extends AjaxBase {
 					'flow' => array(
 						'id' => $new_flow_id,
 					),
-				)
+				),
+				'cartflows_import_store_checkout'
 			);
 		}
 

@@ -86,7 +86,7 @@ class Cartflows_Flow_Frontend {
 					<?php
 						$flow_edit_link = admin_url( 'admin.php?page=cartflows&action=wcf-edit-flow&flow_id=' . $flow_id . '&tab=settings#sandbox' );
 					?>
-					<a href="<?php echo $flow_edit_link; ?>"><?php esc_html_e( 'Click here to disable it', 'cartflows' ); ?></a>
+					<a href="<?php echo esc_url( $flow_edit_link ); ?>"><?php esc_html_e( 'Click here to disable it', 'cartflows' ); ?></a>
 				<?php } ?>
 			</div>
 			<?php } ?>

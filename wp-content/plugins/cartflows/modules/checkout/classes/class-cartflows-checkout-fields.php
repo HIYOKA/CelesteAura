@@ -56,7 +56,7 @@ class Cartflows_Checkout_Fields {
 	 */
 	public function init_actions() {
 
-		if ( wp_doing_ajax() && isset( $_GET['wcf_checkout_id'] ) ) { //phpcs:ignore
+		if ( wp_doing_ajax() && isset( $_GET['wcf_checkout_id'] ) ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$this->checkout_field_actions();
 		}
 	}
@@ -153,7 +153,7 @@ class Cartflows_Checkout_Fields {
 		$localize_script .= 'var cartflows_checkout_optimized_fields = ' . wp_json_encode( $localize ) . ';';
 		$localize_script .= '</script>';
 
-		echo $localize_script;
+		echo $localize_script; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	/**
@@ -544,7 +544,7 @@ class Cartflows_Checkout_Fields {
 	 * @return int|bool
 	 */
 	public function get_conditional_checkout_id() {
-
+		//phpcs:disable WordPress.Security.NonceVerification
 		if ( empty( self::$cached_checkout_id ) ) {
 
 			self::$cached_checkout_id = false;
@@ -556,19 +556,20 @@ class Cartflows_Checkout_Fields {
 				self::$cached_checkout_id = $post->ID;
 			} elseif ( wp_doing_ajax() ) {
 
-				if ( isset( $_GET['wcf_checkout_id'] ) ) { //phpcs:ignore
+				if ( isset( $_GET['wcf_checkout_id'] ) ) {
 
-					self::$cached_checkout_id = intval( wp_unslash( $_GET['wcf_checkout_id'] ) ); //phpcs:ignore
-				}elseif( isset( $_POST['id'] ) ){ //phpcs:ignore
+					self::$cached_checkout_id = intval( wp_unslash( $_GET['wcf_checkout_id'] ) );
+				} elseif ( isset( $_POST['id'] ) ) {
 
-					$is_checkout = wcf()->utils->check_is_checkout_page( intval( wp_unslash( $_POST['id'] ) ) ); //phpcs:ignore
+					$is_checkout = wcf()->utils->check_is_checkout_page( intval( wp_unslash( $_POST['id'] ) ) );
 
 					if ( $is_checkout ) {
-						self::$cached_checkout_id = intval( wp_unslash( $_POST['id'] ) ); //phpcs:ignore
+						self::$cached_checkout_id = intval( wp_unslash( $_POST['id'] ) );
 					}
 				}
 			}
 		}
+		//phpcs:enable WordPress.Security.NonceVerification
 
 		return self::$cached_checkout_id;
 	}

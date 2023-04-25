@@ -134,7 +134,7 @@ class Cartflows_Admin {
 					<a href='<?php echo esc_url( $button_link ); ?>' class='button button-primary'><?php echo esc_html_e( 'Complete Setup', 'cartflows' ); ?></a>
 				</div>
 				<div class="wcf-right-column">
-					<img src="<?php echo CARTFLOWS_URL; ?>admin/assets/images/cartflows-home-widget.svg" />
+					<img src="<?php echo esc_url( CARTFLOWS_URL . 'admin/assets/images/cartflows-home-widget.svg' ); ?>" />
 				</div>
 			</div>
 		</div>
@@ -198,11 +198,11 @@ class Cartflows_Admin {
 
 		$mylinks = array(
 			'<a href="' . $default_url . '">' . __( 'Settings', 'cartflows' ) . '</a>',
-			'<a target="_blank" href="' . esc_url( 'https://cartflows.com/docs' ) . '">' . __( 'Docs', 'cartflows' ) . '</a>',
+			'<a target="_blank" href="' . esc_url( 'https://cartflows.com/docs/?utm_source=plugin-page&utm_medium=free-cartflows&utm_campaign=go-pro' ) . '">' . __( 'Docs', 'cartflows' ) . '</a>',
 		);
 
 		if ( ! _is_cartflows_pro() ) {
-			array_push( $mylinks, '<a style="color: #39b54a; font-weight: 700;" target="_blank" href="' . esc_url( 'https://cartflows.com/pricing/' ) . '"> Go Pro </a>' );
+			array_push( $mylinks, '<a style="color: #39b54a; font-weight: 700;" target="_blank" href="' . esc_url( 'https://cartflows.com/pricing/?utm_source=plugin-page&utm_medium=free-cartflows&utm_campaign=go-pro' ) . '"> Go Pro </a>' );
 		}
 
 		return array_merge( $links, $mylinks );
@@ -242,7 +242,7 @@ class Cartflows_Admin {
 
 		$classes .= ' cartflows-' . CARTFLOWS_VER;
 
-		if ( isset( $_GET['action'] ) && in_array( sanitize_text_field( wp_unslash( $_GET['action'] ) ), array( 'wcf-log', 'wcf-license' ) ) ) { //phpcs:ignore
+		if ( isset( $_GET['action'] ) && in_array( sanitize_text_field( wp_unslash( $_GET['action'] ) ), array( 'wcf-log', 'wcf-license' ) ) ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$classes .= ' wcf-debug-page ';
 		}
 

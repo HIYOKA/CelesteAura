@@ -5,7 +5,7 @@ import { __ } from '@wordpress/i18n';
 import { useStateValue } from '../utils/StateProvider';
 import Elementor from '@WizardImages/elementor.svg';
 import BeaverBuilder from '@WizardImages/beaver-builder.svg';
-import Gutenberg from '@WizardImages/block-editor.png';
+import BlockEditor from '@WizardImages/block-editor.png';
 import otherPageBuilders from '@WizardImages/other.svg';
 
 const mailingLists = [
@@ -13,7 +13,7 @@ const mailingLists = [
 		id: 1,
 		slug: 'gutenberg',
 		title: 'Block Builder',
-		image: Gutenberg,
+		image: BlockEditor,
 	},
 	{
 		id: 2,

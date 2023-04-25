@@ -185,13 +185,15 @@ function _is_wcf_checkout_type() {
  */
 function _is_wcf_doing_checkout_ajax() {
 
-	if ( wp_doing_ajax() || isset( $_GET['wc-ajax'] ) ) { //phpcs:ignore
+	//phpcs:disable WordPress.Security.NonceVerification
+	if ( wp_doing_ajax() || isset( $_GET['wc-ajax'] ) ) {
 
-		if ( ( isset( $_GET['wc-ajax'] ) && isset( $_POST['_wcf_checkout_id'] ) ) || isset( $_GET['wcf_checkout_id'] ) //phpcs:ignore
+		if ( ( isset( $_GET['wc-ajax'] ) && isset( $_POST['_wcf_checkout_id'] ) ) || isset( $_GET['wcf_checkout_id'] )
 		) {
 			return true;
 		}
 	}
+	//phpcs:enable WordPress.Security.NonceVerification
 
 	return false;
 }
@@ -204,14 +206,16 @@ function _is_wcf_doing_checkout_ajax() {
  */
 function _is_wcf_doing_optin_ajax() {
 
-	if ( wp_doing_ajax() || isset( $_GET['wc-ajax'] ) ) { //phpcs:ignore
+	//phpcs:disable WordPress.Security.NonceVerification
+	if ( wp_doing_ajax() || isset( $_GET['wc-ajax'] ) ) {
 
-		if ( isset( $_GET['wc-ajax'] ) && //phpcs:ignore
-			isset( $_POST['_wcf_optin_id'] ) //phpcs:ignore
+		if ( isset( $_GET['wc-ajax'] ) &&
+			isset( $_POST['_wcf_optin_id'] )
 		) {
 			return true;
 		}
 	}
+	//phpcs:enable WordPress.Security.NonceVerification
 
 	return false;
 }
@@ -568,15 +572,15 @@ function wcf_get_page_builder_notice() {
 	$page_builder_data = array(
 		'elementor'      => array(
 			'name' => 'Elementor',
-			'doc'  => 'https://cartflows.com/docs/elementor-widgets-of-cartflows/',
+			'doc'  => 'https://cartflows.com/docs/elementor-widgets-of-cartflows/?utm_source=dashboard&utm_medium=free-cartflows&utm_campaign=docs',
 		),
 		'beaver-builder' => array(
 			'name' => 'Beaver Builder',
-			'doc'  => 'https://cartflows.com/docs/beaver-builder-modules-of-cartflows/',
+			'doc'  => 'https://cartflows.com/docs/beaver-builder-modules-of-cartflows/?utm_source=dashboard&utm_medium=free-cartflows&utm_campaign=docs',
 		),
 		'gutenberg'      => array(
 			'name' => 'Gutenebrg',
-			'doc'  => 'https://cartflows.com/docs/cartflows-gutenberg-blocks/',
+			'doc'  => 'https://cartflows.com/docs/cartflows-gutenberg-blocks/?utm_source=dashboard&utm_medium=free-cartflows&utm_campaign=docs',
 		),
 	);
 

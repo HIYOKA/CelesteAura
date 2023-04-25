@@ -897,7 +897,7 @@ class Cartflows_Checkout_Meta_Data extends Cartflows_Step_Meta_Base {
 			'coupon-doc' => array(
 				'type'    => 'doc',
 				/* translators: %1$1s: link html start, %2$12: link html end*/
-				'content' => sprintf( __( 'For more information about the CartFlows coupon please %1$1s Click here.%2$2s', 'cartflows' ), '<a href="https://cartflows.com/docs/enable-coupons-on-cartflows-page/" target="_blank">', '</a>' ),
+				'content' => sprintf( __( 'For more information about the CartFlows coupon please %1$1s Click here.%2$2s', 'cartflows' ), '<a href="https://cartflows.com/docs/enable-coupons-on-cartflows-page/?utm_source=dashboard&utm_medium=free-cartflows&utm_campaign=docs" target="_blank">', '</a>' ),
 			),
 		);
 	}
@@ -933,7 +933,7 @@ class Cartflows_Checkout_Meta_Data extends Cartflows_Step_Meta_Base {
 						'checkout-product-doc'  => array(
 							'type'    => 'doc',
 							/* translators: %1$1s: link html start, %2$12: link html end*/
-							'content' => sprintf( __( 'For more information about the checkout product settings please %1$1s Click here.%2$2s', 'cartflows' ), '<a href="https://cartflows.com/docs/set-product-quantity-and-discount/" target="_blank">', '</a>' ),
+							'content' => sprintf( __( 'For more information about the checkout product settings please %1$1s Click here.%2$2s', 'cartflows' ), '<a href="https://cartflows.com/docs/set-product-quantity-and-discount/?utm_source=dashboard&utm_medium=free-cartflows&utm_campaign=docs" target="_blank">', '</a>' ),
 						),
 					),
 				),

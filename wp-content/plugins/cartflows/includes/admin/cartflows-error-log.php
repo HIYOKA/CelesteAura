@@ -34,7 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<?php
 						$timestamp = filemtime( CARTFLOWS_LOG_DIR . $log_file );
 						/* translators: %1$s: timestamp1, %2$s: timestamp2 */
-						$date      = sprintf( __( '%1$s at %2$s', 'cartflows' ), date_i18n( 'F j, Y', $timestamp ), date_i18n( 'g:i a', $timestamp ) ); // phpcs:ignore
+						$date = sprintf( __( '%1$s at %2$s', 'cartflows' ), date_i18n( 'F j, Y', $timestamp ), date_i18n( 'g:i a', $timestamp ) );
 						?>
 						<option value="<?php echo esc_attr( $log_key ); ?>" <?php selected( sanitize_title( $viewed_log ), $log_key ); ?>><?php echo esc_html( $log_file ); ?> (<?php echo esc_html( $date ); ?>)</option>
 					<?php endforeach; ?>
@@ -46,7 +46,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</div>
 	<div id="log-viewer">
 		<div class="wcf-log-container">
-			<pre><?php echo esc_html( file_get_contents( CARTFLOWS_LOG_DIR . $viewed_log ) );//phpcs:ignore ?></pre>
+			<pre><?php echo esc_html( file_get_contents( CARTFLOWS_LOG_DIR . $viewed_log ) ); ?></pre>
 		</div>
 		<?php if ( ! empty( $viewed_log ) ) : ?>
 			<a onclick="return confirm('Are you sure to delete this log?');" style="float: right" href="

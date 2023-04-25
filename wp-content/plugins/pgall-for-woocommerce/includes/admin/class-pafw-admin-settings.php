@@ -340,16 +340,7 @@ if ( ! class_exists( 'PAFW_Admin_Settings' ) ) :
 								"leftLabel" => __( "결제 후", 'pgall-for-woocommerce' ),
 								"label"     => __( "일", 'pgall-for-woocommerce' ),
 								"default"   => "3"
-							),
-							array(
-								'id'        => 'pafw-restore-stock-when-cancel-unpaid-order',
-								'title'     => __( '주문 취소시 재고복원', 'pgall-for-woocommerce' ),
-								"showIf"    => array( 'pafw-gw-support-cancel-unpaid-order' => 'yes' ),
-								"className" => "",
-								"type"      => "Toggle",
-								"default"   => "no",
-								"desc"      => __( '<div class="desc2">무통장입금 ( BACS, 가상계좌 ) 결제건에 대한 자동 취소 처리 시 상품의 재고를 복원합니다. (우커머스 3.x 버전에서만 이용 가능))</div>', 'pgall-for-woocommerce' ),
-							),
+							)
 						)
 					),
 					array(

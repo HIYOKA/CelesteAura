@@ -5,6 +5,8 @@
  * @package BB Next Step Button Module
  */
 
+ //phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
+
 global $post;
 
 $settings->bg_color         = Cartflows_BB_Helper::cartflows_bb_colorpicker( $settings, 'bg_color', true );
@@ -62,7 +64,7 @@ if ( ! empty( $settings->bg_hover_color ) ) {
 <?php if ( 'animate_top' == $settings->threed_button_options || 'animate_bottom' == $settings->threed_button_options ) { ?>
 /* 3D Fix */
 
-	.fl-node-<?php echo $id; ?> .cartflows-bb__next-step-creative-button-wrap.cartflows-bb__next-step-creative-button-width-auto .perspective, 
+	.fl-node-<?php echo $id; ?> .cartflows-bb__next-step-creative-button-wrap.cartflows-bb__next-step-creative-button-width-auto .perspective,
 	.fl-node-<?php echo $id; ?> .cartflows-bb__next-step-creative-button-wrap.cartflows-bb__next-step-creative-button-width-custom .perspective {
 		display: inline-block;
 		max-width: 100%;
@@ -114,7 +116,7 @@ if ( class_exists( 'FLBuilderCSS' ) ) {
 			align-items: center;
 			-webkit-box-pack: center;
 			-ms-flex-pack: center;
-			justify-content: center;	
+			justify-content: center;
 		<?php endif; ?>
 
 		<?php
@@ -235,22 +237,22 @@ if ( class_exists( 'FLBuilderCSS' ) ) {
 
 <?php
 if ( 'custom' == $settings->width && '' != $settings->custom_height ) :
-	$translateText = intval( $settings->custom_height ) + ( intval( $padding_top_bottom ) * 2 ) + 50; // @codingStandardsIgnoreLine.
+	$translate_text = intval( $settings->custom_height ) + ( intval( $padding_top_bottom ) * 2 ) + 50;  
 	?>
 .fl-node-<?php echo $id; ?> .cartflows-bb__next-step-creative-flat-btn.cartflows-bb__next-step-animate_from_top-btn:hover .cartflows-bb__next-step-button-text {
-	-webkit-transform: translateY(<?php echo $translateText; ?>px); <?php // @codingStandardsIgnoreLine. ?>
-	-moz-transform: translateY(<?php echo $translateText; ?>px); <?php // @codingStandardsIgnoreLine. ?>
-	-ms-transform: translateY(<?php echo $translateText; ?>px); <?php // @codingStandardsIgnoreLine. ?>
-	-o-transform: translateY(<?php echo $translateText; ?>px); <?php // @codingStandardsIgnoreLine. ?>
-	transform: translateY(<?php echo $translateText; ?>px);  <?php // @codingStandardsIgnoreLine. ?>
+	-webkit-transform: translateY(<?php echo $translate_text; ?>px);
+	-moz-transform: translateY(<?php echo $translate_text; ?>px);
+	-ms-transform: translateY(<?php echo $translate_text; ?>px);
+	-o-transform: translateY(<?php echo $translate_text; ?>px);
+	transform: translateY(<?php echo $translate_text; ?>px);
 }
 
 .fl-node-<?php echo $id; ?> .cartflows-bb__next-step-creative-flat-btn.cartflows-bb__next-step-animate_from_bottom-btn:hover .cartflows-bb__next-step-button-text {
-	-webkit-transform: translateY(-<?php echo $translateText; ?>px); <?php // @codingStandardsIgnoreLine. ?>
-	-moz-transform: translateY(-<?php echo $translateText; ?>px); <?php // @codingStandardsIgnoreLine. ?>
-	-ms-transform: translateY(-<?php echo $translateText; ?>px); <?php // @codingStandardsIgnoreLine. ?>
-	-o-transform: translateY(-<?php echo $translateText; ?>px); <?php // @codingStandardsIgnoreLine. ?>
-	transform: translateY(-<?php echo $translateText; ?>px); <?php // @codingStandardsIgnoreLine. ?>
+	-webkit-transform: translateY(-<?php echo $translate_text; ?>px);
+	-moz-transform: translateY(-<?php echo $translate_text; ?>px);
+	-ms-transform: translateY(-<?php echo $translate_text; ?>px);
+	-o-transform: translateY(-<?php echo $translate_text; ?>px);
+	transform: translateY(-<?php echo $translate_text; ?>px);
 }
 <?php endif; ?>
 

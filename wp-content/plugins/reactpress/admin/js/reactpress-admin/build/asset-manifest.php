@@ -4,18 +4,21 @@ $asset_manifest_json = <<<'HEREA'
 {
   "files": {
     "main.css": "/wp-content/plugins/reactpress/admin/js/reactpress-admin/build/static/css/main.292c6925.css",
-    "main.js": "/wp-content/plugins/reactpress/admin/js/reactpress-admin/build/static/js/main.07d44068.js",
+    "main.js": "/wp-content/plugins/reactpress/admin/js/reactpress-admin/build/static/js/main.0650fd48.js",
     "static/js/787.a23c4d97.chunk.js": "/wp-content/plugins/reactpress/admin/js/reactpress-admin/build/static/js/787.a23c4d97.chunk.js",
     "index.html": "/wp-content/plugins/reactpress/admin/js/reactpress-admin/build/index.html",
-    "static/media/icon.svg": "/wp-content/plugins/reactpress/admin/js/reactpress-admin/build/static/media/icon.4eae51ee84dc7032fa7a1d6bae224916.svg",
+    "static/media/cra.svg": "/wp-content/plugins/reactpress/admin/js/reactpress-admin/build/static/media/cra.b86040e90a66952431d2e6a45cb425c2.svg",
     "static/media/logo.svg": "/wp-content/plugins/reactpress/admin/js/reactpress-admin/build/static/media/logo.80940b219517f6cda00a7ede1c243501.svg",
+    "static/media/vite.svg": "/wp-content/plugins/reactpress/admin/js/reactpress-admin/build/static/media/vite.86cd94ee28a26d6789506af66921f564.svg",
+    "static/media/empty.svg": "/wp-content/plugins/reactpress/admin/js/reactpress-admin/build/static/media/empty.5f4ba752e75aa4f5d62ca285a383c8c6.svg",
+    "static/media/orphan.svg": "/wp-content/plugins/reactpress/admin/js/reactpress-admin/build/static/media/orphan.5fab4d79fd8cd1bf9ed775d54a67a25c.svg",
     "main.292c6925.css.map": "/wp-content/plugins/reactpress/admin/js/reactpress-admin/build/static/css/main.292c6925.css.map",
-    "main.07d44068.js.map": "/wp-content/plugins/reactpress/admin/js/reactpress-admin/build/static/js/main.07d44068.js.map",
+    "main.0650fd48.js.map": "/wp-content/plugins/reactpress/admin/js/reactpress-admin/build/static/js/main.0650fd48.js.map",
     "787.a23c4d97.chunk.js.map": "/wp-content/plugins/reactpress/admin/js/reactpress-admin/build/static/js/787.a23c4d97.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.292c6925.css",
-    "static/js/main.07d44068.js"
+    "static/js/main.0650fd48.js"
   ]
 }
 HEREA;

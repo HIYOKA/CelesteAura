@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 											<h1 style="margin: 0; color: #1f2937; direction: ltr; font-family: Arial, Helvetica Neue, Helvetica, sans-serif; font-size: 32px; font-weight: 400; letter-spacing: normal; line-height: 120%; text-align: left; margin-top: 0; margin-bottom: 0;">
 												<?php
 													/* translators: %s user name */
-													echo sprintf( esc_html__( 'Hey %s!', 'cartflows'), esc_attr( $user_name ) ); // phpcs:ignore
+													echo sprintf( esc_html__( 'Hey %s!', 'cartflows' ), esc_attr( $user_name ) );
 												?>
 											</h1>
 										</td>

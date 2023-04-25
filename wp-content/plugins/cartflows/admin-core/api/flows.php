@@ -97,23 +97,27 @@ class Flows extends ApiBase {
 			$args['post__not_in'] = array( $store_checkout_id );
 		}
 
-		if ( isset( $_REQUEST['paged'] ) ) { //phpcs:ignore
-			$args['paged'] = absint( $_REQUEST['paged'] ); //phpcs:ignore
+		if ( null !== $request->get_param( 'paged' ) ) {
+			$args['paged'] = absint( $request->get_param( 'paged' ) );
 		}
 
 		if ( 'any' === $post_status ) {
 
-			if ( isset( $_REQUEST['s'] ) ) { //phpcs:ignore
-				$args['s'] = sanitize_text_field( $_REQUEST['s'] ); //phpcs:ignore
+			if ( null !== $request->get_param( 's' ) ) {
+				$args['s'] = sanitize_text_field( $request->get_param( 's' ) );
 			}
 
-			if ( isset( $_REQUEST['post_status'] ) ) { //phpcs:ignore
-				if ( 'active' === $_REQUEST['post_status'] ) { //phpcs:ignore
+
+			if ( null !== $request->get_param( 'post_status' ) ) {
+
+				$status = $request->get_param( 'post_status' );
+
+				if ( 'active' === $status ) {
 					$args['post_status'] = 'publish';
-				} elseif ( 'inactive' === $_REQUEST['post_status'] ) { // phpcs:ignore
+				} elseif ( 'inactive' === $status ) {
 					$args['post_status'] = 'draft';
 				} else {
-					$args['post_status'] = sanitize_text_field( wp_unslash( $_REQUEST['post_status'] ) ); // phpcs:ignore
+					$args['post_status'] = sanitize_text_field( wp_unslash( $status ) );
 				}
 			}
 		}

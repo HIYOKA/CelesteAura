@@ -2,10 +2,10 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: pgall-for-woocommerce 3.1.5\n"
+"Project-Id-Version: pgall-for-woocommerce 3.1.6\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/pgall-for-woocommerce\n"
-"POT-Creation-Date: 2023-04-13 01:32:02+00:00\n"
+"POT-Creation-Date: 2023-04-24 00:17:28+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -270,7 +270,7 @@ msgstr ""
 #: includes/admin/class-pafw-admin-payment-method-control-settings.php:130
 #: includes/admin/class-pafw-admin-review-settings.php:27
 #: includes/admin/class-pafw-admin-review-settings.php:134
-#: includes/admin/class-pafw-admin-settings.php:601
+#: includes/admin/class-pafw-admin-settings.php:592
 msgid "기본 설정"
 msgstr ""
 
@@ -595,68 +595,58 @@ msgid "결제 후"
 msgstr ""
 
 #: includes/admin/class-pafw-admin-settings.php:341
-#: includes/admin/class-pafw-admin-settings.php:588
+#: includes/admin/class-pafw-admin-settings.php:579
 #: includes/admin/settings/npay/class-pafw-settings-npay-basic.php:154
 msgid "일"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:346
-msgid "주문 취소시 재고복원"
-msgstr ""
-
-#: includes/admin/class-pafw-admin-settings.php:351
-msgid ""
-"<div class=\"desc2\">무통장입금 ( BACS, 가상계좌 ) 결제건에 대한 자동 취소 처리 시 상품의 재고를 복원합니다. "
-"(우커머스 3.x 버전에서만 이용 가능))</div>"
-msgstr ""
-
-#: includes/admin/class-pafw-admin-settings.php:357
+#: includes/admin/class-pafw-admin-settings.php:348
 msgid "스크립트 설정"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:361
+#: includes/admin/class-pafw-admin-settings.php:352
 msgid "스크립트 Footer 사용"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:362
+#: includes/admin/class-pafw-admin-settings.php:353
 msgid "<div class=\"desc2\">스크립트를 Footer에 출력합니다. 결제시 문제가 있는 경우에만 사용하세요.</div>"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:376
+#: includes/admin/class-pafw-admin-settings.php:367
 msgid "정기결제 설정"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:380
+#: includes/admin/class-pafw-admin-settings.php:371
 msgid "결제일자 관리"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:385
+#: includes/admin/class-pafw-admin-settings.php:376
 msgid "다음 결제일자 변경 허용"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:386
+#: includes/admin/class-pafw-admin-settings.php:377
 msgid "<div class=\"desc2\">고객은 내계정 - 정기결제권 상세화면에서 다음 결제 예정일을 변경할 수 있습니다.</div>"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:393
+#: includes/admin/class-pafw-admin-settings.php:384
 msgid "갱신결제 시간 조정"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:394
+#: includes/admin/class-pafw-admin-settings.php:385
 msgid ""
 "<div class=\"desc2\">다음 갱신 결제 시간을 지정된 시간으로 변경합니다.<br>예시> 구매자가 오후 10시에 결제를 "
 "했더라도, 다음 갱신결제는 업무시간 (09:00~18:00) 에 진행되도록 설정 할 수 있습니다.</div>"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:400
+#: includes/admin/class-pafw-admin-settings.php:391
 msgid "갱신결제 시작 시간"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:408
+#: includes/admin/class-pafw-admin-settings.php:399
 msgid "갱신결제 끝 시간"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:424
+#: includes/admin/class-pafw-admin-settings.php:415
 #: includes/admin/class-pafw-admin.php:37
 #: includes/admin/meta-boxes/class-pafw-meta-box-cash-receipt.php:17
 #: templates/emails/cash-receipt-details.php:14
@@ -666,11 +656,11 @@ msgstr ""
 msgid "현금영수증"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:428
+#: includes/admin/class-pafw-admin-settings.php:419
 msgid "무통장입금 현금영수증"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:436
+#: includes/admin/class-pafw-admin-settings.php:427
 msgid ""
 "현금영수증 자동 발급 기능은 <span style=\"color: #2185d0\">KG 이니시스</span>, <span "
 "style=\"color: #2185d0\">KCP</span>, <span style=\"color: "
@@ -678,122 +668,122 @@ msgid ""
 "사용하는 경우에만 이용할 수 있습니다."
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:440
+#: includes/admin/class-pafw-admin-settings.php:431
 msgid "현금영수증 자동 발급"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:445
+#: includes/admin/class-pafw-admin-settings.php:436
 msgid "<div class=\"desc2\">무통장입금 결제 시, 현금영수증 자동발급 기능을 사용합니다.</div>"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:449
+#: includes/admin/class-pafw-admin-settings.php:440
 msgid "현금영수증 항상 발급"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:454
+#: includes/admin/class-pafw-admin-settings.php:445
 msgid "<div class=\"desc2\">무통장입금 결제 시, 현급영수증 발급을 위한 정보를 필수로 입력해야 합니다.</div>"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:458
+#: includes/admin/class-pafw-admin-settings.php:449
 msgid "최소 결제금액"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:463
+#: includes/admin/class-pafw-admin-settings.php:454
 msgid ""
 "<div class=\"desc2\">결제 금액이 최소 결제금액 미만인 경우에는 고객이 현금영수증 발급 여부를 선택할 수 "
 "있습니다.</div>"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:470
+#: includes/admin/class-pafw-admin-settings.php:461
 msgid "현금영수증 발행정보"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:474
+#: includes/admin/class-pafw-admin-settings.php:465
 msgid "상호"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:481
+#: includes/admin/class-pafw-admin-settings.php:472
 msgid "사업자 번호"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:488
+#: includes/admin/class-pafw-admin-settings.php:479
 #: includes/admin/settings/inicis/class-pafw-settings-inicis-stdescrow-bank.php:76
 #: includes/gateways/bacs/class-wc-gateway-pafw-bacs.php:32
 msgid "전화번호"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:495
+#: includes/admin/class-pafw-admin-settings.php:486
 msgid "대표자"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:502
+#: includes/admin/class-pafw-admin-settings.php:493
 msgid "주소"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:511
+#: includes/admin/class-pafw-admin-settings.php:502
 #: includes/admin/class-pafw-admin.php:33
 msgid "주문상태 설정"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:516
+#: includes/admin/class-pafw-admin-settings.php:507
 msgid "현금영수증 발급 "
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:531
+#: includes/admin/class-pafw-admin-settings.php:522
 msgid "현금영수증 발급 취소 "
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:550
+#: includes/admin/class-pafw-admin-settings.php:541
 #: templates/order/exchange-return.php:7
 msgid "교환/반품"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:554
+#: includes/admin/class-pafw-admin-settings.php:545
 #: includes/class-pafw-endpoint.php:13
 msgid "교환 및 반품"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:558
+#: includes/admin/class-pafw-admin-settings.php:549
 msgid "교환 지원"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:562
+#: includes/admin/class-pafw-admin-settings.php:553
 msgid "<div class=\"desc2\">고객이 구매한 상품에 대해 교환을 요청할 수 있습니다.</div>"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:566
+#: includes/admin/class-pafw-admin-settings.php:557
 msgid "반품 지원"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:570
+#: includes/admin/class-pafw-admin-settings.php:561
 msgid "<div class=\"desc2\">고객이 구매한 상품에 대해 반품을 요청할 수 있습니다.</div>"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:574
+#: includes/admin/class-pafw-admin-settings.php:565
 msgid "가상상품 제외"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:578
+#: includes/admin/class-pafw-admin-settings.php:569
 msgid "<div class=\"desc2\">가상상품은 교환 및 반품을 신청할 수 없습니다.</div>"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:582
+#: includes/admin/class-pafw-admin-settings.php:573
 msgid "교환/반품 허용 기간"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:587
+#: includes/admin/class-pafw-admin-settings.php:578
 msgid "배송완료 또는 주문처리완료 후"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:609
+#: includes/admin/class-pafw-admin-settings.php:600
 msgid "워드프레스 결제 심플페이 플러그인  이용약관"
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:625
+#: includes/admin/class-pafw-admin-settings.php:616
 msgid "이용 약관에 동의합니다."
 msgstr ""
 
-#: includes/admin/class-pafw-admin-settings.php:711
+#: includes/admin/class-pafw-admin-settings.php:702
 msgid "워드프레스 결제 심플페이 플러그인은 약관 동의 후 이용이 가능합니다."
 msgstr ""
 
@@ -2346,13 +2336,7 @@ msgstr ""
 msgid "매 30 분 간격"
 msgstr ""
 
-#: includes/class-pafw-cancel-unpaid-order.php:89
-msgid ""
-"[무통장입금 자동취소] 상품 <a target=\"_blank\" href=\"%s\">#%s</a>, %s의 재고가 %s 에서 %s "
-"으로 복구되었습니다."
-msgstr ""
-
-#: includes/class-pafw-cancel-unpaid-order.php:114
+#: includes/class-pafw-cancel-unpaid-order.php:93
 msgid "[무통장입금 자동취소] 지불되지 않은 무통장입금(Bacs) 주문이 취소 처리 되었습니다."
 msgstr ""
 

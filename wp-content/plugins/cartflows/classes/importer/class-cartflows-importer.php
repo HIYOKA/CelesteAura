@@ -423,7 +423,7 @@ if ( ! class_exists( 'CartFlows_Importer' ) ) :
 		 * @param int $step_title step title.
 		 * @since 1.0.0
 		 *
-		 * @return int
+		 * @return mixed
 		 */
 		public function create_step( $flow_id, $step_type, $step_title ) {
 
@@ -449,7 +449,7 @@ if ( ! class_exists( 'CartFlows_Importer' ) ) :
 					'type'  => $step_type,
 				);
 
-				$flow_steps = apply_filters( 'cartflows_admin_updated_flow_steps', $flow_steps, $flow_id );
+				$flow_steps = Cartflows_Helper::get_instance()->maybe_update_flow_steps( $flow_id, $flow_steps );
 
 				// insert post meta.
 				update_post_meta( $new_step_id, 'wcf-flow-id', $flow_id );

@@ -75,7 +75,7 @@ class MetaData extends AjaxBase {
 			return;
 		}
 
-		$term = isset( $_POST['term'] ) ? sanitize_text_field( wp_unslash( $_POST['term'] ) ) : '';
+		$term = ! empty( $_POST['term'] ) ? sanitize_text_field( wp_unslash( $_POST['term'] ) ) : '';
 
 		// CartFlows supported product types.
 		$supported_product_types = array( 'simple', 'variable', 'variation', 'subscription', 'variable-subscription', 'subscription_variation', 'course' );
@@ -171,7 +171,7 @@ class MetaData extends AjaxBase {
 			return;
 		}
 
-		$term = isset( $_POST['term'] ) ? sanitize_text_field( wp_unslash( $_POST['term'] ) ) : '';
+		$term = ! empty( $_POST['term'] ) ? sanitize_text_field( wp_unslash( $_POST['term'] ) ) : '';
 		if ( empty( $term ) ) {
 			die();
 		}
@@ -179,7 +179,7 @@ class MetaData extends AjaxBase {
 		$posts = wp_cache_get( 'wcf_search_coupons', 'wcf_funnel_Cart' );
 
 		if ( false === $posts ) {
-			$posts = $wpdb->get_results( // phpcs:ignore
+			$posts = $wpdb->get_results(
 				$wpdb->prepare(
 					"SELECT *
 								FROM {$wpdb->prefix}posts
@@ -190,7 +190,7 @@ class MetaData extends AjaxBase {
 					$wpdb->esc_like( $term ) . '%',
 					'publish'
 				)
-			);
+			); // db call ok.
 			wp_cache_set( 'wcf_search_coupons', $posts, 'wcf_funnel_Cart' );
 		}
 

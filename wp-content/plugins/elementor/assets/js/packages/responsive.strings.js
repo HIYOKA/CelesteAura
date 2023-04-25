@@ -1,3 +1,4 @@
+__('Switch Device', 'elementor');
 __('Desktop', 'elementor');
 // translators: %s: Breakpoint label, %d: Breakpoint size.
 __('%s (%dpx and up)', 'elementor');

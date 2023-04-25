@@ -27,13 +27,13 @@ require_once CARTFLOWS_DIR . 'includes/admin/cartflows-admin-header.php';
 				<h2 class="log-viewer--title">CartFlows Logs</h2>
 			</div>
 			<div class="alignright">
-				<form action="<?php	echo $form_url; ?>" method="post">
+				<form action="<?php	echo esc_url( $form_url ); ?>" method="post">
 					<select name="log_file" class="wcf-log--select">
 						<?php foreach ( $logs as $log_key => $log_file ) : ?>
 							<?php
 							$timestamp = filemtime( CARTFLOWS_LOG_DIR . $log_file );
 							/* translators: %1$s: timestamp1, %2$s: timestamp2 */
-							$date      = sprintf( __( '%1$s at %2$s', 'cartflows' ), date_i18n( 'F j, Y', $timestamp ), date_i18n( 'g:i a', $timestamp ) ); // phpcs:ignore
+							$date = sprintf( __( '%1$s at %2$s', 'cartflows' ), date_i18n( 'F j, Y', $timestamp ), date_i18n( 'g:i a', $timestamp ) );
 							?>
 							<option value="<?php echo esc_attr( $log_key ); ?>" <?php selected( $viewed_log, $log_key ); ?>><?php echo esc_html( $log_file ); ?> (<?php echo esc_html( $date ); ?>)</option>
 						<?php endforeach; ?>
@@ -44,7 +44,7 @@ require_once CARTFLOWS_DIR . 'includes/admin/cartflows-admin-header.php';
 		</div>
 		<div id="log-viewer">
 			<div class="wcf-log-container">
-				<pre id="wcf-log--text"><?php echo esc_html( file_get_contents( CARTFLOWS_LOG_DIR . $viewed_log_file ) );//phpcs:ignore ?></pre>
+				<pre id="wcf-log--text"><?php echo esc_html( file_get_contents( CARTFLOWS_LOG_DIR . $viewed_log_file ) ); ?></pre>
 			</div>
 			<?php if ( ! empty( $viewed_log_file ) ) : ?>
 				<div class="wcf-log__actions">

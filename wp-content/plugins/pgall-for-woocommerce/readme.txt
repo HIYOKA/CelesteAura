@@ -3,9 +3,9 @@ Contributors: Codemstory
 Donate link: http://www.codemshop.com/
 Tags: 워드프레스 결제, 우커머스 결제, 정기결제, 이니시스, 카카오페이, 코드엠샵, PGALL
 Requires at least: 4.6.0
-Tested up to: 6.1
+Tested up to: 6.2
 Requires PHP: 7.2
-Stable tag: 3.1.5
+Stable tag: 3.1.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -78,6 +78,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Not yet.
 
 == Changelog ==
+
+= 3.1.6 =
+우커머스 3.x 버전을 위한 무통장 입금 재고 복원기능 삭제
 
 = 3.1.5 =
 [이니시스] 애플페이 다이렉트 호출 결제수단 지원

@@ -5,6 +5,8 @@
  * @package cartflows
  */
 
+//phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
+
 global $post;
 
 ?>
@@ -27,8 +29,8 @@ if ( class_exists( 'FLBuilderCSS' ) ) {
 		array(
 			'settings'     => $settings,
 			'setting_name' => 'global_typography',
-			'selector'     => ".fl-node-$id .cartflows-bb__optin-form .wcf-optin-form .checkout.woocommerce-checkout label, 
-            .fl-node-$id .cartflows-bb__optin-form .wcf-optin-form .checkout.woocommerce-checkout input, 
+			'selector'     => ".fl-node-$id .cartflows-bb__optin-form .wcf-optin-form .checkout.woocommerce-checkout label,
+            .fl-node-$id .cartflows-bb__optin-form .wcf-optin-form .checkout.woocommerce-checkout input,
             .fl-node-$id .cartflows-bb__optin-form .wcf-optin-form .checkout.woocommerce-checkout .wcf-order-wrap #order_review .woocommerce-checkout-payment button#place_order",
 		)
 	);
@@ -66,7 +68,7 @@ if ( class_exists( 'FLBuilderCSS' ) ) {
 		array(
 			'settings'     => $settings,
 			'setting_name' => 'input_text_typography',
-			'selector'     => ".fl-node-$id .cartflows-bb__optin-form .wcf-optin-form .checkout.woocommerce-checkout label, 
+			'selector'     => ".fl-node-$id .cartflows-bb__optin-form .wcf-optin-form .checkout.woocommerce-checkout label,
             .fl-node-$id .cartflows-bb__optin-form .wcf-optin-form .checkout.woocommerce-checkout input",
 		)
 	);

@@ -157,7 +157,7 @@ if ( ! class_exists( 'Cartflows_Gb_Helper' ) ) {
 			}
 
 			if ( isset( $link ) && ! empty( $link ) ) {
-				echo '<link id="cf_show_google_fonts" href="//fonts.googleapis.com/css?family=' . esc_attr( str_replace( '|', '%7C', $link ) ) . '" rel="stylesheet">'; //phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet
+				echo '<link id="cf_show_google_fonts" href="//fonts.googleapis.com/css?family=' . esc_attr( str_replace( '|', '%7C', $link ) ) . '" rel="stylesheet">';
 			}
 		}
 
@@ -172,7 +172,7 @@ if ( ! class_exists( 'Cartflows_Gb_Helper' ) ) {
 
 			ob_start();
 			?>
-			<script type="text/javascript" id="cf-script-frontend"><?php echo self::$script; //phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped ?></script>
+			<script type="text/javascript" id="cf-script-frontend"><?php echo self::$script; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></script>
 			<?php
 			ob_end_flush();
 		}
@@ -188,7 +188,7 @@ if ( ! class_exists( 'Cartflows_Gb_Helper' ) ) {
 
 			ob_start();
 			?>
-			<style id="cf-style-frontend"><?php echo self::$stylesheet; //phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped ?></style>
+			<style id="cf-style-frontend"><?php echo self::$stylesheet; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></style>
 			<?php
 			ob_end_flush();
 		}
@@ -538,10 +538,10 @@ if ( ! class_exists( 'Cartflows_Gb_Helper' ) ) {
 		/**
 		 * Adds Google fonts all blocks.
 		 *
-		 * @param array $load_google_font the blocks attr.
-		 * @param array $font_family the blocks attr.
-		 * @param array $font_weight the blocks attr.
-		 * @param array $font_subset the blocks attr.
+		 * @param array  $load_google_font the blocks attr.
+		 * @param string $font_family the blocks attr.
+		 * @param array  $font_weight the blocks attr.
+		 * @param array  $font_subset the blocks attr.
 		 */
 		public static function blocks_google_font( $load_google_font, $font_family, $font_weight, $font_subset ) {
 

@@ -26,7 +26,7 @@
 		};
 
 		// Remove country restriction if country field is disabled or not present in checkout form.
-		if ( ! $( '#billing_country' ).length ) {
+		if ( '' === country || undefined === country ) {
 			delete options.componentRestrictions;
 		}
 
@@ -55,7 +55,7 @@
 		};
 
 		// Remove country restriction if country field is disabled or not present in checkout form.
-		if ( ! $( '#shipping_country' ).length ) {
+		if ( '' === country || undefined === country ) {
 			delete options.componentRestrictions;
 		}
 

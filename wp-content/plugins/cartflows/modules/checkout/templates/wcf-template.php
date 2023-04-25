@@ -39,7 +39,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 					) {
 					echo esc_html__( 'Your cart is currently empty.', 'cartflows' );
 				} else {
-					echo $checkout_html;
+					// Ignoring the escaping rule as we are echoing shortcode.
+					echo $checkout_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				}
 				?>
 				<!-- END CHECKOUT SHORTCODE -->
@@ -48,8 +49,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<footer class="footer">
 			<p><?php esc_html_e( 'Copyright &copy;', 'cartflows' ); ?> <?php
-			echo gmdate( 'Y' );
-			echo ' ' . get_bloginfo( 'name' );
+			echo esc_html( gmdate( 'Y' ) );
+			echo ' ' . esc_html( get_bloginfo( 'name' ) );
 			?>
 			- <?php esc_html_e( 'All Rights Reserved', 'cartflows' ); ?></p>
 		</footer>

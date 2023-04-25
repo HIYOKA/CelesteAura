@@ -260,7 +260,8 @@ if ( ! class_exists( 'CartFlows_Importer_Core' ) ) :
 			}
 
 			if ( is_array( $log ) || is_object( $log ) ) {
-				wcf()->logger->import_log( print_r( $log, true ) );//phpcs:ignore
+				// Logging is for debugging.Hence ignoring phpcs rule.
+				wcf()->logger->import_log( print_r( $log, true ) ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_print_r
 			} else {
 				wcf()->logger->import_log( $log );
 			}

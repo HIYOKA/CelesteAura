@@ -102,24 +102,6 @@ function popover_menu_item_extends() { popover_menu_item_extends = Object.assign
 
 
 
-const MenuItemInnerWrapper = ({
-  children,
-  href,
-  target
-}) => {
-  if (!href) {
-    return /*#__PURE__*/external_React_namespaceObject.createElement(external_React_namespaceObject.Fragment, null, children);
-  }
-  return /*#__PURE__*/external_React_namespaceObject.createElement(external_UNSTABLE_elementorPackages_ui_namespaceObject.ListItemButton, {
-    component: "a",
-    role: "menuitem",
-    href: href,
-    target: target,
-    sx: {
-      px: 0
-    }
-  }, children);
-};
 const DirectionalArrowIcon = (0,external_UNSTABLE_elementorPackages_ui_namespaceObject.withDirection)(external_UNSTABLE_elementorPackages_icons_namespaceObject.ArrowUpRightIcon);
 function PopoverMenuItem({
   text,
@@ -134,13 +116,12 @@ function PopoverMenuItem({
   return /*#__PURE__*/external_React_namespaceObject.createElement(external_UNSTABLE_elementorPackages_ui_namespaceObject.MenuItem, popover_menu_item_extends({}, props, {
     disabled: disabled,
     onClick: onClick,
-    role: href ? 'presentation' : 'menuitem'
-  }), /*#__PURE__*/external_React_namespaceObject.createElement(MenuItemInnerWrapper, {
+    component: href ? 'a' : 'div',
     href: href,
     target: target
-  }, /*#__PURE__*/external_React_namespaceObject.createElement(external_UNSTABLE_elementorPackages_ui_namespaceObject.ListItemIcon, null, icon), /*#__PURE__*/external_React_namespaceObject.createElement(external_UNSTABLE_elementorPackages_ui_namespaceObject.ListItemText, {
+  }), /*#__PURE__*/external_React_namespaceObject.createElement(external_UNSTABLE_elementorPackages_ui_namespaceObject.ListItemIcon, null, icon), /*#__PURE__*/external_React_namespaceObject.createElement(external_UNSTABLE_elementorPackages_ui_namespaceObject.ListItemText, {
     primary: text
-  }), isExternalLink && /*#__PURE__*/external_React_namespaceObject.createElement(DirectionalArrowIcon, null)));
+  }), isExternalLink && /*#__PURE__*/external_React_namespaceObject.createElement(DirectionalArrowIcon, null));
 }
 ;// CONCATENATED MODULE: ./packages/top-bar/src/components/actions/action.tsx
 function action_extends() { action_extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return action_extends.apply(this, arguments); }
@@ -150,11 +131,15 @@ function action_extends() { action_extends = Object.assign ? Object.assign.bind(
 function Action({
   icon: Icon,
   title,
+  visible = true,
   ...props
 }) {
   const {
     type
   } = useMenuContext();
+  if (!visible) {
+    return null;
+  }
   return type === 'toolbar' ? /*#__PURE__*/React.createElement(ToolbarMenuItem, action_extends({
     title: title
   }, props), /*#__PURE__*/React.createElement(Icon, null)) : /*#__PURE__*/React.createElement(PopoverMenuItem, action_extends({}, props, {
@@ -190,11 +175,15 @@ function ToggleAction({
   icon: Icon,
   title,
   value,
+  visible = true,
   ...props
 }) {
   const {
     type
   } = useMenuContext();
+  if (!visible) {
+    return null;
+  }
   return type === 'toolbar' ? /*#__PURE__*/React.createElement(ToolbarMenuToggleItem, toggle_action_extends({
     value: value || title,
     title: title
@@ -211,11 +200,15 @@ function link_extends() { link_extends = Object.assign ? Object.assign.bind() : 
 function Link({
   icon: Icon,
   title,
+  visible = true,
   ...props
 }) {
   const {
     type
   } = useMenuContext();
+  if (!visible) {
+    return null;
+  }
   return type === 'toolbar' ? /*#__PURE__*/React.createElement(ToolbarMenuItem, link_extends({
     title: title
   }, props), /*#__PURE__*/React.createElement(Icon, null)) : /*#__PURE__*/React.createElement(PopoverMenuItem, link_extends({}, props, {
@@ -224,6 +217,7 @@ function Link({
   }));
 }
 ;// CONCATENATED MODULE: ./packages/top-bar/src/locations/menus.tsx
+function menus_extends() { menus_extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return menus_extends.apply(this, arguments); }
 
 
 
@@ -278,9 +272,9 @@ function createRegisterMenuItem({
     }
     const useProps = 'props' in args ? () => args.props : args.useProps;
     const Component = component;
-    const Filler = () => {
+    const Filler = props => {
       const componentProps = useProps();
-      return /*#__PURE__*/external_React_namespaceObject.createElement(Component, componentProps);
+      return /*#__PURE__*/external_React_namespaceObject.createElement(Component, menus_extends({}, props, componentProps));
     };
     const location = getMenuLocationId(menuName, group);
     (0,external_UNSTABLE_elementorPackages_locations_namespaceObject.inject)({
@@ -358,7 +352,11 @@ function PopoverMenu({
         mt: 4
       }
     }
-  }, props), children));
+  }, props, {
+    MenuListProps: {
+      component: 'div'
+    }
+  }), children));
 }
 ;// CONCATENATED MODULE: ./packages/top-bar/src/components/ui/toolbar-menu.tsx
 
@@ -632,13 +630,29 @@ function TopBar() {
 }
 ;// CONCATENATED MODULE: external "__UNSTABLE__elementorPackages.editor"
 var external_UNSTABLE_elementorPackages_editor_namespaceObject = __UNSTABLE__elementorPackages.editor;
+;// CONCATENATED MODULE: external "__UNSTABLE__elementorPackages.v1Adapters"
+var external_UNSTABLE_elementorPackages_v1Adapters_namespaceObject = __UNSTABLE__elementorPackages.v1Adapters;
+;// CONCATENATED MODULE: ./packages/top-bar/src/sync/index.ts
+
+function sync() {
+  redirectOldMenus();
+}
+function redirectOldMenus() {
+  // Currently, in V1, when you click `esc` it opens the hamburger menu in the panel.
+  // In V2, we don't have this panel, so we redirect the user to the elements panel instead.
+  (0,external_UNSTABLE_elementorPackages_v1Adapters_namespaceObject.listenTo)((0,external_UNSTABLE_elementorPackages_v1Adapters_namespaceObject.routeOpenEvent)('panel/menu'), () => {
+    (0,external_UNSTABLE_elementorPackages_v1Adapters_namespaceObject.openRoute)('panel/elements/categories');
+  });
+}
 ;// CONCATENATED MODULE: ./packages/top-bar/src/init.ts
 
 
 
 
 
+
 function init() {
+  sync();
   (0,external_UNSTABLE_elementorPackages_editor_namespaceObject.injectIntoTop)({
     name: 'top-bar',
     filler: TopBar

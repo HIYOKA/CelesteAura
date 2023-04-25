@@ -84,8 +84,8 @@ class Steps extends AjaxBase {
 		}
 
 		if ( isset( $_POST['step_id'] ) && isset( $_POST['new_step_title'] ) ) {
-			$step_id  = intval( $_POST['step_id'] ); //phpcs:ignore
-			$new_step_title = sanitize_text_field( $_POST['new_step_title'] ); //phpcs:ignore
+			$step_id        = intval( $_POST['step_id'] );
+			$new_step_title = sanitize_text_field( $_POST['new_step_title'] );
 		}
 
 		$result = array(
@@ -205,7 +205,7 @@ class Steps extends AjaxBase {
 			/**
 			 * Duplicate all post meta just in two SQL queries
 			 */
-			$post_meta_infos = $wpdb->get_results(
+			$post_meta_infos = $wpdb->get_results( //phpcs:ignore WordPress.DB.DirectDatabaseQuery
 				$wpdb->prepare( "SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id=%d", $step_id )
 			);
 
@@ -229,7 +229,7 @@ class Steps extends AjaxBase {
 
 				$sql_query .= implode( ',', $sql_query_sel );
 
-				$wpdb->query( $sql_query ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+				$wpdb->query( $sql_query ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery
 			}
 
 			$flow_steps = get_post_meta( $flow_id, 'wcf-steps', true );
@@ -245,7 +245,7 @@ class Steps extends AjaxBase {
 				'type'  => $step_type,
 			);
 
-			$flow_steps = apply_filters( 'cartflows_admin_updated_flow_steps', $flow_steps, $flow_id );
+			$flow_steps = \Cartflows_Helper::get_instance()->maybe_update_flow_steps( $flow_id, $flow_steps );
 
 			update_post_meta( $flow_id, 'wcf-steps', $flow_steps );
 
@@ -415,7 +415,7 @@ class Steps extends AjaxBase {
 
 		$post_meta = AdminHelper::get_step_default_meta( $step_type, $step_id );
 
-		MetaOps::save_meta_fields( $step_id, $post_meta );
+		MetaOps::save_meta_fields( $step_id, $post_meta, 'cartflows_save_meta_settings' );
 
 		// We are storing the step dynamic css in the post meta and deleting when any setting changes. Once deleted it will be regenerated with first page load.
 		delete_post_meta( $step_id, 'wcf-dynamic-css' );

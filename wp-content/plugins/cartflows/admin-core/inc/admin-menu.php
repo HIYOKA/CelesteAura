@@ -108,7 +108,7 @@ class AdminMenu {
 		}
 
 		$flow_id = get_post_meta( get_the_id(), 'wcf-flow-id', true );
-		$step_id = isset( $_GET['post'] ) ? intval( $_GET['post'] ) : 0; //phpcs:ignore
+		$step_id = isset( $_GET['post'] ) ? intval( $_GET['post'] ) : 0; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 		if ( $flow_id && $step_id ) {
 
@@ -153,22 +153,22 @@ class AdminMenu {
 			return;
 		}
 
-		wp_enqueue_script( 'cartflows-admin' . '-common-script', CARTFLOWS_ADMIN_CORE_URL . 'assets/js/common.js', array( 'jquery' ), CARTFLOWS_VER, false ); //phpcs:ignore
+		wp_enqueue_script( 'cartflows-admin-common-script', CARTFLOWS_ADMIN_CORE_URL . 'assets/js/common.js', array( 'jquery' ), CARTFLOWS_VER, false );
 
 		if ( CARTFLOWS_STEP_POST_TYPE !== get_post_type() ) {
 			return;
 		}
 
 		$flow_id = get_post_meta( get_the_id(), 'wcf-flow-id', true );
-		$step_id = isset( $_GET['post'] ) ? intval( $_GET['post'] ) : 0; //phpcs:ignore
+		$step_id = isset( $_GET['post'] ) ? intval( $_GET['post'] ) : 0; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 		if ( $flow_id && $step_id ) {
-			$step_redirect_url = esc_url( admin_url() . 'admin.php?page=' . $this->menu_slug . '&action=wcf-edit-step&step_id=' . $step_id . '&flow_id=' . $flow_id ); //phpcs:ignore Generic.Strings.UnnecessaryStringConcat.Found.
+			$step_redirect_url = esc_url( admin_url() . 'admin.php?page=' . $this->menu_slug . '&action=wcf-edit-step&step_id=' . $step_id . '&flow_id=' . $flow_id );
 
 			?>
 		<script id="wcf-gutenberg-back-step-button" type="text/html">
 			<div class="wcf-notice-back-edit-step gutenberg-button" style="display: flex; align-content: center; margin: 0 5px 0 0;flex-basis: 100%;">
-				<a href="<?php echo $step_redirect_url; ?>" class="button button-primary button-large wcf-header-back-button" style="text-decoration: none; font-size: 13px; line-height: 2.5;"><?php esc_html_e( 'Back to Step Editing', 'cartflows' ); ?></a>
+				<a href="<?php echo esc_url( $step_redirect_url ); ?>" class="button button-primary button-large wcf-header-back-button" style="text-decoration: none; font-size: 13px; line-height: 2.5;"><?php esc_html_e( 'Back to Step Editing', 'cartflows' ); ?></a>
 			</div>
 		</script>
 			<?php
@@ -185,7 +185,7 @@ class AdminMenu {
 	 */
 	public function new_admin_flow_setting_redirection( $meta ) {
 
-		$flow_id = isset( $_GET['post'] ) ? intval( $_GET['post'] ) : 0; //phpcs:ignore
+		$flow_id = isset( $_GET['post'] ) ? intval( $_GET['post'] ) : 0; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 		$post_type = get_post_type();
 
@@ -196,7 +196,7 @@ class AdminMenu {
 			$btn_markup  .= '<a class="button button-primary button-hero" href="' . $redirect_url . '">' . __( 'Go to Flow Editing', 'cartflows' ) . '</a>';
 			$btn_markup  .= '</div>';
 
-			echo $btn_markup;
+			echo wp_kses_post( $btn_markup );
 		}
 	}
 
@@ -206,13 +206,14 @@ class AdminMenu {
 	public function settings_admin_scripts() {
 
 		// Enqueue admin scripts.
-		if (isset($_GET['page']) && ('cartflows' === $_GET['page'] || false !== strpos($_GET['page'], 'cartflows_'))) { //phpcs:ignore
+		// Ignoring nonce verification as using SuperGlobal variables on WordPress hooks.
+		if ( isset( $_GET['page'] ) && ( 'cartflows' === sanitize_text_field( $_GET['page'] ) || false !== strpos( sanitize_text_field( $_GET['page'] ), 'cartflows_' ) ) ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 			add_action( 'admin_enqueue_scripts', array( $this, 'styles_scripts' ) );
 
 			add_filter( 'admin_footer_text', array( $this, 'add_footer_link' ), 99 );
 
-			$current_action = isset( $_GET['action'] ) ? sanitize_text_field( $_GET['action'] ) : ''; //phpcs:ignore
+			$current_action = isset( $_GET['action'] ) ? sanitize_text_field( $_GET['action'] ) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 			if ( 'wcf-log' === $current_action ) {
 				LogStatus::get_instance()->user_actions();
@@ -238,7 +239,7 @@ class AdminMenu {
 				$capability,
 				$parent_slug,
 				array( $this, 'render' ),
-				'data:image/svg+xml;base64,' . base64_encode(file_get_contents(CARTFLOWS_DIR . 'assets/images/cartflows-icon.svg')), //phpcs:ignore
+				'data:image/svg+xml;base64,' . base64_encode( file_get_contents( CARTFLOWS_DIR . 'assets/images/cartflows-icon.svg' ) ),
 				40
 			);
 
@@ -292,7 +293,8 @@ class AdminMenu {
 			}
 
 			// Rename to Home menu.
-			$submenu[$parent_slug][0][0] = __('Home', 'cartflows'); //phpcs:ignore
+			// Disable phpcs since we need to override submenu name.
+			$submenu[ $parent_slug ][0][0] = __( 'Home', 'cartflows' ); //phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 		}
 	}
 
@@ -354,11 +356,11 @@ class AdminMenu {
 	 * @return void
 	 */
 	public function render() {
-		$menu_page_slug = (isset($_GET['page'])) ? sanitize_text_field(wp_unslash($_GET['page'])) : CARTFLOWS_SETTINGS; //phpcs:ignore
+		$menu_page_slug = ( isset( $_GET['page'] ) ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : CARTFLOWS_SETTINGS; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$page_action    = '';
 
-		if ( isset( $_GET['action'] )  ) { //phpcs:ignore
-			$page_action = sanitize_text_field( wp_unslash( $_GET['action'] ) ); //phpcs:ignore
+		if ( isset( $_GET['action'] ) ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$page_action = sanitize_text_field( wp_unslash( $_GET['action'] ) ); //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$page_action = str_replace( '_', '-', $page_action );
 		}
 
@@ -410,7 +412,7 @@ class AdminMenu {
 		wp_enqueue_script( $admin_slug . '-common-script', CARTFLOWS_ADMIN_CORE_URL . 'assets/js/common.js', array( 'jquery' ), CARTFLOWS_VER, false );
 
 		$current_flow_steps = array();
-		$flow_id = isset( $_GET['flow_id'] ) ? intval( $_GET['flow_id'] ) : 0; //phpcs:ignore
+		$flow_id            = isset( $_GET['flow_id'] ) ? intval( $_GET['flow_id'] ) : 0; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( $flow_id ) {
 			$current_flow_steps = AdminHelper::get_flow_meta_options( $flow_id );
 		}
@@ -514,6 +516,7 @@ class AdminMenu {
 				'step_action'                      => $step_action,
 				'old_global_checkout'              => get_option( '_cartflows_old_global_checkout', false ),
 				'cpsw_status'                      => $this->get_plugin_status( 'checkout-plugins-stripe-woo/checkout-plugins-stripe-woo.php' ),
+				'cppw_status'                      => $this->get_plugin_status( 'checkout-paypal-woo/checkout-paypal-woo.php' ),
 				'ca_status'                        => $this->get_plugin_status( 'woo-cart-abandonment-recovery/woo-cart-abandonment-recovery.php' ),
 				'cpsw_connection_status'           => 'success' === get_option( 'cpsw_test_con_status', false ) || 'success' === get_option( 'cpsw_con_status', false ),
 				'current_user_can_manage_catflows' => current_user_can( 'cartflows_manage_settings' ),
@@ -717,9 +720,9 @@ class AdminMenu {
 		wp_enqueue_style( $handle );
 		wp_style_add_data( $handle, 'rtl', 'replace' );
 
-		$localize['flow_id'] = isset( $_GET['flow_id'] ) ? intval( $_GET['flow_id'] ) : 0; //phpcs:ignore
+		$localize['flow_id'] = isset( $_GET['flow_id'] ) ? intval( $_GET['flow_id'] ) : 0; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
-		$step_id = isset( $_GET['step_id'] ) ? intval( $_GET['step_id'] ) : false; //phpcs:ignore
+		$step_id = isset( $_GET['step_id'] ) ? intval( $_GET['step_id'] ) : false; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 		if ( $step_id ) {
 
@@ -746,8 +749,8 @@ class AdminMenu {
 			return false;
 		}
 
-		$current_page_slug = isset($_GET['page']) ? sanitize_text_field($_GET['page']) : ''; //phpcs:ignore
-		$current_action = isset($_GET['action']) ? sanitize_text_field($_GET['action']) : ''; //phpcs:ignore
+		$current_page_slug = isset( $_GET['page'] ) ? sanitize_text_field( $_GET['page'] ) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$current_action    = isset( $_GET['action'] ) ? sanitize_text_field( $_GET['action'] ) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 		if ( ! is_array( $action ) ) {
 			$action = explode( ' ', $action );
@@ -773,7 +776,7 @@ class AdminMenu {
 			admin_url( '/admin.php' )
 		);
 
-		return '<span id="footer-thankyou"> Thank you for using <a href="https://cartflows.com/">CartFlows</a></span> | <a href="' . $logs_page_url . '">Logs</a>';
+		return '<span id="footer-thankyou"> Thank you for using <a href="https://cartflows.com/?utm_source=dashboard&utm_medium=free-cartflows&utm_campaign=footer-link">CartFlows</a></span> | <a href="' . $logs_page_url . '">Logs</a>';
 	}
 
 }

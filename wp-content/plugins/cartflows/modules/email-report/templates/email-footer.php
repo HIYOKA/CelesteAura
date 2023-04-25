@@ -68,7 +68,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 													</p>
 													<p style="margin: 0; text-align: center; mso-line-height-alt: 16.8px;">
 														 </p>
-													<p style="margin: 0; text-align: center;"><a href="<?php echo $unsubscribe_link; ?>" rel="noopener" style="color: #8a3b8f;" target="_blank"><?php echo esc_html__( 'Unsubscribe', 'cartflows' ); ?></a></p>
+													<p style="margin: 0; text-align: center;"><a href="<?php echo esc_url( $unsubscribe_link ); ?>" rel="noopener" style="color: #8a3b8f;" target="_blank"><?php echo esc_html__( 'Unsubscribe', 'cartflows' ); ?></a></p>
 												</div>
 											</div>
 										</td>
