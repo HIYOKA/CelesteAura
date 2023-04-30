@@ -2,10 +2,10 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: pgall-for-woocommerce 3.1.6\n"
+"Project-Id-Version: pgall-for-woocommerce 3.1.8\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/pgall-for-woocommerce\n"
-"POT-Creation-Date: 2023-04-24 00:17:28+00:00\n"
+"POT-Creation-Date: 2023-04-28 07:31:48+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -64,14 +64,14 @@ msgstr ""
 #: includes/admin/class-pafw-admin-cash-receipts.php:135
 #: templates/emails/cash-receipt-details.php:22
 #: templates/emails/cash-receipt-details.php:58
-#: templates/order/cash-receipt-details.php:21
+#: templates/order/cash-receipt-details.php:24
 msgid "상태"
 msgstr ""
 
 #: includes/admin/class-pafw-admin-cash-receipts.php:142
 #: templates/emails/cash-receipt-details.php:20
 #: templates/emails/cash-receipt-details.php:54
-#: templates/order/cash-receipt-details.php:20
+#: templates/order/cash-receipt-details.php:23
 msgid "발행정보"
 msgstr ""
 
@@ -651,7 +651,7 @@ msgstr ""
 #: includes/admin/meta-boxes/class-pafw-meta-box-cash-receipt.php:17
 #: templates/emails/cash-receipt-details.php:14
 #: templates/emails/cash-receipt-details.php:46
-#: templates/order/cash-receipt-details.php:14
+#: templates/order/cash-receipt-details.php:17
 #: templates/pafw/cash-receipt.php:26
 msgid "현금영수증"
 msgstr ""
@@ -1120,7 +1120,7 @@ msgstr ""
 #: includes/admin/settings/inicis/class-pafw-settings-inicis-advanced.php:35
 #: includes/admin/settings/kakaopay/class-pafw-settings-kakaopay-advanced.php:18
 #: includes/admin/settings/kicc/class-pafw-settings-kicc-advanced.php:36
-#: includes/admin/settings/lguplus/class-pafw-settings-lguplus-advanced.php:36
+#: includes/admin/settings/lguplus/class-pafw-settings-lguplus-advanced.php:48
 #: includes/admin/settings/nicepay/class-pafw-settings-nicepay-advanced.php:18
 #: includes/admin/settings/npay/class-pafw-settings-npay-advanced.php:18
 #: includes/admin/settings/payco/class-pafw-settings-payco-advanced.php:34
@@ -1133,7 +1133,7 @@ msgstr ""
 #: includes/admin/settings/inicis/class-pafw-settings-inicis-advanced.php:41
 #: includes/admin/settings/kakaopay/class-pafw-settings-kakaopay-advanced.php:24
 #: includes/admin/settings/kicc/class-pafw-settings-kicc-advanced.php:42
-#: includes/admin/settings/lguplus/class-pafw-settings-lguplus-advanced.php:42
+#: includes/admin/settings/lguplus/class-pafw-settings-lguplus-advanced.php:54
 #: includes/admin/settings/nicepay/class-pafw-settings-nicepay-advanced.php:24
 #: includes/admin/settings/npay/class-pafw-settings-npay-advanced.php:24
 #: includes/admin/settings/payco/class-pafw-settings-payco-advanced.php:40
@@ -1146,11 +1146,13 @@ msgstr ""
 #: includes/admin/settings/inicis/class-pafw-settings-inicis-advanced.php:47
 #: includes/admin/settings/kcp/class-pafw-settings-kcp-advanced.php:34
 #: includes/admin/settings/kicc/class-pafw-settings-kicc-advanced.php:48
+#: includes/admin/settings/lguplus/class-pafw-settings-lguplus-advanced.php:36
 msgid "사이트 로고"
 msgstr ""
 
 #: includes/admin/settings/inicis/class-pafw-settings-inicis-advanced.php:53
 #: includes/admin/settings/kicc/class-pafw-settings-kicc-advanced.php:54
+#: includes/admin/settings/lguplus/class-pafw-settings-lguplus-advanced.php:42
 msgid ""
 "결제 창 왼쪽 상단에 가맹점 사이트의 로고를 표시합니다. 가맹점의 로고가 있는 URL을 정확히 입력하셔야 하며, 입력하지 않으면 "
 "표시되지 않습니다. 권장 사이즈는 89 * 18 픽셀 입니다. 해당 사이즈에 맞춰 자동 리사이즈 됩니다. (예 : "
@@ -1183,7 +1185,7 @@ msgstr ""
 #: includes/admin/settings/kakaopay/class-pafw-settings-kakaopay-advanced.php:30
 #: includes/admin/settings/kcp/class-pafw-settings-kcp-advanced.php:71
 #: includes/admin/settings/kicc/class-pafw-settings-kicc-advanced.php:60
-#: includes/admin/settings/lguplus/class-pafw-settings-lguplus-advanced.php:48
+#: includes/admin/settings/lguplus/class-pafw-settings-lguplus-advanced.php:60
 #: includes/admin/settings/nicepay/class-pafw-settings-nicepay-advanced.php:30
 #: includes/admin/settings/npay/class-pafw-settings-npay-advanced.php:30
 #: includes/admin/settings/payco/class-pafw-settings-payco-advanced.php:46
@@ -1197,7 +1199,7 @@ msgstr ""
 #: includes/admin/settings/kakaopay/class-pafw-settings-kakaopay-advanced.php:36
 #: includes/admin/settings/kcp/class-pafw-settings-kcp-advanced.php:77
 #: includes/admin/settings/kicc/class-pafw-settings-kicc-advanced.php:66
-#: includes/admin/settings/lguplus/class-pafw-settings-lguplus-advanced.php:54
+#: includes/admin/settings/lguplus/class-pafw-settings-lguplus-advanced.php:66
 #: includes/admin/settings/nicepay/class-pafw-settings-nicepay-advanced.php:36
 #: includes/admin/settings/npay/class-pafw-settings-npay-advanced.php:36
 #: includes/admin/settings/payco/class-pafw-settings-payco-advanced.php:52
@@ -2324,7 +2326,7 @@ msgid "현금영수증 발행정보가 업데이트 되었습니다."
 msgstr ""
 
 #: includes/class-pafw-ajax.php:674 includes/class-pafw-ajax.php:689
-#: includes/class-pafw-ajax.php:752 includes/class-pafw-ajax.php:766
+#: includes/class-pafw-ajax.php:754 includes/class-pafw-ajax.php:768
 msgid "비회원"
 msgstr ""
 
@@ -3401,25 +3403,25 @@ msgstr ""
 
 #: templates/emails/cash-receipt-details.php:19
 #: templates/emails/cash-receipt-details.php:50
-#: templates/order/cash-receipt-details.php:19
+#: templates/order/cash-receipt-details.php:22
 msgid "용도"
 msgstr ""
 
 #: templates/emails/cash-receipt-details.php:21
 #: templates/emails/cash-receipt-details.php:63
-#: templates/order/cash-receipt-details.php:22
+#: templates/order/cash-receipt-details.php:25
 msgid "현금영수증번호"
 msgstr ""
 
 #: templates/emails/cash-receipt-details.php:23
 #: templates/emails/cash-receipt-details.php:67
-#: templates/order/cash-receipt-details.php:23
+#: templates/order/cash-receipt-details.php:26
 msgid "일자"
 msgstr ""
 
 #: templates/emails/cash-receipt-details.php:24
 #: templates/emails/cash-receipt-details.php:72
-#: templates/order/cash-receipt-details.php:24
+#: templates/order/cash-receipt-details.php:27
 msgid "비고"
 msgstr ""
 
@@ -3496,6 +3498,10 @@ msgstr ""
 
 #: templates/myaccount/exchange-return-type.php:12
 msgid "신청 유형을 선택하세요."
+msgstr ""
+
+#: templates/order/cash-receipt-details.php:47
+msgid "조회"
 msgstr ""
 
 #: templates/order/change-next-payment-date.php:9

@@ -5,7 +5,7 @@ Tags: 워드프레스 결제, 우커머스 결제, 정기결제, 이니시스, �
 Requires at least: 4.6.0
 Tested up to: 6.2
 Requires PHP: 7.2
-Stable tag: 3.1.6
+Stable tag: 3.1.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -78,6 +78,12 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Not yet.
 
 == Changelog ==
+
+= 3.1.8 =
+[현금영수증] 고객이 내계정 주문상세 페이지에서 발급된 현금영수증을 조회 및 출력 할 수 있는 기능
+
+= 3.1.7 =
+[토스페이먼츠] 결제창 로고 설정 기능
 
 = 3.1.6 =
 우커머스 3.x 버전을 위한 무통장 입금 재고 복원기능 삭제

@@ -43,6 +43,7 @@ if ( class_exists( 'WC_Payment_Gateway' ) ) {
 				'use_nointerest'     => pafw_get( $this->settings, 'use_nointerest' ),
 				'nointerest'         => pafw_get( $this->settings, 'nointerest' ),
 				'language_code'      => pafw_get( $this->settings, 'language_code' ),
+				'logo_url'           => utf8_uri_encode( pafw_get( $this->settings, 'site_logo', PAFW()->plugin_url() . '/assets/images/default-logo.jpg' ) ),
 			);
 
 			return $params;

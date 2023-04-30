@@ -103,7 +103,7 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 
 <?php else : ?>
 	<div class="woocommerce-message woocommerce-message--info woocommerce-Message woocommerce-Message--info woocommerce-info">
-		<a class="woocommerce-Button button" href="<?php echo esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) ) ); ?>"><?php esc_html_e( 'BROWSE PRODUCTS', 'astra-addon' ); ?></a>
+		<a class="woocommerce-Button button" href="<?php echo esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) ) ); ?>"><?php esc_html_e( '제품 둘러보기', 'astra-addon' ); ?></a>
 		<?php esc_html_e( 'No order has been made yet.', 'astra-addon' ); ?>
 	</div>
 <?php endif; ?>

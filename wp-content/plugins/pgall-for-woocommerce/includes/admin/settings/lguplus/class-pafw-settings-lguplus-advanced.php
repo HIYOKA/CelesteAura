@@ -31,6 +31,18 @@ if ( ! class_exists( 'PAFW_Settings_Lguplus_Advanced' ) ) {
 								)
 							)
 						),
+						array (
+							'id'        => 'site_logo',
+							'title'     => __( '사이트 로고', 'pgall-for-woocommerce' ),
+							'className' => 'fluid',
+							'type'      => 'Text',
+							'default'   => PAFW()->plugin_url() . '/assets/images/default-logo.jpg',
+							'tooltip'   => array (
+								'title' => array (
+									'content' => __( '결제 창 왼쪽 상단에 가맹점 사이트의 로고를 표시합니다. 가맹점의 로고가 있는 URL을 정확히 입력하셔야 하며, 입력하지 않으면 표시되지 않습니다. 권장 사이즈는 89 * 18 픽셀 입니다. 해당 사이즈에 맞춰 자동 리사이즈 됩니다. (예 : http://www.aaa.com/a.jpg)', 'pgall-for-woocommerce' ),
+								)
+							)
+						),
 						array(
 							'id'        => 'payment_tag',
 							'title'     => __( '결제 페이지 태그 설정', 'pgall-for-woocommerce' ),

@@ -703,12 +703,14 @@ class PAFW_Ajax {
 		}
 	}
 	public static function pafw_view_receipt() {
-		if ( ! current_user_can( 'manage_woocommerce' ) || ! wp_verify_nonce( $_POST['_wpnonce'], 'pgall-for-woocommerce' ) ) {
-			die();
-		}
+		check_ajax_referer( 'pgall-for-woocommerce' );
 
 		try {
 			$order = wc_get_order( $_POST['order_id'] );
+
+			if ( ! current_user_can( 'manage_woocommerce' ) && $order->get_customer_id() != get_current_user_id() ) {
+				die();
+			}
 
 			$payment_gateway = pafw_get_payment_gateway_from_order( $order );
 
@@ -770,7 +772,7 @@ class PAFW_Ajax {
 				$request['status_label'] = PAFW_Cash_Receipt::get_status_name( $request['status'] );
 				$request['total_price']  = '-';
 				$request['usage']        = '-';
-				$request['reg_number']        = '-';
+				$request['reg_number']   = '-';
 			}
 
 			fputcsv( $file, array(

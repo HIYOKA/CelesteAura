@@ -79,3 +79,27 @@ div.star-rating {display:none;}
 #menu-item-45 a:hover {
     color: #1976d2;
 }
+
+#billing_company_field {
+    display: none;
+}
+#shipping_company_field {
+    display: none;
+}
+
+#billing_address_2_field {
+    display: none !important;
+}
+
+#shipping_address_2_field {
+    display: none !important;
+}
+
+    a#privacy_policy {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    a#privacy_policy:hover {
+      text-decoration: underline;
+    }
