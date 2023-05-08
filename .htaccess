@@ -39,6 +39,9 @@
 #Expires headers configuration added by BREEZE WP CACHE plugin
 <IfModule mod_headers.c>
    Header append Cache-Control "s-maxage=2592000"
+   #Header set Access-Control-Allow-Origin "*"
+  #Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+ #Header set Access-Control-Allow-Headers "Content-Type, Authorization, X-Requested-With"
 </IfModule>
 <IfModule mod_env.c>
    SetEnv BREEZE_BROWSER_CACHE_ON 1

@@ -71,5 +71,5 @@ do_action( 'woocommerce_before_edit_account_form' ); ?>
 
 	<?php do_action( 'woocommerce_edit_account_form_end' ); ?>
 </form>
-
+<?php echo do_shortcode('[plugin_delete_me link_text="회원 탈퇴" class="delete-account-link" /]'); ?>
 <?php do_action( 'woocommerce_after_edit_account_form' ); ?>

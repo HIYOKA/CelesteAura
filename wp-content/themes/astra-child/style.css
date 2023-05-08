@@ -10,9 +10,10 @@ Text Domain: astra-child
 Template: astra
 */
 
-div.star-rating {display:none;}
+/*div.star-rating {display:none;}}*/
 .woocommerce div.product .sku_wrapper {display: none!important;}
 .woocommerce div.product .posted_in {display: none!important;}
+/*.woo-checkout-login.eael-woo-checkout-login-page {display: none!important;}*/
 /* 태그 컨테이너 */
 .tagged_as {
     font-size: 14px;
@@ -79,6 +80,9 @@ div.star-rating {display:none;}
 #menu-item-45 a:hover {
     color: #1976d2;
 }
+#menu-item-4663 a:hover {
+    color: #1976d2;
+}
 
 #billing_company_field {
     display: none;
@@ -103,3 +107,5 @@ div.star-rating {display:none;}
     a#privacy_policy:hover {
       text-decoration: underline;
     }
+
+

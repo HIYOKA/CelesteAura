@@ -402,6 +402,10 @@ function breeze_file_match_pattern( $file_url, $pattern ) {
  * @return bool
  */
 function is_varnish_cache_started( $retry = 1, $time_fresh = 0, $use_headers = false ) {
+	if ( isset( $_SERVER['HTTP_X_VARNISH'] ) && is_numeric( $_SERVER['HTTP_X_VARNISH'] ) ) {
+		return true;
+	}
+
 	if ( empty( $time_fresh ) ) {
 		$time_fresh = time();
 	}
@@ -1053,9 +1057,10 @@ function breeze_migrate_old_settings( $is_sigle = true, $subsite_id = 0, $is_roo
 }
 
 function breeze_rtrim_urls( $url ) {
-	if(empty($url)){
+	if ( empty( $url ) ) {
 		$url = '';
 	}
+
 	return rtrim( $url, '/' );
 }
 

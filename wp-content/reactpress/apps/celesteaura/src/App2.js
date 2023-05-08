@@ -1,9 +1,9 @@
-import Contact from "./hiyoka/Contact";
-
+//import Contact from "./hiyoka/Contact";
+import CustomDataApp from "./hiyoka/Customdata";
 function App2() {
   return (
     <div className="App2">
-      <Contact />
+      <CustomDataApp />
     </div>
   );
 }

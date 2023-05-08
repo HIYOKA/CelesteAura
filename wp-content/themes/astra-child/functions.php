@@ -29,3 +29,89 @@ function astra_child_enqueue_custom_script() {
 }
 add_action( 'wp_enqueue_scripts', 'astra_child_enqueue_custom_script' );
 
+function create_custom_table() {
+    global $wpdb;
+
+    $table_name = $wpdb->prefix . "custom_data";
+    $charset_collate = $wpdb->get_charset_collate();
+
+    $sql = "CREATE TABLE $table_name (
+        id int(10) unsigned NOT NULL AUTO_INCREMENT,
+        name varchar(255) NOT NULL,
+        value varchar(255) NOT NULL,
+        url varchar(255),
+        PRIMARY KEY (id)
+    ) $charset_collate;";
+
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+    dbDelta($sql);
+}
+
+add_action('init', 'create_custom_table');
+
+function custom_api_routes() {
+    register_rest_route('custom-data/v1', '/item', array(
+        'methods' => 'GET, POST, PUT, DELETE',
+        'callback' => 'handle_custom_data_request',
+    ));
+}
+
+add_action('rest_api_init', 'custom_api_routes');
+
+function handle_custom_data_request(WP_REST_Request $request) {
+    global $wpdb;
+    $table_name = $wpdb->prefix . "custom_data";
+
+    switch ($request->get_method()) {
+        case 'GET':
+            $results = $wpdb->get_results("SELECT * FROM $table_name", ARRAY_A);
+            wp_send_json($results);
+
+        case 'POST':
+            $params = $request->get_params();
+            $wpdb->insert($table_name, array(
+                'name' => $params['name'],
+                'value' => $params['value'],
+                'url' => $params['url']
+            ));
+            wp_send_json(array('success' => true, 'message' => 'Data added successfully.'));
+
+        case 'PUT':
+            $params = $request->get_params();
+            $id = $params['id'];
+            $wpdb->update($table_name, array(
+                'name' => $params['name'],
+                'value' => $params['value'],
+                'url' => $params['url']
+            ), array('id' => $id));
+            wp_send_json(array('success' => true, 'message' => 'Data updated successfully.'));
+
+        case 'DELETE':
+            $id = $request->get_param('id');
+            $wpdb->delete($table_name, array('id' => $id));
+            wp_send_json(array('success' => true, 'message' => 'Data deleted successfully.'));
+
+        default:
+            return new WP_Error('invalid_method', 'Invalid request method', array('status' => 400));
+    }
+}
+
+function custom_menu_item_visibility($items, $menu, $args) {
+    if (is_admin()) {
+        return $items;
+    }
+
+    $hidden_menu_item_ids = array(5312); 
+    $current_user = wp_get_current_user();
+
+    if (!in_array('editor', $current_user->roles) && !in_array('administrator', $current_user->roles)) {
+        foreach ($items as $key => $item) {
+            if (in_array($item->ID, $hidden_menu_item_ids)) {
+                unset($items[$key]);
+            }
+        }
+    }
+
+    return $items;
+}
+add_filter('wp_get_nav_menu_items', 'custom_menu_item_visibility', 10, 3);

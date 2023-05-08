@@ -1,0 +1,45 @@
+.products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+    grid-auto-rows: auto;
+  }
+  
+  .product {
+    text-align: center;
+    text-align: left;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin: 16px 0;
+  }
+  
+  .pagination button {
+    margin: 0 4px;
+      padding: 5px 10px; /* 상하 5px, 좌우 10px 패딩 추가 */
+  background-color: #fff; /* 버튼 배경색 변경 */
+  border: none; /* 테두리 제거 */
+  cursor: pointer; /* 마우스 포인터 변경 */
+  transition: background-color 0.3s; /* 배경색 변경 효과 */
+  color: #000;
+  }
+  
+
+/* 페이지네이션 눌린 버튼 색깔 변경 */
+.pagination button.active {
+  background-color: #000; /* 눌린 버튼 배경색 변경 */
+  color: white; /* 눌린 버튼 글자색 변경 */
+}
+
+/* 페이지네이션 버튼 호버 효과 */
+.pagination button:hover:not(.active) {
+  color: white;
+  background-color: #000; /* 호버 시 배경색 변경 */
+}
+
+  select,
+  button {
+    margin-right: 8px;
+  }
