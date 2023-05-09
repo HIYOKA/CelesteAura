@@ -1,9 +1,8 @@
-//import Contact from "./hiyoka/Contact";
-import CustomDataApp from "./hiyoka/Customdata";
+import RandomRecommend from "./hiyoka/RandomRecommend";
 function App2() {
   return (
     <div className="App2">
-      <CustomDataApp />
+      <RandomRecommend />
     </div>
   );
 }

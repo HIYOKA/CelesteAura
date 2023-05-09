@@ -1,21 +1,16 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./hiyoka.css";
-import Pagination from "./Pagination";
-import {WOOCOMMERCE_API_KEY, WOOCOMMERCE_API_SECRET,} from "./woocommerceConfig";
+import {
+  WOOCOMMERCE_API_KEY,
+  WOOCOMMERCE_API_SECRET,
+} from "./woocommerceConfig";
 
-const ProductsAll = () => {
+const RandomRecommend = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
-  const [products, setProducts] = useState([]); // [
+  const [product, setProduct] = useState(null);
   const [noProductFound, setNoProductFound] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 8;
-  const endIndex = currentPage * itemsPerPage;
-  const startIndex = endIndex - itemsPerPage;
-  const currentProducts = products.slice(startIndex, endIndex);
-
-  const totalPages = Math.ceil(products.length / itemsPerPage);
 
   const handleCategoryChange = (e) => {
     setSelectedCategory(e.target.value);
@@ -53,9 +48,7 @@ const ProductsAll = () => {
           headers: {
             Authorization:
               "Basic " +
-              btoa(
-                `${WOOCOMMERCE_API_KEY}:${WOOCOMMERCE_API_SECRET}`
-              ),
+              btoa(`${WOOCOMMERCE_API_KEY}:${WOOCOMMERCE_API_SECRET}`),
           },
           params: {
             per_page: 100,
@@ -76,7 +69,6 @@ const ProductsAll = () => {
 
   const recommendProduct = async () => {
     try {
-    setCurrentPage(1);
       const categoryID = await getCategoryID(selectedCategory);
       const tagID = await getTagID(selectedColor);
 
@@ -86,9 +78,7 @@ const ProductsAll = () => {
           headers: {
             Authorization:
               "Basic " +
-              btoa(
-                `${WOOCOMMERCE_API_KEY}:${WOOCOMMERCE_API_SECRET}`
-              ),
+              btoa(`${WOOCOMMERCE_API_KEY}:${WOOCOMMERCE_API_SECRET}`),
           },
           params: {
             category: categoryID,
@@ -100,8 +90,9 @@ const ProductsAll = () => {
 
       const products = response.data;
       if (products.length > 0) {
-        setProducts(products);
-        console.log("products", products);
+        const randomIndex = Math.floor(Math.random() * products.length);
+        setProduct(products[randomIndex]);
+        console.log("product", products[randomIndex]);
         setNoProductFound(false);
       } else {
         setNoProductFound(true);
@@ -111,25 +102,27 @@ const ProductsAll = () => {
     }
   };
 
+  // return (...)
   return (
-    <div id="allproductpage">
-          <h2
+    <div id="randomrecommendpage">
+      <h2
         style={{
           textAlign: "center",
           paddingTop: "20px",
           paddingBottom: "20px",
         }}
       >
-        소중한 퍼스널 컬러를 빛내는 완벽한 아이템을 발견하세요.
+        무슨 상품을 고를까요? 걱정 마세요, 저희가 도와드릴게요!
       </h2>
       <div
         style={{
           display: "flex",
-          justifyContent: "flex-end",
-          paddingRight: "80px",
+          justifyContent: "center",
+          alignItems: "center",
+          paddingBottom: "20px",
         }}
       >
-              <select onChange={handleColorChange} value={selectedColor}>
+        <select onChange={handleColorChange} value={selectedColor}>
           <option value="">-- 퍼스널컬러 선택 --</option>
           <option value="spring_pastel">spring_pastel</option>
           <option value="spring_bright">spring_bright</option>
@@ -152,44 +145,53 @@ const ProductsAll = () => {
           <option value="Coat">Coat</option>
         </select>
 
-        <button onClick={recommendProduct}>상품 검색</button>
+        <button onClick={recommendProduct}>상품 추천</button>
       </div>
-            {noProductFound && (
+      <br></br>
+      {noProductFound && (
         <p>선택한 퍼스널 컬러(<strong>{selectedColor}</strong>)와 카테고리(<strong>{selectedCategory}</strong>)에 해당하는 상품이 없습니다.</p>
       )}
-      <br></br>
-      <div className="products">
-        {currentProducts.map((product) => (
+      <div
+        className="productrandom"
+        style={{
+          height: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {product && (
           <div key={product.id} className="product">
-                  <a
+            <a
               href={product.permalink}
               target="_self"
               rel="noopener noreferrer"
-            ><img
-              src={product.images[0]?.src}
-              alt={product.images[0]?.alt}
-              style={{ width: "200px", height: "auto" }}
-            /></a>
+            >
+              <img
+                src={product.images[0]?.src}
+                alt={product.images[0]?.alt}
+                style={{ width: "520px", height: "auto" }}
+              />
+            </a>
             <br></br>
-             <a
+            <a
               href={product.permalink}
               target="_self"
               rel="noopener noreferrer"
-            ><span className="product-name">{product.name}</span></a>
+            >
+              <span className="product-name">{product.name}</span>
+            </a>
             <br></br>
-            <span className="product-category">{product.categories[0]?.name}</span>
+            <span className="product-category">
+              {product.categories[0]?.name}
+            </span>
             <br></br>
             <span className="product-price">\{product.price}</span>
           </div>
-        ))}
+        )}
       </div>
-      <Pagination
-        totalPages={totalPages}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      />
     </div>
   );
 };
 
-export default ProductsAll;
+export default RandomRecommend;
