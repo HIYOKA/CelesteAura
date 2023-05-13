@@ -43,3 +43,38 @@
   button {
     margin-right: 8px;
   }
+  
+  .recommend-button {
+  color: white;
+  transition: all 0.3s ease;
+   height: 50px;
+   padding: 8px 16px;
+   border-radius: 20px;
+   border: 2px solid white;
+}
+
+.recommend-button:hover {
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+}
+
+  .search-button {
+  color: white;
+  transition: all 0.3s ease;
+   padding: 8px 16px;
+   border-radius: 20px;
+   border: 2px solid white;
+}
+
+.search-button:hover {
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+}
+
+.recharts-wrapper {
+  border: 1px solid #000;
+  border-radius: 4px;
+  padding: 16px;
+}

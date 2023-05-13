@@ -151,8 +151,7 @@ const ProductsAll = () => {
           <option value="Hoodie">Hoodie</option>
           <option value="Coat">Coat</option>
         </select>
-
-        <button onClick={recommendProduct}>상품 검색</button>
+        <button className="search-button" onClick={recommendProduct}>상품 검색</button>
       </div>
             {noProductFound && (
         <p>선택한 퍼스널 컬러(<strong>{selectedColor}</strong>)와 카테고리(<strong>{selectedCategory}</strong>)에 해당하는 상품이 없습니다.</p>

@@ -1,8 +1,8 @@
-import RandomRecommend from "./hiyoka/RandomRecommend";
+import Recommend from "./hiyoka/Recommend";
 function App2() {
   return (
     <div className="App2">
-      <RandomRecommend />
+      <Recommend />
     </div>
   );
 }
