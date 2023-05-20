@@ -153,12 +153,14 @@ const headerCellStyle = {
   border: "1px solid black",
   fontWeight: "bold",
   backgroundColor: "#f2f2f2",
+  whiteSpace: "nowrap",
 };
 
 const cellStyle = {
   textAlign: "center",
   padding: "8px",
   border: "1px solid black",
+  whiteSpace: "nowrap",
 };
 const buttonStyle = {
   width: "160px", 

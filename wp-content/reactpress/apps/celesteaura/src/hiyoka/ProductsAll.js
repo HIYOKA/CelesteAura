@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./hiyoka.css";
 import Pagination from "./Pagination";
-import {WOOCOMMERCE_API_KEY, WOOCOMMERCE_API_SECRET,} from "./woocommerceConfig";
+import {
+  WOOCOMMERCE_API_KEY,
+  WOOCOMMERCE_API_SECRET,
+} from "./woocommerceConfig";
 
 const ProductsAll = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -19,10 +22,12 @@ const ProductsAll = () => {
 
   const handleCategoryChange = (e) => {
     setSelectedCategory(e.target.value);
+    setNoProductFound(false);
   };
 
   const handleColorChange = (e) => {
     setSelectedColor(e.target.value);
+    setNoProductFound(false);
   };
 
   async function getCategoryID(categoryName) {
@@ -53,9 +58,7 @@ const ProductsAll = () => {
           headers: {
             Authorization:
               "Basic " +
-              btoa(
-                `${WOOCOMMERCE_API_KEY}:${WOOCOMMERCE_API_SECRET}`
-              ),
+              btoa(`${WOOCOMMERCE_API_KEY}:${WOOCOMMERCE_API_SECRET}`),
           },
           params: {
             per_page: 100,
@@ -63,10 +66,7 @@ const ProductsAll = () => {
         }
       );
       const tags = response.data;
-      console.log("tags", tags);
       const tag = tags.find((t) => t.name === tagName);
-      console.log("tagname", tagName);
-      console.log("tag", tag);
 
       return tag?.id;
     } catch (error) {
@@ -76,7 +76,7 @@ const ProductsAll = () => {
 
   const recommendProduct = async () => {
     try {
-    setCurrentPage(1);
+      setCurrentPage(1);
       const categoryID = await getCategoryID(selectedCategory);
       const tagID = await getTagID(selectedColor);
 
@@ -86,9 +86,7 @@ const ProductsAll = () => {
           headers: {
             Authorization:
               "Basic " +
-              btoa(
-                `${WOOCOMMERCE_API_KEY}:${WOOCOMMERCE_API_SECRET}`
-              ),
+              btoa(`${WOOCOMMERCE_API_KEY}:${WOOCOMMERCE_API_SECRET}`),
           },
           params: {
             category: categoryID,
@@ -101,7 +99,6 @@ const ProductsAll = () => {
       const products = response.data;
       if (products.length > 0) {
         setProducts(products);
-        console.log("products", products);
         setNoProductFound(false);
       } else {
         setNoProductFound(true);
@@ -113,7 +110,7 @@ const ProductsAll = () => {
 
   return (
     <div id="allproductpage">
-          <h2
+      <h2
         style={{
           textAlign: "center",
           paddingTop: "20px",
@@ -122,14 +119,8 @@ const ProductsAll = () => {
       >
         소중한 퍼스널 컬러를 빛내는 완벽한 아이템을 발견하세요.
       </h2>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "flex-end",
-          paddingRight: "80px",
-        }}
-      >
-              <select onChange={handleColorChange} value={selectedColor}>
+      <div className="container">
+        <select className="select-input" onChange={handleColorChange} value={selectedColor}>
           <option value="">-- 퍼스널컬러 선택 --</option>
           <option value="spring_pastel">spring_pastel</option>
           <option value="spring_bright">spring_bright</option>
@@ -140,7 +131,7 @@ const ProductsAll = () => {
           <option value="winter_deep">winter_deep</option>
           <option value="winter_bright">winter_bright</option>
         </select>
-        <select onChange={handleCategoryChange} value={selectedCategory}>
+        <select className="select-input" onChange={handleCategoryChange} value={selectedCategory}>
           <option value="">-- 카테고리 선택 --</option>
           <option value="Trousers">Trousers</option>
           <option value="Top">Top</option>
@@ -151,32 +142,43 @@ const ProductsAll = () => {
           <option value="Hoodie">Hoodie</option>
           <option value="Coat">Coat</option>
         </select>
-        <button className="search-button" onClick={recommendProduct}>상품 검색</button>
+        <button className="search-button" onClick={recommendProduct}>
+          상품 검색
+        </button>
       </div>
-            {noProductFound && (
-        <p>선택한 퍼스널 컬러(<strong>{selectedColor}</strong>)와 카테고리(<strong>{selectedCategory}</strong>)에 해당하는 상품이 없습니다.</p>
+      {noProductFound && (
+        <p>
+          선택한 퍼스널 컬러(<strong>{selectedColor}</strong>)와 카테고리(
+          <strong>{selectedCategory}</strong>)에 해당하는 상품이 없습니다.
+        </p>
       )}
       <br></br>
       <div className="products">
         {currentProducts.map((product) => (
           <div key={product.id} className="product">
-                  <a
+            <a
               href={product.permalink}
               target="_self"
               rel="noopener noreferrer"
-            ><img
-              src={product.images[0]?.src}
-              alt={product.images[0]?.alt}
-              style={{ width: "200px", height: "auto" }}
-            /></a>
+            >
+              <img
+                src={product.images[0]?.src}
+                alt={product.images[0]?.alt}
+                style={{ width: "200px", height: "auto" }}
+              />
+            </a>
             <br></br>
-             <a
+            <a
               href={product.permalink}
               target="_self"
               rel="noopener noreferrer"
-            ><span className="product-name">{product.name}</span></a>
+            >
+              <span className="product-name">{product.name}</span>
+            </a>
             <br></br>
-            <span className="product-category">{product.categories[0]?.name}</span>
+            <span className="product-category">
+              {product.categories[0]?.name}
+            </span>
             <br></br>
             <span className="product-price">\{product.price}</span>
           </div>

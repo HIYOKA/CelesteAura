@@ -38,11 +38,6 @@
   color: white;
   background-color: #000; /* 호버 시 배경색 변경 */
 }
-
-  select,
-  button {
-    margin-right: 8px;
-  }
   
   .recommend-button {
   color: white;
@@ -77,4 +72,25 @@
   border: 1px solid #000;
   border-radius: 4px;
   padding: 16px;
+}
+
+.container {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 80px;
+}
+.select-input {
+  width: 200px; /* 혹은 원하는 크기 */
+  margin-right: 10px; /* 선택적: select 요소 사이의 간격을 만들기 위해 */
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    padding-right: 0;
+  }
+   .select-input {
+    margin-bottom: 10px; /* 모바일 화면에서 select 요소 사이에 간격을 추가 */
+  }
 }

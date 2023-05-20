@@ -6,38 +6,25 @@ import {
   WOOCOMMERCE_API_SECRET,
 } from "./woocommerceConfig";
 
-const RandomRecommend = () => {
+const Recommend = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
   const [product, setProduct] = useState(null);
   const [noProductFound, setNoProductFound] = useState(false);
   const [recommendMethod, setrecommendMethod] = useState("random");
-  const [randomPhrase, setRandomPhrase] = useState(true);
 
   const handleCategoryChange = (e) => {
     setSelectedCategory(e.target.value);
-    if (recommendMethod === "random") {
-      setRandomPhrase(true);
-    } else {
-      setRandomPhrase(false);
-    }
+    setNoProductFound(false);
   };
 
   const handleColorChange = (e) => {
     setSelectedColor(e.target.value);
-    if (recommendMethod === "random") {
-      setRandomPhrase(true);
-    } else {
-      setRandomPhrase(false);
-    }
+    setNoProductFound(false);
   };
   const handleRecommendMethodChange = (e) => {
     setrecommendMethod(e.target.value);
-    if (e.target.value === "random") {
-      setRandomPhrase(true);
-    } else {
-      setRandomPhrase(false);
-    }
+    setNoProductFound(false);
   };
 
   async function getCategoryID(categoryName) {
@@ -76,10 +63,7 @@ const RandomRecommend = () => {
         }
       );
       const tags = response.data;
-      console.log("tags", tags);
       const tag = tags.find((t) => t.name === tagName);
-      console.log("tagname", tagName);
-      console.log("tag", tag);
 
       return tag?.id;
     } catch (error) {
@@ -88,11 +72,6 @@ const RandomRecommend = () => {
   }
 
   const recommendProduct = async () => {
-    if (recommendMethod === "random") {
-      setRandomPhrase(true);
-    } else {
-      setRandomPhrase(false);
-    }
     try {
       const categoryID = await getCategoryID(selectedCategory);
       const tagID = await getTagID(selectedColor);
@@ -114,10 +93,23 @@ const RandomRecommend = () => {
       );
 
       const products = response.data;
-      if (products.length > 0 && recommendMethod === "random") {
+      if (recommendMethod === "high_rating") {
+        const highRatedProducts = products.filter((product) => {
+          return product.average_rating >= 4.0;
+        });
+
+        if (highRatedProducts.length > 0) {
+          const randomIndex = Math.floor(
+            Math.random() * highRatedProducts.length
+          );
+          setProduct(highRatedProducts[randomIndex]);
+          setNoProductFound(false);
+        } else {
+          setNoProductFound(true);
+        }
+      } else if (recommendMethod === "random" && products.length > 0) {
         const randomIndex = Math.floor(Math.random() * products.length);
         setProduct(products[randomIndex]);
-        console.log("product", products[randomIndex]);
         setNoProductFound(false);
       } else {
         setNoProductFound(true);
@@ -138,19 +130,12 @@ const RandomRecommend = () => {
       >
         무슨 상품을 고를까요? 걱정 마세요, 저희가 도와드릴게요!
       </h2>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          paddingBottom: "20px",
-        }}
-      >
-        <select onChange={handleRecommendMethodChange} value={recommendMethod}>
+      <div className="container">
+        <select className="select-input" onChange={handleRecommendMethodChange} value={recommendMethod}>
           <option value="random">-- 방식 선택--</option>
-          <option value="">높은평점</option>
+          <option value="high_rating">높은평점</option>
         </select>
-        <select onChange={handleColorChange} value={selectedColor}>
+        <select className="select-input" onChange={handleColorChange} value={selectedColor}>
           <option value="">-- 퍼스널컬러 선택 --</option>
           <option value="spring_pastel">spring_pastel</option>
           <option value="spring_bright">spring_bright</option>
@@ -161,7 +146,7 @@ const RandomRecommend = () => {
           <option value="winter_deep">winter_deep</option>
           <option value="winter_bright">winter_bright</option>
         </select>
-        <select onChange={handleCategoryChange} value={selectedCategory}>
+        <select className="select-input" onChange={handleCategoryChange} value={selectedCategory}>
           <option value="">-- 카테고리 선택 --</option>
           <option value="Trousers">Trousers</option>
           <option value="Top">Top</option>
@@ -173,16 +158,29 @@ const RandomRecommend = () => {
           <option value="Coat">Coat</option>
         </select>
 
-        <button className="recommend-button" onClick={recommendProduct}>상품 추천</button>
+        <button className="recommend-button" onClick={recommendProduct}>
+          상품 추천
+        </button>
       </div>
-      {randomPhrase && (
+      <br></br>
+      {recommendMethod === "random" && (
         <p
           style={{
-             textAlign: "left",
-    paddingLeft: "21%",
+            textAlign: "center",
+            border: "2px solid black",
           }}
         >
           선택하지 않으면 랜덤으로 추천합니다.
+        </p>
+      )}
+      {recommendMethod === "high_rating" && (
+        <p
+          style={{
+            textAlign: "center",
+            border: "2px solid black",
+          }}
+        >
+          평점이 4점 이상인 상품을 추천합니다.
         </p>
       )}
       {noProductFound && (
@@ -191,7 +189,8 @@ const RandomRecommend = () => {
             textAlign: "center",
           }}
         >
-          선택한 카테고리와 퍼스널 컬러에 해당하는 상품이 없습니다.
+          방식({recommendMethod}), 퍼스널컬러({selectedColor}), 카테고리(
+          {selectedCategory})에 해당하는 상품이 없습니다.
         </p>
       )}
       <div
@@ -229,6 +228,10 @@ const RandomRecommend = () => {
               {product.categories[0]?.name}
             </span>
             <br></br>
+            <span className="product-personalcolor">
+              {product.tags[1]?.name}
+            </span>
+            <br></br>
             <span className="product-price">\{product.price}</span>
           </div>
         )}
@@ -237,4 +240,4 @@ const RandomRecommend = () => {
   );
 };
 
-export default RandomRecommend;
+export default Recommend;

@@ -6,4 +6,3 @@ if (file_exists('/home/961761.cloudwaysapps.com/akcbjbwtdb/public_html/wp-conten
 	define("MCCONFKEY", 'b4edcf296a3cdcf5de4141545d692d51');
 	include_once('/home/961761.cloudwaysapps.com/akcbjbwtdb/public_html/wp-content/plugins/malcare-security/protect/prepend/ignitor.php');
 }
-?>
