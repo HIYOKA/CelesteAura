@@ -1,4 +1,4 @@
-import ReviewGraphs from "./hiyoka/ReviewGraphs";
+import ReviewGraphs from "./component/ReviewGraphs";
 
 function App3() {
   return (

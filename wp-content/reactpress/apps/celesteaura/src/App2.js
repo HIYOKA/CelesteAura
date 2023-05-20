@@ -1,4 +1,4 @@
-import Recommend from "./hiyoka/Recommend";
+import Recommend from "./component/Recommend";
 function App2() {
   return (
     <div className="App2">

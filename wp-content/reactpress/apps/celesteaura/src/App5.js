@@ -1,4 +1,4 @@
-import PersonalGraphs from "./hiyoka/PersonalGraphs";
+import PersonalGraphs from "./component/PersonalGraphs";
 
 function App5() {
   return (

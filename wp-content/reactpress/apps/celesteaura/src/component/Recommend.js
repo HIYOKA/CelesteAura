@@ -1,24 +1,17 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./hiyoka.css";
-import Pagination from "./Pagination";
+import "./custom.css";
 import {
   WOOCOMMERCE_API_KEY,
   WOOCOMMERCE_API_SECRET,
 } from "./woocommerceConfig";
 
-const ProductsAll = () => {
+const Recommend = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
-  const [products, setProducts] = useState([]); // [
+  const [product, setProduct] = useState(null);
   const [noProductFound, setNoProductFound] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 8;
-  const endIndex = currentPage * itemsPerPage;
-  const startIndex = endIndex - itemsPerPage;
-  const currentProducts = products.slice(startIndex, endIndex);
-
-  const totalPages = Math.ceil(products.length / itemsPerPage);
+  const [recommendMethod, setrecommendMethod] = useState("random");
 
   const handleCategoryChange = (e) => {
     setSelectedCategory(e.target.value);
@@ -27,6 +20,10 @@ const ProductsAll = () => {
 
   const handleColorChange = (e) => {
     setSelectedColor(e.target.value);
+    setNoProductFound(false);
+  };
+  const handleRecommendMethodChange = (e) => {
+    setrecommendMethod(e.target.value);
     setNoProductFound(false);
   };
 
@@ -76,7 +73,6 @@ const ProductsAll = () => {
 
   const recommendProduct = async () => {
     try {
-      setCurrentPage(1);
       const categoryID = await getCategoryID(selectedCategory);
       const tagID = await getTagID(selectedColor);
 
@@ -97,8 +93,23 @@ const ProductsAll = () => {
       );
 
       const products = response.data;
-      if (products.length > 0) {
-        setProducts(products);
+      if (recommendMethod === "high_rating") {
+        const highRatedProducts = products.filter((product) => {
+          return product.average_rating >= 4.0;
+        });
+
+        if (highRatedProducts.length > 0) {
+          const randomIndex = Math.floor(
+            Math.random() * highRatedProducts.length
+          );
+          setProduct(highRatedProducts[randomIndex]);
+          setNoProductFound(false);
+        } else {
+          setNoProductFound(true);
+        }
+      } else if (recommendMethod === "random" && products.length > 0) {
+        const randomIndex = Math.floor(Math.random() * products.length);
+        setProduct(products[randomIndex]);
         setNoProductFound(false);
       } else {
         setNoProductFound(true);
@@ -109,7 +120,7 @@ const ProductsAll = () => {
   };
 
   return (
-    <div id="allproductpage">
+    <div id="randomrecommendpage">
       <h2
         style={{
           textAlign: "center",
@@ -117,9 +128,13 @@ const ProductsAll = () => {
           paddingBottom: "20px",
         }}
       >
-        소중한 퍼스널 컬러를 빛내는 완벽한 아이템을 발견하세요.
+        무슨 상품을 고를까요? 걱정 마세요, 저희가 도와드릴게요!
       </h2>
       <div className="container">
+        <select className="select-input" onChange={handleRecommendMethodChange} value={recommendMethod}>
+          <option value="random">-- 방식 선택--</option>
+          <option value="high_rating">높은평점</option>
+        </select>
         <select className="select-input" onChange={handleColorChange} value={selectedColor}>
           <option value="">-- 퍼스널컬러 선택 --</option>
           <option value="spring_pastel">spring_pastel</option>
@@ -142,19 +157,52 @@ const ProductsAll = () => {
           <option value="Hoodie">Hoodie</option>
           <option value="Coat">Coat</option>
         </select>
-        <button className="search-button" onClick={recommendProduct}>
-          상품 검색
+
+        <button className="recommend-button" onClick={recommendProduct}>
+          상품 추천
         </button>
       </div>
-      {noProductFound && (
-        <p>
-          선택한 퍼스널 컬러(<strong>{selectedColor}</strong>)와 카테고리(
-          <strong>{selectedCategory}</strong>)에 해당하는 상품이 없습니다.
+      <br></br>
+      {recommendMethod === "random" && (
+        <p
+          style={{
+            textAlign: "center",
+            border: "2px solid black",
+          }}
+        >
+          선택하지 않으면 랜덤으로 추천합니다.
         </p>
       )}
-      <br></br>
-      <div className="products">
-        {currentProducts.map((product) => (
+      {recommendMethod === "high_rating" && (
+        <p
+          style={{
+            textAlign: "center",
+            border: "2px solid black",
+          }}
+        >
+          평점이 4점 이상인 상품을 추천합니다.
+        </p>
+      )}
+      {noProductFound && (
+        <p
+          style={{
+            textAlign: "center",
+          }}
+        >
+          방식({recommendMethod}), 퍼스널컬러({selectedColor}), 카테고리(
+          {selectedCategory})에 해당하는 상품이 없습니다.
+        </p>
+      )}
+      <div
+        className="productrandom"
+        style={{
+          height: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {product && (
           <div key={product.id} className="product">
             <a
               href={product.permalink}
@@ -164,7 +212,7 @@ const ProductsAll = () => {
               <img
                 src={product.images[0]?.src}
                 alt={product.images[0]?.alt}
-                style={{ width: "200px", height: "auto" }}
+                style={{ width: "430px", height: "auto" }}
               />
             </a>
             <br></br>
@@ -180,17 +228,16 @@ const ProductsAll = () => {
               {product.categories[0]?.name}
             </span>
             <br></br>
-            <span className="product-price">\{product.price}</span>
+            <span className="product-personalcolor">
+              {product.tags[1]?.name}
+            </span>
+            <br></br>
+            <span className="product-price">&#8361;{product.price}</span>
           </div>
-        ))}
+        )}
       </div>
-      <Pagination
-        totalPages={totalPages}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      />
     </div>
   );
 };
 
-export default ProductsAll;
+export default Recommend;

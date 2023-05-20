@@ -1,4 +1,4 @@
-import BestReviewAnalysis from "./hiyoka/BestReviewAnalysis";
+import BestReviewAnalysis from "./component/BestReviewAnalysis";
 
 function App4() {
   return (

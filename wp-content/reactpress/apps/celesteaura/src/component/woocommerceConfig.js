@@ -1,0 +1,4 @@
+export const WOOCOMMERCE_API_KEY =
+  "ck_7391279f59b927e354c1de9d2c118a8aa11f3243";
+export const WOOCOMMERCE_API_SECRET =
+  "cs_3dbf96d4fbfaf3a76ad83e7d20733dea6d1c5536";

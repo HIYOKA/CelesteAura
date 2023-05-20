@@ -1,17 +1,24 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./hiyoka.css";
+import "./custom.css";
+import Pagination from "./Pagination";
 import {
   WOOCOMMERCE_API_KEY,
   WOOCOMMERCE_API_SECRET,
 } from "./woocommerceConfig";
 
-const Recommend = () => {
+const ProductsAll = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
-  const [product, setProduct] = useState(null);
+  const [products, setProducts] = useState([]); // [
   const [noProductFound, setNoProductFound] = useState(false);
-  const [recommendMethod, setrecommendMethod] = useState("random");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8;
+  const endIndex = currentPage * itemsPerPage;
+  const startIndex = endIndex - itemsPerPage;
+  const currentProducts = products.slice(startIndex, endIndex);
+
+  const totalPages = Math.ceil(products.length / itemsPerPage);
 
   const handleCategoryChange = (e) => {
     setSelectedCategory(e.target.value);
@@ -20,10 +27,6 @@ const Recommend = () => {
 
   const handleColorChange = (e) => {
     setSelectedColor(e.target.value);
-    setNoProductFound(false);
-  };
-  const handleRecommendMethodChange = (e) => {
-    setrecommendMethod(e.target.value);
     setNoProductFound(false);
   };
 
@@ -73,6 +76,7 @@ const Recommend = () => {
 
   const recommendProduct = async () => {
     try {
+      setCurrentPage(1);
       const categoryID = await getCategoryID(selectedCategory);
       const tagID = await getTagID(selectedColor);
 
@@ -93,23 +97,8 @@ const Recommend = () => {
       );
 
       const products = response.data;
-      if (recommendMethod === "high_rating") {
-        const highRatedProducts = products.filter((product) => {
-          return product.average_rating >= 4.0;
-        });
-
-        if (highRatedProducts.length > 0) {
-          const randomIndex = Math.floor(
-            Math.random() * highRatedProducts.length
-          );
-          setProduct(highRatedProducts[randomIndex]);
-          setNoProductFound(false);
-        } else {
-          setNoProductFound(true);
-        }
-      } else if (recommendMethod === "random" && products.length > 0) {
-        const randomIndex = Math.floor(Math.random() * products.length);
-        setProduct(products[randomIndex]);
+      if (products.length > 0) {
+        setProducts(products);
         setNoProductFound(false);
       } else {
         setNoProductFound(true);
@@ -120,7 +109,7 @@ const Recommend = () => {
   };
 
   return (
-    <div id="randomrecommendpage">
+    <div id="allproductpage">
       <h2
         style={{
           textAlign: "center",
@@ -128,13 +117,9 @@ const Recommend = () => {
           paddingBottom: "20px",
         }}
       >
-        무슨 상품을 고를까요? 걱정 마세요, 저희가 도와드릴게요!
+        소중한 퍼스널 컬러를 빛내는 완벽한 아이템을 발견하세요.
       </h2>
       <div className="container">
-        <select className="select-input" onChange={handleRecommendMethodChange} value={recommendMethod}>
-          <option value="random">-- 방식 선택--</option>
-          <option value="high_rating">높은평점</option>
-        </select>
         <select className="select-input" onChange={handleColorChange} value={selectedColor}>
           <option value="">-- 퍼스널컬러 선택 --</option>
           <option value="spring_pastel">spring_pastel</option>
@@ -157,52 +142,19 @@ const Recommend = () => {
           <option value="Hoodie">Hoodie</option>
           <option value="Coat">Coat</option>
         </select>
-
-        <button className="recommend-button" onClick={recommendProduct}>
-          상품 추천
+        <button className="search-button" onClick={recommendProduct}>
+          상품 검색
         </button>
       </div>
-      <br></br>
-      {recommendMethod === "random" && (
-        <p
-          style={{
-            textAlign: "center",
-            border: "2px solid black",
-          }}
-        >
-          선택하지 않으면 랜덤으로 추천합니다.
-        </p>
-      )}
-      {recommendMethod === "high_rating" && (
-        <p
-          style={{
-            textAlign: "center",
-            border: "2px solid black",
-          }}
-        >
-          평점이 4점 이상인 상품을 추천합니다.
-        </p>
-      )}
       {noProductFound && (
-        <p
-          style={{
-            textAlign: "center",
-          }}
-        >
-          방식({recommendMethod}), 퍼스널컬러({selectedColor}), 카테고리(
-          {selectedCategory})에 해당하는 상품이 없습니다.
+        <p>
+          선택한 퍼스널 컬러(<strong>{selectedColor}</strong>)와 카테고리(
+          <strong>{selectedCategory}</strong>)에 해당하는 상품이 없습니다.
         </p>
       )}
-      <div
-        className="productrandom"
-        style={{
-          height: "100%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        {product && (
+      <br></br>
+      <div className="products">
+        {currentProducts.map((product) => (
           <div key={product.id} className="product">
             <a
               href={product.permalink}
@@ -212,7 +164,7 @@ const Recommend = () => {
               <img
                 src={product.images[0]?.src}
                 alt={product.images[0]?.alt}
-                style={{ width: "430px", height: "auto" }}
+                style={{ width: "200px", height: "auto" }}
               />
             </a>
             <br></br>
@@ -228,16 +180,17 @@ const Recommend = () => {
               {product.categories[0]?.name}
             </span>
             <br></br>
-            <span className="product-personalcolor">
-              {product.tags[1]?.name}
-            </span>
-            <br></br>
-            <span className="product-price">\{product.price}</span>
+            <span className="product-price">&#8361;{product.price}</span>
           </div>
-        )}
+        ))}
       </div>
+      <Pagination
+        totalPages={totalPages}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </div>
   );
 };
 
-export default Recommend;
+export default ProductsAll;

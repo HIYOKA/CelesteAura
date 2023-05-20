@@ -96,7 +96,7 @@ function handle_custom_data_request(WP_REST_Request $request) {
     }
 }
 
-/*function custom_menu_item_visibility($items, $menu, $args) {
+function custom_menu_item_visibility($items, $menu, $args) {
     if (is_admin()) {
         return $items;
     }
@@ -114,4 +114,4 @@ function handle_custom_data_request(WP_REST_Request $request) {
 
     return $items;
 }
-add_filter('wp_get_nav_menu_items', 'custom_menu_item_visibility', 10, 3);*/
+add_filter('wp_get_nav_menu_items', 'custom_menu_item_visibility', 10, 3);
