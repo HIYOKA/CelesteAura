@@ -187,6 +187,7 @@ const Recommend = () => {
         <p
           style={{
             textAlign: "center",
+             border: "2px solid black",
           }}
         >
           방식({recommendMethod}), 퍼스널컬러({selectedColor}), 카테고리(

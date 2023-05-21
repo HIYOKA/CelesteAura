@@ -48,6 +48,7 @@ const fetchProducts = async () => {
     return {
       id: product.id,
       name: product.name,
+      permalink: product.permalink,
       image: product.images[0].src,
       category: product.categories[0].name,
       personalcolor: product.tags[1].name,
@@ -103,7 +104,7 @@ const TopProducts = () => {
           </button>
         </a>
         <br></br>
-                <a href="https://celesteaura.com/manager-3/">
+        <a href="https://celesteaura.com/manager-3/">
           <button style={buttonStyle}>
             퍼스널컬러별<br></br>리뷰분석
           </button>
@@ -132,7 +133,13 @@ const TopProducts = () => {
             <tr key={product.id}>
               <td style={cellStyle}>{index + 1}</td>
               <td style={cellStyle}>
-                <img src={product.image} alt={product.name} width="100" />
+                <a
+                  href={product.permalink}
+                  target="_self"
+                  rel="noopener noreferrer"
+                >
+                  <img src={product.image} alt={product.name} width="100" />
+                </a>
               </td>
               <td style={cellStyle}>{product.name}</td>
               <td style={cellStyle}>{product.category}</td>
@@ -163,7 +170,7 @@ const cellStyle = {
   whiteSpace: "nowrap",
 };
 const buttonStyle = {
-  width: "160px", 
-  height: "70px", 
+  width: "160px",
+  height: "70px",
 };
 export default TopProducts;
