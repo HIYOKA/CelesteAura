@@ -371,25 +371,25 @@ class BVFW {
 						continue;
 					}
 
-					if (preg_match('/^\d+$/', $value)) {
+					if (MCHelper::safePregMatch('/^\d+$/', $value)) {
 						$result[$key]["numeric"] = true;
-					} else if (preg_match('/^\w+$/', $value)) {
+					} else if (MCHelper::safePregMatch('/^\w+$/', $value)) {
 						$result[$key]["regular_word"] = true;
-					} else if (preg_match('/^\S+$/', $value)) {
+					} else if (MCHelper::safePregMatch('/^\S+$/', $value)) {
 						$result[$key]["special_word"] = true;
-					} else if (preg_match('/^[\w\s]+$/', $value)) {
+					} else if (MCHelper::safePregMatch('/^[\w\s]+$/', $value)) {
 						$result[$key]["regular_sentence"] = true;
-					} else if (preg_match('/^[\w\W]+$/', $value)) {
+					} else if (MCHelper::safePregMatch('/^[\w\W]+$/', $value)) {
 						$result[$key]["special_chars_sentence"] = true;
 					}
 
-					if (preg_match('/^\b((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}
+					if (MCHelper::safePregMatch('/^\b((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}
 						(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\b$/x', $value)) {
 						$result[$key]["ipv4"] = true;
-					} else if (preg_match('/\b((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}
+					} else if (MCHelper::safePregMatch('/\b((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}
 						(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\b/x', $value)) {
 						$result[$key]["embeded_ipv4"] = true;
-					} else if (preg_match('/^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|
+					} else if (MCHelper::safePregMatch('/^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|
 						([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|
 						([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}
 						(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|
@@ -399,7 +399,7 @@ class BVFW {
 						(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|
 						(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))$/x', $value)) {
 						$result[$key]["ipv6"] = true;
-					} else if (preg_match('/(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|
+					} else if (MCHelper::safePregMatch('/(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|
 						([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|
 						([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}
 						(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|
@@ -411,26 +411,26 @@ class BVFW {
 						$result[$key]["embeded_ipv6"] = true;
 					}
 
-					if (preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/', $value)) {
+					if (MCHelper::safePregMatch('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/', $value)) {
 						$result[$key]["email"] = true;
-					} else if (preg_match('/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}/', $value)) {
+					} else if (MCHelper::safePregMatch('/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}/', $value)) {
 						$result[$key]["embeded_email"] = true;
 					}
 
-					if (preg_match('/^(http|ftp)s?:\/\/\S+$/i', $value)) {
+					if (MCHelper::safePregMatch('/^(http|ftp)s?:\/\/\S+$/i', $value)) {
 						$result[$key]["link"] = true;
-					} else if (preg_match('/(http|ftp)s?:\/\/\S+$/i', $value)) {
+					} else if (MCHelper::safePregMatch('/(http|ftp)s?:\/\/\S+$/i', $value)) {
 						$result[$key]["embeded_link"] = true;
 					}
 
-					if (preg_match('/<(html|head|title|base|link|meta|style|picture|source|img|
+					if (MCHelper::safePregMatch('/<(html|head|title|base|link|meta|style|picture|source|img|
 						iframe|embed|object|param|video|audio|track|map|area|form|label|input|button|
 						select|datalist|optgroup|option|textarea|output|progress|meter|fieldset|legend|
 						script|noscript|template|slot|canvas)/ix', $value)) {
 						$result[$key]["embeded_html"] = true;
 					}
 
-					if (preg_match('/\.(jpg|jpeg|png|gif|ico|pdf|doc|docx|ppt|pptx|pps|ppsx|odt|xls|zip|gzip|
+					if (MCHelper::safePregMatch('/\.(jpg|jpeg|png|gif|ico|pdf|doc|docx|ppt|pptx|pps|ppsx|odt|xls|zip|gzip|
 						xlsx|psd|mp3|m4a|ogg|wav|mp4|m4v|mov|wmv|avi|mpg|ogv|3gp|3g2|php|html|phtml|js|css)/ix', $value)) {
 						$result[$key]["file"] = true;
 					}
@@ -439,11 +439,11 @@ class BVFW {
 						$result[$key]["sql"] = true;
 					}
 
-					if (preg_match('/(?:\.{2}[\/]+)/', $value)) {
+					if (MCHelper::safePregMatch('/(?:\.{2}[\/]+)/', $value)) {
 						$result[$key]["path_traversal"] = true;
 					}
 
-					if (preg_match('/\\b(?i:eval)\\s*\\(\\s*(?i:base64_decode|exec|file_get_contents|gzinflate|passthru|shell_exec|stripslashes|system)\\s*\\(/', $value)) {
+					if (MCHelper::safePregMatch('/\\b(?i:eval)\\s*\\(\\s*(?i:base64_decode|exec|file_get_contents|gzinflate|passthru|shell_exec|stripslashes|system)\\s*\\(/', $value)) {
 						$result[$key]["php_eval"] = true;
 					}
 				}

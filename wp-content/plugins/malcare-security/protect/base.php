@@ -17,9 +17,9 @@ class BVProtectBase {
 		}
 
 		$ip = trim($ip);
-		if (preg_match('/^\[([0-9a-fA-F:]+)\](:[0-9]+)$/', $ip, $matches)) {
+		if (MCHelper::safePregMatch('/^\[([0-9a-fA-F:]+)\](:[0-9]+)$/', $ip, $matches)) {
 			$ip = $matches[1];
-		} elseif (preg_match('/^([0-9.]+)(:[0-9]+)$/', $ip, $matches)) {
+		} elseif (MCHelper::safePregMatch('/^([0-9.]+)(:[0-9]+)$/', $ip, $matches)) {
 			$ip = $matches[1];
 		}
 
@@ -44,13 +44,13 @@ class BVProtectBase {
 	}
 
 	public static function _bvInetPton($ip) {
-		if (preg_match('/^(?:\d{1,3}(?:\.|$)){4}/', $ip)) {
+		if (MCHelper::safePregMatch('/^(?:\d{1,3}(?:\.|$)){4}/', $ip)) {
 			$octets = explode('.', $ip);
 			$bin = chr($octets[0]) . chr($octets[1]) . chr($octets[2]) . chr($octets[3]);
 			return $bin;
 		}
 
-		if (preg_match('/^((?:[\da-f]{1,4}(?::|)){0,8})(::)?((?:[\da-f]{1,4}(?::|)){0,8})$/i', $ip)) {
+		if (MCHelper::safePregMatch('/^((?:[\da-f]{1,4}(?::|)){0,8})(::)?((?:[\da-f]{1,4}(?::|)){0,8})$/i', $ip)) {
 			if ($ip === '::') {
 				return "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
 			}
@@ -71,7 +71,7 @@ class BVProtectBase {
 			return strlen($ipv6_bin) === 16 ? $ipv6_bin : false;
 		}
 
-		if (preg_match('/^(?:\:(?:\:0{1,4}){0,4}\:|(?:0{1,4}\:){5})ffff\:(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})$/i', $ip, $matches)) {
+		if (MCHelper::safePregMatch('/^(?:\:(?:\:0{1,4}){0,4}\:|(?:0{1,4}\:){5})ffff\:(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})$/i', $ip, $matches)) {
 			$octets = explode('.', $matches[1]);
 			return chr($octets[0]) . chr($octets[1]) . chr($octets[2]) . chr($octets[3]);
 		}

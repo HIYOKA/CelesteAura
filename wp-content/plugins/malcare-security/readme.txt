@@ -6,7 +6,7 @@ Donate link: https://www.malcare.com
 Requires at least: 4.0
 Tested up to: 6.2
 Requires PHP: 5.4.0
-Stable tag: 4.97
+Stable tag: 5.09
 License: GPLv2 or later
 License URI: [http://www.gnu.org/licenses/gpl-2.0.html](http://www.gnu.org/licenses/gpl-2.0.html)
 
@@ -272,6 +272,13 @@ Hence a MalCare account is needed to use the plugin. This account can also be us
 =Can I Setup my MalCare account myself?=
 Yes. Take the help of this **[step-by-step guide](http://bit.ly/2RKSVCb)**.
 
+=Why do you need my email?=
+We require your email address to keep you informed about important updates related to your website, such as malware alerts, vulnerability alerts, and uptime alerts.
+
+Having an account is necessary to use our service, and your email address serves as a unique identifier for your account.
+
+In addition, we may use your email address to notify you about any changes or updates that we make to our service, as well as any new features or services that we may offer to help enhance your user experience.
+
 =I am unable to reach the security plugin. What can I do?=
 You can send an email to the support team at support@malcare.com and notify our team regarding this.
 
@@ -396,6 +403,14 @@ These are available on our website: [Terms of Service](https://www.malcare.com/t
 8. MalCare’s Uptime Monitoring notifies if a website goes down so that you can handle the situation before starting to lose visitors.
 
 == CHANGELOG ==
+= 5.09 =
+* Manage Improvements
+
+= 5.05 =
+* Code Improvements for PHP 8.2 compatibility
+* Firewall Enhancements
+* Manage Improvements
+
 = 4.97 =
 * Firewall Improvements
 * Whitelabel improvements

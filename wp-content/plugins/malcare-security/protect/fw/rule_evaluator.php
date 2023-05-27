@@ -3,10 +3,11 @@
 if (!(defined('ABSPATH') || defined('MCDATAPATH'))) exit;
 if (!class_exists('BVFWRuleEvaluator')) :
 
+#[AllowDynamicProperties]
 class BVFWRuleEvaluator {
 	private $request;
 
-	const VERSION = 0.4;
+	const VERSION = 0.5;
 
 	public function __construct($fw) {
 		$this->fw = $fw;
@@ -23,27 +24,27 @@ class BVFWRuleEvaluator {
 
 	// ================================ Functions for type checking ========================================
 	function isNumeric($value) {
-		return (preg_match('/^\d+$/', $value));
+		return (MCHelper::safePregMatch('/^\d+$/', $value));
 	}
 
 	function isRegularWord($value) {
-		return (preg_match('/^\w+$/', $value));
+		return (MCHelper::safePregMatch('/^\w+$/', $value));
 	}
 
 	function isSpecialWord($value) {
-		return (preg_match('/^\S+$/', $value));
+		return (MCHelper::safePregMatch('/^\S+$/', $value));
 	}
 
 	function isRegularSentence($value) {
-		return (preg_match('/^[\w\s]+$/', $value));
+		return (MCHelper::safePregMatch('/^[\w\s]+$/', $value));
 	}
 
 	function isSpecialCharsSentence($value) {
-		return (preg_match('/^[\w\W]+$/', $value));
+		return (MCHelper::safePregMatch('/^[\w\W]+$/', $value));
 	}
 
 	function isLink($value) {
-		return (preg_match('/^(http|ftp)s?:\/\/\S+$/i', $value));
+		return (MCHelper::safePregMatch('/^(http|ftp)s?:\/\/\S+$/i', $value));
 	}
 
 	function isFileUpload($value) {
@@ -55,47 +56,47 @@ class BVFWRuleEvaluator {
 	}
 
 	function isIpv4($value) {
-		return (preg_match('/^\b((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\b$/x', $value));
+		return (MCHelper::safePregMatch('/^\b((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\b$/x', $value));
 	}
 
 	function isEmbededIpv4($value) {
-		return (preg_match('/\b((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\b/x', $value));
+		return (MCHelper::safePregMatch('/\b((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\b/x', $value));
 	}
 
 	function isIpv6($value) {
-		return (preg_match('/^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))$/x', $value));
+		return (MCHelper::safePregMatch('/^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))$/x', $value));
 	}
 
 	function isEmbededIpv6($value) {
-		return (preg_match('/(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))/x', $value));
+		return (MCHelper::safePregMatch('/(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))/x', $value));
 	}
 
 	function isEmail($value) {
-		return (preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/', $value));
+		return (MCHelper::safePregMatch('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/', $value));
 	}
 
 	function isEmbededEmail($value) {
-		return (preg_match('/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}/', $value));
+		return (MCHelper::safePregMatch('/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}/', $value));
 	}
 
 	function isEmbededLink($value) {
-		return (preg_match('/(http|ftp)s?:\/\/\S+$/i', $value));
+		return (MCHelper::safePregMatch('/(http|ftp)s?:\/\/\S+$/i', $value));
 	}
 
 	function isEmbededHtml($value) {
-		return (preg_match('/<(html|head|title|base|link|meta|style|picture|source|img|iframe|embed|object|param|video|audio|track|map|area|form|label|input|button|select|datalist|optgroup|option|textarea|output|progress|meter|fieldset|legend|script|noscript|template|slot|canvas)/ix', $value));
+		return (MCHelper::safePregMatch('/<(html|head|title|base|link|meta|style|picture|source|img|iframe|embed|object|param|video|audio|track|map|area|form|label|input|button|select|datalist|optgroup|option|textarea|output|progress|meter|fieldset|legend|script|noscript|template|slot|canvas)/ix', $value));
 	}
 
 	function isFile($value) {
-		return (preg_match('/\.(jpg|jpeg|png|gif|ico|pdf|doc|docx|ppt|pptx|pps|ppsx|odt|xls|zip|gzip|xlsx|psd|mp3|m4a|ogg|wav|mp4|m4v|mov|wmv|avi|mpg|ogv|3gp|3g2|php|html|phtml|js|css)/ix', $value));
+		return (MCHelper::safePregMatch('/\.(jpg|jpeg|png|gif|ico|pdf|doc|docx|ppt|pptx|pps|ppsx|odt|xls|zip|gzip|xlsx|psd|mp3|m4a|ogg|wav|mp4|m4v|mov|wmv|avi|mpg|ogv|3gp|3g2|php|html|phtml|js|css)/ix', $value));
 	}
 
 	function isPathTraversal($value) {
-		return (preg_match('/(?:\.{2}[\/]+)/', $value));
+		return (MCHelper::safePregMatch('/(?:\.{2}[\/]+)/', $value));
 	}
 
 	function isPhpEval($value) {
-		return (preg_match('/\\b(?i:eval)\\s*\\(\\s*(?i:base64_decode|exec|file_get_contents|gzinflate|passthru|shell_exec|stripslashes|system)\\s*\\(/', $value));
+		return (MCHelper::safePregMatch('/\\b(?i:eval)\\s*\\(\\s*(?i:base64_decode|exec|file_get_contents|gzinflate|passthru|shell_exec|stripslashes|system)\\s*\\(/', $value));
 	}
 
 	// ================================ Functions to perform operations ========================================
@@ -106,6 +107,23 @@ class BVFWRuleEvaluator {
 
 		array_push($this->errors, array("inArray", "Expects an array"));
 		return false;
+	}
+
+	function arrayKeyExists($key, $array) {
+		if (!is_array($array)) {
+			array_push($this->errors, array("arrayKeyExists", "Array must be of type array"));
+			return false;
+		}
+		else if (!is_string($key) && !is_int($key)) {
+			array_push($this->errors, array("arrayKeyExists", "Key must be of type string or int"));
+			return false;
+		}
+
+		return array_key_exists($key, $array);
+	}
+
+	function isPostRequest() {
+		return $this->getReqMethod() === "POST";
 	}
 
 	function isSubstring($string, $substring) {
@@ -134,9 +152,9 @@ class BVFWRuleEvaluator {
 			}
 			return false;
 		}
-		$resp = preg_match((string) $pattern, (string) $subject);
+		$resp = MCHelper::safePregMatch((string) $pattern, (string) $subject);
 		if ($resp === false) {
-			array_push($this->errors, array("preg_match", $subject));
+			array_push($this->errors, array("MCHelper::safePregMatch", $subject));
 		} else if ($resp > 0) {
 			return true;
 		}

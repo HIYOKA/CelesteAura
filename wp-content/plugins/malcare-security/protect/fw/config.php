@@ -17,6 +17,7 @@ class BVFWConfig {
 	public $loggingMode;
 	public $rulesMode;
 	public $isGeoBlocking;
+	public $canSetCachePreventionCookie;
 
 	public static $requests_table = 'fw_requests';
 	public static $roleLevels = array(

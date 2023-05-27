@@ -21,6 +21,7 @@ class BVWPRequest {
 	private $rulesInfo;
 	private $reqInfo;
 	private $matchedRules;
+	private $category;
 
 	#status
  	const ALLOWED  = 1;

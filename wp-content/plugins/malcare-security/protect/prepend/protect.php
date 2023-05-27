@@ -10,6 +10,7 @@ require_once dirname( __FILE__ ) . '/../fw/config.php';
 require_once dirname( __FILE__ ) . '/info.php';
 require_once dirname( __FILE__ ) . '/ipstore.php';
 require_once dirname( __FILE__ ) . '/logger.php';
+require_once dirname( __FILE__ ) . '/../../helper.php';
 
 	class BVPrependProtect {
 		public $mcConfFile;

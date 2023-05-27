@@ -9,6 +9,9 @@ if (!class_exists('BVWPActLog')) :
 		public $db;
 		public $settings;
 		public $bvinfo;
+		public $request_id;
+		public $ip_header;
+		public $ignored_events;
 
 		public function __construct($db, $settings, $info, $config) {
 			$this->db = $db;
@@ -117,9 +120,9 @@ if (!class_exists('BVWPActLog')) :
 			}
 
 			$ip = trim($ip);
-			if (preg_match('/^\[([0-9a-fA-F:]+)\](:[0-9]+)$/', $ip, $matches)) {
+			if (MCHelper::safePregMatch('/^\[([0-9a-fA-F:]+)\](:[0-9]+)$/', $ip, $matches)) {
 				$ip = $matches[1];
-			} elseif (preg_match('/^([0-9.]+)(:[0-9]+)$/', $ip, $matches)) {
+			} elseif (MCHelper::safePregMatch('/^([0-9.]+)(:[0-9]+)$/', $ip, $matches)) {
 				$ip = $matches[1];
 			}
 
@@ -150,7 +153,7 @@ if (!class_exists('BVWPActLog')) :
 			$is_ignored = false;
 			if (array_key_exists("post_types_regex", $ignored_keys)) {
 				foreach ($ignored_keys['post_types_regex'] as $val) {
-					if (preg_match($val, $value)) {
+					if (MCHelper::safePregMatch($val, $value)) {
 						return true;
 					}
 				}

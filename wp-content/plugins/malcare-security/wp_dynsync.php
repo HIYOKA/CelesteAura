@@ -8,6 +8,8 @@ class BVWPDynSync {
 	public static $dynsync_table = 'dynamic_sync';
 	public $db;
 	public $settings;
+	public $config;
+	public $ignored_events;
 
 	public function __construct($db, $settings, $config) {
 		$this->db = $db;
@@ -197,7 +199,7 @@ class BVWPDynSync {
 		$is_ignored = false;
 		foreach($ignored_keys as $val) {
 			if ($val[0] == '/') {
-				if (preg_match($val, $value))
+				if (MCHelper::safePregMatch($val, $value))
 					$is_ignored = true;
 			} else {
 				if ($val == $value)

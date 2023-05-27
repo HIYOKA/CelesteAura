@@ -7,13 +7,15 @@ class BVUpgraderSkin extends WP_Upgrader_Skin {
 	public $action = '';
 	public $plugin_info = array();
 	public $theme_info = array();
+	public $plugins_by_name = array();
 	public $language_update = null;
 
-	const UPGRADER_WING_VERSION = 1.0;
+	const UPGRADER_WING_VERSION = 1.1;
 
-	function __construct($type, $package = '') {
+	function __construct($type, $plugins_by_name = array(), $package = '') {
 		$this->action = $type;
 		$this->package = $package;
+		$this->plugins_by_name = $plugins_by_name;
 		parent::__construct(array());
 	}
 
@@ -21,16 +23,19 @@ class BVUpgraderSkin extends WP_Upgrader_Skin {
 
 	function footer() {}
 
-	function get_key() {
+	function get_keys() {
 		$key = "bvgeneral";
+		$key_by_file = null;
 		switch ($this->action) {
 		case "theme_upgrade":
 			if (!empty($this->theme_info))
 				$key = $this->theme_info['Name'];
 			break;
 		case "plugin_upgrade":
-			if (!empty($this->plugin_info))
+			if (!empty($this->plugin_info)) {
 				$key = $this->plugin_info['Name'];
+				$key_by_file = $this->plugins_by_name[$key];
+			}
 			break;
 		case "installer":
 			if (!empty($this->package))
@@ -41,11 +46,11 @@ class BVUpgraderSkin extends WP_Upgrader_Skin {
 				$key = $this->language_update->package;
 			break;
 		}
-		return $key;
+		return array($key, $key_by_file);
 	}
 
 	function error($errors) {
-		$key = $this->get_key();
+		list($key, $key_by_file) = $this->get_keys();
 		$message = array();
 		$message['error'] = true;
 		if (is_string($errors)) {
@@ -55,6 +60,9 @@ class BVUpgraderSkin extends WP_Upgrader_Skin {
 			$message['code'] = $errors->get_error_code();
 		}
 		$this->status[$this->action.':'.$key][] = $message;
+		if (!empty($key_by_file)) {
+			$this->status[$this->action.':'.$key_by_file][] = $message;
+		}
 	}
 
 	function feedback($string, ...$args) {
@@ -69,9 +77,12 @@ class BVUpgraderSkin extends WP_Upgrader_Skin {
 			}
 		}
 
-		$key = $this->get_key();
+		list($key, $key_by_file) = $this->get_keys();
 		$message = array();
 		$message['message'] = $string;
+		if (!empty($key_by_file)) {
+			$this->status[$this->action.':'.$key_by_file][] = $message;
+		}
 		$this->status[$this->action.':'.$key][] = $message;
 	}
 }

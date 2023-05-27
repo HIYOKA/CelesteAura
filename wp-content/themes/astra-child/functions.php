@@ -115,3 +115,20 @@ function custom_menu_item_visibility($items, $menu, $args) {
     return $items;
 }
 add_filter('wp_get_nav_menu_items', 'custom_menu_item_visibility', 10, 3);
+
+add_action( 'template_redirect', 'restrict_access_to_specific_users' );
+
+function restrict_access_to_specific_users(){
+    global $post;
+    $slug = $post->post_name;
+    
+    if($slug === 'manager' || $slug === 'manager-2' || $slug === 'manager-3'){
+        if(!is_user_logged_in() || (!current_user_can('editor') && !current_user_can('administrator'))){
+            wp_die('관리자만 접근할 수 있습니다. 3초 후 메인페이지로 이동합니다. <script>setTimeout(function(){window.location="'.home_url().'"}, 3000);</script>', 'Access denied', array(
+                'response' => 403,
+                'back_link' => true,
+            ));
+            exit;
+        }
+    }
+}

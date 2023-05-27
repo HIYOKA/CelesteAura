@@ -2,6 +2,8 @@
 if (!defined('ABSPATH')) exit;
 if (!class_exists('BVIPStore')) :
 
+require_once dirname( __FILE__ ) . '/../fw/request.php';
+
 	class BVIPStore {
 
 		public $db;

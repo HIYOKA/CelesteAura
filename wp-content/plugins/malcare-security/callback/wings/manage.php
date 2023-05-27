@@ -6,7 +6,7 @@ class BVManageCallback extends BVCallbackBase {
 	public $settings;
 	public $skin;
 
-	const MANAGE_WING_VERSION = 1.1;
+	const MANAGE_WING_VERSION = 1.2;
 
 	public function __construct($callback_handler) {
 		$this->settings = $callback_handler->settings;
@@ -418,8 +418,11 @@ class BVManageCallback extends BVCallbackBase {
 	function upgradePlugins($plugins, $has_bv_skin = false, $bv_bulk_upgrade = false) {
 		$result = array();
 		$_plugins = array();
+		$plugins_by_name = array();
 		foreach ($plugins as $plugin) {
 			$_plugins[$plugin['file']] = $plugin['package'];
+			$plugin_data = get_plugin_data(WP_PLUGIN_DIR . '/' . $plugin['file'], false, true);
+			$plugins_by_name[$plugin_data['Name']] = $plugin['file'];
 		}
 		if (empty(array_keys($_plugins))) {
 			return $result;
@@ -427,7 +430,7 @@ class BVManageCallback extends BVCallbackBase {
 		if (class_exists('Plugin_Upgrader')) {
 			if ($has_bv_skin) {
 				require_once( "bv_upgrader_skin.php" );
-				$skin = new BVUpgraderSkin("plugin_upgrade");
+				$skin = new BVUpgraderSkin("plugin_upgrade", $plugins_by_name);
 				$this->skin = $skin;
 			} else {
 				$skin = new Bulk_Plugin_Upgrader_Skin();
@@ -605,12 +608,12 @@ class BVManageCallback extends BVCallbackBase {
 			return array('status' => "Error", 'message' => "No package is sent");
 		}
 		$valid_domain_regex = "/^(http|https):\/\/[\-\w]*\.(blogvault\.net|w\.org|wp\.org|wordpress\.org)\//";
-		if (preg_match($valid_domain_regex, $params['package']) !== 1) {
+		if (MCHelper::safePregMatch($valid_domain_regex, $params['package']) !== 1) {
 			return array('status' => "Error", 'message' => "Invalid package domain");
 		}
 		if ($has_bv_skin) {
 			require_once( "bv_upgrader_skin.php" );
-			$skin = new BVUpgraderSkin("installer", $params['package']);
+			$skin = new BVUpgraderSkin("installer", array(), $params['package']);
 			$this->skin = $skin;
 		} else {
 			$skin = new WP_Upgrader_Skin();
@@ -674,6 +677,32 @@ class BVManageCallback extends BVCallbackBase {
 		}
 	}
 
+	public function refreshPluginUpdates() {
+		global $wp_current_filter;
+		$wp_current_filter[] = 'load-update-core.php';
+
+		wp_update_plugins();
+
+		array_pop($wp_current_filter);
+
+		wp_update_plugins();
+
+		return true;
+	}
+
+	public function refreshThemeUpdates() {
+		global $wp_current_filter;
+		$wp_current_filter[] = 'load-update-core.php';
+
+		wp_update_themes();
+
+		array_pop($wp_current_filter);
+
+		wp_update_themes();
+
+		return true;
+	}
+
 	function upgrade_db(){
 		if (function_exists('wp_upgrade')) {
 			wp_upgrade();
@@ -701,6 +730,23 @@ class BVManageCallback extends BVCallbackBase {
 			$has_bv_skin = array_key_exists('bvskin', $params);
 			$bv_bulk_upgrade = array_key_exists('bv_bulk_update', $params['args']);
 			$resp = array("upgrades" => $this->upgrade($params['args'], $has_bv_skin, $bv_bulk_upgrade));
+			break;
+		case "cmbneupgrde":
+			$args = $params['args'];
+			$has_bv_skin = array_key_exists('bvskin', $args);
+			$bv_bulk_upgrade = array_key_exists('bv_bulk_update', $args);
+
+			$resp['upgrades'] = $this->upgrade($args['upgrades'], $has_bv_skin, $bv_bulk_upgrade);
+
+			if (isset($args['delete_transient'])) {
+				$resp['delete_transient'] = $this->settings->deleteTransient($args['delete_transient']);
+			}
+			if (isset($args['wp_update_plugins'])) {
+				$resp['wp_update_plugins'] = $this->refreshPluginUpdates();
+			}
+			if (isset($args['wp_update_themes'])) {
+				$resp['wp_update_themes'] = $this->refreshThemeUpdates();
+			}
 			break;
 		case "edt":
 			$resp = array("edit" => $this->edit($params['args']));

@@ -139,7 +139,7 @@ class MCWPCli {
 						} else {
 							WP_CLI::error("Invalid Response. Please retry or contact us.");
 						}
-					} else if (preg_match("/^4[0-9][0-9]$/", strval($resp_code))) {
+					} else if (MCHelper::safePregMatch("/^4[0-9][0-9]$/", strval($resp_code))) {
 						if (isset($resp["body"])) {
 							WP_CLI::error("code: {$resp_code} -- message: {$resp["body"]}");
 						} else {

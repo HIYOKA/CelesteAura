@@ -10,13 +10,13 @@ if (!class_exists('MCInfo')) :
 		public $badgeinfo = 'mcbadge';
 		public $ip_header_option = 'mcipheader';
 		public $brand_option = 'mcbrand';
-		public $version = '4.97';
+		public $version = '5.09';
 		public $webpage = 'https://www.malcare.com';
 		public $appurl = 'https://app.malcare.com';
 		public $slug = 'malcare-security/malcare.php';
 		public $plug_redirect = 'mcredirect';
 		public $logo = '../img/logo.png';
-		public $brand_icon = '/img/icon.png';
+		public $brand_icon = '/img/icon.svg';
 		public $services_option_name = 'mcconfig';
 		public $author = 'MalCare Security';
 		public $title = 'MalCare WordPress Security Plugin - Malware Scanner, Cleaner, Security Firewall';

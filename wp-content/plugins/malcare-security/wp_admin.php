@@ -73,7 +73,8 @@ class MCWPAdmin {
 	}
 
 	public function mcsecAdminMenu($hook) {
-		if ($hook === 'toplevel_page_malcare' || preg_match("/bv_add_account$/", $hook) || preg_match("/bv_account_details$/", $hook)) {
+		if ($hook === 'toplevel_page_malcare' || MCHelper::safePregMatch("/bv_add_account$/", $hook) ||
+				MCHelper::safePregMatch("/bv_account_details$/", $hook)) {
 			wp_enqueue_style( 'bootstrap', plugins_url('css/bootstrap.min.css', __FILE__));
 			wp_enqueue_style( 'bvplugin', plugins_url('css/bvplugin.min.css', __FILE__));
 		}
