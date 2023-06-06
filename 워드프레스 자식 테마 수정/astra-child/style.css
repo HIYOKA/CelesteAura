@@ -1,0 +1,124 @@
+/**
+Theme Name: Astra Child
+Author: Brainstorm Force
+Author URI: http://wpastra.com/about/
+Description: Astra is the fastest, fully customizable & beautiful theme suitable for blogs, personal portfolios and business websites. It is very lightweight (less than 50KB on frontend) and offers unparalleled speed. Built with SEO in mind, Astra comes with schema.org code integrated so search engines will love your site. Astra offers plenty of sidebar options and widget areas giving you a full control for customizations. Furthermore, we have included special features and templates so feel free to choose any of your favorite page builder plugin to create pages flexibly. Some of the other features: # WooCommerce Ready # Responsive # Compatible with major plugins # Translation Ready # Extendible with premium addons # Regularly updated # Designed, Developed, Maintained & Supported by Brainstorm Force. Looking for a perfect base theme? Look no further. Astra is fast, fully customizable and beautiful theme!
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: astra-child
+Template: astra
+*/
+
+/*해당 상품 페이지에서 태그만 보이기 위해 다른(sku,카테고리) 뜨는 건 지움  */
+.woocommerce div.product .sku_wrapper {display: none!important;}
+.woocommerce div.product .posted_in {display: none!important;}
+
+/* 태그 css (시작) */
+.tagged_as {
+    font-size: 14px;
+    font-weight: 400;
+    color: #666666;
+}
+
+.tagged_as a {
+    color: #ffffff; /* 글자색 변경 */
+    background-color: #2196f3; /* 배경색 변경 */
+    border-radius: 4px; /* 모서리 둥글기 변경 */
+    padding: 4px 8px; /* 패딩 변경 */
+    margin-right: 5px; /* 오른쪽 마진 변경 */
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.tagged_as a:hover {
+    background-color: #1976d2; /* hover 시 배경색 변경 */
+    color: #ffffff; /* hover 시 글자색 변경 */
+}
+/* 태그 css (끝) */
+
+/*계정관리메뉴css*/
+.ast-header-account-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 4px;
+    color: #000000;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.ast-header-account-link:hover {
+    color: #EE82EE;
+}
+
+.ast-header-account-text {
+    margin-left: 5px;
+    font-size: 20px;
+    font-weight: 600;
+}/*계정관리css끝*/
+
+/* 메뉴css */
+.menu-item a {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: #000000;
+    transition: color 0.3s;
+}
+
+
+.menu-item .menu-text {
+    margin-left: 5px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* 헤더 메뉴에 마우스를 올릴 때 각각 색깔이 다르게 함(시작) */
+#menu-item-45 a:hover { 
+    color: #FF0000;
+}
+#menu-item-6712 a:hover { 
+    color: #FFA500;
+}
+#menu-item-4925 a:hover { 
+    color: #CCCC00;
+}
+#menu-item-5312 a:hover { 
+    color: #008000;
+}
+#menu-item-3917 a:hover { 
+    color: #0000FF;
+}
+#menu-item-4663 a:hover {
+    color: #1976d2;
+}
+/* 헤더 메뉴에 마우스를 올릴 때 각각 색깔이 다르게 함(끝) */
+
+/*청구, 배송 주소 작성에서 필수 값이 아닌 필드를 보이지 않게 함(시작)*/
+#billing_company_field {
+    display: none;
+}
+#shipping_company_field {
+    display: none;
+}
+
+#billing_address_2_field {
+    display: none !important;
+}
+
+#shipping_address_2_field {
+    display: none !important;
+}
+/*청구, 배송 주소 작성에서 필수 값이 아닌 필드를 보이지 않게 함(끝)*/
+
+/*footer에 있는 개인정보처리방침 링크 css (시작)*/
+    a#privacy_policy {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    a#privacy_policy:hover {
+      text-decoration: underline;
+    }
+/*footer에 있는 개인정보처리방침 링크 css (끝)*/

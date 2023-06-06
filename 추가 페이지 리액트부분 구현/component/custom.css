@@ -1,0 +1,102 @@
+/* 상품 리스트 css */
+.products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+    grid-auto-rows: auto;
+  }
+  /* 상품 css*/
+  .product {
+    text-align: left;
+  }
+/* 페이지네이션 css*/
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin: 16px 0;
+  }
+  
+  .pagination button {
+    margin: 0 4px;
+      padding: 5px 10px; /* 상하 5px, 좌우 10px 패딩 추가 */
+  background-color: #fff; /* 버튼 배경색 변경 */
+  border: none; /* 테두리 제거 */
+  cursor: pointer; /* 마우스 포인터 변경 */
+  transition: background-color 0.3s; /* 배경색 변경 효과 */
+  color: #000;
+  }
+  
+
+/* 페이지네이션 눌린 버튼 색깔 변경 */
+.pagination button.active {
+  background-color: #000; /* 눌린 버튼 배경색 변경 */
+  color: white; /* 눌린 버튼 글자색 변경 */
+}
+
+/* 페이지네이션 버튼 호버 효과 */
+.pagination button:hover:not(.active) {
+  color: white;
+  background-color: #000; /* 호버 시 배경색 변경 */
+}
+  /*추천버튼 css 시작*/
+  .recommend-button {
+  color: white;
+  transition: all 0.3s ease;
+   height: 50px;
+   padding: 8px 16px;
+   border-radius: 20px;
+   border: 2px solid white;
+}
+
+.recommend-button:hover {
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+}
+/*추천버튼 css 끝*/
+
+/*상품 겅색 버튼 css 시작 */ 
+  .search-button {
+  color: white;
+  transition: all 0.3s ease;
+   padding: 8px 16px;
+   border-radius: 20px;
+   border: 2px solid white;
+}
+
+.search-button:hover {
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+}
+/*상품 겅색 버튼 css 끝*/
+ 
+/* 그래프 테두리 css */
+.recharts-wrapper {
+  border: 1px solid #000;
+  border-radius: 4px;
+  padding: 16px;
+}
+
+/*퍼스널컬러페이지, 추천페이지 드롭다운목록 css 시작 */
+.container {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 80px;
+}
+.select-input {
+  width: 200px; 
+  margin-right: 10px; /* select 요소 사이의 간격 */
+}
+
+@media (max-width: 768px) { /*뷰포트의 너비가 768px 이하일 때 적용되는 스타일 */
+  .container {
+    flex-direction: column; /*세로로 정렬 */
+    align-items: center; /*가운데 정렬 */
+    padding-right: 0;
+  }
+   .select-input {
+    margin-bottom: 10px; 
+  }
+}
+/*드롭다운목록 css 끝 */
