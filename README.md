@@ -2,7 +2,7 @@
 
 <p align="center"><img src="https://github.com/HIYOKA/CelesteAura/assets/59604439/04f1008c-508f-435d-81c2-bfe1dae9c5e0"></p>
 
-# 웹사이트 : https://celesteaura.com
+# 웹사이트 : https://celesteaura.com | 09.02 닫음
 <p align="center"><img src="https://github.com/HIYOKA/CelesteAura/assets/59604439/d0ae45d7-ac3e-49fe-a4be-c9531c506784"></p>
 
 # 발표 영상 : https://youtu.be/c8vM4XDouOE
